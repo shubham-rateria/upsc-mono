@@ -1,0 +1,49 @@
+.ResultCard {
+    margin: 2rem 0;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ImageContainer {
+    margin-right: 0.5rem;
+    width: 20vw;
+    margin-right: 0.5rem;
+    border: 1px solid #bdbdbd;
+    padding: 0.1rem;
+    border-radius: 5px;
+}
+
+.ImageContainer img {
+    width: 100%;
+}
+
+.ResultGrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.DetailsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.FileName {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.ResultsText {
+    font-size: 0.9rem;
+}
+
+.ResultHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+.EnlargedImageContainer {
+    z-index: 100;
+    border: 1px solid red;
+}

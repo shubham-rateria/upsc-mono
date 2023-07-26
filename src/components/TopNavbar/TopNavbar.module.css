@@ -1,0 +1,19 @@
+/* TopNavBar.module.css */
+
+.topNavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  
+  .logoContainer img {
+    height: 40px;
+  }
+  
+  .avatarContainer img {
+    height: 40px;
+    border-radius: 50%;
+  }
+  

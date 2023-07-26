@@ -1,0 +1,57 @@
+/* SearchPage.module.css */
+
+
+/* Main container for the whole page */
+.SearchPage {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+  
+  /* Styling for the search bar container */
+  .searchBarContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the main content section (results section) */
+  .mainContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Styling for the filter section */
+  .filterSection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 20px;
+    background: #f7f7f7;
+    width: 15vw;
+  }
+  
+  /* Top navigation bar styles */
+  .topNavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  
+  .logoContainer img {
+    height: 40px;
+  }
+  
+  .avatarContainer img {
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .resultSection {
+    width: 70vw;
+  }
+

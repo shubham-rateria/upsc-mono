@@ -9,14 +9,34 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/colors": "^1.0.1",
+    "@radix-ui/react-accordion": "1.1.2",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-separator": "^1.0.3",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "antd": "^5.7.3",
+    "aws-sdk": "^2.1420.0",
+    "axios": "^1.4.0",
+    "clsx": "^2.0.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.4.0",
     "next": "13.4.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-horizontal-scrolling-menu": "^4.1.0",
+    "react-image-magnify": "^2.7.4",
+    "react-select": "^5.7.4",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.195",
+    "@types/react-image-magnify": "^2.7.1"
   }
 }
