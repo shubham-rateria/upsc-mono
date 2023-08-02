@@ -1,0 +1,20 @@
+.Container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: var(--margin-l);
+}
+
+.ResultTopBar {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.PageResult {
+    width: 20vw;
+    margin-right: 20px;
+}

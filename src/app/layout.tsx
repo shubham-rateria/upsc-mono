@@ -1,7 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google';
-import 'semantic-ui-css/semantic.min.css'
 
 const open_sans = Open_Sans({ subsets: ['latin'] })
 

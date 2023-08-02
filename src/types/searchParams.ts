@@ -3,7 +3,7 @@ export interface TagValue {
     children?: TagValue;
 }
 
-export type TagType = "GS1" | "GS2" | "GS3" | "GS4";
+export type TagType = "GS1" | "GS2" | "GS3" | "GS4" | "Essay";
 
 export interface Tag {
     type: TagType;

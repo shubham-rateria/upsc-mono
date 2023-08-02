@@ -4,6 +4,7 @@ import { Result } from "@/types";
 import { truncate } from "lodash";
 import ReactImageMagnify from "react-image-magnify";
 import { Label } from "semantic-ui-react";
+import DocumentResult from "../DocumentResult/DocumentResult";
 
 type Props = {
   results: Result[];
@@ -13,7 +14,7 @@ const ResultSection: FC<Props> = ({ results }) => {
   return (
     <div>
       <h2>Search Results:</h2>
-      <div>
+      {/* <div>
         {results.map((result, index) => (
           <div key={`pages-${index}`}>
             <div className={styles.ResultHeader}>
@@ -53,12 +54,12 @@ const ResultSection: FC<Props> = ({ results }) => {
               {result.pages.map((page, index) => (
                 <div key={index} className={styles.ResultCard}>
                   <div className={styles.ImageContainer}>
-                    {/* <img src={page.s3_signed_url} alt="page image" /> */}
                     <ReactImageMagnify
                       enlargedImagePosition="beside"
                       enlargedImageContainerClassName={
                         styles.EnlargedImageContainer
                       }
+                      key={page.s3_signed_url}
                       {...{
                         smallImage: {
                           alt: "Wristwatch by Ted Baker London",
@@ -75,9 +76,6 @@ const ResultSection: FC<Props> = ({ results }) => {
                   </div>
                   <div className={styles.DetailsContainer}>
                     <div className={styles.ResultsText}>
-                      {/* {truncate(page.clean_text, {
-                        length: 500,
-                      })} */}
                       {page.matching_words?.join(", ")}
                     </div>
                   </div>
@@ -86,7 +84,10 @@ const ResultSection: FC<Props> = ({ results }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
+      {results.map((result, index) => (
+        <DocumentResult result={result} key={index}/>
+      ))}
     </div>
   );
 };

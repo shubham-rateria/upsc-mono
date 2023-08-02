@@ -1,3 +1,7 @@
+.Container {
+    width: 100%;
+}
+
 .Input {
     padding: 0.5rem;
     border-radius: 5px;
@@ -6,6 +10,7 @@
     width: 50vw;
     height: 5vh;
     font-family: 'Open Sans';
+    width: 80%;
 }
 
 .Input:focus {

@@ -1,43 +1,80 @@
 .Selector {
-    font-size: 0.8rem;
-    margin-bottom: 1px;
-    background: #f7f7f7;
-    padding: 0.2rem;
+    font-size: var(--font-size-s) !important;
+    font-weight: 400 !important;
     border-radius: 5px;
 }
 
 .Selector:hover {
     cursor: pointer;
-    background: #ebebeb;
+    font-weight: 700 !important;
 }
 
 .Section {
-    background: #f7f7f7;
-    margin-bottom: 1rem;
     width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: 30vh;
+    overflow-y: auto;
 }
 
 .SectionTitle {
-    font-weight: bolder;
-    font-size: 0.8rem;
+    font-weight: 400 !important;
+    font-size: var(--font-size-s);
 }
 
-.FilterSelect:hover {
-    cursor: pointer;
-    background: #ebebeb;
+.L0Title {
+    width: 100%;
+    border-bottom: 1px solid #0000001a;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--padding-m) 0 !important;
+}
+
+.L0Title span {
+    margin-left: 0.5rem;
+}
+
+.L0Title i {
+    margin-left: auto !important;
 }
 
 .FilterSection {
     max-height: 500px;
-    overflow-y: scroll;
-    margin-bottom: 2rem;
 }
 
 .FilterSectionHeader {
-    position: sticky;
-    top: 0;
-    background: white;
-    padding: 0.2rem 0;
-    font-size: 0.8rem;
+    font-size: var(--font-size-s) !important;
     font-weight: bolder;
+}
+
+.SubList {
+    padding: 0 !important;
+    margin-left: var(--margin-l) !important;
+}
+
+.Container {
+    margin-top: var(--margin-m);
+    padding: var(--padding-l);
+    border-radius: var(--border-radius-l);
+    background: #f3f3f34b;
+    height: 60vh;
+    overflow-y: auto;
+}
+
+.ListItem {
+    margin: var(--margin-s) 0 !important;
+}
+
+.Input {
+    width: 95%;  
+}
+
+.Input input {
+    margin-top: var(--margin-m) !important;
+    border-radius: 10px !important;
+    line-height: 0.8rem !important;
+    font-size: 0.8rem;
+    background: #d9d9d91b !important;
+    border-color: #00000014 !important;
 }

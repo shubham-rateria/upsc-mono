@@ -560,7 +560,7 @@ const categories = {
           "Soil Erosion & Conservation",
         ],
       },
-      "Distribution of Key Natural Resources across the world (including South Asia and the Indian sub-continent)":
+      "Distribution of Key Natural Resources across the world":
         {
           "Types of Resources": [
             "On the Basis of Origin, Ownership, Exhaustability etc.",
@@ -595,7 +595,7 @@ const categories = {
             "Conservation of Energy Resources",
           ],
         },
-      "Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world (including India)":
+      "Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world":
         {
           "Classification of Industries": [],
           "Location & Distribution of the Industries on the Basis of": [
@@ -614,7 +614,7 @@ const categories = {
             [],
           "Agglomeration & Footloose Industries": [],
         },
-      "Important Geophysical Phenomena such as earthquakes, Tsunami, Volcanic activity, cyclone etc., geographical features and their location-changes in critical geographical features (including Water-bodies and Ice-caps) and in flora and fauna and the effects of such changes":
+      "Important Geophysical Phenomena":
         {
           Earthquakes: [
             "Why Does Earth Shake?",
@@ -643,8 +643,8 @@ const categories = {
             "Extra Tropical Cyclones",
           ],
           "Factors Causing Changes in Critical Geographical Features": [],
-          "Examples of Changing Geographical Features - Melting of Ice Sheets, Desertification etc.":
-            [],
+          "Examples of Changing Geographical Features":
+            ["Melting Ice", "Deforestation"],
           "Impact of Changing Geographical Features": [],
           "Physical Geography of India": [
             "Physiography of India",

@@ -10,6 +10,13 @@ export const PageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed, // Using 'Mixed' for 'Any' data type in MongoEngine
     default: null,
   },
+  keyword_tags: [
+    {
+      keyword: String,
+      score: Number,
+    },
+  ],
 });
 
-export const PageModel = mongoose.models.Page || mongoose.model('Page', PageSchema, 'page');
+export const PageModel =
+  mongoose.models.Page || mongoose.model("Page", PageSchema, "page");

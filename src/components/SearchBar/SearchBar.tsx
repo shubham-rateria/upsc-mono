@@ -36,7 +36,7 @@ const SearchBar: FC<Props> = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className={styles.Container}>
       <input
         type="text"
         value={searchText}
@@ -47,6 +47,10 @@ const SearchBar: FC<Props> = ({ onSearch }) => {
         onClick={handleSearch}
         className={styles.Button}
         loading={loading}
+        style={{
+          background: "#63D3FF",
+          color: "white",
+        }}
       >
         Search
       </Button>
