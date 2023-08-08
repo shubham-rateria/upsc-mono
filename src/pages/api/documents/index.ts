@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import connectToDatabase from "../../../services/db/connect";
-import { getDocumentByS3ObjectName } from "../../../services/db/document";
+import { getDocumentById, getDocumentByS3ObjectName } from "../../../services/db/document";
 import { PageModel } from "@/models/page";
 import { DocumentModel } from "@/models/document";
 import { groupBy } from "lodash";
@@ -8,6 +8,9 @@ import { getSignedUrl } from "@/services/s3";
 import flattenObject from "../../../utils/flattern-object";
 import gs1Categories from "../../../data/gs1-categories";
 import gs2Categories from "../../../data/gs2-categories";
+import gs3Categories from "../../../data/gs3-categories";
+import gs4Categories from "../../../data/gs4-categories";
+import optionalsCategories from "../../../data/optionals-categories";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,20 +18,16 @@ export default async function handler(
 ) {
   await connectToDatabase();
   if (req.method === "GET") {
-    try {
-      const { s3_object_name } = req.query;
+    // try {
+    //   const { documentId } = req.query;
 
-      console.log("getting s3 object", s3_object_name);
+    //   const document = await getDocumentById(documentId);
+    //   console.log({ document });
 
-      const document = await getDocumentByS3ObjectName(
-        s3_object_name as string
-      );
-      console.log({ document });
-
-      res.status(201).json({ success: true, data: document });
-    } catch (error: any) {
-      res.status(500).json({ success: false, error: error.message });
-    }
+    //   res.status(201).json({ success: true, data: document });
+    // } catch (error: any) {
+    //   res.status(500).json({ success: false, error: error.message });
+    // }
   } else if (req.method === "PUT") {
     const { search, pageNumber, documentType } = req.body;
     const resultsPerPage = 100;
@@ -88,7 +87,11 @@ export default async function handler(
         async (documents) => {
           const document = documents[0];
           const pages = documents.map((document) => document.page);
+          let score = 0;
           for (const page of pages) {
+
+            score += page.score;
+
             /**
              * find matching words from search query
              */
@@ -110,13 +113,14 @@ export default async function handler(
               page.s3_signed_url = s3_signed_url;
             }
           }
-          return { ...document, pages };
+          return { ...document, pages, score };
         }
       );
       let keywordDocumentSearchDocuments = await Promise.all(
         keywordDocumentSearchPromises
       );
       documentsResult.push(...keywordDocumentSearchDocuments);
+      documentsResult.sort((a, b) => b.score - a.score);
       console.log("Keyword search documents", documentsResult.length);
     }
 
@@ -127,6 +131,9 @@ export default async function handler(
     const mapTagTypeToCategories: any = {
       "GS1": gs1Categories,
       "GS2": gs2Categories,
+      "GS3": gs3Categories,
+      "GS4": gs4Categories,
+      "Optionals": optionalsCategories
     }
     if (tagType) {
 

@@ -48,6 +48,9 @@
   }
 
   .resultSection {
-    width: 70vw;
+    width: 75vw;
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 10vh;
   }
 

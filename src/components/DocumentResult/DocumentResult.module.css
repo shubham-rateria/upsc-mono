@@ -1,20 +1,109 @@
 .Container {
-    width: 100%;
+  /* width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: var(--margin-l);
+    align-items: flex-start; */
+  margin-bottom: var(--margin-l);
+  background: #f3f3f34b;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+  /* padding-bottom: var(--margin-l); */
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.109); */
+}
+
+.Container::-webkit-scrollbar {
+  display: none;
 }
 
 .ResultTopBar {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--margin-l);
 }
 
 .PageResult {
-    width: 20vw;
-    margin-right: 20px;
+  width: 20vw;
+  margin-right: var(--margin-m);
+}
+
+.PageNumber, .MatchingKeywords, .Topper {
+    color: var(--font-color-white-secondary);
+    font-size: var(--font-size-s);
+    font-family: 'Open Sans Condensed' !important;
+}
+
+.DocumentName {
+  font-weight: bold;
+  font-size: var(--font-size-s);
+}
+
+.Arrow {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.463);
+}
+
+.ArrowHidden {
+    display: none;
+}
+
+/* .ArrowHidden .ArrowCircle {
+  color: grey !important;
+  background: rgba(128, 128, 128, 0.122) !important;
+  border: 1px solid rgba(203, 203, 203, 0.214) !important;
+} */
+
+.ArrowCircle {
+  height: 2.5rem;
+  width: 2.5rem;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid rgba(128, 128, 128, 0.173);
+  font-weight: 500;
+  font-weight: bolder;
+}
+
+.Hidden {
+  display: none !important;
+}
+
+.ScrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.ScrollContainer {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.EnlargedImageContainer {
+  z-index: 100;
+  border: 1px solid red;
+}
+
+.PageImage {
+    margin: var(--margin-xs) 0;
+}
+
+.PageResult img {
+    border: 1px solid rgba(128, 128, 128, 0.342);
+    border-radius: 5px;
+    padding: 0.5rem;
+    background: white;
+}
+
+.Topper {
+    color: var(--font-color-white-grey) !important;
+    font-weight: bold;
 }

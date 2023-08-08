@@ -8,3 +8,13 @@ export const getDocumentByS3ObjectName = async (s3ObjectName: string) => {
     throw error;
   }
 };
+
+export const getDocumentById = async (id: string) => {
+  try {
+    const document = await DocumentModel.findById(id).populate('populatedPages').exec();
+    return document;
+  } catch (error) {
+    throw error;
+  }
+};
+
