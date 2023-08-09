@@ -11,7 +11,7 @@ export const getDocumentByS3ObjectName = async (s3ObjectName: string) => {
 
 export const getDocumentById = async (id: string) => {
   try {
-    const document = await DocumentModel.findById(id).populate('populatedPages').exec();
+    const document = await DocumentModel.findById(id).lean().exec();
     return document;
   } catch (error) {
     throw error;

@@ -1,17 +1,17 @@
 export interface TagValue {
     tagText: string;
-    children?: TagValue;
 }
 
 export type TagType = "GS1" | "GS2" | "GS3" | "GS4" | "Essay" | "Optionals";
+export type TagLevel = "l0" | "l1" | "l2";
 
 export interface Tag {
     type: TagType;
-    level: "l0" | "l1" | "l2";
+    level: TagLevel;
     value: TagValue;
 }
 
-export interface DocumentType {
+export type DocumentType = {
     type: 0 | 1 | 2;
 };
 

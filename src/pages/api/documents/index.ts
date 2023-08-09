@@ -18,16 +18,16 @@ export default async function handler(
 ) {
   await connectToDatabase();
   if (req.method === "GET") {
-    // try {
-    //   const { documentId } = req.query;
+    try {
+      const { documentId } = req.body;
 
-    //   const document = await getDocumentById(documentId);
-    //   console.log({ document });
+      const document = await getDocumentById(documentId as string);
+      console.log({ document });
 
-    //   res.status(201).json({ success: true, data: document });
-    // } catch (error: any) {
-    //   res.status(500).json({ success: false, error: error.message });
-    // }
+      res.status(201).json({ success: true, data: document });
+    } catch (error: any) {
+      res.status(500).json({ success: false, error: error.message });
+    }
   } else if (req.method === "PUT") {
     const { search, pageNumber, documentType } = req.body;
     const resultsPerPage = 100;

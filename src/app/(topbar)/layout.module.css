@@ -1,0 +1,7 @@
+.Container {
+    padding:  var(--padding-m) var(--padding-l);
+  }
+  
+  .TopNavContainer {
+    margin: var(--margin-s) 0;
+  }

@@ -8,6 +8,10 @@
   src: url('/fonts/OpenSans_Condensed-Regular.ttf') format('truetype');
 }
 
+i.icon {
+  font-family: Icons !important;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -69,6 +73,8 @@
 
   --font-color-white-secondary: rgb(106, 106, 106);
   --font-color-white-grey: rgb(59, 59, 59);
+
+  --bg-card: #FBFBFB;
 
 }
 

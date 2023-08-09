@@ -1,0 +1,104 @@
+.Container {
+  padding: var(--padding-m) var(--padding-l);
+}
+
+.TopNavContainer {
+  margin: var(--margin-m) 0;
+}
+
+.PageContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  height: 90vh;
+}
+
+.DocumentViewerContainer {
+  background-color: #272727;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.Document {
+  background: rgb(64, 64, 64);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #272727;
+  position: relative;
+  padding-bottom: 2vh;
+  /* opacity: 0.5; */
+  /* background-size: 8px 8px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #f2f3ffa8 0,
+    #f2f3ff6e 0.1px,
+    #272727 0,
+    #272727 50%
+  ); */
+}
+
+.DocumentTopBar {
+  position: sticky;
+  top: var(--margin-s);
+  background: rgba(255, 255, 255, 0.299);
+  padding: var(--padding-s);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  margin: var(--margin-s);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.Page {
+  margin: var(--margin-s) 0;
+  padding: var(--padding-m);
+  border-radius: 10px;
+  background: white;
+}
+
+.MatchingResults {
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.DocumentSearchInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: var(--padding-s);
+}
+
+.DocumentSearchResult {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: var(--padding-s);
+  background: white;
+  border-radius: 5px;
+}
+
+.DocumentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-s);
+  padding: 0 var(--padding-l);
+}
+
+.Card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-m);
+  padding: var(--padding-m);
+}

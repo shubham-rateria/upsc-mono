@@ -1,8 +1,8 @@
 type PageResult = {
   page_number: number;
-  s3_img_object_name: string;
-  clean_text: string;
-  s3_signed_url: string;
+  s3_img_object_name?: string;
+  clean_text?: string;
+  s3_signed_url?: string;
   matching_words?: string[];
 }
 
@@ -16,6 +16,7 @@ type Result = {
     year?: number,
   },
   pages: PageResult[];
+  s3_signed_url?: string;
 };
 
 export type { Result, PageResult };

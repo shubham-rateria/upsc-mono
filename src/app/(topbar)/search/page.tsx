@@ -5,7 +5,6 @@ import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "@/components/SearchBar/SearchBar";
 import ResultSection from "@/components/ResultSection/ResultSection";
 import FilterSection from "@/components/FilterSection/FilterSection";
-import TopNavBar from "@/components/TopNavbar/TopNavBar";
 import { Form, Icon, Label, Radio } from "semantic-ui-react";
 import axios from "axios";
 import { Result, Tag } from "@/types";
@@ -13,7 +12,6 @@ import {
   searchParamsClass,
   SearchParamsContext,
 } from "@/contexts/SearchParamsContext";
-import "semantic-ui-css/semantic.min.css";
 import {observer} from 'mobx-react-lite';
 
 const SearchPage = () => {
@@ -52,11 +50,8 @@ const SearchPage = () => {
   };
 
   return (
-    <div className={styles.Container}>
+    <div>
       <SearchParamsContext.Provider value={searchParamsClass}>
-        <div className={styles.TopNavContainer}>
-          <TopNavBar />
-        </div>
         <div className={styles.SearchPage}>
           <div className={styles.filterSection}>
             <h1 className={styles.Header}>Filter</h1>
