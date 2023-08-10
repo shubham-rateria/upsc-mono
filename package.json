@@ -23,6 +23,7 @@
     "clsx": "^2.0.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "fast-levenshtein": "^3.0.0",
     "lodash": "^4.17.21",
     "mobx": "^6.10.0",
     "mobx-react-lite": "^4.0.3",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
+    "@types/fast-levenshtein": "^0.0.2",
     "@types/lodash": "^4.14.195",
     "@types/react-image-magnify": "^2.7.1"
   }

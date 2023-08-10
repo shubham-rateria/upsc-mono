@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import styles from "./DocumentViewer.module.css";
-import {
-  ApiError,
-  PageResult,
-  Result,
-} from "@/types";
+import { ApiError, MatchingBlock, PageResult, Result } from "@/types";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
@@ -23,16 +19,11 @@ type Props = {
 };
 
 const SampleSearchResult: Result = {
-  pages: [
-    { matching_words: ["a", "word"], page_number: 1 },
-    { matching_words: ["a", "word"], page_number: 2 },
-    { matching_words: ["a", "word"], page_number: 3 },
-    { matching_words: ["a", "word"], page_number: 4 },
-  ],
+  pages: [{ matching_blocks: [], page_number: 1 }],
   num_pages: -1,
   document_type: 1,
-  s3_object_name: ""
-}
+  s3_object_name: "",
+};
 
 const DocumentViewerPage: React.FC<Props> = ({ params }) => {
   const [document, setDocument] = useState<Result>();
@@ -123,16 +114,30 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
     }
   };
 
-  const getMatchingResultsForPage = (pageNumber: number): string[] | undefined => {
+  const getMatchingResultsForPage = (
+    pageNumber: number
+  ): PageResult | undefined => {
     if (documentSearchResult) {
       const filtered = documentSearchResult?.pages.filter(
         (r) => r.page_number === pageNumber
       );
       if (filtered.length > 0) {
-        return filtered[0].matching_words;
+        return filtered[0];
       }
     }
     return undefined;
+  };
+
+  const getHeightForPage = (pageNumber: number): number => {
+    if (documentSearchResult) {
+      const filtered = documentSearchResult?.pages.filter(
+        (r) => r.page_number === pageNumber
+      );
+      if (filtered.length > 0) {
+        return filtered[0].height || 1;
+      }
+    }
+    return 1;
   };
 
   useEffect(() => {
@@ -213,13 +218,23 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
           >
             {range(document?.num_pages || 0).map((index) => (
               <div className={styles.Page} key={index}>
-                <div className={styles.MatchingResults}>
-                  {getMatchingResultsForPage(index + 1)?.map((r) => (
-                    <Label tag key={r}>
-                      {r}
-                    </Label>
-                  ))}
-                </div>
+                {getMatchingResultsForPage(index + 1)?.matching_blocks?.map(
+                  (block: MatchingBlock, idx: number) => (
+                    <div
+                      className={styles.MatchingResults}
+                      key={idx}
+                      style={{
+                        color: "blue",
+                        top: `${
+                          (block.boundingBox.vertices[0].y * 100) /
+                          getHeightForPage(index + 1)
+                        }%`,
+                      }}
+                    >
+                      <Label tag>{block.text}</Label>
+                    </div>
+                  )
+                )}
                 <InView
                   as="div"
                   threshold={0.8}

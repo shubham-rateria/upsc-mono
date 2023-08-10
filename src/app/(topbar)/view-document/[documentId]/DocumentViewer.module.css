@@ -16,7 +16,7 @@
   background-color: #272727;
   height: 100%;
   overflow-y: auto;
-  position: relative;
+  /* position: relative; */
 }
 
 .Document {
@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   background-color: #272727;
-  position: relative;
+  /* position: relative; */
   padding-bottom: 2vh;
   /* opacity: 0.5; */
   /* background-size: 8px 8px;
@@ -56,9 +56,14 @@
 
 .Page {
   margin: var(--margin-s) 0;
-  padding: var(--padding-m);
+  /* padding: var(--padding-m); */
   border-radius: 10px;
-  background: white;
+  /* background: white; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  position: relative;
 }
 
 .MatchingResults {
