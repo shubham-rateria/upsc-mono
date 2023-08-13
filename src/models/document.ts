@@ -50,7 +50,7 @@ const DocumentSchema = new mongoose.Schema({
 
 DocumentSchema.virtual('populatedPages', {
   ref: 'Page',
-  localField: 'pages._ref',
+  localField: 'pages._ref.$id',
   foreignField: '_id',
   justOne: false
 });

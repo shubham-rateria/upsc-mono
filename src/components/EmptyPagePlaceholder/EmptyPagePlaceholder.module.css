@@ -1,0 +1,37 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Img {
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Title,
+.Description {
+  text-align: center;
+}
+
+.Title {
+  color: var(--n7);
+  font-family: var(--font-mulish);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: var(--margin-m);
+}
+
+.Description {
+  color: var(--n6);
+  text-align: center;
+  font-family: var(--font-mulish);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

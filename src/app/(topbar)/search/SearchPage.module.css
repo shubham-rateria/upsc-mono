@@ -12,45 +12,180 @@
 
 /* Main container for the whole page */
 .SearchPage {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-  }
-  
-  /* Styling for the search bar container */
-  .searchBarContainer {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-top: var(--margin-m);
-  }
-  
-  /* Styling for the main content section (results section) */
-  .mainContent {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    /* padding: 20px; */
-  }
-  
-  /* Styling for the filter section */
-  .filterSection {
-    display: flex;
-    flex-direction: column;
-    width: 20vw;
-    margin-right: var(--margin-m);
-    border-radius: var(--border-radius-l);
-  }
-  
-  .filterSection .Header {
-    margin-left: var(--margin-s);
-    font-size: var(--font-size-l);
-  }
+  display: flex;
+  flex-direction: row;
+  height: 95vh;
+}
 
-  .resultSection {
-    width: 75vw;
-    overflow-y: auto;
-    height: 100%;
-    padding-bottom: 10vh;
-  }
+/* Styling for the search bar container */
+.searchBarContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
 
+/* Styling for the main content section (results section) */
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* padding: var(--padding-m) 0; */
+}
+
+.topSection {
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.15);
+  padding: var(--padding-m);
+  z-index: 20;
+}
+
+.flashText {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--margin-m);
+}
+
+.flashText .Img {
+  margin-right: var(--margin-s);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flashText .Text {
+  color: var(--n-7, #3f4765);
+  font-family: var(--font-mulish);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+/* Styling for the filter section */
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  padding: var(--padding-m) 0 var(--padding-m) var(--padding-m);
+  border-right: 1px solid var(--n-2, #d3d6e0);
+  background: #faf9ff;
+}
+
+.filterSection .Header {
+  font-size: 1.2rem;
+  margin-right: var(--padding-m);
+  /* margin-bottom: var(--margin-m) !important; */
+  margin-bottom: 0 !important;
+  padding: 0 var(--padding-s) var(--padding-m) var(--padding-s);
+  border-bottom: 1px solid var(--n3);
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.filterSection .Header img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.resultSection {
+  width: 75vw;
+  overflow-y: auto;
+  height: 100%;
+  padding: var(--padding-m) var(--padding-m) 10vh var(--padding-m);
+}
+
+/*
+  Search Page Selectors
+*/
+
+.SelectorSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.SelectorSection .DocFound {
+  color: #535353;
+  font-family: var(--font-mulish);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.SelectorSection .Action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
+.SelectorSection .Item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 var(--margin-s);
+}
+
+.SelectorSection .ItemHeader {
+  color: var(--n4);
+  font-family: var(--font-mulish);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.Dropdown {
+  margin-left: var(--margin-s) !important;
+  color: var(--p8) !important;
+  font-family: var(--font-mulish) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Dropdown .Title {
+  color: var(--n4) !important;
+  font-family: var(--font-mulish) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: normal !important;
+}
+
+.DocumentTypeSelector {
+  border-radius: 8px !important;
+  border: 1px solid var(--n2, #d3d6e0) !important;
+  background: none !important;
+}
+
+.DocumentTypeSelector a {
+  margin: 0 !important;
+}
+
+.DocumentTypeSelector .Button {
+  /* border-right: 1px solid var(--n-2, #D3D6E0); */
+  background: none !important;
+  font-family: var(--font-mulish) !important;
+  font-weight: 500 !important;
+  color: var(--n7, #3f4765) !important;
+}
+
+.DocumentTypeSelector .Button:hover {
+  color: var(--p8) !important;
+  font-weight: 600 !important;
+}
+
+.DocumentTypeSelector .ButtonActive {
+  background: var(--p-2, #e4e0ff) !important;
+  color: var(--p-8, #614fcc) !important;
+}

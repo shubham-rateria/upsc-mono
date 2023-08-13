@@ -1,7 +1,7 @@
 export type MatchingBlock = {
   text: string;
   boundingBox: any;
-}
+};
 
 export type PageResult = {
   page_number: number;
@@ -20,17 +20,18 @@ export type PageResult = {
    * width of the page returned by Vision API OCR
    */
   width?: number;
-}
+};
 
 export type Result = {
+  _id?: string;
   s3_object_name: string;
   num_pages: number;
   document_type: number | null;
   topper?: {
-    name?: string,
-    rank?: number,
-    year?: number,
-  },
+    name?: string;
+    rank?: number;
+    year?: number;
+  };
   pages: PageResult[];
   s3_signed_url?: string;
 };

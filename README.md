@@ -32,3 +32,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Search Process
+
+The search is across buckets:
+1. Subject Tag (GS1-4, Optionals, Essays) (Multiple)
+   1. Done at a page level then transcended to document
+   2. Uses simple query on page level, can be aggregated from a subset
+2. Topper Tag (Multiple)
+   1. Uses simple query on doc
+3. Document Type (Single)
+   1. Uses simple query on doc
+4. Keyword Search (Single) 
+   1. Done at a page level then transcended to document
+   2. Uses mongodb text search
+
+Our search is an AND function of all these buckets.
+
+

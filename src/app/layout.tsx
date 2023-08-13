@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "semantic-ui-css/semantic.min.css";
 
-const open_sans = Open_Sans({ subsets: ["latin"] });
+const font = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "UPSC Notes & Mock Tests",
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={open_sans.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }

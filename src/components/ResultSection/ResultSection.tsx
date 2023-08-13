@@ -1,24 +1,41 @@
+import { SearchParamsContext } from "@/contexts/SearchParamsContext";
 import React, { FC } from "react";
-import styles from "./ResultSection.module.css";
-import { Result } from "@/types";
-import { truncate } from "lodash";
-import ReactImageMagnify from "react-image-magnify";
-import { Label } from "semantic-ui-react";
+
 import DocumentResult from "../DocumentResult/DocumentResult";
+import styles from "./ResultSection.module.css";
+import { observer } from "mobx-react-lite";
+import DocSearchPlaceholder from "../DocSearchPlaceholder/DocSearchPlaceholder";
+import { EmptyPagePlaceholder } from "../EmptyPagePlaceholder/EmptyPagePlaceholder";
 
-type Props = {
-  results: Result[];
-};
+type Props = {};
 
-const ResultSection: FC<Props> = ({ results }) => {
+const ResultSection: FC<Props> = () => {
+  const searchParamsClass = React.useContext(SearchParamsContext);
+
   return (
     <div>
-      <h2 className={styles.Header}>Search Results:</h2>
-      {results.map((result, index) => (
-        <DocumentResult result={result} key={index}/>
-      ))}
+      {!searchParamsClass.searching &&
+        searchParamsClass.docSearchResults === null && (
+          <EmptyPagePlaceholder
+            imgSrc="/img/start-results.svg"
+            title="Start a new search"
+            description="Use the filters or enter any keyword to perform a search"
+          />
+        )}
+      {!searchParamsClass.searching &&
+        searchParamsClass.docSearchResults?.map((result, index) => (
+          <DocumentResult result={result} key={index} />
+        ))}
+      {searchParamsClass.searching && (
+        <div>
+          <DocSearchPlaceholder />
+          <DocSearchPlaceholder />
+          <DocSearchPlaceholder />
+          <DocSearchPlaceholder />
+        </div>
+      )}
     </div>
   );
 };
 
-export default ResultSection;
+export default observer(ResultSection);

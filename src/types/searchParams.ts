@@ -1,22 +1,29 @@
 export interface TagValue {
-    tagText: string;
+  tagText: string;
 }
 
 export type TagType = "GS1" | "GS2" | "GS3" | "GS4" | "Essay" | "Optionals";
 export type TagLevel = "l0" | "l1" | "l2";
 
 export interface Tag {
-    type: TagType;
-    level: TagLevel;
-    value: TagValue;
+  type: TagType;
+  level: TagLevel;
+  value: TagValue;
 }
 
-export type DocumentType = {
-    type: 0 | 1 | 2;
+export type DocumentType = -1 | 0 | 1 | 2;
+
+export type Topper = {
+  name?: string;
+  rank?: number;
+  year?: number;
 };
 
 export interface SearchParams {
-    keyword?: string;
-    tag?: Tag | null;
-    documentType?: DocumentType
+  keyword?: string;
+  subjectTags?: Tag[] | null;
+  documentType?: DocumentType;
+  topper?: Topper;
+  year?: number;
+  favourites?: boolean;
 }

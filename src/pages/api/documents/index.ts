@@ -5,12 +5,14 @@ import { PageModel } from "@/models/page";
 import { DocumentModel } from "@/models/document";
 import { groupBy } from "lodash";
 import { getSignedUrl } from "@/services/s3";
-import flattenObject from "../../../utils/flattern-object";
+import flattenObject from "../../../utils/flatten-object";
 import gs1Categories from "../../../data/gs1-categories";
 import gs2Categories from "../../../data/gs2-categories";
 import gs3Categories from "../../../data/gs3-categories";
 import gs4Categories from "../../../data/gs4-categories";
 import optionalsCategories from "../../../data/optionals-categories";
+import searchByKeyword from "@/utils/search-by-keyword";
+import searchBySubjectTags from "@/utils/search-by-subject-tags";
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,329 +30,62 @@ export default async function handler(
     } catch (error: any) {
       res.status(500).json({ success: false, error: error.message });
     }
-  } else if (req.method === "PUT") {
-    const { search, pageNumber, documentType } = req.body;
-    const resultsPerPage = 100;
-    const skipCount = (pageNumber - 1) * resultsPerPage;
-    const pages = await PageModel.find(
-      { $text: { $search: search } },
-      { score: { $meta: "textScore" } },
-      { "ocr.labelAnnotations.description": "Handwriting" }
-    )
-      .sort({ score: { $meta: "textScore" } })
-      .skip(skipCount)
-      .limit(resultsPerPage)
-      .select({
-        ocr: 0,
-      })
-      .lean();
-    res.status(200).json({ success: true, data: pages });
   } else if (req.method === "POST") {
-    const { search, pageNumber, documentType, tagType } = req.body;
+    
+    const { search, pageNumber, documentType, subjectTags } = req.body;
     let documentsResult: any[] = [];
-    const resultsPerPage = 100;
-    const skipCount = (pageNumber - 1) * resultsPerPage;
 
     if (search) {
-      console.log("searching for", search);
-      const pages = await PageModel.find(
-        {
-          $text: { $search: search },
-          // "ocr.labelAnnotations.description": "Handwriting",
-        },
-        { score: { $meta: "textScore" } }
-      )
-        .sort({ score: { $meta: "textScore" } })
-        .skip(skipCount)
-        .limit(resultsPerPage)
-        .select({
-          ocr: 0,
-        })
-        .lean();
-      const documents = [];
-      for (const page of pages) {
-        const document: any = await DocumentModel.findOne({
-          "pages._ref.$id": page._id,
-        })
-          .select({ pages: 0 })
-          .lean();
-        if (!document) {
-          continue;
-        }
-        documents.push({ ...document, _id: document._id.toString() , page });
-      }
-      const groupedDocuments = groupBy(documents, (document) => document._id);
-      /**
-       * get unique documents and merge their page attributes
-       */
-      const keywordDocumentSearchPromises = Object.values(groupedDocuments).map(
-        async (documents) => {
-          const document = documents[0];
-          const pages = documents.map((document) => document.page);
-          let score = 0;
-          for (const page of pages) {
-
-            score += page.score;
-
-            /**
-             * find matching words from search query
-             */
-            const matchingWords = search
-              .toLowerCase()
-              .split(" ")
-              .filter((word: string) => {
-                const regex = new RegExp(`\\b${word}\\b`, "i");
-                return regex.test(page.clean_text?.toLowerCase());
-              });
-            page.matching_words = matchingWords;
-            delete page.clean_text;
-            if (page.s3_img_object_name) {
-              const s3_signed_url = await getSignedUrl(
-                "page-img",
-                page.s3_img_object_name,
-                5
-              );
-              page.s3_signed_url = s3_signed_url;
-            }
-          }
-          return { ...document, pages, score };
-        }
-      );
-      let keywordDocumentSearchDocuments = await Promise.all(
-        keywordDocumentSearchPromises
-      );
-      documentsResult.push(...keywordDocumentSearchDocuments);
-      documentsResult.sort((a, b) => b.score - a.score);
-      console.log("Keyword search documents", documentsResult.length);
+      const keywordSearchDocResults = await searchByKeyword(search, pageNumber);
+      documentsResult.push(...keywordSearchDocResults);
     }
 
-    /**
-     * see if there are any filter tags
-     * if there are find pages that turn under that search
-     */
-    const mapTagTypeToCategories: any = {
-      "GS1": gs1Categories,
-      "GS2": gs2Categories,
-      "GS3": gs3Categories,
-      "GS4": gs4Categories,
-      "Optionals": optionalsCategories
-    }
-    if (tagType) {
+   
+    if (subjectTags) {
 
-      const categoryFilter = mapTagTypeToCategories[tagType.type];
+      const tagSearchResults = await searchBySubjectTags(subjectTags);
 
-      if (tagType.level === "l1") {
-        // find key in cateogryFilter.cateogries
-        let categoryObject = {};
-        for (const category of categoryFilter.categories) {
-          Object.keys(category).forEach((key) => {
-            if (key === tagType.value.tagText) {
-              categoryObject = category;
-            }
+      if (documentsResult.length > 0) {
+        // find the common documents between uniqueDocuments and documentsResult
+        const commonDocuments = tagSearchResults.filter((uniqueDocument) => {
+          return documentsResult.some((documentResult) => {
+            return (
+              // @ts-ignore
+              uniqueDocument._id.toString() ===
+              documentResult._id.toString()
+            );
           });
-        }
-        // flatten the category object
-        const keywords = flattenObject(categoryObject);
-        keywords.push(tagType.value.tagText);
-        console.log("Finding keywords", keywords);
-        let pages: any[] = [];
-        const pageSearchPromises = [];
-        for (const keyword of keywords) {
-          const pageSearchPromise = PageModel.find(
-            {
-              $text: { $search: keyword },
-            },
-            { score: { $meta: "textScore" } }
-          )
-            .sort({ score: { $meta: "textScore" } })
-            .skip(0)
-            .limit(50)
-            .select({
-              ocr: 0,
-              clean_text: 0,
-            })
-            .lean();
-          pageSearchPromises.push(pageSearchPromise);
-        }
-        pages = await Promise.all(pageSearchPromises);
-        pages = pages.flat();
-        console.log("Found pages", pages.length);
-        const documents = [];
-        for (const page of pages) {
-          const document: any = await DocumentModel.findOne({
-            "pages._ref.$id": page._id,
-          })
-            .select({ pages: 0 })
-            .lean();
-          if (!document) {
-            continue;
-          }
-          documents.push({ ...document, _id: document._id.toString() , page });
-        }
-        console.log("Found documents", documents.length);
-        const groupedDocuments = groupBy(documents, (document) => document._id);
-        /**
-         * get unique documents and merge their page attributes
-         */
-        const uniqueDocumentsPromise = Object.values(groupedDocuments).map(
-          async (documents) => {
-            const document = documents[0];
-            let pages = documents.map((document) => document.page);
-            let scoreSum = 0;
-            for (const page of pages) {
-              if (page.s3_img_object_name) {
-                const s3_signed_url = await getSignedUrl(
-                  "page-img",
-                  page.s3_img_object_name,
-                  5
-                );
-                page.s3_signed_url = s3_signed_url;
-              }
-              scoreSum += page.score;
-            }
-            delete document.page;
-            pages = pages.sort((a, b) => b.score - a.score);
-            return { ...document, pages: pages.slice(0, 5), score: scoreSum };
-          }
-        );
-        let uniqueDocuments = await Promise.all(uniqueDocumentsPromise);
-        // sort unique documents by score
-        uniqueDocuments.sort((a, b) => b.score - a.score);
-
-        console.log("Unique Documents", uniqueDocuments.length);
-
-        if (documentsResult.length > 0) {
-          // find the common documents between uniqueDocuments and documentsResult
-          const commonDocuments = uniqueDocuments.filter((uniqueDocument) => {
-            return documentsResult.some((documentResult) => {
-              return (
-                uniqueDocument._id.toString() ===
-                documentResult._id.toString()
-              );
-            });
-          });
-          documentsResult = commonDocuments;
-        } else {
-          documentsResult.push(...uniqueDocuments);
-        }
-      }
-      if (tagType.level === "l2") {
-        let categoryObject = {};
-        for (const category of categoryFilter.categories) {
-          Object.keys(category).forEach((key) => {
-            // @ts-ignore
-            Object.keys(category[key]).forEach((subKey) => {
-              if (subKey === tagType.value.tagText) {
-                // @ts-ignore
-                categoryObject = category[key][subKey];
-              }
-            });
-          });
-        }
-        // flatten the category object
-        const keywords = flattenObject(categoryObject);
-        keywords.push(tagType.value.tagText);
-        console.log("Finding keywords", keywords);
-        // TODO: null check for keywords
-        let pages: any[] = [];
-        const pageSearchPromises = [];
-        for (const keyword of keywords) {
-          const pageSearchPromise = PageModel.find(
-            {
-              $text: { $search: keyword },
-            },
-            { score: { $meta: "textScore" } }
-          )
-            .sort({ score: { $meta: "textScore" } })
-            .skip(0)
-            .limit(50)
-            .select({
-              ocr: 0,
-              clean_text: 0,
-            })
-            .lean();
-          pageSearchPromises.push(pageSearchPromise);
-        }
-        pages = await Promise.all(pageSearchPromises);
-        pages = pages.flat();
-        console.log("Found pages", pages.length);
-        const documents = [];
-        for (const page of pages) {
-          const document: any = await DocumentModel.findOne({
-            "pages._ref.$id": page._id,
-          })
-            .select({ pages: 0 })
-            .lean();
-          if (!document) {
-            continue;
-          }
-          documents.push({ ...document, _id: document._id.toString() , page });
-        }
-        console.log("Found documents", documents.length);
-        const groupedDocuments = groupBy(documents, (document) => document._id);
-        /**
-         * get unique documents and merge their page attributes
-         */
-        const uniqueDocumentsPromise = Object.values(groupedDocuments).map(
-          async (documents) => {
-            const document = documents[0];
-            let pages = documents.map((document) => document.page);
-            let scoreSum = 0;
-            for (const page of pages) {
-              if (page.s3_img_object_name) {
-                const s3_signed_url = await getSignedUrl(
-                  "page-img",
-                  page.s3_img_object_name,
-                  5
-                );
-                page.s3_signed_url = s3_signed_url;
-              }
-              scoreSum += page.score;
-            }
-            delete document.page;
-            pages = pages.sort((a, b) => b.score - a.score);
-            return { ...document, pages: pages.slice(0, 5), score: scoreSum };
-          }
-        );
-        let uniqueDocuments = await Promise.all(uniqueDocumentsPromise);
-        // sort unique documents by score
-        uniqueDocuments.sort((a, b) => b.score - a.score);
-
-        console.log("Unique Documents", uniqueDocuments.length);
-
-        if (documentsResult.length > 0) {
-          // find the common documents between uniqueDocuments and documentsResult
-          // assuming that uniqueDocuments is a bigger array
-          const commonDocuments = uniqueDocuments.filter((uniqueDocument) => {
-            return documentsResult.some((documentResult) => {
-              return (
-                uniqueDocument._id.toString() ===
-                documentResult._id.toString()
-              );
-            });
-          });
-          documentsResult = commonDocuments;
-          console.log("Common Documents", commonDocuments.length);
-        } else {
-          documentsResult.push(...uniqueDocuments);
-        }
+        });
+        documentsResult = commonDocuments;
+      } else {
+        documentsResult.push(...tagSearchResults);
       }
     }
-
+    
     /**
      * if document type is not null
      * get the documents that have the matching document type
      * and filter unique documents by that
      */
     if (documentType !== null && documentType !== undefined) {
-      documentsResult = documentsResult.filter((document) => {
-        if (
-          document.document_type !== null ||
-          document.document_type !== undefined
-        ) {
-          return document.document_type === documentType;
+
+      if (documentsResult.length > 0) {
+        documentsResult = documentsResult.filter((document) => {
+          if (
+            document.document_type !== null ||
+            document.document_type !== undefined
+          ) {
+            return document.document_type === documentType;
+          }
+        });
+      } else {
+        const docTypeResults = await DocumentModel.find({document_type: documentType}).lean().exec();
+        for (const doc of docTypeResults) {
+          // get the first 5 pages of this doc
         }
-      });
+      }
+
+      
     }
 
     res.status(200).json({ success: true, data: documentsResult });

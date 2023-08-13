@@ -1,61 +1,56 @@
 import React, { FC, useState } from "react";
 import { debounce } from "lodash";
 import styles from "./SearchBar.module.css";
-import { Button } from "semantic-ui-react";
+import { Button, Input } from "semantic-ui-react";
+import { SearchParamsContext } from "@/contexts/SearchParamsContext";
+import { observer } from "mobx-react-lite";
 
-type Props = {
-  onSearch: (searchText: string) => Promise<void>;
-};
+type Props = {};
 
 /**
  * The search bar should return the complete parameters for keyword search
  * @param param0
  * @returns
  */
-const SearchBar: FC<Props> = ({ onSearch }) => {
-  const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const debouncedSearch = debounce(() => {
-    onSearch(searchText);
-  }, 1000);
+const SearchBar: FC<Props> = () => {
+  const searchParamsClass = React.useContext(SearchParamsContext);
 
   /**
    *
    * @param event change event
    */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
+    searchParamsClass.setSearchParams({ keyword: event.target.value });
     // debouncedSearch();
   };
 
-  const handleSearch = async () => {
-    setLoading(true);
-    await onSearch(searchText);
-    setLoading(false);
+  const handleSearch = () => {
+    searchParamsClass.searchForDocuments();
   };
 
   return (
     <div className={styles.Container}>
-      <input
+      <Input
         type="text"
-        value={searchText}
+        icon="search"
+        iconPosition="left"
+        placeholder="Search by topics, keywords, topper names..."
+        value={searchParamsClass.searchParams.keyword}
         onChange={handleChange}
         className={styles.Input}
+        labelPosition="right"
+        label={
+          <Button
+            onClick={handleSearch}
+            className={styles.Button}
+            loading={searchParamsClass.searching}
+          >
+            Search
+          </Button>
+        }
       />
-      <Button
-        onClick={handleSearch}
-        className={styles.Button}
-        loading={loading}
-        style={{
-          background: "#63D3FF",
-          color: "white",
-        }}
-      >
-        Search
-      </Button>
     </div>
   );
 };
 
-export default SearchBar;
+export default observer(SearchBar);

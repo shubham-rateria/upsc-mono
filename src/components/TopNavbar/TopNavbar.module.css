@@ -5,12 +5,14 @@
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    height: 5vh;
   }
   
   .logoContainer img {
-    height: 40px;
+    /* height: 40px; */
     width: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .avatarContainer {

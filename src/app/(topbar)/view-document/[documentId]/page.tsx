@@ -6,7 +6,14 @@ import { ApiError, MatchingBlock, PageResult, Result } from "@/types";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import { Button, Icon, Input, Label } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Divider,
+  Icon,
+  Input,
+  Label,
+} from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 
@@ -32,13 +39,21 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
     null
   );
   const [documentSearchResult, setDocumentSearchResult] =
-    useState<Result | null>(SampleSearchResult);
+    useState<Result | null>(null);
   const [currentDocSearchResultIdx, setCurrentDocSearchResultIdx] = useState<
     number | null
   >(0);
   const [documentSearchText, setDocumentSearchText] = useState<string | null>(
     null
   );
+  const [downloadMode, setDownloadMode] = useState(0);
+  const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
+    null
+  );
+  const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
+  const [downloadRangeError, setDownloadRangeError] = useState(false);
+  const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
+  const [searchLoading, setSearchLoading] = useState(false);
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -99,19 +114,24 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDocumentSearchText(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleDocumentSearch = async () => {
+    setSearchLoading(true);
     try {
       const response = await axios.post(
         `/api/documents/${params.documentId}/search`,
         { searchTerm: documentSearchText }
       );
       setDocumentSearchResult(response.data.data);
+      if (response.data.data.pages.length > 0) {
+        setCurrentDocSearchResultIdx(0);
+        scrollToPageNumber(response.data.data.pages[0].page_number);
+      }
     } catch (error) {
       console.error("error", error);
     }
+    setSearchLoading(false);
   };
 
   const getMatchingResultsForPage = (
@@ -138,6 +158,56 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
       }
     }
     return 1;
+  };
+
+  const getWidthForPage = (pageNumber: number): number => {
+    if (documentSearchResult) {
+      const filtered = documentSearchResult?.pages.filter(
+        (r) => r.page_number === pageNumber
+      );
+      if (filtered.length > 0) {
+        return filtered[0].width || 1;
+      }
+    }
+    return 1;
+  };
+
+  const skewX = (pageNumber: number): number => {
+    const el = window.document.querySelector(
+      `[data-page-number="${pageNumber}"]`
+    );
+    const elemWidth = el?.clientWidth ?? 0;
+    return elemWidth / getWidthForPage(pageNumber);
+  };
+
+  const skewY = (pageNumber: number): number => {
+    const el = window.document.querySelector(
+      `[data-page-number="${pageNumber}"]`
+    );
+    const elemHeight = el?.clientHeight ?? 0;
+    return elemHeight / getHeightForPage(pageNumber);
+  };
+
+  const handleRangeFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = parseInt(e.target.value);
+    setDownloadRangeFrom(val);
+    if (downloadRangeTo !== null && val > downloadRangeTo) {
+      setDownloadRangeError(true);
+      setDownloadRangeErrMsg("From value has to be less than To");
+    } else {
+      setDownloadRangeError(false);
+    }
+  };
+
+  const handleRangeToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = parseInt(e.target.value);
+    setDownloadRangeTo(val);
+    if (downloadRangeFrom !== null && val < downloadRangeFrom) {
+      setDownloadRangeError(true);
+      setDownloadRangeErrMsg("To value has to be less than From");
+    } else {
+      setDownloadRangeError(false);
+    }
   };
 
   useEffect(() => {
@@ -178,38 +248,46 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
             <div className={styles.DocumentSearchInput}>
               <Input
                 onChange={handleDocSearchTextChange}
-                label={<Button onClick={handleDocumentSearch}>Search</Button>}
+                label={
+                  <Button
+                    onClick={handleDocumentSearch}
+                    className={styles.SearchButton}
+                    loading={searchLoading}
+                  >
+                    Search
+                  </Button>
+                }
                 labelPosition="right"
                 placeholder="Search Document..."
+                className={styles.Input}
               />
               {documentSearchResult && (
                 <div className={styles.DocumentSearchResult}>
                   <div>
-                    <Button
-                      size="small"
-                      basic
-                      circular
-                      icon="arrow alternate circle up outline"
-                      onClick={handlePrevDocSearchResult}
-                    />
+                    <div className={styles.UpDownButton}>
+                      <img
+                        src="/icons/do-chevron-up.svg"
+                        onClick={handlePrevDocSearchResult}
+                      />
+                    </div>
                   </div>
+                  <div>{(currentDocSearchResultIdx || 0) + 1}</div>
+                  <div>/</div>
+                  <div>{documentSearchResult.pages.length} Results</div>
                   <div>
-                    {(currentDocSearchResultIdx || 0) + 1} /{" "}
-                    {documentSearchResult.pages.length} Results
-                  </div>
-                  <div>
-                    <Button
-                      size="small"
-                      basic
-                      circular
-                      icon="arrow alternate circle down outline"
-                      onClick={handleNextDocSearchResult}
-                    />
+                    <div className={styles.UpDownButton}>
+                      <img
+                        src="/icons/do-chevron-down.svg"
+                        onClick={handleNextDocSearchResult}
+                      />
+                    </div>
                   </div>
                 </div>
               )}
             </div>
-            <div>{currentActivePage || ""}</div>
+            <div className={styles.PageNumber}>
+              Page {currentActivePage || ""} / {document?.num_pages}
+            </div>
           </div>
           <Document
             file={document?.s3_signed_url}
@@ -225,13 +303,29 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
                       key={idx}
                       style={{
                         color: "blue",
+                        background: "purple",
+                        opacity: 0.3,
                         top: `${
                           (block.boundingBox.vertices[0].y * 100) /
                           getHeightForPage(index + 1)
                         }%`,
+                        left: `${
+                          (block.boundingBox.vertices[0].x * 100) /
+                          getWidthForPage(index + 1)
+                        }%`,
+                        width: `${
+                          skewX(index + 1) *
+                          (block.boundingBox.vertices[1].x -
+                            block.boundingBox.vertices[0].x)
+                        }px`,
+                        height: `${
+                          skewY(index + 1) *
+                          (block.boundingBox.vertices[3].y -
+                            block.boundingBox.vertices[0].y)
+                        }px`,
                       }}
                     >
-                      <Label tag>{block.text}</Label>
+                      {/* <Label tag>{block.text}</Label> */}
                     </div>
                   )
                 )}
@@ -251,17 +345,115 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
         <div className={styles.DocumentDetails}>
           <div className={styles.Card}>
             <div className={styles.DocumentName}>
-              {document?.s3_object_name}
+              <img src="/icons/do-document-text.svg" alt="document text" />
+              {document?.s3_object_name}{" "}
+              <span className={styles.NumPages}>
+                {document?.num_pages} Pages
+              </span>
             </div>
-            <div className={styles.NumPages}>10 pages</div>
           </div>
-          <div className={styles.Card}>
-            <div className={styles.TopperHeader}>Topper Details</div>
-            <div className={styles.TopperName}>{document?.topper?.name}</div>
-            <div className={styles.TopperRank}>
-              AIR {document?.topper?.rank}
+          <div className={styles.TopperCard}>
+            <div className={styles.TopperName}>
+              <img
+                className={styles.Icon}
+                src="/icons/do-ribbon.svg"
+                alt="icon"
+              />
+              {document?.topper?.name}
             </div>
-            <div className={styles.TopperYear}>{document?.topper?.year}</div>
+            <table className={styles.TopperDetailsTable}>
+              <tr>
+                <td>Year</td>
+                <td className={styles.TopperDetailsValue}>2022</td>
+              </tr>
+              <tr>
+                <td>Rank</td>
+                <td className={styles.TopperDetailsValue}>AIR 1</td>
+              </tr>
+            </table>
+          </div>
+          <Divider />
+          <div className={styles.MatchedKeywords}>
+            <div className={styles.Header}>Matched Keywords</div>
+          </div>
+          <Divider />
+          <div className={styles.DownloadSection}>
+            <div className={styles.Header}>Download</div>
+            <div className={styles.DownloadOptions}>
+              <Checkbox
+                radio
+                label="All Pages"
+                name="checkboxRadioGroup"
+                value="all"
+                className={styles.Option}
+                checked={downloadMode === 0}
+                onMouseDown={() => {
+                  setDownloadMode(0);
+                }}
+              />
+              <Checkbox
+                radio
+                label="Page Range"
+                name="checkboxRadioGroup"
+                value="range"
+                className={styles.Option}
+                checked={downloadMode === 1}
+                onMouseDown={() => {
+                  setDownloadMode(1);
+                }}
+              />
+              <div
+                className={styles.NumberInputs}
+                onClick={() => {
+                  if (downloadMode !== 1) {
+                    setDownloadMode(1);
+                  }
+                }}
+              >
+                <Input
+                  placeholder="Page From"
+                  fluid
+                  type="number"
+                  size="mini"
+                  disabled={downloadMode !== 1}
+                  error={downloadRangeError}
+                  value={downloadRangeFrom}
+                  onChange={handleRangeFromChange}
+                />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  -
+                </div>
+                <Input
+                  placeholder="Page To"
+                  fluid
+                  type="number"
+                  size="mini"
+                  disabled={downloadMode !== 1}
+                  error={downloadRangeError}
+                  value={downloadRangeTo}
+                  onChange={handleRangeToChange}
+                />
+              </div>
+              {downloadRangeError && (
+                <div className={styles.Error}>{downloadRangeErrMsg}</div>
+              )}
+              <div>
+                <Button
+                  icon
+                  className={styles.DownloadButton}
+                  labelPosition="left"
+                >
+                  <Icon name="download" />
+                  Download
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
