@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TopNavBar.module.css";
+import styles from "./TopNavbar.module.css";
 
 const TopNavBar = () => {
   // Replace the logo URL and avatar URL with your own
