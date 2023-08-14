@@ -36,6 +36,8 @@ export default (app: Router) => {
 
   route.get("/:documentId", async (req: Request, res: Response) => {
     try {
+      console.log("getting doc id");
+
       const { documentId } = req.params;
 
       const document = await DocumentModel.findById(documentId).lean().exec();
@@ -151,13 +153,15 @@ export default (app: Router) => {
 
   route.post("/:documentId/search", async (req: Request, res: Response) => {
     try {
-      const { documentId } = req.query;
+      console.log("doc search");
+
+      const { documentId } = req.params;
       const { searchTerm } = req.body;
 
       const document = await DocumentModel.findById(documentId).lean();
 
       if (!document) {
-        res.status(500).json({ success: false });
+        res.status(500).json({ success: false, data: "No Docs." });
         return;
       }
 
@@ -203,6 +207,7 @@ export default (app: Router) => {
 
       res.status(201).json({ success: true, data: { pages: results } });
     } catch (error: any) {
+      console.error("error in doc search");
       res.status(500).json({ success: false, error: error.message });
     }
   });

@@ -1,11 +1,9 @@
-(node:6540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 22:47:05 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
-(node:6555) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+[INFO] 23:22:27 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+(node:11697) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -18,4 +16,8 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[41m[30m ELIFECYCLE [39m[49m [31mCommand failed.[39m
+[0mPOST /api/documents/search/64b7ccc592603fdd422dcd75 [33m404[0m 9.163 ms - 34[0m
+[0mPOST /api/documents/search/64b7ccc592603fdd422dcd75 [33m404[0m 0.959 ms - 34[0m
+[0mPOST /api/documents/search/64b7ccc592603fdd422dcd75 [33m404[0m 0.620 ms - 34[0m
+[0mPOST /api/documents/search/64b7ccc592603fdd422dcd75 [33m404[0m 0.583 ms - 34[0m
+ ELIFECYCLE  Command failed.

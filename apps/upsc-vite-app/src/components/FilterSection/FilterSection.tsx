@@ -17,7 +17,6 @@ import { Tag, TagType, Topper } from "../..//types";
 import clsx from "clsx";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
-import axios from "axios";
 import axiosInstance from "../../utils/axios-instance";
 
 type FilterAccordionProps = {

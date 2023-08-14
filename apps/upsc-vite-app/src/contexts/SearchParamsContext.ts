@@ -1,7 +1,6 @@
 import { Result, SearchParams, Tag, Topper } from "../types";
 import React from "react";
 import { makeAutoObservable } from "mobx";
-import axios from "axios";
 import axiosInstance from "../utils/axios-instance";
 
 const defaultValues: SearchParams = {
