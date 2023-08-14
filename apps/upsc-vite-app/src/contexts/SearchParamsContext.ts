@@ -2,6 +2,7 @@ import { Result, SearchParams, Tag, Topper } from "../types";
 import React from "react";
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
+import axiosInstance from "../utils/axios-instance";
 
 const defaultValues: SearchParams = {
   documentType: -1,
@@ -71,7 +72,7 @@ class SearchParamsClass {
   public async searchForDocuments() {
     this.searching = true;
     try {
-      const response = await axios.post("/api/documents", {
+      const response = await axiosInstance.post("/api/documents", {
         search: this.searchParams.keyword,
         pageNumber: 1,
         documentType:

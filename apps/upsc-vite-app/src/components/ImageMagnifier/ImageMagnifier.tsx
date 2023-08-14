@@ -3,8 +3,8 @@ import {
   ImageMagnifierContext,
   PageMetadata,
 } from "../DocumentResult/contexts/ImageMagnifierContext/ImageMagnifierContext";
-import { useRouter } from "next/navigation";
 import styles from "./ImageMagnifier.module.css";
+import { useNavigate } from "react-router-dom";
 
 function ImageMagnifier({
   src,
@@ -22,10 +22,10 @@ function ImageMagnifier({
   const [[x, y], setXY] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
   const imageMagnifierContext = useContext(ImageMagnifierContext);
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const handlePageClick = () => {
-    router.push(
+    navigate(
       `/view-document/?page=${pageMetadata.pageNumber}&documentId=${documentId}`
     );
   };

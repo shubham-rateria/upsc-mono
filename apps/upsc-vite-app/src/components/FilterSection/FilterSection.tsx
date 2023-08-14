@@ -18,6 +18,7 @@ import clsx from "clsx";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import axios from "axios";
+import axiosInstance from "../../utils/axios-instance";
 
 type FilterAccordionProps = {
   title: string;
@@ -365,7 +366,7 @@ const TopperFilter: FC = observer(() => {
     const init = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/api/toppers");
+        const response = await axiosInstance.get("/api/toppers");
         setToppers(response.data.data);
       } catch (error) {
         console.error("Error in getting toppers", error);

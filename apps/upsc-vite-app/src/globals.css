@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,6 +13,8 @@ i.icon {
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --font-mulish: "Mulish", sans-serif;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -185,7 +188,7 @@ a {
 
 .ui.checkbox input:checked ~ label:after,
 .ui.radio.checkbox input:checked ~ label:after {
-  color: white;
+  color: white !important;
   background-color: var(--p8);
   border-color: var(--p4);
   font-size: 0.8rem;

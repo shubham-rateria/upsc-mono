@@ -4,8 +4,11 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {},
+  "scripts": {
+    "dev": "concurrently --kill-others \"turbo run dev --filter @usn/app\" \"turbo run dev --filter @usn/backend\""
+  },
   "devDependencies": {
+    "concurrently": "^8.2.0",
     "lerna": "^7.1.5"
   }
 }

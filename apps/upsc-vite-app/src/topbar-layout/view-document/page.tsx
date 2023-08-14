@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "../../types";
-import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
 import { Button, Checkbox, Divider, Icon, Input } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
-import { useRouter } from "next/navigation";
+import axiosInstance from "../../utils/axios-instance";
+import { useNavigate } from "react-router-dom";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const DocumentViewerPage: React.FC = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
@@ -100,9 +100,12 @@ const DocumentViewerPage: React.FC = () => {
   const handleDocumentSearch = async () => {
     setSearchLoading(true);
     try {
-      const response = await axios.post(`/api/documents/${documentId}/search`, {
-        searchTerm: documentSearchText,
-      });
+      const response = await axiosInstance.post(
+        `/api/documents/${documentId}/search`,
+        {
+          searchTerm: documentSearchText,
+        }
+      );
       setDocumentSearchResult(response.data.data);
       if (response.data.data.pages.length > 0) {
         setCurrentDocSearchResultIdx(0);
@@ -192,7 +195,7 @@ const DocumentViewerPage: React.FC = () => {
 
   const handleBack = () => {
     // router.back();
-    router.push("/search");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -202,7 +205,9 @@ const DocumentViewerPage: React.FC = () => {
       const documentId = urlParams.get("documentId");
       setDocumentId(documentId);
       try {
-        const response = await axios.get(`/api/documents/${documentId}`);
+        const response = await axiosInstance.get(
+          `/api/documents/${documentId}`
+        );
         setDocument(response.data.data);
       } catch (error: any) {
         setError({
