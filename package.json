@@ -1,9 +1,6 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "dev": "concurrently --kill-others \"turbo run dev --filter @usn/app\" \"turbo run dev --filter @usn/backend\""
   },
