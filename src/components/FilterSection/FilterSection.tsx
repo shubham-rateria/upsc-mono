@@ -42,9 +42,13 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
   }) => {
     const [active, setActive] = useState(false);
     const searchParamsClass = React.useContext(SearchParamsContext);
+    const [filterSearchText, setFilterSearchText] = useState<string>();
 
-    const isCheckboxActive = (tag: Tag) => {
-      return searchParamsClass.tagExists(tag);
+    const isCheckboxActive = (tag: Tag, parentTag?: Tag) => {
+      return (
+        searchParamsClass.tagExists(tag) ||
+        (parentTag ? searchParamsClass.tagExists(parentTag) : false)
+      );
     };
 
     const handleL0Click = () => {
@@ -68,11 +72,11 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
             },
           };
           if (selected) {
-            if (!searchParamsClass.tagExists(l1Tag)) {
-              searchParamsClass.addSubjectTag(l1Tag);
+            if (searchParamsClass.tagExists(l1Tag)) {
+              searchParamsClass.removeSubjectTag(l1Tag);
             }
           } else {
-            searchParamsClass.removeSubjectTag(l1Tag);
+            // searchParamsClass.removeSubjectTag(l1Tag);
           }
 
           Object.keys(category[l1]).forEach((l2) => {
@@ -84,15 +88,17 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
               },
             };
             if (selected) {
-              if (!searchParamsClass.tagExists(l2Tag)) {
-                searchParamsClass.addSubjectTag(l2Tag);
+              if (searchParamsClass.tagExists(l2Tag)) {
+                searchParamsClass.removeSubjectTag(l2Tag);
               }
             } else {
-              searchParamsClass.removeSubjectTag(l2Tag);
+              // searchParamsClass.removeSubjectTag(l2Tag);
             }
           });
         });
       });
+
+      searchParamsClass.searchForDocuments();
     };
 
     const handleL1Click = (tag: Tag) => {
@@ -111,20 +117,23 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
                 },
               };
               if (selected) {
-                if (!searchParamsClass.tagExists(l2Tag)) {
-                  searchParamsClass.addSubjectTag(l2Tag);
+                if (searchParamsClass.tagExists(l2Tag)) {
+                  searchParamsClass.removeSubjectTag(l2Tag);
                 }
               } else {
-                searchParamsClass.removeSubjectTag(l2Tag);
+                // searchParamsClass.removeSubjectTag(l2Tag);
               }
             });
           }
         });
       });
+
+      searchParamsClass.searchForDocuments();
     };
 
     const handleL2Click = (tag: Tag) => {
       handleCheckboxClick(tag);
+      searchParamsClass.searchForDocuments();
     };
 
     return (
@@ -167,6 +176,10 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
               className={styles.Input}
               placeholder="Search for topic"
               icon
+              value={filterSearchText}
+              onChange={(e) => {
+                setFilterSearchText(e.target.value);
+              }}
             >
               <input />
               <Icon name="close" />
@@ -179,13 +192,22 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
                   <List.Item
                     className={clsx(
                       styles.ListItem,
-                      isCheckboxActive({
-                        level: "l1",
-                        type: tagType,
-                        value: {
-                          tagText: l1,
+                      isCheckboxActive(
+                        {
+                          level: "l1",
+                          type: tagType,
+                          value: {
+                            tagText: l1,
+                          },
                         },
-                      }) && styles.ItemSelected
+                        {
+                          level: "l0",
+                          type: tagType,
+                          value: {
+                            tagText: title,
+                          },
+                        }
+                      ) && styles.ItemSelected
                     )}
                   >
                     <List.Content>
@@ -203,13 +225,22 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
                       >
                         <Checkbox
                           label={l1}
-                          checked={isCheckboxActive({
-                            level: "l1",
-                            type: tagType,
-                            value: {
-                              tagText: l1,
+                          checked={isCheckboxActive(
+                            {
+                              level: "l1",
+                              type: tagType,
+                              value: {
+                                tagText: l1,
+                              },
                             },
-                          })}
+                            {
+                              level: "l0",
+                              type: tagType,
+                              value: {
+                                tagText: title,
+                              },
+                            }
+                          )}
                         />
                       </List.Header>
                     </List.Content>
@@ -227,13 +258,22 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
                             key={l2}
                             className={clsx(
                               styles.ListItem,
-                              isCheckboxActive({
-                                level: "l2",
-                                type: tagType,
-                                value: {
-                                  tagText: l2,
+                              isCheckboxActive(
+                                {
+                                  level: "l2",
+                                  type: tagType,
+                                  value: {
+                                    tagText: l2,
+                                  },
                                 },
-                              }) && styles.ItemSelected
+                                {
+                                  level: "l1",
+                                  type: tagType,
+                                  value: {
+                                    tagText: l1,
+                                  },
+                                }
+                              ) && styles.ItemSelected
                             )}
                           >
                             <List.Content>
@@ -254,13 +294,22 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
                               >
                                 <Checkbox
                                   label={l2}
-                                  checked={isCheckboxActive({
-                                    level: "l2",
-                                    type: tagType,
-                                    value: {
-                                      tagText: l2,
+                                  checked={isCheckboxActive(
+                                    {
+                                      level: "l2",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l2,
+                                      },
                                     },
-                                  })}
+                                    {
+                                      level: "l1",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l1,
+                                      },
+                                    }
+                                  )}
                                 />
                               </List.Header>
                             </List.Content>
@@ -293,6 +342,7 @@ const TopperFilter: FC = observer(() => {
     } else {
       searchParamsClass.setSearchParams({ topper });
     }
+    searchParamsClass.searchForDocuments();
   };
 
   useEffect(() => {

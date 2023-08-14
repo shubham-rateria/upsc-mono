@@ -5,11 +5,12 @@ import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "@/components/SearchBar/SearchBar";
 import ResultSection from "@/components/ResultSection/ResultSection";
 import FilterSection from "@/components/FilterSection/FilterSection";
-import { Button, Checkbox, Dropdown } from "semantic-ui-react";
-import { DocumentType, Result } from "@/types";
+import { Button, Checkbox, Dropdown, Icon, Label } from "semantic-ui-react";
+import { DocumentType, Result, Tag } from "@/types";
 import { SearchParamsContext } from "@/contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
+import globalStyles from "../../../styles/global.module.css";
 
 const panes = [
   {
@@ -27,7 +28,6 @@ const panes = [
 ];
 
 const SearchPage = () => {
-  const [results, setResults] = useState<Result[]>([]);
   const searchParamsClass = useContext(SearchParamsContext);
 
   const handleDocumentTypeChange = (documentType: DocumentType) => {
@@ -49,11 +49,15 @@ const SearchPage = () => {
     });
   };
 
-  // const handleClearTag = () => {
-  //   searchParamsClass.setSearchParams({
-  //     tag: null
-  //   })
-  // };
+  const handleClearTag = (tag: Tag) => {
+    searchParamsClass.removeSubjectTag(tag);
+    searchParamsClass.searchForDocuments();
+  };
+
+  const handleClearTopper = () => {
+    searchParamsClass.setSearchParams({ topper: undefined });
+    searchParamsClass.searchForDocuments();
+  };
 
   return (
     <div>
@@ -91,6 +95,37 @@ const SearchPage = () => {
             </div>
             <div className={styles.searchBarContainer}>
               <SearchBar />
+            </div>
+            <div className={styles.subjectLabels}>
+              <div>
+                {searchParamsClass.searchParams.subjectTags?.map(
+                  (tag: Tag, index: number) => (
+                    <Label key={index} className={globalStyles.LabelPrimary}>
+                      {tag.value.tagText}{" "}
+                      <Icon
+                        name="close"
+                        onClick={() => {
+                          handleClearTag(tag);
+                        }}
+                      />
+                    </Label>
+                  )
+                )}
+              </div>
+              {searchParamsClass.searchParams.topper && (
+                <div className={styles.TopperTag}>
+                  Topper{" "}
+                  <Label className={globalStyles.LabelPrimary}>
+                    {searchParamsClass.searchParams.topper.name}
+                    <Icon
+                      name="close"
+                      onClick={() => {
+                        handleClearTopper();
+                      }}
+                    />
+                  </Label>
+                </div>
+              )}
             </div>
             <div className={styles.SelectorSection}>
               {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&

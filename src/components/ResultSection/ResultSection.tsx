@@ -15,10 +15,10 @@ const ResultSection: FC<Props> = () => {
   return (
     <div>
       {!searchParamsClass.searching &&
-        searchParamsClass.docSearchResults === null && (
+        searchParamsClass.docSearchResults?.length === 0 && (
           <EmptyPagePlaceholder
             imgSrc="/img/start-results.svg"
-            title="Start a new search"
+            title="No Search Results"
             description="Use the filters or enter any keyword to perform a search"
           />
         )}

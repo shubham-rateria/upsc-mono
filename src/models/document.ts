@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
 import { PageModel } from "./page";
+const dbref = require("mongoose-dbref");
+
+dbref.install(mongoose);
+
+// @ts-ignore
+var DBRef = mongoose.SchemaTypes.DBRef;
 
 // Define the Document schema
 const DocumentSchema = new mongoose.Schema({
@@ -11,14 +17,15 @@ const DocumentSchema = new mongoose.Schema({
   pages: [
     {
       _ref: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Page'
+        type: DBRef,
+        resolve: true,
+        ref: "Page",
       },
       _cls: {
         type: String,
-        default: 'Page' // Make sure this matches the name of your PageSchema
-      }
-    }
+        default: "Page", // Make sure this matches the name of your PageSchema
+      },
+    },
   ],
   num_pages: {
     type: Number,
@@ -36,23 +43,18 @@ const DocumentSchema = new mongoose.Schema({
       required: false,
     },
     rank: {
-      type: Number,
+      type: String,
       default: null,
       required: false,
     },
     year: {
-      type: Number,
+      type: String,
       default: null,
       required: false,
-    }
-  }
+    },
+  },
 });
 
-DocumentSchema.virtual('populatedPages', {
-  ref: 'Page',
-  localField: 'pages._ref.$id',
-  foreignField: '_id',
-  justOne: false
-});
-
-export const DocumentModel = mongoose.models["Document"] || mongoose.model('Document', DocumentSchema, 'document');
+export const DocumentModel =
+  mongoose.models["Document"] ||
+  mongoose.model("Document", DocumentSchema, "document");

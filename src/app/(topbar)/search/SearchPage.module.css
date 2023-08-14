@@ -21,7 +21,7 @@
 .searchBarContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: var(--margin-m);
 }
 
 /* Styling for the main content section (results section) */
@@ -98,6 +98,12 @@
   overflow-y: auto;
   height: 100%;
   padding: var(--padding-m) var(--padding-m) 10vh var(--padding-m);
+}
+
+.subjectLabels {
+  margin-bottom: var(--margin-m);
+  display: flex;
+  gap: var(--margin-l);
 }
 
 /*
@@ -188,4 +194,13 @@
 .DocumentTypeSelector .ButtonActive {
   background: var(--p-2, #e4e0ff) !important;
   color: var(--p-8, #614fcc) !important;
+}
+
+.TopperTag {
+  color: var(--n7, #3f4765);
+  font-family: var(--font-mulish);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }

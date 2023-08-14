@@ -1,7 +1,8 @@
 import { Result, SearchParams, Tag, Topper } from "@/types";
 import React from "react";
-import { makeAutoObservable } from "mobx";
+import { computed, makeAutoObservable } from "mobx";
 import axios from "axios";
+import { mapTagTypeToCategories } from "@/utils/search-by-subject-tags";
 
 const defaultValues: SearchParams = {
   documentType: -1,
@@ -56,6 +57,18 @@ class SearchParamsClass {
     this.searchParams = { ...this.searchParams, ...params };
   }
 
+  /**
+   * this function returns only the parent level tag, if all
+   * children of the parent are selected
+   */
+  // public flattenTags() {
+  //   const selectedTags: Tag[] = [];
+  //   if (this.searchParams.subjectTags) {
+  //     for (const tag of this.searchParams.subjectTags) {
+  //     }
+  //   }
+  // }
+
   public async searchForDocuments() {
     this.searching = true;
     try {
@@ -66,7 +79,11 @@ class SearchParamsClass {
           this.searchParams.documentType === -1
             ? null
             : this.searchParams.documentType,
-        // tagType: searchParamsClass.searchParams.tag,
+        subjectTags:
+          (this.searchParams.subjectTags?.length || 0) > 0
+            ? this.searchParams.subjectTags
+            : null,
+        topper: this.searchParams.topper,
       });
       if (response.data) {
         if (this.docSearchResults === null) {

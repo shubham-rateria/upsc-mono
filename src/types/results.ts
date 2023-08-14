@@ -34,4 +34,5 @@ export type Result = {
   };
   pages: PageResult[];
   s3_signed_url?: string;
+  l0_categories?: number[];
 };

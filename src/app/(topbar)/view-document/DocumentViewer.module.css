@@ -37,7 +37,7 @@
   padding: 0 var(--padding-s);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   z-index: 100;
   /* margin: var(--margin-s); */
@@ -73,6 +73,11 @@
   justify-content: center;
   gap: 5px;
   padding: var(--padding-s);
+  margin-left: auto;
+}
+
+.DocumentSearchInput input {
+  padding: var(--padding-s) !important;
 }
 
 .DocumentSearchResult {
@@ -107,11 +112,7 @@
 }
 
 .Input {
-  font-family: "Mulish";
-  width: 70%;
-  /* border-radius: 10px; */
-  /* border: 1px solid var(--n-2, #D3D6E0); */
-  /* background: var(--n-0, #FFF); */
+  font-family: var(--font-mulish);
 }
 
 .Input input {
@@ -142,10 +143,11 @@
   border-radius: 0px 9px 9px 0px !important;
   background: var(--p-7, #7963ff) !important;
   color: white !important;
-  font-family: "Mulish";
-  font-weight: 600;
+  font-family: var(--font-mulish) !important;
+  font-weight: 400 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  font-size: 12px !important;
   /* width: 10vw; */
 }
 
@@ -294,4 +296,35 @@
   font-weight: 500;
   color: red;
   line-height: 1;
+}
+
+.BackButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: var(--padding-s);
+  font-family: var(--font-mulish);
+  color: var(--p7);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  gap: var(--padding-xs);
+}
+
+.BackButton:hover {
+  cursor: pointer;
+  color: var(--p6);
+}
+
+.BackButton img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.BookmarkButton {
+  padding: var(--padding-s) !important;
+  border: none !important;
+  box-shadow: none !important;
 }

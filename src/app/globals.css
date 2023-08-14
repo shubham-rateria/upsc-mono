@@ -1,13 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* @font-face {
-  font-family: "Open Sans Condensed";
-  src: url("/fonts/OpenSans_Condensed-Regular.ttf") format("truetype");
-} */
 
 i.icon {
   font-family: Icons !important;
@@ -230,6 +223,10 @@ a {
   font-weight: 400 !important;
   line-height: normal !important;
 }
+
+/*
+ui label
+*/
 
 /*
   SVG Animation

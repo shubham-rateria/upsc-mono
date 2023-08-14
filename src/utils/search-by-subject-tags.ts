@@ -3,15 +3,16 @@ import gs2Categories from "@/data/gs2-categories";
 import gs3Categories from "@/data/gs3-categories";
 import gs4Categories from "@/data/gs4-categories";
 import optionalsCategories from "@/data/optionals-categories";
-import { Tag } from "@/types";
+import { Tag, TagType } from "@/types";
 import flattenObject from "./flatten-object";
 import { PageModel } from "@/models/page";
 import { DocumentModel } from "@/models/document";
 import { groupBy } from "lodash";
 import { getSignedUrl } from "@/services/s3";
 import mongoose from "mongoose";
+import { getBOW } from "./get-bow";
 
-const mapTagTypeToCategories: any = {
+export const mapTagTypeToCategories: any = {
   GS1: gs1Categories,
   GS2: gs2Categories,
   GS3: gs3Categories,
@@ -19,35 +20,62 @@ const mapTagTypeToCategories: any = {
   Optionals: optionalsCategories,
 };
 
-async function findDocumentsForKeywords(keywords: string[]): Promise<(typeof DocumentModel)[]> {
+export const mapTagTypeToNumber: any = {
+  GS1: 1,
+  GS2: 2,
+  GS3: 3,
+  GS4: 4,
+  Essay: 5,
+};
+
+async function findDocumentsForKeywords(
+  keywords: string[],
+  tagType: TagType
+): Promise<(typeof DocumentModel)[]> {
   let pages: any[] = [];
-  const pageSearchPromises = [];
-  for (const keyword of keywords) {
-    const pageSearchPromise = PageModel.find(
-      {
-        $text: { $search: keyword },
-      },
-      { score: { $meta: "textScore" } }
-    )
-      .sort({ score: { $meta: "textScore" } })
-      .skip(0)
-      .limit(50)
-      .select({
-        ocr: 0,
-        clean_text: 0,
-      })
-      .lean();
-    pageSearchPromises.push(pageSearchPromise);
-  }
-  pages = await Promise.all(pageSearchPromises);
-  pages = pages.flat();
+  pages = await PageModel.find({
+    "keyword_tags_1.keyword": { $in: keywords },
+  })
+    .select({
+      ocr: 0,
+      clean_text: 0,
+      category_tags: 0,
+      keyword_tags: 0,
+      category_tags_1: 0,
+    })
+    .skip(0)
+    .limit(1000)
+    .sort({})
+    .lean();
+
   console.log("Found pages", pages.length);
+
+  for (const page of pages) {
+    let pageScore = 0;
+    const pageKeywords: string[] = [];
+    for (const k of page.keyword_tags_1) {
+      if (keywords.includes(k.keyword)) {
+        pageScore += k.score;
+      }
+    }
+    page.score = pageScore;
+  }
+
   const documents = [];
   for (const page of pages) {
     const document: any = await DocumentModel.findOne({
       "pages._ref.$id": page._id,
+      l0_categories: mapTagTypeToNumber[tagType],
     })
-      .select({ pages: 0 })
+      .select({
+        pages: 0,
+        category_tags: 0,
+        keyword_tags: 0,
+        category_tags_1: 0,
+        keyword_tags_1: 0,
+        percentage_keywords: 0,
+        median_keywords: 0,
+      })
       .lean();
     if (!document) {
       continue;
@@ -77,7 +105,7 @@ async function findDocumentsForKeywords(keywords: string[]): Promise<(typeof Doc
       }
       delete document.page;
       pages = pages.sort((a, b) => b.score - a.score);
-      return { ...document, pages: pages.slice(0, 5), score: scoreSum };
+      return { ...document, pages, score: scoreSum };
     }
   );
   let uniqueDocuments = await Promise.all(uniqueDocumentsPromise);
@@ -94,7 +122,25 @@ async function findDocumentsForTag(
 ): Promise<(typeof DocumentModel)[]> {
   const categoryFilter = mapTagTypeToCategories[tag.type];
   let keywords: string[] = [];
+  let results: (typeof DocumentModel)[] = [];
 
+  if (tag.level === "l0") {
+    // if (tag.type === "Essay") {
+    //   const essayResults = await DocumentModel.find({ l0_categories: 5 })
+    //     .select({ pages: 0 })
+    //     .lean()
+    //     .exec();
+    //   // @ts-ignore
+    //   results.push(...essayResults);
+    // }
+    const l0Results = await DocumentModel.find({
+      l0_categories: mapTagTypeToNumber[tag.type],
+    })
+      .select({ pages: 0 })
+      .lean();
+    // @ts-ignore
+    results.push(...l0Results);
+  }
   if (tag.level === "l1") {
     // find key in cateogryFilter.cateogries
     let categoryObject = {};
@@ -108,8 +154,6 @@ async function findDocumentsForTag(
     // flatten the category object
     keywords = flattenObject(categoryObject);
     keywords.push(tag.value.tagText);
-    console.log("Finding keywords", keywords);
-
   }
   if (tag.level === "l2") {
     let categoryObject = {};
@@ -129,10 +173,21 @@ async function findDocumentsForTag(
     keywords.push(tag.value.tagText);
   }
 
-  return await findDocumentsForKeywords(keywords);;
+  const bow = getBOW(keywords);
+
+  console.log("Finding keywords", keywords, bow);
+  const bowResults = await findDocumentsForKeywords(bow, tag.type);
+
+  console.log("bowResults", bowResults.length);
+
+  results.push(...bowResults);
+
+  return results;
 }
 
-export default async function searchBySubjectTags(tags: Tag[]): Promise<(typeof DocumentModel)[]> {
+export default async function searchBySubjectTags(
+  tags: Tag[]
+): Promise<(typeof DocumentModel)[]> {
   /**
    * if mongoose is disconnected, throw an error
    */
@@ -150,5 +205,4 @@ export default async function searchBySubjectTags(tags: Tag[]): Promise<(typeof 
   }
 
   return documentResults;
-
 }

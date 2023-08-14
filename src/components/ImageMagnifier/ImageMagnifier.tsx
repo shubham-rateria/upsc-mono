@@ -27,7 +27,7 @@ function ImageMagnifier({
 
   const handlePageClick = () => {
     router.push(
-      `/view-document/${documentId}/?page=${pageMetadata.pageNumber}`
+      `/view-document/?page=${pageMetadata.pageNumber}&documentId=${documentId}`
     );
   };
 

@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+// @ts-ignore
+import dbref from "mongoose-dbref";
 
 const MONGODB_URI =
   process.env.NODE_ENV === "production"
@@ -12,8 +14,9 @@ const connectToDatabase = async () => {
   try {
     if (mongoose.connections[0]?.readyState !== 1) {
       await mongoose.connect(MONGODB_URI, {
-        dbName: "upsc_scraper"
+        dbName: "upsc_scraper",
       });
+      dbref.install(mongoose);
       console.log("Connected to MongoDB");
     }
   } catch (error: any) {

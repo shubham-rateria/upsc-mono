@@ -12,6 +12,8 @@ import {
   MagnifierClass,
 } from "./contexts/ImageMagnifierContext/ImageMagnifierContext";
 import { observer } from "mobx-react-lite";
+import { Label } from "semantic-ui-react";
+import globalStyles from "../../styles/global.module.css";
 
 type Props = {
   result: Result;
@@ -19,6 +21,14 @@ type Props = {
 
 type ArrowProps = {
   type: "front" | "back";
+};
+
+const l0ToString: any = {
+  1: "General Studies I",
+  2: "General Studies II",
+  3: "General Studies III",
+  4: "General Studies IV",
+  5: "Essay",
 };
 
 const Arrow: React.FC<ArrowProps> = ({ type }) => {
@@ -137,6 +147,15 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
             <div className={styles.DocumentName}>
               <img src="/icons/do-document-text.svg" alt="document text" />
               {result.s3_object_name}{" "}
+              <div className={styles.L0Tags}>
+                {result.l0_categories?.map(
+                  (category: number, index: number) => (
+                    <Label className={globalStyles.LabelPrimary} key={index}>
+                      {l0ToString[category]}
+                    </Label>
+                  )
+                )}
+              </div>
               <span className={styles.NumPages}>{result.num_pages} Pages</span>
             </div>
             {result.topper && (

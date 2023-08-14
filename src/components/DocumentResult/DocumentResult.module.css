@@ -152,3 +152,7 @@
   line-height: normal;
   margin-left: var(--margin-s);
 }
+
+.L0Tags {
+  margin-left: var(--margin-s);
+}

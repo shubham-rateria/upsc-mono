@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -16,6 +17,7 @@ import {
 } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
+import { useRouter } from "next/navigation";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -32,7 +34,9 @@ const SampleSearchResult: Result = {
   s3_object_name: "",
 };
 
-const DocumentViewerPage: React.FC<Props> = ({ params }) => {
+const DocumentViewerPage: React.FC = () => {
+  const router = useRouter();
+  const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
   const [currentActivePage, setCurrentActivePage] = useState<number | null>(
@@ -119,10 +123,9 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
   const handleDocumentSearch = async () => {
     setSearchLoading(true);
     try {
-      const response = await axios.post(
-        `/api/documents/${params.documentId}/search`,
-        { searchTerm: documentSearchText }
-      );
+      const response = await axios.post(`/api/documents/${documentId}/search`, {
+        searchTerm: documentSearchText,
+      });
       setDocumentSearchResult(response.data.data);
       if (response.data.data.pages.length > 0) {
         setCurrentDocSearchResultIdx(0);
@@ -210,11 +213,19 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
     }
   };
 
+  const handleBack = () => {
+    // router.back();
+    router.push("/search");
+  };
+
   useEffect(() => {
     const init = async () => {
       setLoading(true);
+      const urlParams = new URLSearchParams(window.location.search);
+      const documentId = urlParams.get("documentId");
+      setDocumentId(documentId);
       try {
-        const response = await axios.get(`/api/documents/${params.documentId}`);
+        const response = await axios.get(`/api/documents/${documentId}`);
         setDocument(response.data.data);
       } catch (error: any) {
         setError({
@@ -241,13 +252,18 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
       <div className={styles.PageContainer}>
         <div className={styles.DocumentViewerContainer}>
           <div className={styles.DocumentTopBar}>
-            <Button icon>
+            <div className={styles.BackButton} onClick={handleBack}>
+              <img src="/icons/do-arrow-back.svg" />
+              Back
+            </div>
+            <Button icon basic className={styles.BookmarkButton}>
               <Icon name="bookmark" />
               Bookmark
             </Button>
             <div className={styles.DocumentSearchInput}>
               <Input
                 onChange={handleDocSearchTextChange}
+                value={documentSearchText}
                 label={
                   <Button
                     onClick={handleDocumentSearch}
@@ -264,21 +280,24 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
               {documentSearchResult && (
                 <div className={styles.DocumentSearchResult}>
                   <div>
-                    <div className={styles.UpDownButton}>
-                      <img
-                        src="/icons/do-chevron-up.svg"
-                        onClick={handlePrevDocSearchResult}
-                      />
+                    <div
+                      className={styles.UpDownButton}
+                      onClick={handlePrevDocSearchResult}
+                    >
+                      <img src="/icons/do-chevron-up.svg" alt="up results" />
                     </div>
                   </div>
                   <div>{(currentDocSearchResultIdx || 0) + 1}</div>
                   <div>/</div>
                   <div>{documentSearchResult.pages.length} Results</div>
                   <div>
-                    <div className={styles.UpDownButton}>
+                    <div
+                      className={styles.UpDownButton}
+                      onClick={handleNextDocSearchResult}
+                    >
                       <img
                         src="/icons/do-chevron-down.svg"
-                        onClick={handleNextDocSearchResult}
+                        alt="down results"
                       />
                     </div>
                   </div>
@@ -324,9 +343,7 @@ const DocumentViewerPage: React.FC<Props> = ({ params }) => {
                             block.boundingBox.vertices[0].y)
                         }px`,
                       }}
-                    >
-                      {/* <Label tag>{block.text}</Label> */}
-                    </div>
+                    />
                   )
                 )}
                 <InView
