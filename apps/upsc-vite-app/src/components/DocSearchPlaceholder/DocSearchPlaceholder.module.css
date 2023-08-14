@@ -1,0 +1,31 @@
+.Container {
+  width: 97%;
+  margin: var(--margin-m) 0;
+  padding: var(--padding-m);
+  border-radius: 4px;
+  border: 1px solid #f3f3f3;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+.Topbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  gap: 1rem;
+  /* padding: var(--padding-m); */
+  /* border-bottom: 1px solid #cbcbcb; */
+}
+
+.Images {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px 200px 200px;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.Image {
+  border-radius: 8px;
+  border: 1px solid #d6d6d6;
+  padding: var(--padding-s);
+  margin-right: var(--margin-m);
+}
