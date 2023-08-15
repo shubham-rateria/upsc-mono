@@ -166,6 +166,9 @@ importers:
       '@types/lodash':
         specifier: ^4.14.197
         version: 4.14.197
+      '@types/node':
+        specifier: 20.4.2
+        version: 20.4.2
       '@types/react':
         specifier: ^18.2.15
         version: 18.2.15
@@ -195,7 +198,9 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^4.4.5
-        version: 4.4.5
+        version: 4.4.5(@types/node@20.4.2)
+
+  packages/common: {}
 
   servers/backend:
     dependencies:
@@ -236,9 +241,6 @@ importers:
       '@types/morgan':
         specifier: ^1.9.4
         version: 1.9.4
-      '@usn/app':
-        specifier: workspace:^
-        version: link:../../apps/upsc-vite-app
       concurrently:
         specifier: ^8.2.0
         version: 8.2.0
@@ -1821,7 +1823,7 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.10)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.22.10)
       react-refresh: 0.14.0
-      vite: 4.4.5
+      vite: 4.4.5(@types/node@20.4.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7491,7 +7493,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /vite@4.4.5:
+  /vite@4.4.5(@types/node@20.4.2):
     resolution: {integrity: sha512-4m5kEtAWHYr0O1Fu7rZp64CfO1PsRGZlD3TAB32UmQlpd7qg15VF7ROqGN5CyqN7HFuwr7ICNM2+fDWRqFEKaA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -7519,6 +7521,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.4.2
       esbuild: 0.18.20
       postcss: 8.4.27
       rollup: 3.28.0

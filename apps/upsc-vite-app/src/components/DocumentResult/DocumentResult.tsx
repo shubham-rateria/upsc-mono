@@ -71,9 +71,9 @@ type MagnifierViewerProps = {
 const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
   ({ documentId }) => {
     const mClass = useContext(ImageMagnifierContext);
-    const [magWidth, _setMagWidth] = useState(400);
-    const [magHeight, _setMagHeight] = useState(400);
-    // const [zoomLevel, _] = useState(2);
+    const [magWidth, _setMagWidth] = useState(window.innerWidth * 0.3);
+    const [magHeight, _setMagHeight] = useState(magWidth / 1.2);
+    const [zoomLevel, _] = useState(3);
 
     if (!mClass.showMagnifier || mClass.activeDocumentId !== documentId) {
       return <></>;
@@ -81,11 +81,11 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
 
     const getLeft = () => {
       const topRight =
-        mClass.imgProperties.left + mClass.imgProperties.width + magWidth;
-      if (topRight > window.screen.width) {
+        mClass.imgProperties.left + mClass.imgProperties.width + magWidth + 30;
+      if (topRight > window.innerWidth) {
         return mClass.imgProperties.left - magWidth - 30;
       } else {
-        return mClass.imgProperties.left + mClass.imgProperties.width + 10;
+        return mClass.imgProperties.left + mClass.imgProperties.width + 30;
       }
     };
 
@@ -103,7 +103,8 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
           position: "absolute",
           top: `${getTop()}px`,
           left: `${getLeft()}px`,
-          boxShadow: "0px 0px 20px -8px rgba(0,9,72,0.2)",
+          // boxShadow: "0px 0px 20px -8px rgba(0,9,72,0.2)",
+          boxShadow: "4px 4px 20px 0px rgba(0, 0, 0, 0.25)",
           borderRadius: "12px",
           padding: "10px",
           background: "white",
@@ -118,16 +119,16 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
             backgroundRepeat: "no-repeat",
 
             //calculate zoomed image size
-            backgroundSize: `${mClass.imgProperties.width * 2}px ${
-              mClass.imgProperties.height * 2
+            backgroundSize: `${mClass.imgProperties.width * zoomLevel}px ${
+              mClass.imgProperties.height * zoomLevel
             }px`,
 
             // //calculate position of zoomed image.
             backgroundPositionX: `${
-              -mClass.imgZoomCoords.relX * 2 + mClass.imgProperties.width / 2
+              -mClass.imgZoomCoords.relX * zoomLevel + magWidth / 2
             }px`,
             backgroundPositionY: `${
-              -mClass.imgZoomCoords.relY * 2 + magWidth / 2
+              -mClass.imgZoomCoords.relY * zoomLevel + magHeight / 2
             }px`,
           }}
         />

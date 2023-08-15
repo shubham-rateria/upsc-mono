@@ -56,18 +56,6 @@ class SearchParamsClass {
     this.searchParams = { ...this.searchParams, ...params };
   }
 
-  /**
-   * this function returns only the parent level tag, if all
-   * children of the parent are selected
-   */
-  // public flattenTags() {
-  //   const selectedTags: Tag[] = [];
-  //   if (this.searchParams.subjectTags) {
-  //     for (const tag of this.searchParams.subjectTags) {
-  //     }
-  //   }
-  // }
-
   public async searchForDocuments() {
     this.searching = true;
     try {
@@ -97,14 +85,12 @@ class SearchParamsClass {
     }
   }
 
-  constructor(params: SearchParams) {
-    this.searchParams = params;
+  constructor() {
     makeAutoObservable(this, {}, { deep: true });
   }
 }
 
-export const searchParamsClass = new SearchParamsClass(defaultValues);
+export const searchParamsClass = new SearchParamsClass();
 
-export const SearchParamsContext = React.createContext<SearchParamsClass>(
-  new SearchParamsClass({})
-);
+export const SearchParamsContext =
+  React.createContext<SearchParamsClass>(searchParamsClass);
