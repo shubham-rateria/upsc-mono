@@ -1,27 +1,50 @@
 /* TopNavBar.module.css */
 
 .topNavBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-  }
-  
-  .logoContainer img {
-    /* height: 40px; */
-    width: 15vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .avatarContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
 
-  .PhoneNumber {
-    margin-right: 1rem;
-  }
+.logoContainer img {
+  /* height: 40px; */
+  width: 15vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.PhoneNumber {
+  margin-right: 1rem;
+}
+
+.UnlockBtn {
+  display: flex !important;
+  padding: 6px 8px !important;
+  align-items: center;
+  gap: 6px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--p7) !important;
+  background: var(--p1) !important;
+  color: var(--n5) !important;
+  font-family: var(--font-mulish) !important;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: var(--margin-m) !important;
+}
+
+/* .UnlockBtn img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */

@@ -390,6 +390,7 @@ const TopperFilter: FC = observer(() => {
   const [active, setActive] = useState(false);
   const searchParamsClass = React.useContext(SearchParamsContext);
   const [loading, setLoading] = useState(true);
+  const [filterText, setFilterText] = useState("");
 
   const handleCheckboxClick = (topper: Topper) => {
     if (searchParamsClass.topperSelected(topper)) {
@@ -446,13 +447,30 @@ const TopperFilter: FC = observer(() => {
             className={styles.Input}
             placeholder="Search for topper"
             icon
+            onChange={(e) => {
+              setFilterText(e.target.value);
+            }}
+            value={filterText}
           >
             <input />
-            <Icon name="close" />
+            <Button
+              basic
+              icon
+              size="small"
+              className={styles.CloseBtn}
+              onClick={() => {
+                setFilterText("");
+              }}
+            >
+              <Icon name="close" />
+            </Button>
           </Input>
         )}
         <List className={styles.ListContainer}>
-          {toppers.map((topper: Topper, index: number) => (
+          {(filterText.length > 0
+            ? toppers.filter((t) => t.name?.toLowerCase().includes(filterText))
+            : toppers
+          ).map((topper: Topper, index: number) => (
             <List.Item className={clsx(styles.ListItem)} key={index}>
               <List.Content>
                 <List.Header

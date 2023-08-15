@@ -21,7 +21,7 @@ export type Topper = {
 
 export interface SearchParams {
   keyword?: string;
-  subjectTags?: Tag[] | null;
+  subjectTags?: Tag[];
   documentType?: DocumentType;
   topper?: Topper;
   year?: number;

@@ -81,9 +81,9 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
 
     const getLeft = () => {
       const topRight =
-        mClass.imgProperties.left + mClass.imgProperties.width + magWidth + 30;
+        mClass.imgProperties.left + mClass.imgProperties.width + magWidth + 40;
       if (topRight > window.innerWidth) {
-        return mClass.imgProperties.left - magWidth - 30;
+        return mClass.imgProperties.left - magWidth - 50;
       } else {
         return mClass.imgProperties.left + mClass.imgProperties.width + 30;
       }

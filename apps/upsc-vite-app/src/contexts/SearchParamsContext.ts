@@ -56,6 +56,19 @@ class SearchParamsClass {
     this.searchParams = { ...this.searchParams, ...params };
   }
 
+  public clearFilters() {
+    this.searchParams = defaultValues;
+  }
+
+  public defaultState() {
+    return !(
+      (this.searchParams.subjectTags &&
+        this.searchParams.subjectTags?.length > 0) ||
+      this.searchParams.keyword ||
+      this.searchParams.topper
+    );
+  }
+
   public async searchForDocuments() {
     this.searching = true;
     try {

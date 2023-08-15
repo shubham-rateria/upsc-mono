@@ -1,12 +1,12 @@
-(node:45818) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:49245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 15:42:20 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 17:20:07 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb://localhost:27017/test
-(node:45830) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:49259) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,115 +19,286 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
+[0mGET /api/toppers [32m200[0m 53.953 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 15.556 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 31.834 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 15.628 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 13.508 ms - 13416[0m
+searching for {
+  _id: 'ANIRUDHA PANDEY',
+  name: 'ANIRUDHA PANDEY',
+  rank: '64',
+  year: '2022'
+}
+Found 6 for topper
+[0mPOST /api/documents [32m200[0m 128.160 ms - 30950[0m
+[0mGET /api/toppers [32m200[0m 55.748 ms - 13416[0m
+searching for { _id: 'ABHINAV JAIN', name: 'ABHINAV JAIN', rank: '14', year: '2021' }
+Found 4 for topper
+[0mPOST /api/documents [32m200[0m 57.104 ms - 18491[0m
+[0mGET /api/toppers [32m200[0m 26.741 ms - 13416[0m
+searching for { _id: 'HIMANSHU', name: 'HIMANSHU', rank: '773', year: '2017' }
+Found 2 for topper
+[0mPOST /api/documents [32m200[0m 52.891 ms - 10461[0m
+[0mPOST /api/documents [32m200[0m 0.807 ms - 26[0m
+searching for {
+  _id: 'AKSHITA GUPTA',
+  name: 'AKSHITA GUPTA',
+  rank: '69',
+  year: '2020'
+}
+Found 12 for topper
+[0mPOST /api/documents [32m200[0m 86.297 ms - 57844[0m
+getting doc id
+[0mGET /api/documents/64c6268f43bc4f6a0bad7dea [32m201[0m 8.611 ms - 5075[0m
+[0mGET /api/toppers [32m200[0m 26.691 ms - 13416[0m
+getting doc id
+[0mGET /api/documents/64c67ce143bc4f6a0badbcc5 [32m201[0m 6.084 ms - 8411[0m
+[0mGET /api/toppers [32m200[0m 19.206 ms - 13416[0m
+Finding keywords []
+Found pages 0
+Found documents 0
+Unique Documents 0
+bowResults 0
+tagSearchResults 254
+searching for {
+  _id: 'AKSHITA GUPTA',
+  name: 'AKSHITA GUPTA',
+  rank: '69',
+  year: '2020'
+}
+Found 12 for topper
+[0mPOST /api/documents [32m200[0m 102.703 ms - 23657[0m
+getting doc id
+[0mGET /api/documents/64c6766343bc4f6a0badb3f6 [32m201[0m 4.795 ms - 5978[0m
+doc search
+error in doc search
+[0mPOST /api/documents/64c6766343bc4f6a0badb3f6/search [31m500[0m 24.991 ms - 87[0m
+[0mGET /api/toppers [32m200[0m 71.781 ms - 13416[0m
+searching for hello world
+searching for hello world
+[0mPOST /api/documents [0m-[0m - ms - -[0m
+[0mPOST /api/documents [0m-[0m - ms - -[0m
+[0mGET /api/toppers [32m200[0m 64.885 ms - 13416[0m
+found pages 100
+found pages 100
+Keyword search documents 66
+Keyword search documents 66
+Finding keywords []
+Found pages 0
+Found documents 0
+Unique Documents 0
+bowResults 0
+tagSearchResults 254
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
 tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1379.062 ms - 4530946[0m
+[0mPOST /api/documents [32m200[0m 1546.320 ms - 4530946[0m
+getting doc id
+[0mGET /api/documents/64b7f02fe8fbe000be54d431 [32m201[0m 25.745 ms - 5337[0m
+doc search
+[0mPOST /api/documents/64b7f02fe8fbe000be54d431/search [32m201[0m 1334.516 ms - 592[0m
+[0mGET /api/toppers [32m200[0m 32.323 ms - 13416[0m
+[0mPOST /api/documents [32m200[0m 1.796 ms - 26[0m
+searching for right to information
+found pages 100
+Keyword search documents 63
+[0mPOST /api/documents [32m200[0m 60769.094 ms - 347312[0m
+[0mGET /api/toppers [32m200[0m 48.795 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 41.000 ms - 13416[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
 tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 736.052 ms - 3016385[0m
-[0mPOST /api/documents [32m200[0m 345.967 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 1459.443 ms - 4530946[0m
+Finding keywords []
+Found pages 0
+Found documents 0
+Unique Documents 0
+bowResults 0
+tagSearchResults 630
+searching for { _id: 'HIMANSHU', name: 'HIMANSHU', rank: '773', year: '2017' }
+Found 2 for topper
+[0mPOST /api/documents [32m200[0m 154.076 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 58.137 ms - 13416[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
 tagSearchResults 288
-[0mPOST /api/documents [32m200[0m 317.929 ms - 1080024[0m
-[0mPOST /api/documents [32m200[0m 378.407 ms - 26[0m
-[0mGET /api/toppers [32m200[0m 52.363 ms - 13416[0m
+[0mPOST /api/documents [32m200[0m 767.731 ms - 2188273[0m
+Finding keywords [
+  'Emotional Intelligence-Concepts, and their Utilities and Application in Administration and Governance',
+  'Contributions of Moral Thinkers and Philosophers from India and World',
+  'Public/Civil Service Values and Ethics in Public Administration',
+  'Status and Problems',
+  'Ethical Concerns and Dilemmas in Government and Private Institutions',
+  'Laws, Rules, Regulations, and Conscience as Sources of Ethical Guidance',
+  'Accountability and Ethical Governance',
+  'Strengthening of Ethical and Moral Values in Governance',
+  'Ethical Issues in International Relations and Funding',
+  'Corporate Governance',
+  'Contributions of Moral Thinkers and Philosophers from India and World'
+]
+Found pages 1000
+Found documents 313
+Unique Documents 11
+bowResults 11
+tagSearchResults 11
+[0mPOST /api/documents [32m200[0m 6203.664 ms - 4487743[0m
+[0mPOST /api/documents [32m200[0m 2.690 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 53.257 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 22.947 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 24.624 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 15.986 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 57.148 ms - 13416[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
 tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1173.374 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 46.912 ms - 13416[0m
+[0mPOST /api/documents [32m200[0m 1159.160 ms - 4530946[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
 tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1085.538 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 46.934 ms - 13416[0m
+searching for {
+  _id: 'KASTURI PANDA',
+  name: 'KASTURI PANDA',
+  rank: '67',
+  year: '2022'
+}
+Found 24 for topper
+[0mPOST /api/documents [32m200[0m 144.532 ms - 63061[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
 tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1114.603 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 46.737 ms - 13416[0m
+searching for { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 112.477 ms - 39171[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1149.342 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 32.669 ms - 13416[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1073.719 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 38.034 ms - 13416[0m
+tagSearchResults 884
+searching for { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 185.144 ms - 39171[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1055.369 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 39.780 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 27.449 ms - 13416[0m
+tagSearchResults 254
+searching for { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 72.714 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 54.670 ms - 13416[0m
+searching for {
+  _id: 'SANDEEP KUMAR MEENA',
+  name: 'SANDEEP KUMAR MEENA',
+  rank: '643',
+  year: '2020'
+}
+Found 18 for topper
+[0mPOST /api/documents [32m200[0m 111.838 ms - 92410[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1071.260 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 31.932 ms - 13416[0m
+tagSearchResults 254
+searching for {
+  _id: 'SANDEEP KUMAR MEENA',
+  name: 'SANDEEP KUMAR MEENA',
+  rank: '643',
+  year: '2020'
+}
+Found 18 for topper
+[0mPOST /api/documents [32m200[0m 87.746 ms - 23748[0m
+searching for {
+  _id: 'SANDEEP KUMAR MEENA',
+  name: 'SANDEEP KUMAR MEENA',
+  rank: '643',
+  year: '2020'
+}
+Found 18 for topper
+[0mPOST /api/documents [32m200[0m 50.329 ms - 92410[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1037.350 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 30.433 ms - 13416[0m
+tagSearchResults 288
+searching for {
+  _id: 'SANDEEP KUMAR MEENA',
+  name: 'SANDEEP KUMAR MEENA',
+  rank: '643',
+  year: '2020'
+}
+Found 18 for topper
+[0mPOST /api/documents [32m200[0m 78.426 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 52.846 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 84.189 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 57.125 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 65.731 ms - 13416[0m
+searching for {
+  _id: 'SHRUTI SHARMA',
+  name: 'SHRUTI SHARMA',
+  rank: '1',
+  year: '2021'
+}
+Found 14 for topper
+[0mPOST /api/documents [32m200[0m 101.374 ms - 72536[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1047.769 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 27.217 ms - 13416[0m
+tagSearchResults 254
+searching for {
+  _id: 'SHRUTI SHARMA',
+  name: 'SHRUTI SHARMA',
+  rank: '1',
+  year: '2021'
+}
+Found 14 for topper
+[0mPOST /api/documents [32m200[0m 69.223 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 22.182 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 50.997 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 27.587 ms - 13416[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
 bowResults 0
-tagSearchResults 630
-[0mPOST /api/documents [32m200[0m 1029.128 ms - 4530946[0m
-[0mGET /api/toppers [32m200[0m 129.683 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 17.797 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 22.269 ms - 13416[0m
+tagSearchResults 254
+[0mPOST /api/documents [32m200[0m 624.769 ms - 1932513[0m
 Finding keywords []
 Found pages 0
 Found documents 0
 Unique Documents 0
-b
+bowResults 0
+tagSearchResults 254
+searching for { _id: 'ABHINAV JAIN', name: 'ABHINAV JAIN', rank: '14', year: '2021' }
+Found 4 for topper
+[0mPOST /api/documents [32m200[0m 65.049 ms - 26[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed.[39m

@@ -6,7 +6,8 @@
 }
 
 .Img {
-  height: 30vh;
+  margin-top: var(--margin-l);
+  min-height: 20vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -34,4 +35,5 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: var(--margin-m);
 }

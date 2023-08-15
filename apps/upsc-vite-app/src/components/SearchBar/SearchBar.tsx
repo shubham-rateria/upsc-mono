@@ -48,6 +48,7 @@ const SearchBar: FC = () => {
             onClick={handleSearch}
             className={styles.Button}
             loading={searchParamsClass.searching}
+            disabled={!searchParamsClass.searchParams.keyword}
           >
             Search
           </Button>

@@ -1,9 +1,8 @@
+import { Button, Image } from "semantic-ui-react";
 import styles from "./TopNavbar.module.css";
 
 const TopNavBar = () => {
-  // Replace the logo URL and avatar URL with your own
   const logoUrl = "/img/logo.svg";
-  // const avatarUrl = "path_to_your_avatar.png";
 
   return (
     <div className={styles.topNavBar}>
@@ -11,8 +10,16 @@ const TopNavBar = () => {
         <img src={logoUrl} alt="Logo" />
       </div>
       <div className={styles.avatarContainer}>
-        <div className={styles.PhoneNumber}>+91 79808 43700</div>
-        {/* <Avatar /> */}
+        <div>
+          <Button className={styles.UnlockBtn}>
+            <img src="/icons/mdi_crown.svg" />
+            Unlock Access
+          </Button>
+        </div>
+        <Image
+          src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+          avatar
+        />
       </div>
     </div>
   );
