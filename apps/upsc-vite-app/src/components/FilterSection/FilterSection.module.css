@@ -138,16 +138,28 @@
 
 .Input {
   width: 100%;
+  border-bottom: 1px solid #00000014 !important;
 }
 
 .Input input {
-  margin-top: var(--margin-s) !important;
+  /* margin-top: var(--margin-s) !important; */
   border-radius: 0px !important;
-  line-height: 0.8rem !important;
-  font-size: 0.8rem;
+  line-height: 1rem !important;
+  font-size: 1rem;
   background: #ffffff !important;
   border: none !important;
-  border-bottom: 1px solid #00000014 !important;
+  font-family: var(--font-mulish) !important;
+  color: var(--n7) !important;
+}
+
+.Input .CloseBtn {
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 50%;
+}
+
+.Input .CloseBtn:hover {
+  background: var(--p2) !important;
 }
 
 .ItemSelected {

@@ -29,6 +29,18 @@ const l0ToString: any = {
   3: "General Studies III",
   4: "General Studies IV",
   5: "Essay",
+  6: "Anthro",
+  7: "Chemistry",
+  8: "Economics",
+  9: "Geography",
+  10: "Hindi",
+  11: "Law",
+  12: "Management",
+  13: "Philosophy",
+  14: "Political Science",
+  15: "Public Administration",
+  16: "Sociology",
+  17: "Agriculture",
 };
 
 const Arrow: React.FC<ArrowProps> = ({ type }) => {
@@ -71,10 +83,8 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
       const topRight =
         mClass.imgProperties.left + mClass.imgProperties.width + magWidth;
       if (topRight > window.screen.width) {
-        console.log("[getLeft]:returning left", topRight, window.screen.width);
         return mClass.imgProperties.left - magWidth - 30;
       } else {
-        console.log("[getLeft]:returning right", topRight, window.screen.width);
         return mClass.imgProperties.left + mClass.imgProperties.width + 10;
       }
     };

@@ -25,17 +25,24 @@ const SearchBar: FC = () => {
     searchParamsClass.searchForDocuments();
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.code === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div className={styles.Container}>
       <Input
         type="text"
         icon="search"
         iconPosition="left"
-        placeholder="Search by topics, keywords, topper names..."
+        placeholder="Search for specific topics, e.g. Indus Valley..."
         value={searchParamsClass.searchParams.keyword}
         onChange={handleChange}
         className={styles.Input}
         labelPosition="right"
+        onKeyPress={handleKeyPress}
         label={
           <Button
             onClick={handleSearch}

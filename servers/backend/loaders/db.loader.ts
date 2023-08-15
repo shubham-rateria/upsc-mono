@@ -8,6 +8,7 @@ const connectToDatabase = async () => {
   if (!config.databaseURL) {
     throw new Error("Mongo uri unspecified.");
   }
+  console.log("connecting to", config.databaseURL);
   try {
     if (mongoose.connections[0]?.readyState !== 1) {
       await mongoose.connect(config.databaseURL, {

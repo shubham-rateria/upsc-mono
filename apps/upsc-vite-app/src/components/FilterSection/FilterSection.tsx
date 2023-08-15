@@ -11,6 +11,7 @@ import {
   Checkbox,
   Input,
   Loader,
+  Button,
 } from "semantic-ui-react";
 import styles from "./FilterSection.module.css";
 import { Tag, TagType, Topper } from "../..//types";
@@ -18,6 +19,7 @@ import clsx from "clsx";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import axiosInstance from "../../utils/axios-instance";
+import filterCategories from "../../utils/filter-categories";
 
 type FilterAccordionProps = {
   title: string;
@@ -39,7 +41,7 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
   }) => {
     const [active, setActive] = useState(false);
     const searchParamsClass = React.useContext(SearchParamsContext);
-    const [filterSearchText, setFilterSearchText] = useState<string>();
+    const [filterSearchText, setFilterSearchText] = useState<string>("");
 
     const isCheckboxActive = (tag: Tag, parent1Tag?: Tag, parent2Tag?: Tag) => {
       return (
@@ -100,6 +102,19 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
     };
 
     const handleL1Click = (tag: Tag) => {
+      const l0Tag: Tag = {
+        level: "l0",
+        type: tagType,
+        value: {
+          tagText: title,
+        },
+      };
+      const l0selected = searchParamsClass.tagExists(l0Tag);
+
+      if (l0selected) {
+        searchParamsClass.removeSubjectTag(l0Tag);
+      }
+
       // find the l1 category
       data.categories.map((category: any) => {
         Object.keys(category).map((l1) => {
@@ -129,7 +144,15 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
       searchParamsClass.searchForDocuments();
     };
 
-    const handleL2Click = (tag: Tag) => {
+    const handleL2Click = (tag: Tag, l1Tag?: Tag) => {
+      if (l1Tag) {
+        const l1Selected = searchParamsClass.tagExists(l1Tag);
+
+        if (l1Selected) {
+          searchParamsClass.removeSubjectTag(l1Tag);
+        }
+      }
+
       handleCheckboxClick(tag);
       searchParamsClass.searchForDocuments();
     };
@@ -173,17 +196,30 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
               size="small"
               className={styles.Input}
               placeholder="Search for topic"
-              icon
+              transparent
               value={filterSearchText}
               onChange={(e) => {
                 setFilterSearchText(e.target.value);
               }}
             >
               <input />
-              <Icon name="close" />
+              <Button
+                basic
+                icon
+                size="small"
+                className={styles.CloseBtn}
+                onClick={() => {
+                  setFilterSearchText("");
+                }}
+              >
+                <Icon name="close" />
+              </Button>
             </Input>
           )}
-          {data.categories.map((category: any) => (
+          {(filterSearchText.length > 0
+            ? filterCategories(data, filterSearchText)
+            : data
+          ).categories.map((category: any) => (
             <>
               {Object.keys(category).map((l1: any) => (
                 <List key={l1} className={styles.ListContainer}>
@@ -288,13 +324,22 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
                                   styles.FilterSelect
                                 )}
                                 onClick={() => {
-                                  handleL2Click({
-                                    level: "l2",
-                                    type: tagType,
-                                    value: {
-                                      tagText: l2,
+                                  handleL2Click(
+                                    {
+                                      level: "l2",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l2,
+                                      },
                                     },
-                                  });
+                                    {
+                                      level: "l1",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l1,
+                                      },
+                                    }
+                                  );
                                 }}
                               >
                                 <Checkbox

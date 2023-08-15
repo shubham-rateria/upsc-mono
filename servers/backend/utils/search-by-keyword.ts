@@ -30,12 +30,19 @@ export default async function searchByKeyword(
       { score: { $meta: "textScore" } }
     )
       .sort({ score: { $meta: "textScore" } })
-      .skip(skipCount)
+      .skip(0)
       .limit(resultsPerPage)
       .select({
         ocr: 0,
+        category_tags: 0,
+        keyword_tags: 0,
+        keyword_tags_1: 0,
+        clean_text: 0,
       })
       .lean();
+
+    console.log("found pages", pages.length);
+
     const documents: any[] = [];
     for (const page of pages) {
       const document: any = await DocumentModel.findOne({

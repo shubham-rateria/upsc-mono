@@ -1,48 +1,48 @@
 .Container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .Input {
-    font-family: 'Mulish';
-    width: 70%;
-    /* border-radius: 10px; */
-    /* border: 1px solid var(--n-2, #D3D6E0); */
-    /* background: var(--n-0, #FFF); */
+  font-family: "Mulish";
+  width: 70%;
+  /* border-radius: 10px; */
+  /* border: 1px solid var(--n-2, #D3D6E0); */
+  /* background: var(--n-0, #FFF); */
 }
 
 .Input input {
-    padding: 2rem;
-    border-radius: 10px !important;
-    border: 1px solid var(--n-2, #D3D6E0) !important;
-    background: var(--n-0, #FFF) !important;
-    line-height: 1.5rem;
-    color: var(--n-5, #5A6892);
-    /* font-family: Mulish; */
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  padding: 2rem;
+  border-radius: 10px !important;
+  border: 1px solid var(--n-2, #d3d6e0) !important;
+  background: var(--n-0, #fff) !important;
+  line-height: 1.5rem;
+  color: var(--n-5, #5a6892);
+  /* font-family: Mulish; */
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .Input input:focus {
-    outline: none;
+  outline: none;
 }
 
 .Input input:hover {
-    cursor: pointer;
-    background: #f7f7f7;
-    border: 1px solid rgb(207, 207, 207);
+  cursor: text;
+  background: #f7f7f7;
+  border: 1px solid rgb(207, 207, 207);
 }
 
 .Button {
-    border-radius: 0px 9px 9px 0px !important;
-    background: var(--p-7, #7963FF) !important;
-    color: white !important;
-    font-family: 'Mulish';
-    font-weight: 600;
-    width: 10vw;
+  border-radius: 0px 9px 9px 0px !important;
+  background: var(--p-7, #7963ff) !important;
+  color: white !important;
+  font-family: "Mulish";
+  font-weight: 600;
+  width: 10vw;
 }

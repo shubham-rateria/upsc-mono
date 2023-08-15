@@ -1,5 +1,3 @@
-"use client";
-
 import { useContext } from "react";
 import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../components/SearchBar/SearchBar";

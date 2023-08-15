@@ -20,10 +20,22 @@ export const mapTagTypeToCategories: any = {
 };
 
 export const mapTagTypeToNumber: any = {
+  Agriculture: 17,
+  Anthropology: 6,
+  Chemistry: 7,
+  Economics: 8,
   GS1: 1,
   GS2: 2,
   GS3: 3,
   GS4: 4,
+  Geography: 9,
+  Hindi: 10,
+  Law: 11,
+  Management: 12,
+  Philosophy: 13,
+  "Political Science": 14,
+  "Public Administration": 15,
+  Sociology: 16,
   Essay: 5,
 };
 

@@ -67,7 +67,7 @@
 .filterSection {
   display: flex;
   flex-direction: column;
-  width: 30vw;
+  width: 20vw;
   padding: var(--padding-m) 0 var(--padding-m) var(--padding-m);
   border-right: 1px solid var(--n-2, #d3d6e0);
   background: #faf9ff;
@@ -94,7 +94,7 @@
 }
 
 .resultSection {
-  width: 75vw;
+  width: 80vw;
   overflow-y: auto;
   height: 100%;
   padding: var(--padding-m) var(--padding-m) 10vh var(--padding-m);
