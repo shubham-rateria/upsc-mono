@@ -1,4 +1,9 @@
-import { Result, SearchParams, Tag, Topper } from "../types";
+import {
+  type Result,
+  type SearchParams,
+  type Tag,
+  type Topper,
+} from "@usn/common";
 import React from "react";
 import { makeAutoObservable } from "mobx";
 import axiosInstance from "../utils/axios-instance";
@@ -10,6 +15,7 @@ const defaultValues: SearchParams = {
   topper: undefined,
   year: -1,
   favourites: false,
+  pageNumber: 0,
 };
 
 class CancelablePromise {
@@ -114,7 +120,7 @@ class SearchParamsClass {
 
   public async getNext() {
     // don't get next results if results are already loading
-    if (this.searchingNextResults) {
+    if (this.searchingNextResults || this.searching) {
       return;
     }
 
@@ -128,19 +134,20 @@ class SearchParamsClass {
   }
 
   public getCancelableSearchPromise() {
-    const axiosPromise = axiosInstance.post("/api/documents", {
-      search: this.searchParams.keyword,
+    const data: SearchParams = {
+      keyword: this.searchParams.keyword,
       pageNumber: this.pageNumber,
       documentType:
         this.searchParams.documentType === -1
-          ? null
+          ? undefined
           : this.searchParams.documentType,
       subjectTags:
         (this.searchParams.subjectTags?.length || 0) > 0
           ? this.searchParams.subjectTags
-          : null,
+          : undefined,
       topper: this.searchParams.topper,
-    });
+    };
+    const axiosPromise = axiosInstance.post("/api/documents", data);
     const cancelablePromise = new CancelablePromise(axiosPromise);
     cancelablePromise
       .then((response: any) => {
@@ -176,35 +183,6 @@ class SearchParamsClass {
     }
 
     try {
-      // const response = await axiosInstance.post("/api/documents", {
-      //   search: this.searchParams.keyword,
-      //   pageNumber: this.pageNumber,
-      //   documentType:
-      //     this.searchParams.documentType === -1
-      //       ? null
-      //       : this.searchParams.documentType,
-      //   subjectTags:
-      //     (this.searchParams.subjectTags?.length || 0) > 0
-      //       ? this.searchParams.subjectTags
-      //       : null,
-      //   topper: this.searchParams.topper,
-      // });
-      // if (response.data) {
-      //   if (this.docSearchResults === null) {
-      //     this.docSearchResults = [];
-      //   }
-      //   if (this.pageNumber === 1) {
-      //     // @ts-ignore
-      //     this.docSearchResults.replace(response.data.data);
-      //   } else {
-      //     // @ts-ignore
-      //     this.docSearchResults.replace([
-      //       ...this.docSearchResults,
-      //       ...response.data.data,
-      //     ]);
-      //   }
-      // }
-      // this.searching = false;
       this.lastSearchPromise = this.getCancelableSearchPromise();
     } catch (error) {
       console.error("Error in getting documents:", error);

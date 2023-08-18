@@ -1,14 +1,15 @@
 import { DocumentModel } from "../models/document";
 import { PageModel } from "../models/page";
-import { Topper } from "../types";
+import { SearchParams } from "@usn/common";
 import mongoose from "mongoose";
 
 const limit = 50;
 
-export default async function searchByTopper(
-  topper: Topper,
-  pageNumber: number
-): Promise<(typeof DocumentModel)[]> {
+export default async function searchByTopper({
+  topper,
+  pageNumber,
+  documentType,
+}: SearchParams): Promise<(typeof DocumentModel)[]> {
   /**
    * if mongoose is disconnected, throw an error
    */
@@ -19,23 +20,27 @@ export default async function searchByTopper(
   let documentsResult: (typeof DocumentModel)[] = [];
 
   if (topper) {
-    console.log("searching for", topper);
-
-    // @ts-ignore
-    documentsResult = await DocumentModel.find({
+    const query = {
       topper: {
         name: topper.name,
         rank: topper.rank,
         year: topper.year,
       },
-    })
+    };
+
+    if (documentType !== null && documentType !== undefined) {
+      query["document_type"] = documentType;
+    }
+
+    // @ts-ignore
+    documentsResult = await DocumentModel.find(query)
       .select({
         keyword_tags: 0,
         keyword_tags_1: 0,
         percentage_keywords: 0,
         pages: 0,
       })
-      .skip((pageNumber - 1) * limit)
+      .skip(((pageNumber || 1) - 1) * limit)
       .limit(limit)
       .lean();
 

@@ -43,32 +43,18 @@ const SearchBar: FC = () => {
         className={styles.Input}
         labelPosition="right"
         onKeyPress={handleKeyPress}
-        // label={
-        //   <Button
-        //     onClick={handleSearch}
-        //     className={styles.Button}
-        //     loading={searchParamsClass.searching}
-        //     disabled={!searchParamsClass.searchParams.keyword}
-        //   >
-        //     Search
-        //   </Button>
-        // }
+        label={
+          <Button
+            onClick={handleSearch}
+            className={styles.Button}
+            loading={searchParamsClass.searching}
+            disabled={!searchParamsClass.searchParams.keyword}
+          >
+            Search
+          </Button>
+        }
         action
-      >
-        <Icon name="search" />
-        <input />
-        {(searchParamsClass.searchParams.keyword?.length || 0) > 0 && (
-          <Button basic>Clear</Button>
-        )}
-        <Button
-          onClick={handleSearch}
-          className={styles.Button}
-          loading={searchParamsClass.searching}
-          disabled={!searchParamsClass.searchParams.keyword}
-        >
-          Search
-        </Button>
-      </Input>
+      ></Input>
     </div>
   );
 };

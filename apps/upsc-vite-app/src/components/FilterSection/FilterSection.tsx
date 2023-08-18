@@ -1,9 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
-import gs1Categories from "../../data/gs1-categories";
-import gs2Categories from "../../data/gs2-categories";
-import gs3Categories from "../../data/gs3-categories";
-import gs4categories from "../../data/gs4-categories";
-import optionalsCategories from "../../data/optionals-categories";
+import {
+  gs1Categories,
+  gs2Categories,
+  gs3Categories,
+  gs4Categories,
+  optionalsCategories,
+  type Tag,
+  type TagType,
+  type Topper,
+} from "@usn/common";
 import {
   List,
   Accordion,
@@ -14,7 +19,6 @@ import {
   Button,
 } from "semantic-ui-react";
 import styles from "./FilterSection.module.css";
-import { Tag, TagType, Topper } from "../..//types";
 import clsx from "clsx";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
@@ -28,6 +32,22 @@ type FilterAccordionProps = {
   showL0Checkbox?: boolean;
   handleCheckboxClick: (tag: Tag) => void;
   iconSrc?: string;
+};
+
+export const mapOptionalToNumber: any = {
+  Agriculture: 17,
+  Anthropology: 6,
+  Chemistry: 7,
+  Economics: 8,
+  Geography: 9,
+  Hindi: 10,
+  Law: 11,
+  Management: 12,
+  Philosophy: 13,
+  "Political Science": 14,
+  "Public Administration": 15,
+  Sociology: 16,
+  Essay: 5,
 };
 
 const FilterAccordion: FC<FilterAccordionProps> = observer(
@@ -512,6 +532,248 @@ const TopperFilter: FC = observer(() => {
   );
 });
 
+const OptionalsAccodion: FC<FilterAccordionProps> = observer(
+  ({ title, data, tagType, handleCheckboxClick, iconSrc }) => {
+    const [active, setActive] = useState(false);
+    const searchParamsClass = React.useContext(SearchParamsContext);
+    const [filterSearchText, setFilterSearchText] = useState<string>("");
+
+    const isCheckboxActive = (tag: Tag, parent1Tag?: Tag, parent2Tag?: Tag) => {
+      return (
+        searchParamsClass.tagExists(tag) ||
+        (parent1Tag ? searchParamsClass.tagExists(parent1Tag) : false) ||
+        (parent2Tag ? searchParamsClass.tagExists(parent2Tag) : false)
+      );
+    };
+
+    const handleL1Click = (tag: Tag) => {
+      // find the l1 category
+      data.categories.map((category: any) => {
+        Object.keys(category).map((l1) => {
+          if (l1 === tag.value.tagText) {
+            handleCheckboxClick(tag);
+            const selected = searchParamsClass.tagExists(tag);
+            Object.keys(category[l1]).map((l2) => {
+              const l2Tag: Tag = {
+                level: "l1",
+                type: tagType,
+                value: {
+                  tagText: l2,
+                },
+                optionalsId: mapOptionalToNumber[l1],
+              };
+              if (selected) {
+                if (searchParamsClass.tagExists(l2Tag)) {
+                  searchParamsClass.removeSubjectTag(l2Tag);
+                }
+              }
+            });
+          }
+        });
+      });
+
+      searchParamsClass.searchForDocuments();
+    };
+
+    const handleL2Click = (tag: Tag, l1Tag?: Tag) => {
+      if (l1Tag) {
+        const l1Selected = searchParamsClass.tagExists(l1Tag);
+
+        if (l1Selected) {
+          searchParamsClass.removeSubjectTag(l1Tag);
+        }
+      }
+
+      handleCheckboxClick(tag);
+      searchParamsClass.searchForDocuments();
+    };
+
+    return (
+      <Accordion>
+        <Accordion.Title
+          active={active}
+          onClick={() => {
+            setActive(!active);
+          }}
+          className={clsx(styles.L0Title, active && styles.L0TitleExpanded)}
+        >
+          {iconSrc && <img src={iconSrc} />}
+          <div>{title}</div>
+          {data.categories.length > 0 && <Icon size="large" name="dropdown" />}
+        </Accordion.Title>
+        <Accordion.Content active={active} className={styles.Section}>
+          {data.categories.length > 0 && (
+            <Input
+              fluid
+              size="small"
+              className={styles.Input}
+              placeholder="Search for topic"
+              transparent
+              value={filterSearchText}
+              onChange={(e) => {
+                setFilterSearchText(e.target.value);
+              }}
+            >
+              <input />
+              <Button
+                basic
+                icon
+                size="small"
+                className={styles.CloseBtn}
+                onClick={() => {
+                  setFilterSearchText("");
+                }}
+              >
+                <Icon name="close" />
+              </Button>
+            </Input>
+          )}
+          {(filterSearchText.length > 0
+            ? filterCategories(data, filterSearchText)
+            : data
+          ).categories.map((category: any) => (
+            <>
+              {Object.keys(category).map((l1: any) => (
+                <List key={l1} className={styles.ListContainer}>
+                  <List.Item
+                    className={clsx(
+                      styles.ListItem,
+                      isCheckboxActive({
+                        level: "l0",
+                        type: tagType,
+                        value: {
+                          tagText: l1,
+                        },
+                        optionalsId: mapOptionalToNumber[l1],
+                      }) && styles.ItemSelected
+                    )}
+                  >
+                    <List.Content>
+                      <List.Header
+                        className={clsx(styles.SectionTitle)}
+                        onClick={() => {
+                          handleL1Click({
+                            level: "l0",
+                            type: tagType,
+                            value: {
+                              tagText: l1,
+                            },
+                            optionalsId: mapOptionalToNumber[l1],
+                          });
+                        }}
+                      >
+                        <Checkbox
+                          label={l1}
+                          checked={isCheckboxActive({
+                            level: "l0",
+                            type: tagType,
+                            value: {
+                              tagText: l1,
+                            },
+                            optionalsId: mapOptionalToNumber[l1],
+                          })}
+                        />
+                      </List.Header>
+                    </List.Content>
+                  </List.Item>
+                  <List.Item
+                    style={{
+                      padding: 0,
+                    }}
+                  >
+                    <List.Content>
+                      <List.List className={styles.SubList}>
+                        {/* @ts-ignore */}
+                        {Object.keys(category[l1]).map((l2: string) => (
+                          <List.Item
+                            key={l2}
+                            className={clsx(
+                              styles.ListItem,
+                              isCheckboxActive(
+                                {
+                                  level: "l1",
+                                  type: tagType,
+                                  value: {
+                                    tagText: l2,
+                                  },
+                                  optionalsId: mapOptionalToNumber[l1],
+                                },
+                                {
+                                  level: "l0",
+                                  type: tagType,
+                                  value: {
+                                    tagText: l1,
+                                  },
+                                  optionalsId: mapOptionalToNumber[l1],
+                                }
+                              ) && styles.ItemSelected
+                            )}
+                          >
+                            <List.Content>
+                              <List.Header
+                                className={clsx(
+                                  styles.Selector,
+                                  styles.FilterSelect
+                                )}
+                                onClick={() => {
+                                  handleL2Click(
+                                    {
+                                      level: "l1",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l2,
+                                      },
+                                      optionalsId: mapOptionalToNumber[l1],
+                                    },
+                                    {
+                                      level: "l0",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l1,
+                                      },
+                                      optionalsId: mapOptionalToNumber[l1],
+                                    }
+                                  );
+                                }}
+                              >
+                                <Checkbox
+                                  label={l2}
+                                  checked={isCheckboxActive(
+                                    {
+                                      level: "l1",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l2,
+                                      },
+                                      optionalsId: mapOptionalToNumber[l1],
+                                    },
+                                    {
+                                      level: "l0",
+                                      type: tagType,
+                                      value: {
+                                        tagText: l1,
+                                      },
+                                      optionalsId: mapOptionalToNumber[l1],
+                                    }
+                                  )}
+                                />
+                              </List.Header>
+                            </List.Content>
+                          </List.Item>
+                        ))}
+                      </List.List>
+                    </List.Content>
+                  </List.Item>
+                </List>
+              ))}
+            </>
+          ))}
+        </Accordion.Content>
+      </Accordion>
+    );
+  }
+);
+
 const FilterSection: FC = () => {
   const searchParamsClass = React.useContext(SearchParamsContext);
 
@@ -546,7 +808,7 @@ const FilterSection: FC = () => {
         />
         <FilterAccordion
           title="General Studies IV"
-          data={gs4categories}
+          data={gs4Categories}
           handleCheckboxClick={handleCheckboxClick}
           tagType="GS4"
         />
@@ -556,7 +818,7 @@ const FilterSection: FC = () => {
           handleCheckboxClick={handleCheckboxClick}
           tagType="Essay"
         />
-        <FilterAccordion
+        <OptionalsAccodion
           title="Optionals"
           showL0Checkbox={false}
           data={optionalsCategories}

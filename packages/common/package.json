@@ -15,9 +15,9 @@
   },
   "scripts": {
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "build": "rimraf dist && tsc"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
@@ -40,5 +40,8 @@
       "path": "dist/common.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "devDependencies": {
+    "rimraf": "^5.0.1"
+  }
 }

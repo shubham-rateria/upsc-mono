@@ -39,18 +39,30 @@ const ResultSection: FC = observer(() => {
     if (loader.current) observer.observe(loader.current);
   }, []);
 
+  if (searchParamsClass.searching) {
+    return (
+      <div>
+        <DocSearchPlaceholder />
+        <DocSearchPlaceholder />
+        <DocSearchPlaceholder />
+        <DocSearchPlaceholder />
+      </div>
+    );
+  }
+
   return (
     <div>
-      {/* {searchParamsClass.defaultState() && (
-        <EmptyPagePlaceholder
-          imgSrc="/img/decide.svg"
-          title="Start a new search"
-          description="Use the filters or enter any keyword to perform a search"
-        ></EmptyPagePlaceholder>
-      )} */}
-      {!searchParamsClass.searching &&
-        !searchParamsClass.defaultState() &&
+      {searchParamsClass.defaultState() &&
         searchParamsClass.docSearchResults?.length === 0 && (
+          <EmptyPagePlaceholder
+            imgSrc="/img/decide.svg"
+            title="Start a new search"
+            description="Use the filters or enter any keyword to perform a search"
+          ></EmptyPagePlaceholder>
+        )}
+      {!searchParamsClass.defaultState() &&
+        searchParamsClass.docSearchResults &&
+        searchParamsClass.docSearchResults.length === 0 && (
           <EmptyPagePlaceholder
             imgSrc="/img/start-results.svg"
             title="No Search Results"
@@ -62,19 +74,12 @@ const ResultSection: FC = observer(() => {
           </EmptyPagePlaceholder>
         )}
       <div>
-        {!searchParamsClass.searching &&
+        {searchParamsClass.docSearchResults &&
+          searchParamsClass.docSearchResults.length > 0 &&
           searchParamsClass.docSearchResults?.map((result, index) => (
             <DocumentResult result={result} key={index} />
           ))}
       </div>
-      {searchParamsClass.searching && (
-        <div>
-          <DocSearchPlaceholder />
-          <DocSearchPlaceholder />
-          <DocSearchPlaceholder />
-          <DocSearchPlaceholder />
-        </div>
-      )}
     </div>
   );
 });

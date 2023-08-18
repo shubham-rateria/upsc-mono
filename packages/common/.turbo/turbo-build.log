@@ -1,0 +1,4 @@
+
+> @usn/common@0.1.0 build /Users/rateria/Code/upsc-web-app/packages/common
+> rimraf dist && tsc
+

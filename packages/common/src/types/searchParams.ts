@@ -9,6 +9,7 @@ export interface Tag {
   type: TagType;
   level: TagLevel;
   value: TagValue;
+  optionalsId?: number;
 }
 
 export type DocumentType = -1 | 0 | 1 | 2;
@@ -26,4 +27,5 @@ export interface SearchParams {
   topper?: Topper;
   year?: number;
   favourites?: boolean;
+  pageNumber?: number;
 }

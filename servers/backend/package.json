@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@usn/common": "workspace:*",
     "@babel/runtime": "^7.22.10",
     "aws-sdk": "^2.1420.0",
     "cors": "^2.8.5",

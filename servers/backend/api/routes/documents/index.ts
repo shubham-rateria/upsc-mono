@@ -2,14 +2,12 @@ import { DocumentModel } from "../../../models/document";
 import { Request, Response, Router } from "express";
 import { getSignedUrl } from "../../../services/s3";
 import searchByKeyword from "../../../utils/search-by-keyword";
-import searchBySubjectTags, {
-  getKeywordsForTag,
-  mapTagTypeToNumber,
-} from "../../../utils/search-by-subject-tags";
+import searchBySubjectTags from "../../../utils/search-by-subject-tags";
 import searchByTopper from "../../../utils/search-by-topper";
 import fillDocWithPages from "../../../utils/fill-doc-with-pages";
 import mongoose from "mongoose";
 import { PageModel } from "../../../models/page";
+import { type SearchParams } from "@usn/common";
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -66,67 +64,40 @@ export default (app: Router) => {
   });
 
   route.post("/", async (req: Request, res: Response) => {
-    const { search, pageNumber, documentType, subjectTags, topper } = req.body;
+    const searchParams: SearchParams = req.body;
     let documentsResult: any[] = [];
 
-    if (search) {
-      const keywordSearchDocResults = await searchByKeyword(search, pageNumber);
+    if (searchParams.keyword) {
+      const keywordSearchDocResults = await searchByKeyword(searchParams);
       documentsResult.push(...keywordSearchDocResults);
     }
 
-    if (subjectTags && subjectTags.length > 0) {
+    if (searchParams.subjectTags && searchParams.subjectTags.length > 0) {
       if (documentsResult.length > 0) {
-        // find the common documents between uniqueDocuments and documentsResult
-        // const commonDocuments = documentsResult.filter((uniqueDocument) => {
-        //   return tagSearchResults.some((tagSearchResult) => {
-        //     return (
-        //       // @ts-ignore
-        //       uniqueDocument._id.toString() === tagSearchResult._id.toString()
-        //     );
-        //   });
+        // documentsResult = documentsResult.filter((doc) => {
+        //   for (const tag of searchParams.subjectTags || []) {
+        //     return doc.l0_categories.includes(mapTagTypeToNumber[tag.type]);
+        //   }
         // });
-        // documentsResult = commonDocuments;
-
-        // iterate over the documents and find the documents that contain the tags,
-        // else reject
-
-        documentsResult = documentsResult.filter((doc) => {
-          for (const tag of subjectTags) {
-            return doc.l0_categories.includes(mapTagTypeToNumber[tag.type]);
-          }
-        });
       } else {
-        const tagSearchResults = await searchBySubjectTags(
-          subjectTags,
-          pageNumber
-        );
+        const tagSearchResults = await searchBySubjectTags(searchParams);
 
         console.log("tagSearchResults", tagSearchResults.length);
         documentsResult = tagSearchResults;
       }
     }
 
-    if (topper) {
+    if (searchParams.topper) {
       if (documentsResult.length > 0) {
-        // find the common documents between uniqueDocuments and documentsResult
-        // const commonDocuments = documentsResult.filter((uniqueDocument) => {
-        //   return topperResults.some((topperResult) => {
-        //     return (
-        //       // @ts-ignore
-        //       uniqueDocument._id.toString() === topperResult._id.toString()
-        //     );
-        //   });
+        // documentsResult = documentsResult.filter((doc) => {
+        //   return (
+        //     doc.topper?.name === searchParams.topper?.name &&
+        //     doc.topper?.rank === searchParams.topper?.rank &&
+        //     doc.topper?.year === searchParams.topper?.year
+        //   );
         // });
-        // documentsResult = commonDocuments;
-        documentsResult = documentsResult.filter((doc) => {
-          return (
-            doc.topper?.name === topper.name &&
-            doc.topper?.rank === topper.rank &&
-            doc.topper?.year === topper.year
-          );
-        });
       } else {
-        const topperResults = await searchByTopper(topper, pageNumber);
+        const topperResults = await searchByTopper(searchParams);
         documentsResult.push(...topperResults);
       }
     }
@@ -136,29 +107,32 @@ export default (app: Router) => {
      * get the documents that have the matching document type
      * and filter unique documents by that
      */
-    if (documentType !== null && documentType !== undefined) {
-      if (documentsResult.length > 0) {
-        documentsResult = documentsResult.filter((document) => {
-          if (
-            document.document_type !== null &&
-            document.document_type !== undefined
-          ) {
-            return document.document_type === documentType;
-          } else {
-            console.log("no doc type", document._id);
-          }
-        });
-      } else {
-        const docTypeResults = await DocumentModel.find({
-          document_type: documentType,
-        })
-          .lean()
-          .exec();
-        for (const doc of docTypeResults) {
-          // get the first 5 pages of this doc
-        }
-      }
-    }
+    // if (
+    //   searchParams.documentType !== null &&
+    //   searchParams.documentType !== undefined
+    // ) {
+    //   if (documentsResult.length > 0) {
+    //     documentsResult = documentsResult.filter((document) => {
+    //       if (
+    //         document.document_type !== null &&
+    //         document.document_type !== undefined
+    //       ) {
+    //         return document.document_type === searchParams.documentType;
+    //       } else {
+    //         console.log("no doc type", document._id);
+    //       }
+    //     });
+    //   } else {
+    //     const docTypeResults = await DocumentModel.find({
+    //       document_type: searchParams.documentType,
+    //     })
+    //       .lean()
+    //       .exec();
+    //     for (const doc of docTypeResults) {
+    //       // get the first 5 pages of this doc
+    //     }
+    //   }
+    // }
 
     documentsResult = await Promise.all(
       documentsResult.map(async (doc) => {
