@@ -3,8 +3,11 @@ import { PageModel } from "../models/page";
 import { Topper } from "../types";
 import mongoose from "mongoose";
 
+const limit = 50;
+
 export default async function searchByTopper(
-  topper: Topper
+  topper: Topper,
+  pageNumber: number
 ): Promise<(typeof DocumentModel)[]> {
   /**
    * if mongoose is disconnected, throw an error
@@ -32,6 +35,8 @@ export default async function searchByTopper(
         percentage_keywords: 0,
         pages: 0,
       })
+      .skip((pageNumber - 1) * limit)
+      .limit(limit)
       .lean();
 
     console.log(`Found ${documentsResult.length} for topper`);

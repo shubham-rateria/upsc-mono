@@ -145,6 +145,19 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
     };
 
     const handleL2Click = (tag: Tag, l1Tag?: Tag) => {
+      const l0Tag: Tag = {
+        level: "l0",
+        type: tagType,
+        value: {
+          tagText: title,
+        },
+      };
+      const l0selected = searchParamsClass.tagExists(l0Tag);
+
+      if (l0selected) {
+        searchParamsClass.removeSubjectTag(l0Tag);
+      }
+
       if (l1Tag) {
         const l1Selected = searchParamsClass.tagExists(l1Tag);
 

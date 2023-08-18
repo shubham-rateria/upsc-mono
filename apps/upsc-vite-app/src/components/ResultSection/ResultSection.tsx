@@ -1,5 +1,5 @@
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
-import React, { FC } from "react";
+import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 
 import DocumentResult from "../DocumentResult/DocumentResult";
 import { observer } from "mobx-react-lite";
@@ -8,22 +8,46 @@ import { EmptyPagePlaceholder } from "../EmptyPagePlaceholder/EmptyPagePlacehold
 import { Button } from "semantic-ui-react";
 import styles from "./ResultSection.module.css";
 
-const ResultSection: FC = () => {
+const ResultSection: FC = observer(() => {
   const searchParamsClass = React.useContext(SearchParamsContext);
+  const loader = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const handleClear = () => {
     searchParamsClass.clearFilters();
   };
 
+  const handleObserver = useCallback(async () => {
+    console.log("triggering observer");
+
+    if (searchParamsClass.defaultState() || searchParamsClass.searching) {
+      return;
+    }
+
+    setLoading(true);
+    await searchParamsClass.getNext();
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    const option = {
+      root: document.getElementById("results-section"),
+      rootMargin: "0px",
+      threshold: 1,
+    };
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
+  }, []);
+
   return (
     <div>
-      {searchParamsClass.defaultState() && (
+      {/* {searchParamsClass.defaultState() && (
         <EmptyPagePlaceholder
           imgSrc="/img/decide.svg"
           title="Start a new search"
           description="Use the filters or enter any keyword to perform a search"
         ></EmptyPagePlaceholder>
-      )}
+      )} */}
       {!searchParamsClass.searching &&
         !searchParamsClass.defaultState() &&
         searchParamsClass.docSearchResults?.length === 0 && (
@@ -37,10 +61,12 @@ const ResultSection: FC = () => {
             </Button>
           </EmptyPagePlaceholder>
         )}
-      {!searchParamsClass.searching &&
-        searchParamsClass.docSearchResults?.map((result, index) => (
-          <DocumentResult result={result} key={index} />
-        ))}
+      <div>
+        {!searchParamsClass.searching &&
+          searchParamsClass.docSearchResults?.map((result, index) => (
+            <DocumentResult result={result} key={index} />
+          ))}
+      </div>
       {searchParamsClass.searching && (
         <div>
           <DocSearchPlaceholder />
@@ -51,6 +77,6 @@ const ResultSection: FC = () => {
       )}
     </div>
   );
-};
+});
 
-export default observer(ResultSection);
+export default ResultSection;

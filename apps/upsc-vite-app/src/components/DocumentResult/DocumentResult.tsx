@@ -133,7 +133,12 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
           }}
         />
         <div className={styles.MagnifierData}>
-          <div className={styles.PageNumber}>
+          <div
+            className={styles.PageNumber}
+            style={{
+              paddingTop: "10px",
+            }}
+          >
             Page {mClass.pageMetadata.pageNumber}
           </div>
           <div className={styles.MatchingWords}>
@@ -146,9 +151,21 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
 );
 
 const DocumentResult: React.FC<Props> = ({ result }) => {
+  const canShowTopper = () => {
+    return (
+      result.topper &&
+      result.topper.name &&
+      result.topper.rank &&
+      result.topper.year
+    );
+  };
+
   return (
     <ImageMagnifierContext.Provider value={magnifierClass}>
-      <MagnifierViewer documentId={result._id ?? ""} />
+      <MagnifierViewer
+        key={`${result._id}#${magnifierClass.pageMetadata.pageNumber}`}
+        documentId={result._id ?? ""}
+      />
       <ScrollMenu
         LeftArrow={<Arrow type="back" />}
         RightArrow={<Arrow type="front" />}
@@ -170,7 +187,7 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
               </div>
               <span className={styles.NumPages}>{result.num_pages} Pages</span>
             </div>
-            {result.topper && (
+            {canShowTopper() && (
               <div className={styles.Topper}>
                 <div>
                   <img
@@ -179,9 +196,9 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
                     alt="icon"
                   />
                 </div>
-                <div className={styles.Name}>{result.topper.name}</div>
+                <div className={styles.Name}>{result.topper?.name}</div>
                 <div className={styles.Details}>
-                  {result.topper.year} - AIR {result.topper.rank}
+                  {result.topper?.year} - AIR {result.topper?.rank}
                 </div>
               </div>
             )}

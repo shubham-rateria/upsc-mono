@@ -97,7 +97,7 @@
   width: 80vw;
   overflow-y: auto;
   height: 100%;
-  padding: var(--padding-m) var(--padding-m) 10vh var(--padding-m);
+  padding: var(--padding-m) var(--padding-m) 2vh var(--padding-m);
 }
 
 .subjectLabels {
@@ -203,4 +203,26 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.PaginateLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: var(--n7);
+  font-family: var(--font-mulish);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: var(--padding-m);
+}
+
+.Loader {
+  margin-right: var(--margin-m) !important;
+}
+
+.PaginateLoader .Loader:after {
+  border-color: var(--p5) transparent transparent !important;
 }

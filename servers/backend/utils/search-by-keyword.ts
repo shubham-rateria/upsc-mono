@@ -3,6 +3,20 @@ import { PageModel } from "../models/page";
 import { getSignedUrl } from "../services/s3";
 import { groupBy } from "lodash";
 import mongoose from "mongoose";
+import { SearchClient as TypesenseSearchClient } from "typesense";
+import { getBOWFromString } from "./get-bow";
+
+// let client = new TypesenseSearchClient({
+//   nodes: [
+//     {
+//       host: "localhost", // For Typesense Cloud use xxx.a1.typesense.net
+//       port: 8108, // For Typesense Cloud use 443
+//       protocol: "http", // For Typesense Cloud use https
+//     },
+//   ],
+//   apiKey: "xyz",
+//   connectionTimeoutSeconds: 2,
+// });
 
 export default async function searchByKeyword(
   keyword: string,
@@ -20,6 +34,65 @@ export default async function searchByKeyword(
 
   let documentsResult: (typeof DocumentModel)[] = [];
 
+  const searchParameters = {
+    q: getBOWFromString(keyword).join(" "),
+    query_by: "clean_text",
+    exclude_fields: "keyword_tags",
+    group_by: "documentId",
+    group_limit: 10,
+    prioritize_exact_match: true,
+    pre_segmented_query: true,
+    prefix: false,
+    // exhaustive_search: true,
+    per_page: 20,
+    page: pageNumber,
+  };
+
+  // const results = await client
+  //   .collections("pages")
+  //   .documents()
+  //   .search(searchParameters, {});
+
+  // console.log({ results });
+
+  // for (const result of results.grouped_hits || []) {
+  //   const document: any = await DocumentModel.findById(result["group_key"][0])
+  //     .select({
+  //       percentage_tags: 0,
+  //       keyword_tags: 0,
+  //       keyword_tags_1: 0,
+  //       category_tags: 0,
+  //     })
+  //     .lean();
+  //   const pages: any[] = [];
+  //   for (const hit of result["hits"]) {
+  //     // @ts-ignore
+  //     const id = hit.document.id;
+  //     const page: any = await PageModel.findById(id)
+  //       .select({
+  //         ocr: 0,
+  //         keyword_tags: 0,
+  //         keyword_tags_1: 0,
+  //         category_tags: 0,
+  //         category_tags_1: 0,
+  //         clean_text: 0,
+  //       })
+  //       .lean();
+  //     page.matching_words = hit["highlight"]["clean_text"]["matched_tokens"];
+  //     if (page.s3_img_object_name) {
+  //       const s3_signed_url = await getSignedUrl(
+  //         "page-img",
+  //         page.s3_img_object_name,
+  //         5
+  //       );
+  //       page.s3_signed_url = s3_signed_url;
+  //     }
+  //     pages.push(page);
+  //   }
+  //   document.pages = pages;
+  //   documentsResult.push(document);
+  // }
+
   if (keyword) {
     console.log("searching for", keyword);
     const pages = await PageModel.find(
@@ -30,12 +103,11 @@ export default async function searchByKeyword(
       { score: { $meta: "textScore" } }
     )
       .sort({ score: { $meta: "textScore" } })
-      .skip(0)
+      .skip(skipCount)
       .limit(resultsPerPage)
       .select({
         ocr: 0,
         category_tags: 0,
-        keyword_tags: 0,
         keyword_tags_1: 0,
         clean_text: 0,
       })

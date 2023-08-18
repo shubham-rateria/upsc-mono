@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.22.10",
     "aws-sdk": "^2.1420.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -19,7 +20,8 @@
     "lodash": "^4.17.21",
     "mongoose": "^7.4.0",
     "mongoose-dbref": "^0.0.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "typesense": "^1.7.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

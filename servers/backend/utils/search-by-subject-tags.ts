@@ -41,40 +41,64 @@ export const mapTagTypeToNumber: any = {
 
 async function findDocumentsForKeywords(
   keywords: string[],
-  tagType: TagType
+  tagType: TagType,
+  pageNumber: number
 ): Promise<(typeof DocumentModel)[]> {
+  const limit = 100;
   let pages: any[] = [];
-  pages = await PageModel.find({
-    "keyword_tags.keyword": { $in: keywords },
-  })
-    .select({
-      ocr: 0,
-      clean_text: 0,
-      category_tags: 0,
-      category_tags_1: 0,
-    })
-    .skip(0)
-    .limit(1000)
-    .sort({})
-    .lean();
+  pages = await PageModel.aggregate([
+    {
+      $match: {
+        "keyword_tags.keyword": { $in: keywords },
+      },
+    },
+    {
+      $unwind: "$keyword_tags",
+    },
+    {
+      $match: {
+        "keyword_tags.keyword": { $in: keywords },
+      },
+    },
+    {
+      $sort: {
+        "keyword_tags.score": -1,
+      },
+    },
+    {
+      $skip: (pageNumber - 1) * limit, // Number of documents to skip
+    },
+    {
+      $limit: limit, // Number of documents to limit
+    },
+    {
+      $project: {
+        _id: 1,
+        keyword_tags: 1,
+        s3_img_object_name: 1,
+        page_number: 1,
+        score: "$keyword_tags.score", // Include the score from keyword_tags
+      },
+    },
+  ]);
 
   console.log("Found pages", pages.length);
 
-  for (const page of pages) {
-    let pageScore = 0;
-    try {
-      for (const k of page.keyword_tags) {
-        if (keywords.includes(k.keyword)) {
-          // console.log("matching keyword", k);
-          pageScore += k.score;
-        }
-      }
-    } catch (error) {
-      console.error("error score", page);
-    }
+  // for (const page of pages) {
+  //   let pageScore = 0;
+  //   try {
+  //     // for (const k of page.keyword_tags) {
+  //     //   if (keywords.includes(k.keyword)) {
+  //     //     // console.log("matching keyword", k);
+  //     //     pageScore += k.score;
+  //     //   }
+  //     // }
+  //   } catch (error) {
+  //     console.error("error score", page, error);
+  //   }
 
-    page.score = pageScore;
-  }
+  //   page.score = pageScore;
+  // }
 
   const documents: any[] = [];
   for (const page of pages) {
@@ -132,26 +156,60 @@ async function findDocumentsForKeywords(
   return uniqueDocuments;
 }
 
+export const getKeywordsForTag = (tag: Tag) => {
+  const categoryFilter = mapTagTypeToCategories[tag.type];
+  let keywords: string[] = [];
+  if (tag.level === "l1") {
+    // find key in cateogryFilter.cateogries
+    let categoryObject = {};
+    for (const category of categoryFilter.categories) {
+      Object.keys(category).forEach((key) => {
+        if (key === tag.value.tagText) {
+          categoryObject = category;
+        }
+      });
+    }
+    // flatten the category object
+    keywords = flattenObject(categoryObject);
+    keywords.push(tag.value.tagText);
+  }
+  if (tag.level === "l2") {
+    let categoryObject = {};
+    for (const category of categoryFilter.categories) {
+      Object.keys(category).forEach((key) => {
+        // @ts-ignore
+        Object.keys(category[key]).forEach((subKey) => {
+          if (subKey === tag.value.tagText) {
+            // @ts-ignore
+            categoryObject = category[key][subKey];
+          }
+        });
+      });
+    }
+    // flatten the category object
+    keywords = flattenObject(categoryObject);
+    keywords.push(tag.value.tagText);
+  }
+  return keywords;
+};
+
 async function findDocumentsForTag(
-  tag: Tag
+  tag: Tag,
+  pageNumber: number
 ): Promise<(typeof DocumentModel)[]> {
   const categoryFilter = mapTagTypeToCategories[tag.type];
   let keywords: string[] = [];
   let results: (typeof DocumentModel)[] = [];
 
+  const limit = 10;
+
   if (tag.level === "l0") {
-    // if (tag.type === "Essay") {
-    //   const essayResults = await DocumentModel.find({ l0_categories: 5 })
-    //     .select({ pages: 0 })
-    //     .lean()
-    //     .exec();
-    //   // @ts-ignore
-    //   results.push(...essayResults);
-    // }
     const l0Results = await DocumentModel.find({
       l0_categories: mapTagTypeToNumber[tag.type],
     })
       .select({ pages: 0 })
+      .skip((pageNumber - 1) * limit)
+      .limit(limit)
       .lean();
     // @ts-ignore
     results.push(...l0Results);
@@ -189,7 +247,11 @@ async function findDocumentsForTag(
   }
 
   console.log("Finding keywords", keywords);
-  const bowResults = await findDocumentsForKeywords(keywords, tag.type);
+  const bowResults = await findDocumentsForKeywords(
+    keywords,
+    tag.type,
+    pageNumber
+  );
 
   console.log("bowResults", bowResults.length);
 
@@ -199,7 +261,8 @@ async function findDocumentsForTag(
 }
 
 export default async function searchBySubjectTags(
-  tags: Tag[]
+  tags: Tag[],
+  pageNumber: number
 ): Promise<(typeof DocumentModel)[]> {
   /**
    * if mongoose is disconnected, throw an error
@@ -212,7 +275,7 @@ export default async function searchBySubjectTags(
 
   if (tags && tags.length > 0) {
     for (const tag of tags) {
-      const documentResult = await findDocumentsForTag(tag);
+      const documentResult = await findDocumentsForTag(tag, pageNumber);
       documentResults.push(...documentResult);
     }
   }

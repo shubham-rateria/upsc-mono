@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "../../types";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import { Button, Checkbox, Divider, Icon, Input } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Divider,
+  Icon,
+  Input,
+  Progress,
+} from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 import axiosInstance from "../../utils/axios-instance";
 import { useNavigate } from "react-router-dom";
+import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -16,6 +24,7 @@ const DocumentViewerPage: React.FC = () => {
   const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
+  const [documentLoadingPercent, setDocumentLoadingPercent] = useState(0);
   const [currentActivePage, setCurrentActivePage] = useState<number | null>(
     null
   );
@@ -35,6 +44,7 @@ const DocumentViewerPage: React.FC = () => {
   const [downloadRangeError, setDownloadRangeError] = useState(false);
   const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
+  const searchParamsClass = useContext(SearchParamsContext);
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -55,13 +65,24 @@ const DocumentViewerPage: React.FC = () => {
   };
 
   const handlePdfLoadSuccess = () => {
-    // scroll to a page if specified by 'page' query
     const urlParams = new URLSearchParams(window.location.search);
     const pageNumber = urlParams.get("page");
+
     if (pageNumber) {
       setTimeout(() => {
         scrollToPageNumber(pageNumber);
       }, 100);
+    }
+
+    if (
+      searchParamsClass.searchParams.keyword &&
+      searchParamsClass.searchParams.keyword.length > 0
+    ) {
+      setDocumentSearchText(searchParamsClass.searchParams.keyword);
+      handleDocumentSearch(
+        searchParamsClass.searchParams.keyword,
+        pageNumber ? false : true
+      );
     }
   };
 
@@ -97,19 +118,28 @@ const DocumentViewerPage: React.FC = () => {
     setDocumentSearchText(e.target.value);
   };
 
-  const handleDocumentSearch = async () => {
+  const handleDocumentSearch = async (
+    text: string | null,
+    scrollToResult: boolean = true
+  ) => {
+    if (!text) {
+      return;
+    }
     setSearchLoading(true);
     try {
       const response = await axiosInstance.post(
         `/api/documents/${documentId}/search`,
         {
-          searchTerm: documentSearchText,
+          searchTerm: text,
         }
       );
       setDocumentSearchResult(response.data.data);
       if (response.data.data.pages.length > 0) {
-        setCurrentDocSearchResultIdx(0);
-        scrollToPageNumber(response.data.data.pages[0].page_number);
+        setCurrentDocSearchResultIdx(-1);
+        if (scrollToResult) {
+          setCurrentDocSearchResultIdx(0);
+          scrollToPageNumber(response.data.data.pages[0].page_number);
+        }
       }
     } catch (error) {
       console.error("error", error);
@@ -198,6 +228,12 @@ const DocumentViewerPage: React.FC = () => {
     navigate("/");
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.code === "Enter") {
+      handleDocumentSearch(documentSearchText);
+    }
+  };
+
   useEffect(() => {
     const init = async () => {
       setLoading(true);
@@ -246,9 +282,12 @@ const DocumentViewerPage: React.FC = () => {
               <Input
                 onChange={handleDocSearchTextChange}
                 value={documentSearchText}
+                onKeyPress={handleKeyPress}
                 label={
                   <Button
-                    onClick={handleDocumentSearch}
+                    onClick={() => {
+                      handleDocumentSearch(documentSearchText);
+                    }}
                     className={styles.SearchButton}
                     loading={searchLoading}
                   >
@@ -261,28 +300,38 @@ const DocumentViewerPage: React.FC = () => {
               />
               {documentSearchResult && (
                 <div className={styles.DocumentSearchResult}>
-                  <div>
-                    <div
-                      className={styles.UpDownButton}
-                      onClick={handlePrevDocSearchResult}
-                    >
-                      <img src="/icons/do-chevron-up.svg" alt="up results" />
-                    </div>
-                  </div>
-                  <div>{(currentDocSearchResultIdx || 0) + 1}</div>
-                  <div>/</div>
-                  <div>{documentSearchResult.pages.length} Results</div>
-                  <div>
-                    <div
-                      className={styles.UpDownButton}
-                      onClick={handleNextDocSearchResult}
-                    >
-                      <img
-                        src="/icons/do-chevron-down.svg"
-                        alt="down results"
-                      />
-                    </div>
-                  </div>
+                  {documentSearchResult.pages.length > 0 ? (
+                    <>
+                      <div>
+                        <div
+                          className={styles.UpDownButton}
+                          onClick={handlePrevDocSearchResult}
+                        >
+                          <img
+                            src="/icons/do-chevron-up.svg"
+                            alt="up results"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        {(currentDocSearchResultIdx || 0) + 1} /{" "}
+                        {documentSearchResult.pages.length} Results
+                      </div>
+                      <div>
+                        <div
+                          className={styles.UpDownButton}
+                          onClick={handleNextDocSearchResult}
+                        >
+                          <img
+                            src="/icons/do-chevron-down.svg"
+                            alt="down results"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className={styles.NoResults}>No Results</div>
+                  )}
                 </div>
               )}
             </div>
@@ -294,6 +343,22 @@ const DocumentViewerPage: React.FC = () => {
             file={document?.s3_signed_url}
             className={styles.Document}
             onLoadSuccess={handlePdfLoadSuccess}
+            onLoadProgress={({ loaded, total }) => {
+              setDocumentLoadingPercent((loaded * 100) / total);
+            }}
+            loading={
+              <div className={styles.DocumentLoadingContainer}>
+                <Progress
+                  className={styles.DocLoadProgress}
+                  active
+                  percent={documentLoadingPercent.toFixed(0)}
+                  // progress
+                  size="tiny"
+                >
+                  Loading <span>{document?.s3_object_name} </span>
+                </Progress>
+              </div>
+            }
           >
             {range(document?.num_pages || 0).map((index: number) => (
               <div className={styles.Page} key={index}>
@@ -335,7 +400,10 @@ const DocumentViewerPage: React.FC = () => {
                     handlePageChange(index + 1);
                   }}
                 >
-                  <Page pageNumber={index + 1} />
+                  <Page
+                    pageNumber={index + 1}
+                    width={window.innerWidth * 0.65 * 0.6}
+                  />
                 </InView>
               </div>
             ))}
@@ -363,19 +431,23 @@ const DocumentViewerPage: React.FC = () => {
             <table className={styles.TopperDetailsTable}>
               <tr>
                 <td>Year</td>
-                <td className={styles.TopperDetailsValue}>2022</td>
+                <td className={styles.TopperDetailsValue}>
+                  {document?.topper?.year}
+                </td>
               </tr>
               <tr>
                 <td>Rank</td>
-                <td className={styles.TopperDetailsValue}>AIR 1</td>
+                <td className={styles.TopperDetailsValue}>
+                  AIR {document?.topper?.rank}
+                </td>
               </tr>
             </table>
           </div>
-          <Divider />
-          <div className={styles.MatchedKeywords}>
+          {/* <Divider /> */}
+          {/* <div className={styles.MatchedKeywords}>
             <div className={styles.Header}>Matched Keywords</div>
-          </div>
-          <Divider />
+          </div> */}
+          {/* <Divider /> */}
           <div className={styles.DownloadSection}>
             <div className={styles.Header}>Download</div>
             <div className={styles.DownloadOptions}>

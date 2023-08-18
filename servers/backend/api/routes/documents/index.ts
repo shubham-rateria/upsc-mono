@@ -2,7 +2,10 @@ import { DocumentModel } from "../../../models/document";
 import { Request, Response, Router } from "express";
 import { getSignedUrl } from "../../../services/s3";
 import searchByKeyword from "../../../utils/search-by-keyword";
-import searchBySubjectTags from "../../../utils/search-by-subject-tags";
+import searchBySubjectTags, {
+  getKeywordsForTag,
+  mapTagTypeToNumber,
+} from "../../../utils/search-by-subject-tags";
 import searchByTopper from "../../../utils/search-by-topper";
 import fillDocWithPages from "../../../utils/fill-doc-with-pages";
 import mongoose from "mongoose";
@@ -71,41 +74,59 @@ export default (app: Router) => {
       documentsResult.push(...keywordSearchDocResults);
     }
 
-    if (subjectTags) {
-      const tagSearchResults = await searchBySubjectTags(subjectTags);
-
-      console.log("tagSearchResults", tagSearchResults.length);
-
+    if (subjectTags && subjectTags.length > 0) {
       if (documentsResult.length > 0) {
         // find the common documents between uniqueDocuments and documentsResult
-        const commonDocuments = documentsResult.filter((uniqueDocument) => {
-          return tagSearchResults.some((tagSearchResult) => {
-            return (
-              // @ts-ignore
-              uniqueDocument._id.toString() === tagSearchResult._id.toString()
-            );
-          });
+        // const commonDocuments = documentsResult.filter((uniqueDocument) => {
+        //   return tagSearchResults.some((tagSearchResult) => {
+        //     return (
+        //       // @ts-ignore
+        //       uniqueDocument._id.toString() === tagSearchResult._id.toString()
+        //     );
+        //   });
+        // });
+        // documentsResult = commonDocuments;
+
+        // iterate over the documents and find the documents that contain the tags,
+        // else reject
+
+        documentsResult = documentsResult.filter((doc) => {
+          for (const tag of subjectTags) {
+            return doc.l0_categories.includes(mapTagTypeToNumber[tag.type]);
+          }
         });
-        documentsResult = commonDocuments;
       } else {
-        documentsResult.push(...tagSearchResults);
+        const tagSearchResults = await searchBySubjectTags(
+          subjectTags,
+          pageNumber
+        );
+
+        console.log("tagSearchResults", tagSearchResults.length);
+        documentsResult = tagSearchResults;
       }
     }
 
     if (topper) {
-      const topperResults = await searchByTopper(topper);
       if (documentsResult.length > 0) {
         // find the common documents between uniqueDocuments and documentsResult
-        const commonDocuments = documentsResult.filter((uniqueDocument) => {
-          return topperResults.some((topperResult) => {
-            return (
-              // @ts-ignore
-              uniqueDocument._id.toString() === topperResult._id.toString()
-            );
-          });
+        // const commonDocuments = documentsResult.filter((uniqueDocument) => {
+        //   return topperResults.some((topperResult) => {
+        //     return (
+        //       // @ts-ignore
+        //       uniqueDocument._id.toString() === topperResult._id.toString()
+        //     );
+        //   });
+        // });
+        // documentsResult = commonDocuments;
+        documentsResult = documentsResult.filter((doc) => {
+          return (
+            doc.topper?.name === topper.name &&
+            doc.topper?.rank === topper.rank &&
+            doc.topper?.year === topper.year
+          );
         });
-        documentsResult = commonDocuments;
       } else {
+        const topperResults = await searchByTopper(topper, pageNumber);
         documentsResult.push(...topperResults);
       }
     }
@@ -119,10 +140,12 @@ export default (app: Router) => {
       if (documentsResult.length > 0) {
         documentsResult = documentsResult.filter((document) => {
           if (
-            document.document_type !== null ||
+            document.document_type !== null &&
             document.document_type !== undefined
           ) {
             return document.document_type === documentType;
+          } else {
+            console.log("no doc type", document._id);
           }
         });
       } else {
@@ -207,7 +230,7 @@ export default (app: Router) => {
 
       res.status(201).json({ success: true, data: { pages: results } });
     } catch (error: any) {
-      console.error("error in doc search");
+      console.error("error in doc search", error);
       res.status(500).json({ success: false, error: error.message });
     }
   });

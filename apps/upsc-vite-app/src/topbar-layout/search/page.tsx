@@ -3,12 +3,20 @@ import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ResultSection from "../../components/ResultSection/ResultSection";
 import FilterSection from "../../components/FilterSection/FilterSection";
-import { Button, Checkbox, Dropdown, Icon, Label } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Dropdown,
+  Icon,
+  Label,
+  Loader,
+} from "semantic-ui-react";
 import { DocumentType, Tag } from "../../types";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
 import globalStyles from "../../styles/global.module.css";
+import { InView } from "react-intersection-observer";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
@@ -145,7 +153,7 @@ const SearchPage = observer(() => {
                           <Checkbox
                             label="All"
                             radio
-                            onClick={() => {
+                            onMouseDown={() => {
                               handleYearChange(-1);
                             }}
                             checked={searchParamsClass.searchParams.year === -1}
@@ -276,8 +284,34 @@ const SearchPage = observer(() => {
               </div>
             </div>
           </div>
-          <div className={styles.resultSection}>
+          <div className={styles.resultSection} id="results-section">
             <ResultSection />
+            {searchParamsClass.docSearchResults &&
+              searchParamsClass.docSearchResults?.length > 0 && (
+                <InView
+                  key={searchParamsClass.pageNumber}
+                  as="div"
+                  threshold={1}
+                  onChange={(inView) => {
+                    if (inView) {
+                      searchParamsClass.getNext();
+                    }
+                  }}
+                >
+                  <div />
+                  {searchParamsClass.searchingNextResults && (
+                    <div className={styles.PaginateLoader}>
+                      <Loader
+                        className={styles.Loader}
+                        active
+                        inline
+                        size="small"
+                      />
+                      <span>Loading...</span>
+                    </div>
+                  )}
+                </InView>
+              )}
           </div>
         </div>
       </div>

@@ -12,13 +12,53 @@ const defaultValues: SearchParams = {
   favourites: false,
 };
 
+class CancelablePromise {
+  promise: any;
+  isCanceled: boolean;
+
+  constructor(promise: any) {
+    this.promise = promise;
+    this.isCanceled = false;
+
+    this.cancel = this.cancel.bind(this);
+    this.then = this.then.bind(this);
+    this.catch = this.catch.bind(this);
+  }
+
+  cancel() {
+    this.isCanceled = true;
+  }
+
+  async then(onFulfilled: any, onRejected?: any) {
+    return this.promise.then((response: any) => {
+      if (this.isCanceled) {
+        return Promise.reject(new Error("Promise canceled"));
+      } else {
+        onFulfilled(response);
+      }
+    }, onRejected);
+  }
+
+  async catch(onRejected: any) {
+    if (this.isCanceled) {
+      return Promise.reject(new Error("Promise canceled"));
+    }
+    return this.promise.catch(() => {});
+  }
+}
+
 class SearchParamsClass {
   public searchParams: SearchParams = defaultValues;
   public docSearchResults: Result[] | null = null;
   public searching: boolean = false;
+  public searchingNextResults: boolean = false;
+  public lastSearchPromise: CancelablePromise | null = null;
+
+  pageNumber: number = 1;
 
   public addSubjectTag(tag: Tag) {
     this.searchParams.subjectTags?.push(tag);
+    this.pageNumber = 1;
   }
 
   public removeSubjectTag(tag: Tag) {
@@ -28,6 +68,7 @@ class SearchParamsClass {
     if (index !== undefined && index !== -1) {
       this.searchParams.subjectTags?.splice(index, 1);
     }
+    this.pageNumber = 1;
   }
 
   public tagExists(tag: Tag) {
@@ -54,10 +95,12 @@ class SearchParamsClass {
 
   public setSearchParams(params: SearchParams) {
     this.searchParams = { ...this.searchParams, ...params };
+    this.pageNumber = 1;
   }
 
   public clearFilters() {
     this.searchParams = defaultValues;
+    this.pageNumber = 1;
   }
 
   public defaultState() {
@@ -69,30 +112,100 @@ class SearchParamsClass {
     );
   }
 
-  public async searchForDocuments() {
-    this.searching = true;
-    try {
-      const response = await axiosInstance.post("/api/documents", {
-        search: this.searchParams.keyword,
-        pageNumber: 1,
-        documentType:
-          this.searchParams.documentType === -1
-            ? null
-            : this.searchParams.documentType,
-        subjectTags:
-          (this.searchParams.subjectTags?.length || 0) > 0
-            ? this.searchParams.subjectTags
-            : null,
-        topper: this.searchParams.topper,
-      });
-      if (response.data) {
-        if (this.docSearchResults === null) {
-          this.docSearchResults = [];
+  public async getNext() {
+    // don't get next results if results are already loading
+    if (this.searchingNextResults) {
+      return;
+    }
+
+    console.log("calling get next");
+
+    this.searchingNextResults = true;
+    this.pageNumber += 1;
+    // @ts-ignore
+    await this.getCancelableSearchPromise();
+    this.searchingNextResults = false;
+  }
+
+  public getCancelableSearchPromise() {
+    const axiosPromise = axiosInstance.post("/api/documents", {
+      search: this.searchParams.keyword,
+      pageNumber: this.pageNumber,
+      documentType:
+        this.searchParams.documentType === -1
+          ? null
+          : this.searchParams.documentType,
+      subjectTags:
+        (this.searchParams.subjectTags?.length || 0) > 0
+          ? this.searchParams.subjectTags
+          : null,
+      topper: this.searchParams.topper,
+    });
+    const cancelablePromise = new CancelablePromise(axiosPromise);
+    cancelablePromise
+      .then((response: any) => {
+        if (response.data) {
+          if (this.docSearchResults === null) {
+            this.docSearchResults = [];
+          }
+          if (this.pageNumber === 1) {
+            // @ts-ignore
+            this.docSearchResults.replace(response.data.data);
+          } else {
+            // @ts-ignore
+            this.docSearchResults.replace([
+              ...this.docSearchResults,
+              ...response.data.data,
+            ]);
+          }
         }
-        // @ts-ignore
-        this.docSearchResults.replace(response.data.data);
-      }
-      this.searching = false;
+        this.searching = false;
+      })
+      .catch((error: any) => {
+        console.log("Promise error", error);
+      });
+    return cancelablePromise;
+  }
+
+  public async searchForDocuments() {
+    if (this.pageNumber === 1) {
+      this.searching = true;
+    }
+    if (this.lastSearchPromise) {
+      this.lastSearchPromise.cancel();
+    }
+
+    try {
+      // const response = await axiosInstance.post("/api/documents", {
+      //   search: this.searchParams.keyword,
+      //   pageNumber: this.pageNumber,
+      //   documentType:
+      //     this.searchParams.documentType === -1
+      //       ? null
+      //       : this.searchParams.documentType,
+      //   subjectTags:
+      //     (this.searchParams.subjectTags?.length || 0) > 0
+      //       ? this.searchParams.subjectTags
+      //       : null,
+      //   topper: this.searchParams.topper,
+      // });
+      // if (response.data) {
+      //   if (this.docSearchResults === null) {
+      //     this.docSearchResults = [];
+      //   }
+      //   if (this.pageNumber === 1) {
+      //     // @ts-ignore
+      //     this.docSearchResults.replace(response.data.data);
+      //   } else {
+      //     // @ts-ignore
+      //     this.docSearchResults.replace([
+      //       ...this.docSearchResults,
+      //       ...response.data.data,
+      //     ]);
+      //   }
+      // }
+      // this.searching = false;
+      this.lastSearchPromise = this.getCancelableSearchPromise();
     } catch (error) {
       console.error("Error in getting documents:", error);
     }

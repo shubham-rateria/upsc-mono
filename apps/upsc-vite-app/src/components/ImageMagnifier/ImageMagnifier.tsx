@@ -25,6 +25,7 @@ function ImageMagnifier({
   const navigate = useNavigate();
 
   const handlePageClick = () => {
+    imageMagnifierContext.setShowMagnifier(false);
     navigate(
       `/view-document/?page=${pageMetadata.pageNumber}&documentId=${documentId}`
     );
