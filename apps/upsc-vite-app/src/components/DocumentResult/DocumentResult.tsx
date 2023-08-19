@@ -1,4 +1,4 @@
-import { PageResult, Result } from "@usn/common";
+import { PageResult, Result } from "usn-common";
 import React, { useContext, useState } from "react";
 import styles from "./DocumentResult.module.css";
 // @ts-ignore

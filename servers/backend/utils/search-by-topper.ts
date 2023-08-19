@@ -1,6 +1,6 @@
 import { DocumentModel } from "../models/document";
 import { PageModel } from "../models/page";
-import { SearchParams } from "@usn/common";
+import { SearchParams } from "usn-common";
 import mongoose from "mongoose";
 
 const limit = 50;

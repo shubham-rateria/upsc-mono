@@ -11,7 +11,7 @@ import {
   Label,
   Loader,
 } from "semantic-ui-react";
-import { DocumentType, Tag } from "@usn/common";
+import { DocumentType, Tag } from "usn-common";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";

@@ -3,7 +3,7 @@ import { PageModel } from "../models/page";
 import { getSignedUrl } from "../services/s3";
 import { cloneDeep, groupBy } from "lodash";
 import mongoose from "mongoose";
-import { mapTagTypeToNumber, type SearchParams } from "@usn/common";
+import { mapTagTypeToNumber, type SearchParams } from "usn-common";
 
 export default async function searchByKeyword({
   keyword,

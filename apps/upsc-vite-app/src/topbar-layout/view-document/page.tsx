@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
-import { ApiError, MatchingBlock, PageResult, Result } from "@usn/common";
+import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
 import { Button, Checkbox, Icon, Input, Progress } from "semantic-ui-react";

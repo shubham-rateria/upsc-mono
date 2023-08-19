@@ -1,9 +1,9 @@
-import { SearchParams, Tag, TagType } from "@usn/common";
+import { SearchParams, Tag, TagType } from "usn-common";
 import flattenObject from "./flatten-object";
 import { PageModel } from "../models/page";
 import { DocumentModel } from "../models/document";
 import mongoose from "mongoose";
-import { mapTagTypeToCategories, mapTagTypeToNumber } from "@usn/common";
+import { mapTagTypeToCategories, mapTagTypeToNumber } from "usn-common";
 import { groupBy } from "lodash";
 import { getSignedUrl } from "../services/s3";
 

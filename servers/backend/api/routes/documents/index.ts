@@ -7,7 +7,7 @@ import searchByTopper from "../../../utils/search-by-topper";
 import fillDocWithPages from "../../../utils/fill-doc-with-pages";
 import mongoose from "mongoose";
 import { PageModel } from "../../../models/page";
-import { type SearchParams } from "@usn/common";
+import { type SearchParams } from "usn-common";
 
 const ObjectId = mongoose.Types.ObjectId;
 

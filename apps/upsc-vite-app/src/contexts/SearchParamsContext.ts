@@ -3,7 +3,7 @@ import {
   type SearchParams,
   type Tag,
   type Topper,
-} from "@usn/common";
+} from "usn-common";
 import React from "react";
 import { makeAutoObservable } from "mobx";
 import axiosInstance from "../utils/axios-instance";

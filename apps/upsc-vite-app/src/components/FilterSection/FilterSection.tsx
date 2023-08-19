@@ -8,7 +8,7 @@ import {
   type Tag,
   type TagType,
   type Topper,
-} from "@usn/common";
+} from "usn-common";
 import {
   List,
   Accordion,
