@@ -1,8 +1,8 @@
-import gs1Categories from './data/gs1-categories';
-import gs2Categories from './data/gs2-categories';
-import gs3Categories from './data/gs3-categories';
-import gs4Categories from './data/gs4-categories';
-import optionalsCategories from './data/optionals-categories';
+import { gs1Categories } from './data/gs1-categories';
+import { gs2Categories } from './data/gs2-categories';
+import { gs3Categories } from './data/gs3-categories';
+import { gs4Categories } from './data/gs4-categories';
+import { optionalsCategories } from './data/optionals-categories';
 
 export const mapTagTypeToNumber: any = {
   Agriculture: 17,

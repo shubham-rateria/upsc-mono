@@ -4,11 +4,19 @@
   "keywords": [],
   "license": "ISC",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/mjs/index.mjs",
+  "types": "./dist/mjs/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.cjs"
+    }
+  },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
@@ -16,12 +24,8 @@
   "scripts": {
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "build": "rimraf dist && tsc"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
+    "build": "rimraf dist && rollup -c",
+    "prepare": "npm run build"
   },
   "prettier": {
     "printWidth": 80,
@@ -30,18 +34,22 @@
     "trailingComma": "es5"
   },
   "author": "shubham.agarwal982@gmail.com",
-  "module": "dist/common.esm.js",
   "size-limit": [
     {
-      "path": "dist/common.cjs.production.min.js",
+      "path": "./dist/common.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/common.esm.js",
+      "path": "./dist/common.esm.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
-    "rimraf": "^5.0.1"
+    "@rollup/plugin-strip": "^3.0.2",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "rimraf": "^5.0.1",
+    "rollup": "^3.28.0",
+    "rollup-plugin-dts": "^6.0.0"
   }
 }

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
 import { Button, Icon, Input } from "semantic-ui-react";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
@@ -11,17 +11,19 @@ import { observer } from "mobx-react-lite";
  */
 const SearchBar: FC = () => {
   const searchParamsClass = React.useContext(SearchParamsContext);
+  const [inputText, setInputText] = useState("");
 
   /**
    *
    * @param event change event
    */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    searchParamsClass.setSearchParams({ keyword: event.target.value });
-    // debouncedSearch();
+    // searchParamsClass.setSearchParams({ keyword: event.target.value });
+    setInputText(event.target.value);
   };
 
   const handleSearch = () => {
+    searchParamsClass.setSearchParams({ keyword: inputText });
     searchParamsClass.searchForDocuments();
   };
 
@@ -31,6 +33,10 @@ const SearchBar: FC = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("[search bar]: useEffect");
+  }, [searchParamsClass.docSearchResults?.length]);
+
   return (
     <div className={styles.Container}>
       <Input
@@ -38,7 +44,7 @@ const SearchBar: FC = () => {
         icon="search"
         iconPosition="left"
         placeholder="Search for specific topics, e.g. Indus Valley..."
-        value={searchParamsClass.searchParams.keyword}
+        value={inputText}
         onChange={handleChange}
         className={styles.Input}
         labelPosition="right"
@@ -48,7 +54,7 @@ const SearchBar: FC = () => {
             onClick={handleSearch}
             className={styles.Button}
             loading={searchParamsClass.searching}
-            disabled={!searchParamsClass.searchParams.keyword}
+            disabled={!inputText}
           >
             Search
           </Button>
