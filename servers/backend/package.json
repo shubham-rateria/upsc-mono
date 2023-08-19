@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsnd --respawn app.ts",
-    "build": "rimraf dist && rollup -c"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

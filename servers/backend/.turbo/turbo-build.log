@@ -1,26 +1,4 @@
 
 > @usn/backend@1.0.0 build /Users/rateria/Code/upsc-web-app/servers/backend
-> rimraf dist && rollup -c
+> tsc
 
-(node:20634) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[!] RollupError: Node tried to load your configuration file as CommonJS even though it is likely an ES module. To resolve this, change the extension of your configuration to ".mjs", set "type": "module" in your package.json file or pass the "--bundleConfigAsCjs" flag.
-
-Original error: Cannot use import statement outside a module
-https://rollupjs.org/command-line-interface/#bundleconfigascjs
-/Users/rateria/Code/upsc-web-app/servers/backend/rollup.config.js:1
-import typescript from '@rollup/plugin-typescript';
-^^^^^^
-
-SyntaxError: Cannot use import statement outside a module
-    at internalCompileFunction (node:internal/vm:73:18)
-    at wrapSafe (node:internal/modules/cjs/loader:1178:20)
-    at Module._compile (node:internal/modules/cjs/loader:1220:27)
-    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
-    at Module.load (node:internal/modules/cjs/loader:1119:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
-    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:169:29)
-    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
-
-
- ELIFECYCLE  Command failed with exit code 1.
