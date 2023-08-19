@@ -12,70 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mapTagTypeToNumber = exports.mapTagTypeToCategories = void 0;
-const gs1_categories_1 = __importDefault(require("../data/gs1-categories"));
-const gs2_categories_1 = __importDefault(require("../data/gs2-categories"));
-const gs3_categories_1 = __importDefault(require("../data/gs3-categories"));
-const gs4_categories_1 = __importDefault(require("../data/gs4-categories"));
-const optionals_categories_1 = __importDefault(require("../data/optionals-categories"));
 const flatten_object_1 = __importDefault(require("./flatten-object"));
 const page_1 = require("../models/page");
 const document_1 = require("../models/document");
+const mongoose_1 = __importDefault(require("mongoose"));
+const common_1 = require("@usn/common");
 const lodash_1 = require("lodash");
 const s3_1 = require("../services/s3");
-const mongoose_1 = __importDefault(require("mongoose"));
-exports.mapTagTypeToCategories = {
-    GS1: gs1_categories_1.default,
-    GS2: gs2_categories_1.default,
-    GS3: gs3_categories_1.default,
-    GS4: gs4_categories_1.default,
-    Optionals: optionals_categories_1.default,
-};
-exports.mapTagTypeToNumber = {
-    GS1: 1,
-    GS2: 2,
-    GS3: 3,
-    GS4: 4,
-    Essay: 5,
-};
-function findDocumentsForKeywords(keywords, tagType) {
+function findDocumentsForKeywords(keywords, tagType, pageNumber, documentType) {
     return __awaiter(this, void 0, void 0, function* () {
+        const limit = 10000;
         let pages = [];
         pages = yield page_1.PageModel.find({
             "keyword_tags.keyword": { $in: keywords },
         })
             .select({
             ocr: 0,
-            clean_text: 0,
             category_tags: 0,
             category_tags_1: 0,
+            keyword_tags_1: 0,
+            clean_text: 0,
         })
+            // .sort({ "keyword_tags.score": -1 })
             .skip(0)
-            .limit(1000)
-            .sort({})
+            .limit(limit)
             .lean();
+        const groupedPages = (0, lodash_1.groupBy)(pages, (page) => page.documentId);
         console.log("Found pages", pages.length);
-        for (const page of pages) {
-            let pageScore = 0;
-            try {
-                for (const k of page.keyword_tags) {
-                    if (keywords.includes(k.keyword)) {
-                        // console.log("matching keyword", k);
-                        pageScore += k.score;
-                    }
-                }
-            }
-            catch (error) {
-                console.error("error score", page);
-            }
-            page.score = pageScore;
+        let documents = [];
+        const additionalQueries = {};
+        if (documentType) {
+            additionalQueries["document_type"] = documentType;
         }
-        const documents = [];
-        for (const page of pages) {
-            const document = yield document_1.DocumentModel.findOne({
-                "pages._ref.$id": page._id,
-                l0_categories: exports.mapTagTypeToNumber[tagType],
-            })
+        for (const documentId of Array.from(Object.keys(groupedPages))) {
+            const document = yield document_1.DocumentModel.findOne(Object.assign({ _id: new mongoose_1.default.Types.ObjectId(documentId), l0_categories: common_1.mapTagTypeToNumber[tagType] }, additionalQueries))
                 .select({
                 pages: 0,
                 category_tags: 0,
@@ -89,53 +59,113 @@ function findDocumentsForKeywords(keywords, tagType) {
             if (!document) {
                 continue;
             }
-            documents.push(Object.assign(Object.assign({}, document), { _id: document._id.toString(), page }));
-        }
-        console.log("Found documents", documents.length);
-        const groupedDocuments = (0, lodash_1.groupBy)(documents, (document) => document._id);
-        /**
-         * get unique documents and merge their page attributes
-         */
-        const uniqueDocumentsPromise = Object.values(groupedDocuments).map((documents) => __awaiter(this, void 0, void 0, function* () {
-            const document = documents[0];
-            let pages = documents.map((document) => document.page);
+            document.pages = groupedPages[documentId];
             let scoreSum = 0;
-            for (const page of pages) {
+            for (const page of document.pages) {
+                let pageScore = 0;
+                // keywords can be present multiple times,
+                // this prevents them from being added again to the score
+                const checkedKeywords = [];
+                try {
+                    for (const k of page.keyword_tags) {
+                        if (keywords.includes(k.keyword) &&
+                            !checkedKeywords.includes(k.keyword)) {
+                            pageScore += k.score;
+                            checkedKeywords.push(k.keyword);
+                        }
+                    }
+                }
+                catch (error) {
+                    console.error("error score", page);
+                }
+                scoreSum += pageScore;
+                page.score = pageScore;
+                delete page.keyword_tags;
                 if (page.s3_img_object_name) {
                     const s3_signed_url = yield (0, s3_1.getSignedUrl)("page-img", page.s3_img_object_name, 5);
                     page.s3_signed_url = s3_signed_url;
                 }
-                scoreSum += page.score;
             }
-            delete document.page;
-            pages = pages.sort((a, b) => b.score - a.score);
-            return Object.assign(Object.assign({}, document), { pages, score: scoreSum });
-        }));
-        let uniqueDocuments = yield Promise.all(uniqueDocumentsPromise);
-        // sort unique documents by score
-        uniqueDocuments.sort((a, b) => b.score - a.score);
-        console.log("Unique Documents", uniqueDocuments.length);
-        return uniqueDocuments;
+            const pages = document.pages.sort((a, b) => b.score - a.score);
+            documents.push(Object.assign(Object.assign({}, document), { pages, score: scoreSum }));
+        }
+        // for (const page of pages) {
+        //   const document: any = await DocumentModel.findOne({
+        //     "pages._ref.$id": page._id,
+        //     l0_categories: mapTagTypeToNumber[tagType],
+        //   })
+        //     .select({
+        //       pages: 0,
+        //       category_tags: 0,
+        //       keyword_tags: 0,
+        //       category_tags_1: 0,
+        //       keyword_tags_1: 0,
+        //       percentage_keywords: 0,
+        //       median_keywords: 0,
+        //     })
+        //     .lean();
+        //   if (!document) {
+        //     continue;
+        //   }
+        //   documents.push({ ...document, _id: document._id.toString(), page });
+        // }
+        // console.log("Found documents", documents.length);
+        // const groupedDocuments = groupBy(documents, (document) => document._id);
+        // /**
+        //  * get unique documents and merge their page attributes
+        //  */
+        // const uniqueDocumentsPromise = Object.values(groupedDocuments).map(
+        //   async (documents) => {
+        //     const document = documents[0];
+        //     let pages = documents.map((document) => document.page);
+        //     let scoreSum = 0;
+        //     for (const page of pages) {
+        //       if (page.s3_img_object_name) {
+        //         const s3_signed_url = await getSignedUrl(
+        //           "page-img",
+        //           page.s3_img_object_name,
+        //           5
+        //         );
+        //         page.s3_signed_url = s3_signed_url;
+        //       }
+        //       scoreSum += page.score;
+        //     }
+        //     delete document.page;
+        //     pages = pages.sort((a, b) => b.score - a.score);
+        //     return { ...document, pages, score: scoreSum };
+        //   }
+        // );
+        // let uniqueDocuments = await Promise.all(uniqueDocumentsPromise);
+        // // sort unique documents by score
+        // uniqueDocuments.sort((a, b) => b.score - a.score);
+        // console.log("Unique Documents", uniqueDocuments.length);
+        // return uniqueDocuments;
+        // @ts-ignore
+        documents = documents.sort((a, b) => b.score - a.score);
+        return documents.slice(0, 10);
     });
 }
-function findDocumentsForTag(tag) {
+function findDocumentsForTag(tag, pageNumber, documentType) {
     return __awaiter(this, void 0, void 0, function* () {
-        const categoryFilter = exports.mapTagTypeToCategories[tag.type];
+        const categoryFilter = common_1.mapTagTypeToCategories[tag.type];
         let keywords = [];
         let results = [];
+        const limit = 10;
         if (tag.level === "l0") {
-            // if (tag.type === "Essay") {
-            //   const essayResults = await DocumentModel.find({ l0_categories: 5 })
-            //     .select({ pages: 0 })
-            //     .lean()
-            //     .exec();
-            //   // @ts-ignore
-            //   results.push(...essayResults);
-            // }
-            const l0Results = yield document_1.DocumentModel.find({
-                l0_categories: exports.mapTagTypeToNumber[tag.type],
-            })
+            const documentL0Query = {};
+            if (documentType !== null && documentType !== undefined) {
+                documentL0Query["document_type"] = documentType;
+            }
+            if (tag.optionalsId) {
+                documentL0Query["l0_categories"] = tag.optionalsId;
+            }
+            else {
+                documentL0Query["l0_categories"] = common_1.mapTagTypeToNumber[tag.type];
+            }
+            const l0Results = yield document_1.DocumentModel.find(documentL0Query)
                 .select({ pages: 0 })
+                .skip((pageNumber - 1) * limit)
+                .limit(limit)
                 .lean();
             // @ts-ignore
             results.push(...l0Results);
@@ -172,13 +202,13 @@ function findDocumentsForTag(tag) {
             keywords.push(tag.value.tagText);
         }
         console.log("Finding keywords", keywords);
-        const bowResults = yield findDocumentsForKeywords(keywords, tag.type);
+        const bowResults = yield findDocumentsForKeywords(keywords, tag.type, pageNumber, documentType);
         console.log("bowResults", bowResults.length);
         results.push(...bowResults);
         return results;
     });
 }
-function searchBySubjectTags(tags) {
+function searchBySubjectTags({ subjectTags, pageNumber, documentType, }) {
     return __awaiter(this, void 0, void 0, function* () {
         /**
          * if mongoose is disconnected, throw an error
@@ -187,9 +217,9 @@ function searchBySubjectTags(tags) {
             throw new Error("Mongoose not connected.");
         }
         let documentResults = [];
-        if (tags && tags.length > 0) {
-            for (const tag of tags) {
-                const documentResult = yield findDocumentsForTag(tag);
+        if (subjectTags && subjectTags.length > 0) {
+            for (const tag of subjectTags) {
+                const documentResult = yield findDocumentsForTag(tag, pageNumber || 0, documentType);
                 documentResults.push(...documentResult);
             }
         }

@@ -21,6 +21,7 @@ const connectToDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
     if (!config_1.default.databaseURL) {
         throw new Error("Mongo uri unspecified.");
     }
+    console.log("connecting to", config_1.default.databaseURL);
     try {
         if (((_a = mongoose_1.default.connections[0]) === null || _a === void 0 ? void 0 : _a.readyState) !== 1) {
             yield mongoose_1.default.connect(config_1.default.databaseURL, {

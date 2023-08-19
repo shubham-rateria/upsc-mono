@@ -19,10 +19,6 @@ type Props = {
   result: Result;
 };
 
-type ArrowProps = {
-  type: "front" | "back";
-};
-
 const l0ToString: any = {
   1: "General Studies I",
   2: "General Studies II",

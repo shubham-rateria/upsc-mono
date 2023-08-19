@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
-import { Button, Icon, Input } from "semantic-ui-react";
+import { Button, Input } from "semantic-ui-react";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 

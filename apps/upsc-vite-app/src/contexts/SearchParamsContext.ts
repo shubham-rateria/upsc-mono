@@ -45,7 +45,7 @@ class CancelablePromise {
     }, onRejected);
   }
 
-  async catch(onRejected: any) {
+  async catch() {
     if (this.isCanceled) {
       return Promise.reject(new Error("Promise canceled"));
     }

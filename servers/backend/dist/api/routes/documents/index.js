@@ -63,44 +63,38 @@ exports.default = (app) => {
         }
     }));
     route.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { search, pageNumber, documentType, subjectTags, topper } = req.body;
+        const searchParams = req.body;
         let documentsResult = [];
-        if (search) {
-            const keywordSearchDocResults = yield (0, search_by_keyword_1.default)(search, pageNumber);
+        if (searchParams.keyword) {
+            const keywordSearchDocResults = yield (0, search_by_keyword_1.default)(searchParams);
             documentsResult.push(...keywordSearchDocResults);
         }
-        if (subjectTags) {
-            const tagSearchResults = yield (0, search_by_subject_tags_1.default)(subjectTags);
-            console.log("tagSearchResults", tagSearchResults.length);
+        if (searchParams.subjectTags && searchParams.subjectTags.length > 0) {
             if (documentsResult.length > 0) {
-                // find the common documents between uniqueDocuments and documentsResult
-                const commonDocuments = documentsResult.filter((uniqueDocument) => {
-                    return tagSearchResults.some((tagSearchResult) => {
-                        return (
-                        // @ts-ignore
-                        uniqueDocument._id.toString() === tagSearchResult._id.toString());
-                    });
-                });
-                documentsResult = commonDocuments;
+                // documentsResult = documentsResult.filter((doc) => {
+                //   for (const tag of searchParams.subjectTags || []) {
+                //     return doc.l0_categories.includes(mapTagTypeToNumber[tag.type]);
+                //   }
+                // });
             }
             else {
-                documentsResult.push(...tagSearchResults);
+                const tagSearchResults = yield (0, search_by_subject_tags_1.default)(searchParams);
+                console.log("tagSearchResults", tagSearchResults.length);
+                documentsResult = tagSearchResults;
             }
         }
-        if (topper) {
-            const topperResults = yield (0, search_by_topper_1.default)(topper);
+        if (searchParams.topper) {
             if (documentsResult.length > 0) {
-                // find the common documents between uniqueDocuments and documentsResult
-                const commonDocuments = documentsResult.filter((uniqueDocument) => {
-                    return topperResults.some((topperResult) => {
-                        return (
-                        // @ts-ignore
-                        uniqueDocument._id.toString() === topperResult._id.toString());
-                    });
-                });
-                documentsResult = commonDocuments;
+                // documentsResult = documentsResult.filter((doc) => {
+                //   return (
+                //     doc.topper?.name === searchParams.topper?.name &&
+                //     doc.topper?.rank === searchParams.topper?.rank &&
+                //     doc.topper?.year === searchParams.topper?.year
+                //   );
+                // });
             }
             else {
+                const topperResults = yield (0, search_by_topper_1.default)(searchParams);
                 documentsResult.push(...topperResults);
             }
         }
@@ -109,26 +103,32 @@ exports.default = (app) => {
          * get the documents that have the matching document type
          * and filter unique documents by that
          */
-        if (documentType !== null && documentType !== undefined) {
-            if (documentsResult.length > 0) {
-                documentsResult = documentsResult.filter((document) => {
-                    if (document.document_type !== null ||
-                        document.document_type !== undefined) {
-                        return document.document_type === documentType;
-                    }
-                });
-            }
-            else {
-                const docTypeResults = yield document_1.DocumentModel.find({
-                    document_type: documentType,
-                })
-                    .lean()
-                    .exec();
-                for (const doc of docTypeResults) {
-                    // get the first 5 pages of this doc
-                }
-            }
-        }
+        // if (
+        //   searchParams.documentType !== null &&
+        //   searchParams.documentType !== undefined
+        // ) {
+        //   if (documentsResult.length > 0) {
+        //     documentsResult = documentsResult.filter((document) => {
+        //       if (
+        //         document.document_type !== null &&
+        //         document.document_type !== undefined
+        //       ) {
+        //         return document.document_type === searchParams.documentType;
+        //       } else {
+        //         console.log("no doc type", document._id);
+        //       }
+        //     });
+        //   } else {
+        //     const docTypeResults = await DocumentModel.find({
+        //       document_type: searchParams.documentType,
+        //     })
+        //       .lean()
+        //       .exec();
+        //     for (const doc of docTypeResults) {
+        //       // get the first 5 pages of this doc
+        //     }
+        //   }
+        // }
         documentsResult = yield Promise.all(documentsResult.map((doc) => __awaiter(void 0, void 0, void 0, function* () {
             const pages = yield (0, fill_doc_with_pages_1.default)(doc);
             if (pages) {
@@ -187,7 +187,7 @@ exports.default = (app) => {
             res.status(201).json({ success: true, data: { pages: results } });
         }
         catch (error) {
-            console.error("error in doc search");
+            console.error("error in doc search", error);
             res.status(500).json({ success: false, error: error.message });
         }
     }));

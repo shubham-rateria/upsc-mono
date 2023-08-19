@@ -14,7 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const document_1 = require("../models/document");
 const mongoose_1 = __importDefault(require("mongoose"));
-function searchByTopper(topper) {
+const limit = 50;
+function searchByTopper({ topper, pageNumber, documentType, }) {
     return __awaiter(this, void 0, void 0, function* () {
         /**
          * if mongoose is disconnected, throw an error
@@ -24,21 +25,26 @@ function searchByTopper(topper) {
         }
         let documentsResult = [];
         if (topper) {
-            console.log("searching for", topper);
-            // @ts-ignore
-            documentsResult = yield document_1.DocumentModel.find({
+            const query = {
                 topper: {
                     name: topper.name,
                     rank: topper.rank,
                     year: topper.year,
                 },
-            })
+            };
+            if (documentType !== null && documentType !== undefined) {
+                query["document_type"] = documentType;
+            }
+            // @ts-ignore
+            documentsResult = yield document_1.DocumentModel.find(query)
                 .select({
                 keyword_tags: 0,
                 keyword_tags_1: 0,
                 percentage_keywords: 0,
                 pages: 0,
             })
+                .skip(((pageNumber || 1) - 1) * limit)
+                .limit(limit)
                 .lean();
             console.log(`Found ${documentsResult.length} for topper`);
         }

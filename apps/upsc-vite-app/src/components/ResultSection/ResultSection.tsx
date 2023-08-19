@@ -11,7 +11,7 @@ import styles from "./ResultSection.module.css";
 const ResultSection: FC = observer(() => {
   const searchParamsClass = React.useContext(SearchParamsContext);
   const loader = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const [_, setLoading] = useState(false);
 
   const handleClear = () => {
     searchParamsClass.clearFilters();

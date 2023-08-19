@@ -1,16 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
-import { ApiError, MatchingBlock, PageResult, Result } from "../../types";
+import { ApiError, MatchingBlock, PageResult, Result } from "@usn/common";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import {
-  Button,
-  Checkbox,
-  Divider,
-  Icon,
-  Input,
-  Progress,
-} from "semantic-ui-react";
+import { Button, Checkbox, Icon, Input, Progress } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 import axiosInstance from "../../utils/axios-instance";
@@ -152,7 +145,7 @@ const DocumentViewerPage: React.FC = () => {
   ): PageResult | undefined => {
     if (documentSearchResult) {
       const filtered = documentSearchResult?.pages.filter(
-        (r) => r.page_number === pageNumber
+        (r: any) => r.page_number === pageNumber
       );
       if (filtered.length > 0) {
         return filtered[0];
@@ -164,7 +157,7 @@ const DocumentViewerPage: React.FC = () => {
   const getHeightForPage = (pageNumber: number): number => {
     if (documentSearchResult) {
       const filtered = documentSearchResult?.pages.filter(
-        (r) => r.page_number === pageNumber
+        (r: any) => r.page_number === pageNumber
       );
       if (filtered.length > 0) {
         return filtered[0].height || 1;
@@ -176,7 +169,7 @@ const DocumentViewerPage: React.FC = () => {
   const getWidthForPage = (pageNumber: number): number => {
     if (documentSearchResult) {
       const filtered = documentSearchResult?.pages.filter(
-        (r) => r.page_number === pageNumber
+        (r: any) => r.page_number === pageNumber
       );
       if (filtered.length > 0) {
         return filtered[0].width || 1;
