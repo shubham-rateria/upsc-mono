@@ -135,7 +135,7 @@ export default async function searchByKeyword({
 
     for (const document of pages) {
       // @ts-ignore
-      const pages = document.pages.slice(0, 6);
+      let pages = document.pages.sort((a, b) => b.score - a.score).slice(0, 6);
 
       pages.sort((a, b) => b.score - a.score);
 

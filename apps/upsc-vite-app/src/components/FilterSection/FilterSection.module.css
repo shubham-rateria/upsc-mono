@@ -56,7 +56,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: var(--padding-m) var(--padding-s) !important;
+  padding: var(--padding-m) 0 !important;
 }
 
 .L0Title img {

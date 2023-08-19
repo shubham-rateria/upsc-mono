@@ -55,7 +55,7 @@ class CancelablePromise {
 
 class SearchParamsClass {
   public searchParams: SearchParams = defaultValues;
-  public docSearchResults: Result[] | null = null;
+  public docSearchResults: Result[] = [];
   public searching: boolean = false;
   public searchingNextResults: boolean = false;
   public lastSearchPromise: CancelablePromise | null = null;

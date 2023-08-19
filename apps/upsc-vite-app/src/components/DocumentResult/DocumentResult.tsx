@@ -1,4 +1,4 @@
-import { PageResult, Result } from "../..//types";
+import { PageResult, Result } from "@usn/common";
 import React, { useContext, useState } from "react";
 import styles from "./DocumentResult.module.css";
 // @ts-ignore
@@ -43,21 +43,36 @@ const l0ToString: any = {
   17: "Agriculture",
 };
 
-const Arrow: React.FC<ArrowProps> = ({ type }) => {
+const ArrowRight: React.FC = () => {
   // @ts-ignore
   const { isLastItemVisible, isFirstItemVisible, scrollNext, scrollPrev } =
     React.useContext(VisibilityContext);
 
   return (
     <div
-      className={clsx(
-        styles.Arrow,
-        type === "front" && isLastItemVisible && styles.ArrowHidden,
-        type === "back" && isFirstItemVisible && styles.ArrowHidden
-      )}
-      onClick={() => (type === "front" ? scrollNext() : scrollPrev())}
+      className={clsx(styles.Arrow, isLastItemVisible && styles.ArrowHidden)}
+      onClick={() => scrollNext()}
     >
-      <div className={styles.ArrowCircle}>{type === "front" ? ">" : "<"}</div>
+      <div className={clsx(styles.ArrowCircle, styles.Right)}>
+        <img src={"/icons/do-chevron-forward.svg"} alt="icon" />
+      </div>
+    </div>
+  );
+};
+
+const ArrowLeft: React.FC = () => {
+  // @ts-ignore
+  const { isLastItemVisible, isFirstItemVisible, scrollNext, scrollPrev } =
+    React.useContext(VisibilityContext);
+
+  return (
+    <div
+      className={clsx(styles.Arrow, isFirstItemVisible && styles.ArrowHidden)}
+      onClick={() => scrollPrev()}
+    >
+      <div className={clsx(styles.ArrowCircle, styles.Left)}>
+        <img src={"/icons/do-chevron-backward.svg"} alt="icon" />
+      </div>
     </div>
   );
 };
@@ -167,8 +182,8 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
         documentId={result._id ?? ""}
       />
       <ScrollMenu
-        LeftArrow={<Arrow type="back" />}
-        RightArrow={<Arrow type="front" />}
+        LeftArrow={<ArrowLeft />}
+        RightArrow={<ArrowRight />}
         wrapperClassName={styles.Container}
         scrollContainerClassName={styles.ScrollContainer}
         Header={
