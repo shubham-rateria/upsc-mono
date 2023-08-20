@@ -72,7 +72,11 @@ export default (app: Router) => {
       documentsResult.push(...keywordSearchDocResults);
     }
 
-    if (searchParams.subjectTags && searchParams.subjectTags.length > 0) {
+    if (
+      !searchParams.keyword &&
+      searchParams.subjectTags &&
+      searchParams.subjectTags.length > 0
+    ) {
       if (documentsResult.length > 0) {
         // documentsResult = documentsResult.filter((doc) => {
         //   for (const tag of searchParams.subjectTags || []) {

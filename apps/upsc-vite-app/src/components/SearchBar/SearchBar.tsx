@@ -9,21 +9,20 @@ import { observer } from "mobx-react-lite";
  * @param param0
  * @returns
  */
-const SearchBar: FC = () => {
+const SearchBar: FC = observer(() => {
   const searchParamsClass = React.useContext(SearchParamsContext);
-  const [inputText, setInputText] = useState("");
 
   /**
    *
    * @param event change event
    */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // searchParamsClass.setSearchParams({ keyword: event.target.value });
-    setInputText(event.target.value);
+    searchParamsClass.setSearchParams({ keyword: event.target.value });
+    // setInputText(event.target.value);
   };
 
   const handleSearch = () => {
-    searchParamsClass.setSearchParams({ keyword: inputText });
+    // searchParamsClass.setSearchParams({ keyword: inputText });
     searchParamsClass.searchForDocuments();
   };
 
@@ -33,9 +32,11 @@ const SearchBar: FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("[search bar]: useEffect");
-  }, [searchParamsClass.docSearchResults?.length]);
+  // useEffect(() => {
+  //   if (searchParamsClass.searchParams.keyword) {
+  //     setInputText(searchParamsClass.searchParams.keyword);
+  //   }
+  // }, []);
 
   return (
     <div className={styles.Container}>
@@ -44,7 +45,7 @@ const SearchBar: FC = () => {
         icon="search"
         iconPosition="left"
         placeholder="Search for specific topics, e.g. Indus Valley..."
-        value={inputText}
+        value={searchParamsClass.searchParams.keyword || ""}
         onChange={handleChange}
         className={styles.Input}
         labelPosition="right"
@@ -54,15 +55,14 @@ const SearchBar: FC = () => {
             onClick={handleSearch}
             className={styles.Button}
             loading={searchParamsClass.searching}
-            disabled={!inputText}
+            disabled={!searchParamsClass.searchParams.keyword}
           >
             Search
           </Button>
         }
-        action
-      ></Input>
+      />
     </div>
   );
-};
+});
 
-export default observer(SearchBar);
+export default SearchBar;

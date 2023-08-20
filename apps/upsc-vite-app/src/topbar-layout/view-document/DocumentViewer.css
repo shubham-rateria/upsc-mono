@@ -1,7 +1,11 @@
 .react-pdf__Page__textContent {
-    display: none;
+  display: none;
 }
 
 .react-pdf__Page__annotations {
-    display: none;
+  display: none;
+}
+
+.react-pdf__Page {
+  border-radius: 5px;
 }

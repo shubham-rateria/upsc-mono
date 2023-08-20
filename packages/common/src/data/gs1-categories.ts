@@ -105,7 +105,8 @@ export const gs1Categories = {
           ],
         },
       },
-
+    },
+    {
       'Ancient History': {
         'Pre-Historic': ['Stone Age', 'Chalcolithic Age', 'Iron Age'],
         'Indus Valley Civilization (IVC)': [
@@ -560,6 +561,9 @@ export const gs1Categories = {
           'Soil Erosion & Conservation',
         ],
       },
+    },
+
+    {
       'Distribution of Key Natural Resources across the world': {
         'Types of Resources': [
           'On the Basis of Origin, Ownership, Exhaustability etc.',
@@ -594,6 +598,9 @@ export const gs1Categories = {
           'Conservation of Energy Resources',
         ],
       },
+    },
+
+    {
       'Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world':
         {
           'Classification of Industries': [],
@@ -613,6 +620,9 @@ export const gs1Categories = {
             [],
           'Agglomeration & Footloose Industries': [],
         },
+    },
+
+    {
       'Important Geophysical Phenomena': {
         Earthquakes: [
           'Why Does Earth Shake?',

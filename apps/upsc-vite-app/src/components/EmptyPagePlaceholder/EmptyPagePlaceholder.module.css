@@ -3,15 +3,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 90%;
 }
 
 .Img {
-  margin-top: var(--margin-l);
-  min-height: 20vh;
-  width: 100%;
+  margin-top: var(--margin-s);
+  width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: var(--margin-l);
+}
+
+.Img img {
+  width: 100%;
+  /* border-radius: 50%; */
 }
 
 .Title,
@@ -25,7 +31,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-top: var(--margin-m);
   margin-bottom: var(--margin-m);
+  font-size: 1.5rem;
 }
 
 .Description {
@@ -36,4 +44,5 @@
   font-weight: 400;
   line-height: normal;
   margin-bottom: var(--margin-m);
+  font-size: 1.2rem;
 }

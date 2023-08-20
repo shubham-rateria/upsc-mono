@@ -51,7 +51,7 @@ const ResultSection: FC = observer(() => {
   }
 
   return (
-    <div>
+    <>
       {searchParamsClass.defaultState() &&
         searchParamsClass.docSearchResults?.length === 0 && (
           <EmptyPagePlaceholder
@@ -80,7 +80,7 @@ const ResultSection: FC = observer(() => {
             <DocumentResult result={result} key={index} />
           ))}
       </div>
-    </div>
+    </>
   );
 });
 

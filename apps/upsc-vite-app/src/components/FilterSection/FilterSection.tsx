@@ -515,6 +515,7 @@ const TopperFilter: FC = observer(() => {
                     onClick={() => {
                       handleCheckboxClick(topper);
                     }}
+                    radio
                   />
                   <div className={styles.TopperListItem}>
                     <div className={styles.Name}>{topper.name}</div>

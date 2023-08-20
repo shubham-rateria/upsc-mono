@@ -57,6 +57,10 @@
   position: relative;
 }
 
+.Page canvas {
+  border-radius: 5px;
+}
+
 .MatchingResults {
   position: absolute;
   left: 0;
@@ -337,7 +341,7 @@
 }
 
 .DocumentLoadingContainer {
-  height: 95vh;
+  height: 85vh;
   width: 50vw;
   display: flex;
   align-items: center;

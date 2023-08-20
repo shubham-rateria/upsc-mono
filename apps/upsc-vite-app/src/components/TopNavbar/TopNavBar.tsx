@@ -1,4 +1,4 @@
-import { Button, Image } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import styles from "./TopNavbar.module.css";
 
 const TopNavBar = () => {
@@ -16,10 +16,7 @@ const TopNavBar = () => {
             Unlock Access
           </Button>
         </div>
-        <Image
-          src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-          avatar
-        />
+        <Button circular icon="user" basic color="grey" disabled />
       </div>
     </div>
   );

@@ -33,6 +33,17 @@ declare const gs1Categories: {
                 'Rock Cut Architecture': string[];
             };
         };
+        'Ancient History'?: undefined;
+        'Medieval History'?: undefined;
+        'Modern History'?: undefined;
+        'Post-independence India'?: undefined;
+        'World History'?: undefined;
+        'Indian Society'?: undefined;
+        'World and Indian Geography'?: undefined;
+        'Distribution of Key Natural Resources across the world'?: undefined;
+        'Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world'?: undefined;
+        'Important Geophysical Phenomena'?: undefined;
+    } | {
         'Ancient History': {
             'Pre-Historic': string[];
             'Indus Valley Civilization (IVC)': string[];
@@ -42,6 +53,7 @@ declare const gs1Categories: {
             'Mauryan Empire': string[];
             'Post-Mauryan India': string[];
         };
+        'Art and culture'?: undefined;
         'Medieval History'?: undefined;
         'Modern History'?: undefined;
         'Post-independence India'?: undefined;
@@ -187,6 +199,17 @@ declare const gs1Categories: {
             Climatology: string[];
             'Soil Geography': string[];
         };
+        'Art and culture'?: undefined;
+        'Ancient History'?: undefined;
+        'Medieval History'?: undefined;
+        'Modern History'?: undefined;
+        'Post-independence India'?: undefined;
+        'World History'?: undefined;
+        'Indian Society'?: undefined;
+        'Distribution of Key Natural Resources across the world'?: undefined;
+        'Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world'?: undefined;
+        'Important Geophysical Phenomena'?: undefined;
+    } | {
         'Distribution of Key Natural Resources across the world': {
             'Types of Resources': string[];
             'Land Resources': string[];
@@ -195,12 +218,34 @@ declare const gs1Categories: {
             'Agricultural Resources': string[];
             'Mineral & Energy Resources': string[];
         };
+        'Art and culture'?: undefined;
+        'Ancient History'?: undefined;
+        'Medieval History'?: undefined;
+        'Modern History'?: undefined;
+        'Post-independence India'?: undefined;
+        'World History'?: undefined;
+        'Indian Society'?: undefined;
+        'World and Indian Geography'?: undefined;
+        'Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world'?: undefined;
+        'Important Geophysical Phenomena'?: undefined;
+    } | {
         'Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world': {
             'Classification of Industries': never[];
             'Location & Distribution of the Industries on the Basis of': string[];
             'Distribution of Major Industries \u2013 Iron & Steel, IT, Cotton Textile': never[];
             'Agglomeration & Footloose Industries': never[];
         };
+        'Art and culture'?: undefined;
+        'Ancient History'?: undefined;
+        'Medieval History'?: undefined;
+        'Modern History'?: undefined;
+        'Post-independence India'?: undefined;
+        'World History'?: undefined;
+        'Indian Society'?: undefined;
+        'World and Indian Geography'?: undefined;
+        'Distribution of Key Natural Resources across the world'?: undefined;
+        'Important Geophysical Phenomena'?: undefined;
+    } | {
         'Important Geophysical Phenomena': {
             Earthquakes: string[];
             Tsunami: string[];
@@ -220,6 +265,9 @@ declare const gs1Categories: {
         'Post-independence India'?: undefined;
         'World History'?: undefined;
         'Indian Society'?: undefined;
+        'World and Indian Geography'?: undefined;
+        'Distribution of Key Natural Resources across the world'?: undefined;
+        'Factors responsible for the location of primary, secondary, and tertiary sector industries in various parts of the world'?: undefined;
     })[];
 };
 

@@ -189,8 +189,8 @@ a {
 .ui.checkbox input:checked ~ label:after,
 .ui.radio.checkbox input:checked ~ label:after {
   color: white !important;
-  background-color: var(--p8);
-  border-color: var(--p4);
+  background-color: var(--p8) !important;
+  border-color: var(--p4) !important;
   font-size: 0.8rem;
   border-radius: 3px;
   display: flex;
