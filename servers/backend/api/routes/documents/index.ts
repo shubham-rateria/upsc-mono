@@ -8,27 +8,9 @@ import fillDocWithPages from "../../../utils/fill-doc-with-pages";
 import mongoose from "mongoose";
 import { PageModel } from "../../../models/page";
 import { type SearchParams } from "usn-common";
+import searchKeywordInDoc from "../../../utils/search-keyword-in-doc";
 
 const ObjectId = mongoose.Types.ObjectId;
-
-function getWordBlocksForPage(page: any) {
-  const blocks: any[] = [];
-  page.ocr.fullTextAnnotation.pages.forEach((page: any) => {
-    page.blocks.forEach((block: any) => {
-      block.paragraphs.forEach((paragraph: any) => {
-        paragraph.words.forEach((word: any) => {
-          const wordText = word.symbols.map((s: any) => s.text).join("");
-          blocks.push({
-            text: wordText,
-            boundingBox: word.boundingBox,
-          });
-        });
-      });
-    });
-  });
-
-  return blocks;
-}
 
 const route = Router();
 
@@ -129,52 +111,54 @@ export default (app: Router) => {
       const { documentId } = req.params;
       const { searchTerm } = req.body;
 
-      const document = await DocumentModel.findById(documentId).lean();
+      const results = await searchKeywordInDoc(searchTerm, documentId);
 
-      if (!document) {
-        res.status(500).json({ success: false, data: "No Docs." });
-        return;
-      }
+      // const document = await DocumentModel.findById(documentId).lean();
 
-      // @ts-ignore
-      const pageIds = document?.pages.map((page) => page._ref.oid.toString());
+      // if (!document) {
+      //   res.status(500).json({ success: false, data: "No Docs." });
+      //   return;
+      // }
 
-      const searchResultPromises: any[] = [];
+      // // @ts-ignore
+      // const pageIds = document?.pages.map((page) => page._ref.oid.toString());
 
-      for (const pageId of pageIds) {
-        const search = PageModel.find({
-          _id: new ObjectId(pageId),
-          $text: { $search: searchTerm },
-        })
-          .lean()
-          .exec();
-        searchResultPromises.push(search);
-      }
+      // const searchResultPromises: any[] = [];
 
-      const results = (await Promise.all(searchResultPromises))
-        .map((r) => {
-          if (r.length > 0) {
-            const blocks = getWordBlocksForPage(r[0]);
+      // for (const pageId of pageIds) {
+      //   const search = PageModel.find({
+      //     _id: new ObjectId(pageId),
+      //     $text: { $search: searchTerm },
+      //   })
+      //     .lean()
+      //     .exec();
+      //   searchResultPromises.push(search);
+      // }
 
-            const searchBlocks: any[] = [];
-            const searchTerms = searchTerm.toLowerCase().split(" ");
-            for (const block of blocks) {
-              for (const term of searchTerms) {
-                if (block.text.toLowerCase() === term) {
-                  searchBlocks.push(block);
-                }
-              }
-            }
+      // const results = (await Promise.all(searchResultPromises))
+      //   .map((r) => {
+      //     if (r.length > 0) {
+      //       const blocks = getWordBlocksForPage(r[0]);
 
-            return {
-              matching_blocks: searchBlocks,
-              page_number: r[0].page_number,
-              height: r[0].ocr.fullTextAnnotation.pages[0].height,
-              width: r[0].ocr.fullTextAnnotation.pages[0].width,
-            };
-          }
-        })
-        .filter((r) => r);
+      //       const searchBlocks: any[] = [];
+      //       const searchTerms = searchTerm.toLowerCase().split(" ");
+      //       for (const block of blocks) {
+      //         for (const term of searchTerms) {
+      //           if (block.text.toLowerCase() === term) {
+      //             searchBlocks.push(block);
+      //           }
+      //         }
+      //       }
+
+      //       return {
+      //         matching_blocks: searchBlocks,
+      //         page_number: r[0].page_number,
+      //         height: r[0].ocr.fullTextAnnotation.pages[0].height,
+      //         width: r[0].ocr.fullTextAnnotation.pages[0].width,
+      //       };
+      //     }
+      //   })
+      //   .filter((r) => r);
 
       res.status(201).json({ success: true, data: { pages: results } });
     } catch (error: any) {
