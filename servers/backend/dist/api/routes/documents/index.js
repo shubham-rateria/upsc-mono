@@ -65,11 +65,15 @@ exports.default = (app) => {
     route.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const searchParams = req.body;
         let documentsResult = [];
-        if (searchParams.keyword) {
+        let hasKeyword = false;
+        if (searchParams.keyword && searchParams.keyword.length > 0) {
+            hasKeyword = true;
             const keywordSearchDocResults = yield (0, search_by_keyword_1.default)(searchParams);
             documentsResult.push(...keywordSearchDocResults);
         }
-        if (searchParams.subjectTags && searchParams.subjectTags.length > 0) {
+        if (!hasKeyword &&
+            searchParams.subjectTags &&
+            searchParams.subjectTags.length > 0) {
             if (documentsResult.length > 0) {
                 // documentsResult = documentsResult.filter((doc) => {
                 //   for (const tag of searchParams.subjectTags || []) {

@@ -66,14 +66,16 @@ export default (app: Router) => {
   route.post("/", async (req: Request, res: Response) => {
     const searchParams: SearchParams = req.body;
     let documentsResult: any[] = [];
+    let hasKeyword = false;
 
-    if (searchParams.keyword) {
+    if (searchParams.keyword && searchParams.keyword.length > 0) {
+      hasKeyword = true;
       const keywordSearchDocResults = await searchByKeyword(searchParams);
       documentsResult.push(...keywordSearchDocResults);
     }
 
     if (
-      !searchParams.keyword &&
+      !hasKeyword &&
       searchParams.subjectTags &&
       searchParams.subjectTags.length > 0
     ) {

@@ -1,12 +1,12 @@
-(node:54184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:47547) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 22:41:07 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 09:26:06 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:54198) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:47561) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,48 +19,10 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mGET /api/toppers [32m200[0m 110.080 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 112.117 ms - 13416[0m
-Finding keywords [ 'Dimensions of Ethics' ]
-[0mPOST /api/documents [32m200[0m 1.527 ms - 26[0m
-searching for dimensions of ethics
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-bowResults 10
+[0mGET /api/toppers [32m200[0m 105.951 ms - 13416[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 11329.514 ms - 332405[0m
-found docs 3000
-Keyword search documents 811
-[0mPOST /api/documents [32m200[0m 4649.664 ms - 310599[0m
-[0mGET /api/toppers [32m200[0m 102.624 ms - 13416[0m
-Found 1 for topper
-[0mPOST /api/documents [32m200[0m 308.885 ms - 5438[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 41.276 ms - 26[0m
-getting doc id
-[0mGET /api/documents/64b8efbfd2e135d536257a2c [32m201[0m 51.262 ms - 9303[0m
-doc search
-[0mPOST /api/documents/64b8efbfd2e135d536257a2c/search [32m201[0m 29702.858 ms - 9575[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 84.755 ms - 26[0m
-[0mGET /api/toppers [32m200[0m 138.818 ms - 13416[0m
-[0mPOST /api/documents [32m200[0m 1.324 ms - 26[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 443.515 ms - 77166[0m
-[0mPOST /api/documents [32m200[0m 1.098 ms - 26[0m
-searching for cryptocurrency
+[0mPOST /api/documents [32m200[0m 788.061 ms - 76516[0m
+searching for forest resources
 {
   pipeline: [
     { '$search': [Object] },
@@ -70,124 +32,14 @@ searching for cryptocurrency
     { '$addFields': [Object] },
     { '$lookup': [Object] },
     { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 137
-Keyword search documents 83
-[0mPOST /api/documents [32m200[0m 599.395 ms - 58889[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
     { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
+    { '$match': [Object] }
   ]
 }
-found docs 57
-Keyword search documents 33
-[0mPOST /api/documents [32m200[0m 356.147 ms - 43880[0m
-getting doc id
-[0mGET /api/documents/64bcea09f3cf3ea0c07c0096 [32m201[0m 54.631 ms - 8251[0m
-doc search
-[0mPOST /api/documents/64bcea09f3cf3ea0c07c0096/search [32m201[0m 493.080 ms - 230[0m
-[0mGET /api/toppers [32m200[0m 94.455 ms - 13416[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-[0mPOST /api/documents [32m200[0m 86.160 ms - 26[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 500.105 ms - 76516[0m
-[0mPOST /api/documents [32m200[0m 1.083 ms - 26[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 137
-Keyword search documents 83
-[0mPOST /api/documents [32m200[0m 592.691 ms - 58889[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 13
-Keyword search documents 9
-[0mPOST /api/documents [32m200[0m 294.360 ms - 11232[0m
-getting doc id
-[0mGET /api/documents/64c82ce6db10f404e101d76f [32m201[0m 45.838 ms - 8153[0m
-doc search
-[0mPOST /api/documents/64c82ce6db10f404e101d76f/search [32m201[0m 766.637 ms - 621[0m
-[0mGET /api/toppers [32m200[0m 91.004 ms - 13416[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 137
-Keyword search documents 83
-[0mPOST /api/documents [32m200[0m 363.237 ms - 58889[0m
-searching for citizen's charter
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 903
-Keyword search documents 397
-[0mPOST /api/documents [32m200[0m 2373.939 ms - 76461[0m
-searching for citizens charter
+found docs 469
+Keyword search documents 188
+[0mPOST /api/documents [32m200[0m 4505.392 ms - 85134[0m
+searching for forest resources
 {
   pipeline: [
     { '$search': [Object] },
@@ -201,74 +53,753 @@ searching for citizens charter
   ]
 }
 found docs 3000
-Keyword search documents 910
-[0mPOST /api/documents [32m200[0m 5777.539 ms - 208032[0m
-searching for citizens charter
+Keyword search documents 1016
+[0mPOST /api/documents [32m200[0m 2675.847 ms - 256900[0m
+[INFO] 09:31:53 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:47880) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[INFO] 09:32:46 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:47937) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[INFO] 09:32:51 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:47951) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[INFO] 09:33:03 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:47972) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mGET /api/toppers [32m200[0m 96.373 ms - 13416[0m
+Finding keywords [
+  'Types & Distribution – Grasslands, Forests etc.',
+  'Causes of Depletion',
+  'Conservation of Forests',
+  'Forest Resources'
+]
+keywordResults 10
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 4503.667 ms - 63389[0m
+[INFO] 09:34:12 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-keyword.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48055) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mPOST /api/documents [32m200[0m 12.659 ms - 26[0m
+Finding keywords [
+  'Concept of Secularism',
+  'Indian Model of Secularism',
+  'Secularism in India',
+  'Nature & Practice of Secularism in India',
+  'Uniform Civil Code',
+  'Challenges faced by Secularism in India',
+  'Measures to Make India Truly Secular',
+  'Secularism'
+]
+keywordResults 10
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 6934.775 ms - 161371[0m
+[INFO] 09:36:07 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48154) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mGET /api/toppers [32m200[0m 92.194 ms - 13416[0m
+Finding keywords [
+  'Concept of Secularism',
+  'Indian Model of Secularism',
+  'Secularism in India',
+  'Nature & Practice of Secularism in India',
+  'Uniform Civil Code',
+  'Challenges faced by Secularism in India',
+  'Measures to Make India Truly Secular',
+  'Secularism'
+]
+keywordResults 37
+tagSearchResults 37
+[0mPOST /api/documents [32m200[0m 187.881 ms - 41574[0m
+[0mPOST /api/documents [32m200[0m 3.266 ms - 26[0m
+Finding keywords [
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Indian Art Forms'
+]
+keywordResults 33
+tagSearchResults 33
+[0mPOST /api/documents [32m200[0m 317.797 ms - 48021[0m
+Finding keywords [
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Indian Art Forms'
+]
+keywordResults 45
+tagSearchResults 45
+[0mPOST /api/documents [32m200[0m 545.981 ms - 46939[0m
+[INFO] 09:36:55 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48206) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mGET /api/toppers [32m200[0m 98.136 ms - 13416[0m
+Finding keywords [
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Indian Art Forms'
+]
+keywordResults 19
+tagSearchResults 19
+[0mPOST /api/documents [32m200[0m 125.055 ms - 23782[0m
+[0mPOST /api/documents [32m200[0m 1.569 ms - 26[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 10
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 121.596 ms - 16996[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 70.182 ms - 10875[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 99.629 ms - 5327[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 10
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 71.926 ms - 16996[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 6
+tagSearchResults 6
+[0mPOST /api/documents [32m200[0m 78.165 ms - 7451[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 10
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 93.027 ms - 16996[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+keywordResults 10
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 140.615 ms - 16996[0m
+Finding keywords [
+  'Ethics and Human Interface',
+  'Essence, Determinants, Consequences of Ethics in Human Actions',
+  'Dimensions of Ethics',
+  'Ethics in Private and Public Relationships',
+  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
+  'Role of Family, Society, and Educational Institutions in Inculcating Values',
+  'Ethics and Human Interface'
+]
+keywordResults 24
+tagSearchResults 24
+[0mPOST /api/documents [32m200[0m 189.639 ms - 30571[0m
+Finding keywords [
+  'Ethics and Human Interface',
+  'Essence, Determinants, Consequences of Ethics in Human Actions',
+  'Dimensions of Ethics',
+  'Ethics in Private and Public Relationships',
+  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
+  'Role of Family, Society, and Educational Institutions in Inculcating Values',
+  'Ethics and Human Interface'
+]
+keywordResults 24
+tagSearchResults 24
+[0mPOST /api/documents [32m200[0m 110.552 ms - 30571[0m
+[INFO] 09:40:58 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48409) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+Finding keywords [
+  'Ethics and Human Interface',
+  'Essence, Determinants, Consequences of Ethics in Human Actions',
+  'Dimensions of Ethics',
+  'Ethics in Private and Public Relationships',
+  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
+  'Role of Family, Society, and Educational Institutions in Inculcating Values',
+  'Ethics and Human Interface'
+]
+keywordResults 24
+tagSearchResults 24
+[0mPOST /api/documents [32m200[0m 137.664 ms - 30571[0m
+[INFO] 09:41:23 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48441) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+Finding keywords [
+  'Ethics and Human Interface',
+  'Essence, Determinants, Consequences of Ethics in Human Actions',
+  'Dimensions of Ethics',
+  'Ethics in Private and Public Relationships',
+  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
+  'Role of Family, Society, and Educational Institutions in Inculcating Values',
+  'Ethics and Human Interface'
+]
+{ additionalQueries: { '$match': { l0_categories: 4 } } }
+keywordResults 24
+tagSearchResults 24
+[0mPOST /api/documents [32m200[0m 135.172 ms - 30571[0m
+[INFO] 09:41:42 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+Compilation error in /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts
+[ERROR] 09:41:42 ⨯ Unable to compile TypeScript:
+utils/search-by-subject-tags.ts(99,36): error TS2552: Cannot find name 'document_type'. Did you mean 'documentType'?
+
+(node:48467) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+[INFO] 09:41:46 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48492) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+Finding keywords [
+  'Ethics and Human Interface',
+  'Essence, Determinants, Consequences of Ethics in Human Actions',
+  'Dimensions of Ethics',
+  'Ethics in Private and Public Relationships',
+  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
+  'Role of Family, Society, and Educational Institutions in Inculcating Values',
+  'Ethics and Human Interface'
+]
 {
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
+  additionalQueries: { '$match': { l0_categories: 4 } },
+  documentType: undefined
 }
-found docs 1069
-Keyword search documents 376
-[0mPOST /api/documents [32m200[0m 2397.628 ms - 150650[0m
-[0mGET /api/toppers [32m200[0m 97.444 ms - 13416[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 438.768 ms - 77062[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1768.489 ms - 78002[0m
-Finding keywords []
-bowResults 0
+keywordResults 24
+tagSearchResults 24
+[0mPOST /api/documents [32m200[0m 152.102 ms - 30571[0m
+Finding keywords [
+  'Ethics and Human Interface',
+  'Essence, Determinants, Consequences of Ethics in Human Actions',
+  'Dimensions of Ethics',
+  'Ethics in Private and Public Relationships',
+  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
+  'Role of Family, Society, and Educational Institutions in Inculcating Values',
+  'Ethics and Human Interface'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 4, document_type: 1 } },
+  documentType: 1
+}
+keywordResults 1
+tagSearchResults 1
+[0mPOST /api/documents [32m200[0m 96.278 ms - 793[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 1 } },
+  documentType: 1
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 69.107 ms - 10875[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 1 } },
+  documentType: 1
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 65.468 ms - 5327[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 51.701 ms - 6146[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 2
+tagSearchResults 2
+[0mPOST /api/documents [32m200[0m 60.431 ms - 2149[0m
+getting doc id
+[0mGET /api/documents/64c7d3d3d0cb65f1ad4af069 [32m201[0m 54.968 ms - 14828[0m
+[0mGET /api/toppers [32m200[0m 92.922 ms - 13416[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 107.311 ms - 3212[0m
+Finding keywords [ 'Evolution of Indian Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 124.112 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 2.583 ms - 26[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 115.573 ms - 5895[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 8
 tagSearchResults 8
-[0mPOST /api/documents [32m200[0m 1329.119 ms - 58359[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 202.034 ms - 26[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 380.176 ms - 26[0m
-getting doc id
-[0mGET /api/documents/64c6259243bc4f6a0bad7c3b [32m201[0m 48.571 ms - 4810[0m
-[0mGET /api/toppers [32m200[0m 925.403 ms - 13416[0m
-Finding keywords []
-bowResults 0
+[0mPOST /api/documents [32m200[0m 121.638 ms - 6933[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 117.125 ms - 3268[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 126.985 ms - 5658[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 117.856 ms - 4552[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 136.752 ms - 3829[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 6
+tagSearchResults 6
+[0mPOST /api/documents [32m200[0m 139.107 ms - 5311[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 152.104 ms - 4630[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 7
+tagSearchResults 7
+[0mPOST /api/documents [32m200[0m 163.606 ms - 5673[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
+  documentType: 0
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 154.416 ms - 4098[0m
+Finding keywords [ 'Union Government and Administration' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 7
+tagSearchResults 7
+[0mPOST /api/documents [32m200[0m 68.723 ms - 9787[0m
+[0mPOST /api/documents [32m200[0m 1.068 ms - 26[0m
+Finding keywords [ 'Civil Services' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 95.109 ms - 3759[0m
+Finding keywords [ 'Civil Services' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 2
+tagSearchResults 2
+[0mPOST /api/documents [32m200[0m 105.033 ms - 1606[0m
+Finding keywords [ 'Civil Services' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 107.777 ms - 3743[0m
+Finding keywords [ 'Civil Services' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 5
+tagSearchResults 5
+[0mPOST /api/documents [32m200[0m 114.645 ms - 4526[0m
+Finding keywords [ 'Civil Services' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 4
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 4
+tagSearchResults 8
+[0mPOST /api/documents [32m200[0m 152.689 ms - 8496[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 60.143 ms - 4762[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 3
+tagSearchResults 3
+[0mPOST /api/documents [32m200[0m 124.495 ms - 4020[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 2
+tagSearchResults 2
+[0mPOST /api/documents [32m200[0m 113.314 ms - 1622[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 1
+tagSearchResults 1
+[0mPOST /api/documents [32m200[0m 117.203 ms - 807[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 121.657 ms - 3232[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 2
+tagSearchResults 2
+[0mPOST /api/documents [32m200[0m 142.199 ms - 3736[0m
+Finding keywords [ 'Urban Local Development' ]
+{
+  additionalQueries: { '$match': { l0_categories: 15 } },
+  documentType: undefined
+}
+keywordResults 3
+tagSearchResults 3
+[0mPOST /api/documents [32m200[0m 119.564 ms - 2403[0m
+[0mPOST /api/documents [32m200[0m 1.484 ms - 26[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 705.617 ms - 77062[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1330.460 ms - 77062[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1354.172 ms - 77062[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 2218.728 ms - 77062[0m
-[0mPOST /api/documents [32m200[0m 0.515 ms - 26[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1177.998 ms - 80216[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1295.072 ms - 80231[0m
-Finding keywords []
-bowResults 0
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 2501.347 ms - 77862[0m
+[0mPOST /api/documents [32m200[0m 1104.532 ms - 78081[0m
+searching for urban local development
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 3000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 144
+Keyword search documents 32
+[0mPOST /api/documents [32m200[0m 3962.405 ms - 104050[0m
+[INFO] 09:48:34 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-keyword.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:48938) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[INFO] 09:48:36 Restarting: /Users/rateria/Code/upsc-web-app/serv

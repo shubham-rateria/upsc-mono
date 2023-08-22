@@ -29,9 +29,9 @@ export default async function searchByKeyword({
    * of our pages dataset and no result post that number in a sorted order should
    * be relevant anyway
    */
-  const resultsPerPage = 3000;
+  const resultsPerPage = 2000;
 
-  const limit = 30;
+  const limit = 20;
   const skipCount = (pageNumber - 1) * limit;
 
   let documentsResult: any[] = [];
@@ -68,14 +68,6 @@ export default async function searchByKeyword({
         },
       },
     },
-    // {
-    //   $group: {
-    //     _id: "$documentId",
-    //     pages: {
-    //       $push: "$$ROOT",
-    //     },
-    //   },
-    // },
     {
       $addFields: {
         documentIdObjectId: { $toObjectId: "$documentId" },
@@ -122,20 +114,28 @@ export default async function searchByKeyword({
   }
 
   if (subjectTags) {
-    // find l0 subject tags
-    const l0Tags = subjectTags.filter((tag) => tag.level === "l0");
-    if (l0Tags.length > 0) {
-      additionalDocumentQueries["$match"]["l0_categories"] = l0Tags.map(
-        (tag) => mapTagTypeToNumber[tag.type]
-      );
+    let l0Categories: any[] = [];
+
+    for (const tag of subjectTags) {
+      if (tag.level === "l0") {
+        if (!tag.optionalsId) {
+          l0Categories.push(mapTagTypeToNumber[tag.type]);
+        } else {
+          l0Categories.push(tag.optionalsId);
+        }
+      }
+    }
+
+    if (l0Categories.length > 0) {
+      additionalDocumentQueries["$match"]["l0_categories"] = l0Categories;
     }
 
     const l1Tags = subjectTags.filter((tag) => tag.level === "l1");
     if (l1Tags.length > 0) {
-      const keywords = findKeywordsForTag(l1Tags[0]);
-      pipeline.splice(1, 0, {
-        $match: { "keyword_tags.keyword": { $in: keywords } },
-      });
+      // const keywords = findKeywordsForTag(l1Tags[0]);
+      // pipeline.splice(1, 0, {
+      //   $match: { "keyword_tags.keyword": { $in: keywords } },
+      // });
       additionalDocumentQueries["$match"]["l0_categories"] = [
         mapTagTypeToNumber[l1Tags[0].type],
       ];
@@ -143,21 +143,21 @@ export default async function searchByKeyword({
 
     const l2Tags = subjectTags.filter((tag) => tag.level === "l2");
     if (l2Tags.length > 0) {
-      const keywords = findKeywordsForTag(l2Tags[0]);
-      pipeline.splice(1, 0, {
-        $match: { "keyword_tags.keyword": { $in: keywords } },
-      });
+      // const keywords = findKeywordsForTag(l2Tags[0]);
+      // pipeline.splice(1, 0, {
+      //   $match: { "keyword_tags.keyword": { $in: keywords } },
+      // });
       additionalDocumentQueries["$match"]["l0_categories"] = [
         mapTagTypeToNumber[l2Tags[0].type],
       ];
     }
   }
 
-  console.log({ pipeline });
-
   if (Object.keys(additionalDocumentQueries.$match).length > 0) {
     pipeline.push(additionalDocumentQueries);
   }
+
+  console.log({ pipeline });
 
   const pages = await PageModel.aggregate(pipeline).exec();
 
@@ -210,67 +210,6 @@ export default async function searchByKeyword({
     const pages = docMap.get(key).pages;
     documentsResult.push({ ...value, pages: Array.from(pages.values()) });
   });
-
-  /**
-   * this approach of summing up page scores tend to boost the score of the
-   * document for which there are a lot of pages with small page scores
-   *
-   * we would rather preserve the order of the page scoring the group
-   * the pages in a horizontal (page order) and vertical (document order)
-   * according to page score
-   */
-
-  // for (const document of pages) {
-  //   // @ts-ignore
-  //   let pages = document.pages;
-
-  //   let score = 0;
-  //   for (const page of pages) {
-  //     score += page.score;
-  //     page.matching_words = [];
-  //     /**
-  //      * find matching words from search query
-  //      */
-  //     // const matchingWords = keyword
-  //     //   .toLowerCase()
-  //     //   .split(" ")
-  //     //   .filter((word: string) => {
-  //     //     const regex = new RegExp(`\\b${word}\\b`, "i");
-  //     //     return regex.test(page.clean_text?.toLowerCase());
-  //     //   });
-  //     // page.matching_words = matchingWords;
-  //     // delete page.clean_text;
-
-  //     page.highlights.forEach((highlight) => {
-  //       highlight.texts.forEach((text) => {
-  //         if (text.type === "hit") {
-  //           page.matching_words.push(text.value.toLowerCase());
-  //         }
-  //       });
-  //     });
-
-  //     page.matching_words = Array.from(new Set(page.matching_words));
-
-  //     delete page.highlights;
-
-  //     if (page.s3_img_object_name) {
-  //       const s3_signed_url = await getSignedUrl(
-  //         "page-img",
-  //         page.s3_img_object_name,
-  //         5
-  //       );
-  //       page.s3_signed_url = s3_signed_url;
-  //     }
-  //   }
-
-  //   // @ts-ignore
-  //   document.score = score;
-  //   document.pages = pages;
-  // }
-
-  // documentsResult = pages;
-  // @ts-ignore
-  // documentsResult.sort((a, b) => b.score - a.score);
 
   console.log("Keyword search documents", documentsResult.length);
 
