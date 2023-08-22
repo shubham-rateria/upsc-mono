@@ -1,0 +1,20 @@
+.Container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Container img {
+  width: 40vw;
+  margin-bottom: 2rem;
+}
+
+.Container p {
+  font-family: var(--font-mulish);
+  color: var(--p8);
+  max-width: 80vw;
+  text-align: center;
+}

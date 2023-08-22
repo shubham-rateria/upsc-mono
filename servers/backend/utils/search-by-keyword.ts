@@ -127,7 +127,9 @@ export default async function searchByKeyword({
     }
 
     if (l0Categories.length > 0) {
-      additionalDocumentQueries["$match"]["l0_categories"] = l0Categories;
+      additionalDocumentQueries["$match"]["l0_categories"] = {
+        $in: l0Categories,
+      };
     }
 
     const l1Tags = subjectTags.filter((tag) => tag.level === "l1");

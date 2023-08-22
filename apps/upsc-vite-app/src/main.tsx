@@ -7,6 +7,7 @@ import "./globals.css";
 import "semantic-ui-css/semantic.min.css";
 
 import SearchParamsContextProvider from "./contexts/SearchParamsContextProvider.tsx";
+import NoMobileView from "./components/NoMobileView/NoMobileView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,13 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <SearchParamsContextProvider>
-    <TopBarLayout>
-      <RouterProvider router={router} />
-    </TopBarLayout>
-  </SearchParamsContextProvider>
+  window.innerWidth < 700 ? (
+    <NoMobileView />
+  ) : (
+    <SearchParamsContextProvider>
+      <TopBarLayout>
+        <RouterProvider router={router} />
+      </TopBarLayout>
+    </SearchParamsContextProvider>
+  )
 );
