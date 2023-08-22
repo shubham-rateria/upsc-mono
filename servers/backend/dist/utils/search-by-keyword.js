@@ -122,7 +122,9 @@ function searchByKeyword({ keyword, pageNumber = 1, documentType, subjectTags, t
                 }
             }
             if (l0Categories.length > 0) {
-                additionalDocumentQueries["$match"]["l0_categories"] = l0Categories;
+                additionalDocumentQueries["$match"]["l0_categories"] = {
+                    $in: l0Categories,
+                };
             }
             const l1Tags = subjectTags.filter((tag) => tag.level === "l1");
             if (l1Tags.length > 0) {

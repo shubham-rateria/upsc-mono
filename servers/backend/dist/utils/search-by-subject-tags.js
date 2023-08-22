@@ -19,7 +19,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const usn_common_1 = require("usn-common");
 const s3_1 = require("../services/s3");
 const RESULTS_PER_PAGE = 50;
-function findDocumentsForKeywordsSearch(keywords, l0Category, pageNumber, documentType) {
+function findDocumentsForKeywordsSearch(keywords, l0Category, pageNumber, documentType, topper) {
     return __awaiter(this, void 0, void 0, function* () {
         const skip = (pageNumber - 1) * RESULTS_PER_PAGE;
         const limit = RESULTS_PER_PAGE;
@@ -98,6 +98,11 @@ function findDocumentsForKeywordsSearch(keywords, l0Category, pageNumber, docume
         };
         if (documentType !== null && documentType !== undefined) {
             additionalQueries["$match"]["document_type"] = documentType;
+        }
+        if (topper) {
+            additionalQueries["$match"]["topper.name"] = topper.name;
+            additionalQueries["$match"]["topper.rank"] = topper.rank;
+            additionalQueries["$match"]["topper.year"] = topper.year;
         }
         console.log({ additionalQueries, documentType });
         pipeline.push(additionalQueries);
@@ -231,7 +236,7 @@ function findDocumentsForKeywords(keywords, l0Category, pageNumber, documentType
         // return documents;
     });
 }
-function searchBySubjectTags({ subjectTags, pageNumber = 1, documentType, }) {
+function searchBySubjectTags({ subjectTags, pageNumber = 1, documentType, topper, }) {
     return __awaiter(this, void 0, void 0, function* () {
         /**
          * if mongoose is disconnected, throw an error
@@ -305,7 +310,7 @@ function searchBySubjectTags({ subjectTags, pageNumber = 1, documentType, }) {
                     keywords.push(tag.value.tagText);
                 }
                 console.log("Finding keywords", keywords);
-                const keywordResults = yield findDocumentsForKeywordsSearch(keywords, l0Category, pageNumber, documentType);
+                const keywordResults = yield findDocumentsForKeywordsSearch(keywords, l0Category, pageNumber, documentType, topper);
                 console.log("keywordResults", keywordResults.length);
                 documentResults.push(...keywordResults);
             }
