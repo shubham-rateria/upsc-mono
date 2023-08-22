@@ -74,9 +74,6 @@ importers:
       semantic-ui-react:
         specifier: ^2.1.4
         version: 2.1.4(react-dom@18.2.0)(react@18.2.0)
-      stytch:
-        specifier: ^8.3.0
-        version: 8.3.0
       usn-common:
         specifier: workspace:*
         version: link:../../packages/common
@@ -171,6 +168,9 @@ importers:
       morgan:
         specifier: ^1.10.0
         version: 1.10.0
+      stytch:
+        specifier: ^8.3.0
+        version: 8.3.0
       typesense:
         specifier: ^1.7.1
         version: 1.7.1(@babel/runtime@7.22.10)
@@ -1274,7 +1274,7 @@ packages:
       '@octokit/request-error': 3.0.3
       '@octokit/types': 9.3.2
       is-plain-object: 5.0.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.12
       universal-user-agent: 6.0.0
     transitivePeerDependencies:
       - encoding
@@ -5467,7 +5467,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: false
 
   /node-fetch@2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}

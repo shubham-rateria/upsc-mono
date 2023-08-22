@@ -42,6 +42,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
 
+  /**
+   * Phone to always be prepended by the country code
+   */
   phone: {
     type: String,
   },
@@ -60,6 +63,11 @@ const UserSchema = new mongoose.Schema({
   created_at: {
     type: Date,
     default: Date.now,
+  },
+
+  beta_user: {
+    type: Boolean,
+    default: false,
   },
 });
 
