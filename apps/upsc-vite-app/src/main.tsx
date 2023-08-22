@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  window.innerWidth < 800 ? (
+  window.innerWidth < 700 ? (
     <NoMobileView />
   ) : (
     <SearchParamsContextProvider>
