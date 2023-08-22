@@ -3,8 +3,14 @@
  */
 
 import mongoose from "mongoose";
+import { v4 } from "uuid";
 
 const UserSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    default: v4(),
+  },
+
   email: {
     type: String,
     default: null,
@@ -35,15 +41,22 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+
+  phone: {
+    type: String,
+  },
+
   password: {
     type: String,
     required: true,
   },
+
   role: {
     type: String,
     enum: ["user", "admin"],
     default: "user",
   },
+
   created_at: {
     type: Date,
     default: Date.now,
