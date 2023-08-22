@@ -1,4 +1,4 @@
-import { SearchParams, Tag, TagType } from "usn-common";
+import { SearchParams, Tag, TagType, Topper } from "usn-common";
 import flattenObject from "./flatten-object";
 import { PageModel } from "../models/page";
 import { DocumentModel } from "../models/document";
@@ -12,7 +12,8 @@ async function findDocumentsForKeywordsSearch(
   keywords: string[],
   l0Category: number,
   pageNumber: number,
-  documentType?: number
+  documentType?: number,
+  topper?: Topper
 ): Promise<(typeof DocumentModel)[]> {
   const skip = (pageNumber - 1) * RESULTS_PER_PAGE;
   const limit = RESULTS_PER_PAGE;
@@ -94,6 +95,12 @@ async function findDocumentsForKeywordsSearch(
 
   if (documentType !== null && documentType !== undefined) {
     additionalQueries["$match"]["document_type"] = documentType;
+  }
+
+  if (topper) {
+    additionalQueries["$match"]["topper.name"] = topper.name;
+    additionalQueries["$match"]["topper.rank"] = topper.rank;
+    additionalQueries["$match"]["topper.year"] = topper.year;
   }
 
   console.log({ additionalQueries, documentType });
@@ -261,6 +268,7 @@ export default async function searchBySubjectTags({
   subjectTags,
   pageNumber = 1,
   documentType,
+  topper,
 }: SearchParams): Promise<(typeof DocumentModel)[]> {
   /**
    * if mongoose is disconnected, throw an error
@@ -348,7 +356,8 @@ export default async function searchBySubjectTags({
         keywords,
         l0Category,
         pageNumber,
-        documentType
+        documentType,
+        topper
       );
 
       console.log("keywordResults", keywordResults.length);

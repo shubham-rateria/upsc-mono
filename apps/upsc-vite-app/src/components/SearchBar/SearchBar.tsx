@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import styles from "./SearchBar.module.css";
 import { Button, Input } from "semantic-ui-react";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";

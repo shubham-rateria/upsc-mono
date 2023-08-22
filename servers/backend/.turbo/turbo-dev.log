@@ -1,12 +1,12 @@
-(node:47547) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:52243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 09:26:06 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 10:52:31 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:47561) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:52259) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,787 +19,324 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mGET /api/toppers [32m200[0m 105.951 ms - 13416[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 788.061 ms - 76516[0m
-searching for forest resources
+[0mGET /favicon.ico [33m404[0m 3.088 ms - 34[0m
+[0mGET /favicon.ico [33m404[0m 0.500 ms - 34[0m
+[0mGET /api/toppers [32m200[0m 112.110 ms - 13416[0m
+Finding keywords [
+  'Polity',
+  'Indian Constitution',
+  'Historical Underpinning & Evolution',
+  'Regulating Act (1773) to Independence Act (1947)',
+  'Constituent Assembly',
+  'Objective Resolution',
+  'Enactment & Enforcement of Constitution',
+  'Features',
+  'Written',
+  'Flexible & Rigid',
+  'Federal & Unitary',
+  'Parliamentary Form of Government (Presidential vs. Parliamentary Type of Government)',
+  'Amendments',
+  'List of Significant Amendments & Their Provisions',
+  'Procedure for Amending Constitution',
+  'Basic Features',
+  'The Doctrine',
+  'Judgments & Cases',
+  'Significant Provisions',
+  'Fundamental Rights',
+  'Directive Principles of State Policy',
+  'Judicial Review',
+  'Universal Adult Franchise',
+  'Single Citizenship',
+  'Separation of Powers',
+  'Functions & Responsibilities of the Union and the States',
+  '7th Schedule',
+  'Legislative Functions',
+  'Financial Functions',
+  'Administrative & Quasi-Judicial Functions',
+  'Issues & Challenges Pertaining to the Federal Structure',
+  'Federal Structure in India - Is India truly Federal?',
+  'Cooperative & Competitive Federalism',
+  'Centre-State Relations',
+  'Legislative Relations',
+  'Administrative Relations',
+  'Financial Relations',
+  'Trends in Centre-State Relations',
+  'Inter-State Relations',
+  'Inter-state Water Disputes',
+  'Inter-State Councils',
+  'Public Acts, Records and Judicial Proceedings',
+  'Inter-State Trade and Commerce',
+  'Zonal Councils',
+  'Emergency Provisions',
+  'Role of Governor',
+  'Reports of Various Commissions',
+  '2nd ARC, Punchhi, Sarkaria, etc.',
+  'Devolution of Powers & Finances to Local Levels & Challenges Therein',
+  'Role of State Government',
+  'Role of State Finance Commission',
+  '11th & 12th Schedule',
+  'Reasons for Ineffective Performance',
+  'Panchayat Devolution Index (NITI Aayog)',
+  'Steps That Can Be Taken to Improve Their Performance',
+  'Separation of Powers Between Various Organs',
+  'Doctrine of Separation of Power',
+  'Separation of Power in Indian Constitution',
+  'Doctrine of Checks & Balances',
+  'Provisions for Checks & Balances in Indian Constitution',
+  'Related Judgments - Golaknath case, Kesavananda Bharati, Indira Gandhi Vs Raj Narain, Ram Jawaya vs Punjab',
+  'Dispute Redressal Mechanisms and Institutions',
+  'RTI',
+  'PIL',
+  'Tribunals, etc.',
+  'Comparison of the Indian Constitutional Scheme With That of Other Countries Parliament & State Legislatures',
+  'Structure, Functioning, Conduct of Business, Powers & Privileges',
+  'Written Constitution',
+  'Blend of Rigidity and Flexibility',
+  'Federal System with Unitary Bias',
+  'Parliamentary Form of Government',
+  'Synthesis of Parliamentary Sovereignty and Judicial Supremacy',
+  'Integrated and Independent Judiciary',
+  'Fundamental Rights, Directive Principles of State Policy, Fundamental Duties',
+  'Secular State',
+  'Universal Adult Franchise',
+  'Single Citizenship',
+  'Emergency Provisions',
+  'Three-tier Government',
+  'Due Process of Law vs. Procedure Established by Law',
+  'Impeachment of President, etc.',
+  'Structure, Organization & Functioning of the Executive and the Judiciary',
+  'Executive',
+  'Union',
+  'President',
+  'Prime Minister',
+  'Council of Ministers',
+  'Cabinet Secretariat',
+  'State',
+  'Governor',
+  'Chief Minister',
+  'Council of Ministers',
+  'Secretariat',
+  'Judiciary',
+  'Three-Tier Structure',
+  'Chief Justice of India',
+  'SC & HC Judges',
+  'Jurisdiction',
+  'Ministries and Departments of the Government',
+  'Cabinet Ministries',
+  ... 59 more items
+]
 {
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
+  additionalQueries: { '$match': { l0_categories: 2 } },
+  documentType: undefined
 }
-found docs 469
-Keyword search documents 188
-[0mPOST /api/documents [32m200[0m 4505.392 ms - 85134[0m
-searching for forest resources
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 3000
-Keyword search documents 1016
-[0mPOST /api/documents [32m200[0m 2675.847 ms - 256900[0m
-[INFO] 09:31:53 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:47880) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[INFO] 09:32:46 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:47937) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[INFO] 09:32:51 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:47951) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[INFO] 09:33:03 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:47972) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[0mGET /api/toppers [32m200[0m 96.373 ms - 13416[0m
-Finding keywords [
-  'Types & Distribution – Grasslands, Forests etc.',
-  'Causes of Depletion',
-  'Conservation of Forests',
-  'Forest Resources'
-]
-keywordResults 10
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 4503.667 ms - 63389[0m
-[INFO] 09:34:12 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-keyword.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48055) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[0mPOST /api/documents [32m200[0m 12.659 ms - 26[0m
-Finding keywords [
-  'Concept of Secularism',
-  'Indian Model of Secularism',
-  'Secularism in India',
-  'Nature & Practice of Secularism in India',
-  'Uniform Civil Code',
-  'Challenges faced by Secularism in India',
-  'Measures to Make India Truly Secular',
-  'Secularism'
-]
-keywordResults 10
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 6934.775 ms - 161371[0m
-[INFO] 09:36:07 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48154) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[0mGET /api/toppers [32m200[0m 92.194 ms - 13416[0m
-Finding keywords [
-  'Concept of Secularism',
-  'Indian Model of Secularism',
-  'Secularism in India',
-  'Nature & Practice of Secularism in India',
-  'Uniform Civil Code',
-  'Challenges faced by Secularism in India',
-  'Measures to Make India Truly Secular',
-  'Secularism'
-]
-keywordResults 37
-tagSearchResults 37
-[0mPOST /api/documents [32m200[0m 187.881 ms - 41574[0m
-[0mPOST /api/documents [32m200[0m 3.266 ms - 26[0m
-Finding keywords [
-  'Indian Paintings',
-  'Mural Paintings',
-  'Miniature Paintings',
-  'Mughal, Rajput, Pahari Paintings',
-  'Dances in India',
-  'Classical Dance Forms',
-  'Folk Dance Forms',
-  'Modern Dance',
-  'Music',
-  'Classical Music',
-  'Folk Music',
-  'Puppetry',
-  'String Puppets',
-  'Shadow Puppets',
-  'Rod Puppets',
-  'Glove puppets',
-  'Modern Puppetry',
-  'Tribal Puppetry',
-  'Pottery',
-  'Ochre Coloured Pottery(OCP)',
-  'Black and Red Ware (BRW)',
-  'Painted Grey Ware (PGW)',
-  'Northern Black Polished Ware (NBPW)',
-  'Glazed and Unglazed Pottery',
-  'Drama/Theatre',
-  'Classical Sanskrit Theatre',
-  'Regional Theatre',
-  'Modern Theatre',
-  'Martial Arts',
-  'Thang Ta',
-  'Gatka',
-  'Kalaripayattu',
-  'Mallakhamb',
-  'Silambam',
-  'Other Important Martial Arts',
-  'Visual Art',
-  'Sculptures of Harappan Civilization',
-  'Sculptures of the Mauryan Age',
-  'Post-Mauryan Period',
-  'Jain Sculptures',
-  'Buddhist Sculpture',
-  'Gupta Sculpture',
-  'Medieval School of Sculpture',
-  'Modern Indian Sculpture',
-  'Bhakti & Sufi Movements',
-  'Spread of Bhakti and Sufi Movements',
-  'Women Poets of Bhakti',
-  'Indian Art Forms'
-]
-keywordResults 33
-tagSearchResults 33
-[0mPOST /api/documents [32m200[0m 317.797 ms - 48021[0m
-Finding keywords [
-  'Indian Paintings',
-  'Mural Paintings',
-  'Miniature Paintings',
-  'Mughal, Rajput, Pahari Paintings',
-  'Dances in India',
-  'Classical Dance Forms',
-  'Folk Dance Forms',
-  'Modern Dance',
-  'Music',
-  'Classical Music',
-  'Folk Music',
-  'Puppetry',
-  'String Puppets',
-  'Shadow Puppets',
-  'Rod Puppets',
-  'Glove puppets',
-  'Modern Puppetry',
-  'Tribal Puppetry',
-  'Pottery',
-  'Ochre Coloured Pottery(OCP)',
-  'Black and Red Ware (BRW)',
-  'Painted Grey Ware (PGW)',
-  'Northern Black Polished Ware (NBPW)',
-  'Glazed and Unglazed Pottery',
-  'Drama/Theatre',
-  'Classical Sanskrit Theatre',
-  'Regional Theatre',
-  'Modern Theatre',
-  'Martial Arts',
-  'Thang Ta',
-  'Gatka',
-  'Kalaripayattu',
-  'Mallakhamb',
-  'Silambam',
-  'Other Important Martial Arts',
-  'Visual Art',
-  'Sculptures of Harappan Civilization',
-  'Sculptures of the Mauryan Age',
-  'Post-Mauryan Period',
-  'Jain Sculptures',
-  'Buddhist Sculpture',
-  'Gupta Sculpture',
-  'Medieval School of Sculpture',
-  'Modern Indian Sculpture',
-  'Bhakti & Sufi Movements',
-  'Spread of Bhakti and Sufi Movements',
-  'Women Poets of Bhakti',
-  'Indian Art Forms'
-]
-keywordResults 45
-tagSearchResults 45
-[0mPOST /api/documents [32m200[0m 545.981 ms - 46939[0m
-[INFO] 09:36:55 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48206) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[0mGET /api/toppers [32m200[0m 98.136 ms - 13416[0m
-Finding keywords [
-  'Indian Paintings',
-  'Mural Paintings',
-  'Miniature Paintings',
-  'Mughal, Rajput, Pahari Paintings',
-  'Dances in India',
-  'Classical Dance Forms',
-  'Folk Dance Forms',
-  'Modern Dance',
-  'Music',
-  'Classical Music',
-  'Folk Music',
-  'Puppetry',
-  'String Puppets',
-  'Shadow Puppets',
-  'Rod Puppets',
-  'Glove puppets',
-  'Modern Puppetry',
-  'Tribal Puppetry',
-  'Pottery',
-  'Ochre Coloured Pottery(OCP)',
-  'Black and Red Ware (BRW)',
-  'Painted Grey Ware (PGW)',
-  'Northern Black Polished Ware (NBPW)',
-  'Glazed and Unglazed Pottery',
-  'Drama/Theatre',
-  'Classical Sanskrit Theatre',
-  'Regional Theatre',
-  'Modern Theatre',
-  'Martial Arts',
-  'Thang Ta',
-  'Gatka',
-  'Kalaripayattu',
-  'Mallakhamb',
-  'Silambam',
-  'Other Important Martial Arts',
-  'Visual Art',
-  'Sculptures of Harappan Civilization',
-  'Sculptures of the Mauryan Age',
-  'Post-Mauryan Period',
-  'Jain Sculptures',
-  'Buddhist Sculpture',
-  'Gupta Sculpture',
-  'Medieval School of Sculpture',
-  'Modern Indian Sculpture',
-  'Bhakti & Sufi Movements',
-  'Spread of Bhakti and Sufi Movements',
-  'Women Poets of Bhakti',
-  'Indian Art Forms'
-]
 keywordResults 19
 tagSearchResults 19
-[0mPOST /api/documents [32m200[0m 125.055 ms - 23782[0m
-[0mPOST /api/documents [32m200[0m 1.569 ms - 26[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 10
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 121.596 ms - 16996[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 70.182 ms - 10875[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 99.629 ms - 5327[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 10
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 71.926 ms - 16996[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 6
-tagSearchResults 6
-[0mPOST /api/documents [32m200[0m 78.165 ms - 7451[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 10
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 93.027 ms - 16996[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-keywordResults 10
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 140.615 ms - 16996[0m
+[0mPOST /api/documents [32m200[0m 314.334 ms - 27110[0m
 Finding keywords [
-  'Ethics and Human Interface',
-  'Essence, Determinants, Consequences of Ethics in Human Actions',
-  'Dimensions of Ethics',
-  'Ethics in Private and Public Relationships',
-  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
-  'Role of Family, Society, and Educational Institutions in Inculcating Values',
-  'Ethics and Human Interface'
-]
-keywordResults 24
-tagSearchResults 24
-[0mPOST /api/documents [32m200[0m 189.639 ms - 30571[0m
-Finding keywords [
-  'Ethics and Human Interface',
-  'Essence, Determinants, Consequences of Ethics in Human Actions',
-  'Dimensions of Ethics',
-  'Ethics in Private and Public Relationships',
-  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
-  'Role of Family, Society, and Educational Institutions in Inculcating Values',
-  'Ethics and Human Interface'
-]
-keywordResults 24
-tagSearchResults 24
-[0mPOST /api/documents [32m200[0m 110.552 ms - 30571[0m
-[INFO] 09:40:58 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48409) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-Finding keywords [
-  'Ethics and Human Interface',
-  'Essence, Determinants, Consequences of Ethics in Human Actions',
-  'Dimensions of Ethics',
-  'Ethics in Private and Public Relationships',
-  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
-  'Role of Family, Society, and Educational Institutions in Inculcating Values',
-  'Ethics and Human Interface'
-]
-keywordResults 24
-tagSearchResults 24
-[0mPOST /api/documents [32m200[0m 137.664 ms - 30571[0m
-[INFO] 09:41:23 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48441) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-Finding keywords [
-  'Ethics and Human Interface',
-  'Essence, Determinants, Consequences of Ethics in Human Actions',
-  'Dimensions of Ethics',
-  'Ethics in Private and Public Relationships',
-  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
-  'Role of Family, Society, and Educational Institutions in Inculcating Values',
-  'Ethics and Human Interface'
-]
-{ additionalQueries: { '$match': { l0_categories: 4 } } }
-keywordResults 24
-tagSearchResults 24
-[0mPOST /api/documents [32m200[0m 135.172 ms - 30571[0m
-[INFO] 09:41:42 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-Compilation error in /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts
-[ERROR] 09:41:42 ⨯ Unable to compile TypeScript:
-utils/search-by-subject-tags.ts(99,36): error TS2552: Cannot find name 'document_type'. Did you mean 'documentType'?
-
-(node:48467) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-[INFO] 09:41:46 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-subject-tags.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48492) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-Finding keywords [
-  'Ethics and Human Interface',
-  'Essence, Determinants, Consequences of Ethics in Human Actions',
-  'Dimensions of Ethics',
-  'Ethics in Private and Public Relationships',
-  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
-  'Role of Family, Society, and Educational Institutions in Inculcating Values',
-  'Ethics and Human Interface'
+  'Polity',
+  'Indian Constitution',
+  'Historical Underpinning & Evolution',
+  'Regulating Act (1773) to Independence Act (1947)',
+  'Constituent Assembly',
+  'Objective Resolution',
+  'Enactment & Enforcement of Constitution',
+  'Features',
+  'Written',
+  'Flexible & Rigid',
+  'Federal & Unitary',
+  'Parliamentary Form of Government (Presidential vs. Parliamentary Type of Government)',
+  'Amendments',
+  'List of Significant Amendments & Their Provisions',
+  'Procedure for Amending Constitution',
+  'Basic Features',
+  'The Doctrine',
+  'Judgments & Cases',
+  'Significant Provisions',
+  'Fundamental Rights',
+  'Directive Principles of State Policy',
+  'Judicial Review',
+  'Universal Adult Franchise',
+  'Single Citizenship',
+  'Separation of Powers',
+  'Functions & Responsibilities of the Union and the States',
+  '7th Schedule',
+  'Legislative Functions',
+  'Financial Functions',
+  'Administrative & Quasi-Judicial Functions',
+  'Issues & Challenges Pertaining to the Federal Structure',
+  'Federal Structure in India - Is India truly Federal?',
+  'Cooperative & Competitive Federalism',
+  'Centre-State Relations',
+  'Legislative Relations',
+  'Administrative Relations',
+  'Financial Relations',
+  'Trends in Centre-State Relations',
+  'Inter-State Relations',
+  'Inter-state Water Disputes',
+  'Inter-State Councils',
+  'Public Acts, Records and Judicial Proceedings',
+  'Inter-State Trade and Commerce',
+  'Zonal Councils',
+  'Emergency Provisions',
+  'Role of Governor',
+  'Reports of Various Commissions',
+  '2nd ARC, Punchhi, Sarkaria, etc.',
+  'Devolution of Powers & Finances to Local Levels & Challenges Therein',
+  'Role of State Government',
+  'Role of State Finance Commission',
+  '11th & 12th Schedule',
+  'Reasons for Ineffective Performance',
+  'Panchayat Devolution Index (NITI Aayog)',
+  'Steps That Can Be Taken to Improve Their Performance',
+  'Separation of Powers Between Various Organs',
+  'Doctrine of Separation of Power',
+  'Separation of Power in Indian Constitution',
+  'Doctrine of Checks & Balances',
+  'Provisions for Checks & Balances in Indian Constitution',
+  'Related Judgments - Golaknath case, Kesavananda Bharati, Indira Gandhi Vs Raj Narain, Ram Jawaya vs Punjab',
+  'Dispute Redressal Mechanisms and Institutions',
+  'RTI',
+  'PIL',
+  'Tribunals, etc.',
+  'Comparison of the Indian Constitutional Scheme With That of Other Countries Parliament & State Legislatures',
+  'Structure, Functioning, Conduct of Business, Powers & Privileges',
+  'Written Constitution',
+  'Blend of Rigidity and Flexibility',
+  'Federal System with Unitary Bias',
+  'Parliamentary Form of Government',
+  'Synthesis of Parliamentary Sovereignty and Judicial Supremacy',
+  'Integrated and Independent Judiciary',
+  'Fundamental Rights, Directive Principles of State Policy, Fundamental Duties',
+  'Secular State',
+  'Universal Adult Franchise',
+  'Single Citizenship',
+  'Emergency Provisions',
+  'Three-tier Government',
+  'Due Process of Law vs. Procedure Established by Law',
+  'Impeachment of President, etc.',
+  'Structure, Organization & Functioning of the Executive and the Judiciary',
+  'Executive',
+  'Union',
+  'President',
+  'Prime Minister',
+  'Council of Ministers',
+  'Cabinet Secretariat',
+  'State',
+  'Governor',
+  'Chief Minister',
+  'Council of Ministers',
+  'Secretariat',
+  'Judiciary',
+  'Three-Tier Structure',
+  'Chief Justice of India',
+  'SC & HC Judges',
+  'Jurisdiction',
+  'Ministries and Departments of the Government',
+  'Cabinet Ministries',
+  ... 59 more items
 ]
 {
-  additionalQueries: { '$match': { l0_categories: 4 } },
-  documentType: undefined
-}
-keywordResults 24
-tagSearchResults 24
-[0mPOST /api/documents [32m200[0m 152.102 ms - 30571[0m
-Finding keywords [
-  'Ethics and Human Interface',
-  'Essence, Determinants, Consequences of Ethics in Human Actions',
-  'Dimensions of Ethics',
-  'Ethics in Private and Public Relationships',
-  'Human Values - Lessons from the Lives and Teachings of Great Leaders, Reformers, and Administrators',
-  'Role of Family, Society, and Educational Institutions in Inculcating Values',
-  'Ethics and Human Interface'
-]
-{
-  additionalQueries: { '$match': { l0_categories: 4, document_type: 1 } },
-  documentType: 1
-}
-keywordResults 1
-tagSearchResults 1
-[0mPOST /api/documents [32m200[0m 96.278 ms - 793[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 1 } },
-  documentType: 1
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 69.107 ms - 10875[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 1 } },
-  documentType: 1
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 65.468 ms - 5327[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 51.701 ms - 6146[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 2
-tagSearchResults 2
-[0mPOST /api/documents [32m200[0m 60.431 ms - 2149[0m
-getting doc id
-[0mGET /api/documents/64c7d3d3d0cb65f1ad4af069 [32m201[0m 54.968 ms - 14828[0m
-[0mGET /api/toppers [32m200[0m 92.922 ms - 13416[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 107.311 ms - 3212[0m
-Finding keywords [ 'Evolution of Indian Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 124.112 ms - 26[0m
-[0mPOST /api/documents [32m200[0m 2.583 ms - 26[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 115.573 ms - 5895[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 8
-tagSearchResults 8
-[0mPOST /api/documents [32m200[0m 121.638 ms - 6933[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 117.125 ms - 3268[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 126.985 ms - 5658[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 117.856 ms - 4552[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 136.752 ms - 3829[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 6
-tagSearchResults 6
-[0mPOST /api/documents [32m200[0m 139.107 ms - 5311[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 152.104 ms - 4630[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 7
-tagSearchResults 7
-[0mPOST /api/documents [32m200[0m 163.606 ms - 5673[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15, document_type: 0 } },
-  documentType: 0
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 154.416 ms - 4098[0m
-Finding keywords [ 'Union Government and Administration' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 7
-tagSearchResults 7
-[0mPOST /api/documents [32m200[0m 68.723 ms - 9787[0m
-[0mPOST /api/documents [32m200[0m 1.068 ms - 26[0m
-Finding keywords [ 'Civil Services' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 95.109 ms - 3759[0m
-Finding keywords [ 'Civil Services' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 2
-tagSearchResults 2
-[0mPOST /api/documents [32m200[0m 105.033 ms - 1606[0m
-Finding keywords [ 'Civil Services' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 107.777 ms - 3743[0m
-Finding keywords [ 'Civil Services' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 5
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 114.645 ms - 4526[0m
-Finding keywords [ 'Civil Services' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 4
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 4
-tagSearchResults 8
-[0mPOST /api/documents [32m200[0m 152.689 ms - 8496[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 60.143 ms - 4762[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 3
-tagSearchResults 3
-[0mPOST /api/documents [32m200[0m 124.495 ms - 4020[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 2
-tagSearchResults 2
-[0mPOST /api/documents [32m200[0m 113.314 ms - 1622[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
+  additionalQueries: {
+    '$match': {
+      l0_categories: 2,
+      'topper.name': 'ASAD ZUBERI',
+      'topper.rank': '86',
+      'topper.year': '2022'
+    }
+  },
   documentType: undefined
 }
 keywordResults 1
 tagSearchResults 1
-[0mPOST /api/documents [32m200[0m 117.203 ms - 807[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 121.657 ms - 3232[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 2
-tagSearchResults 2
-[0mPOST /api/documents [32m200[0m 142.199 ms - 3736[0m
-Finding keywords [ 'Urban Local Development' ]
-{
-  additionalQueries: { '$match': { l0_categories: 15 } },
-  documentType: undefined
-}
-keywordResults 3
-tagSearchResults 3
-[0mPOST /api/documents [32m200[0m 119.564 ms - 2403[0m
-[0mPOST /api/documents [32m200[0m 1.484 ms - 26[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1104.532 ms - 78081[0m
-searching for urban local development
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 3000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 144
-Keyword search documents 32
-[0mPOST /api/documents [32m200[0m 3962.405 ms - 104050[0m
-[INFO] 09:48:34 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-keyword.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48938) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[INFO] 09:48:36 Restarting: /Users/rateria/Code/upsc-web-app/serv
+[0mPOST /api/documents [32m200[0m 260.942 ms - 833[0m
+Found 13 for topper
+[0mPOST /api/documents [32m200[0m 994.516 ms - 69548[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 51.590 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 51.131 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.566 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.055 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.758 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.539 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.597 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 50.723 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.634 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.658 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.648 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.798 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 50.960 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.440 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.472 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 46.390 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.876 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.781 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.401 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.899 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.548 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 50.246 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.378 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.870 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.628 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.552 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 50.704 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 50.485 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.156 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.981 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.729 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.056 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.246 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.309 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.237 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 52.959 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.853 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.735 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 52.524 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.992 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.195 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.472 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 50.657 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 46.914 ms - 26[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed.[39m

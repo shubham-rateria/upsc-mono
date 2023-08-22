@@ -108,38 +108,6 @@ export default (app: Router) => {
       }
     }
 
-    /**
-     * if document type is not null
-     * get the documents that have the matching document type
-     * and filter unique documents by that
-     */
-    // if (
-    //   searchParams.documentType !== null &&
-    //   searchParams.documentType !== undefined
-    // ) {
-    //   if (documentsResult.length > 0) {
-    //     documentsResult = documentsResult.filter((document) => {
-    //       if (
-    //         document.document_type !== null &&
-    //         document.document_type !== undefined
-    //       ) {
-    //         return document.document_type === searchParams.documentType;
-    //       } else {
-    //         console.log("no doc type", document._id);
-    //       }
-    //     });
-    //   } else {
-    //     const docTypeResults = await DocumentModel.find({
-    //       document_type: searchParams.documentType,
-    //     })
-    //       .lean()
-    //       .exec();
-    //     for (const doc of docTypeResults) {
-    //       // get the first 5 pages of this doc
-    //     }
-    //   }
-    // }
-
     documentsResult = await Promise.all(
       documentsResult.map(async (doc) => {
         const pages = await fillDocWithPages(doc);
