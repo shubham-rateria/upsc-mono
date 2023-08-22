@@ -122,9 +122,9 @@ const SearchPage = observer(() => {
               {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
                 !searchParamsClass.searching && (
                   <div className={styles.DocFound}>
-                    {`${
+                    {`Showing ${
                       searchParamsClass.docSearchResults?.length ?? -1
-                    } documents found`}
+                    } documents of many`}
                   </div>
                 )}
               <div className={styles.Action}>
