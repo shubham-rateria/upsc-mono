@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stytch/react": "^7.0.0",
+    "@stytch/vanilla-js": "^2.0.1",
     "axios": "^1.4.0",
     "clsx": "^2.0.0",
     "eslint": "8.45.0",

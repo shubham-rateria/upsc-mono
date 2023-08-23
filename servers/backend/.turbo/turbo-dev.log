@@ -1,12 +1,12 @@
-(node:72687) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:97842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 17:26:59 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 10:35:44 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:72703) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:97856) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,78 +19,37 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[INFO] 17:30:19 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/utils/search-by-keyword.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:72856) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[0mGET /favicon.ico [33m404[0m 2.599 ms - 34[0m
-[0mGET /favicon.ico [33m404[0m 0.256 ms - 34[0m
-[0mGET /api/toppers [32m200[0m 96.658 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 82.343 ms - 13416[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 851.642 ms - 77166[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 23
-Keyword search documents 11
-[0mPOST /api/documents [32m200[0m 148.452 ms - 18356[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 23
-Keyword search documents 11
-[0mPOST /api/documents [32m200[0m 129.915 ms - 18356[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 23
-Keyword search documents 11
-[0mPOST /api/documents [32m200[0m 134.033 ms - 18356[0m
-searching for cryptocurrency
+[0mPOST /api/documents [32m200[0m 712.443 ms - 76516[0m
+[0mPOST /api/documents [32m200[0m 2.078 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 83.865 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 301.462 ms - 13416[0m
+Found 4 for topper
+[0mPOST /api/documents [32m200[0m 1836.649 ms - 21287[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 53.706 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 130.678 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 0.919 ms - 26[0m
+[0mPOST /api/user/allow-beta-user [32m200[0m 46.325 ms - 16[0m
+[0mGET /api/toppers [32m200[0m 104.540 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 99.537 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 90.944 ms - 13416[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 725.455 ms - 76516[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1663.578 ms - 80040[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 2606.098 ms - 79159[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 2277.925 ms - 80040[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1846.158 ms - 75997[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 2062.971 ms - 77059[0m
+[0mPOST /api/documents [32m200[0m 1.009 ms - 26[0m
+searching for mehak jain
 {
   pipeline: [
     { '$search': [Object] },
@@ -103,10 +62,10 @@ searching for cryptocurrency
     { '$project': [Object] }
   ]
 }
-found docs 137
-Keyword search documents 83
-[0mPOST /api/documents [32m200[0m 275.543 ms - 45643[0m
-searching for cryptocurrency
+found docs 959
+Keyword search documents 360
+[0mPOST /api/documents [32m200[0m 1012.451 ms - 63230[0m
+searching for mehak jain
 {
   pipeline: [
     { '$search': [Object] },
@@ -116,15 +75,32 @@ searching for cryptocurrency
     { '$addFields': [Object] },
     { '$lookup': [Object] },
     { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
+    { '$project': [Object] }
   ]
 }
-found docs 7
-Keyword search documents 5
-[0mPOST /api/documents [32m200[0m 89.048 ms - 5987[0m
-searching for cryptocurrency
-{
-  pipeline: [
-    { '$search': [Object] },
-    
+found docs 959
+Keyword search documents 360
+[0mPOST /api/documents [32m200[0m 994.005 ms - 172037[0m
+[0mPOST /api/documents [32m200[0m 1.114 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 2019.033 ms - 77059[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 466.742 ms - 77059[0m
+Found 1 for topper
+[0mPOST /api/documents [32m200[0m 762.821 ms - 2881[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 174.207 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 0.513 ms - 26[0m
+Found 1 for topper
+[0mPOST /api/documents [32m200[0m 204.583 ms - 2881[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.127 ms - 26[0m
+getting doc id
+[0mGET /api/documents/64be22f0abbb06888bf028fd [32m201[0m 43.130 ms - 4393[0m
+getting doc id
+[0mGET /api/documents/64be22f0abbb06888bf028fd [32m201[0m 40.372 ms - 4393[0m
+[0mGET /api/toppers [32m200[0m 92.905 ms - 13479[0m
+Found 5 for topper
+[0mPOST /api/documents [32m200[0m 317.445 ms - 26965[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 164.546 

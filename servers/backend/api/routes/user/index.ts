@@ -1,31 +1,103 @@
 import { Router, Request, Response } from "express";
 import { UserModel } from "../../../models/user";
-import stytch from "stytch";
+import jwt from "jsonwebtoken";
+import authMiddleware from "../../../middlewares/auth.middleware";
+import axios from "axios";
+
+const stytch = require("stytch");
 
 const route = Router();
 
-const client = new stytch.Client({
-  project_id: "project-test-1922a505-c16b-4984-b69a-a950470b4ae3",
-  secret: "secret-test-F1XvCGiRjs2AhM02sBEo2ZtGMsIQtw9hPWk=",
+const axiosInstance = axios.create({
+  baseURL: "https://test.stytch.com/v1/otps",
+  headers: {
+    Authorization:
+      "Basic " +
+      btoa(
+        "project-test-1922a505-c16b-4984-b69a-a950470b4ae3" +
+          ":" +
+          "secret-test-F1XvCGiRjs2AhM02sBEo2ZtGMsIQtw9hPWk="
+      ),
+  },
 });
-
-const params = {
-  user_id: "user-test-16d9ba61-97a1-4ba4-9720-b03761dc50c6",
-};
 
 export default (app: Router) => {
   app.use("/user", route);
 
-  route.post("/login-otp-beta", async (req: Request, res: Response) => {
+  route.get("/me", authMiddleware, async (req: any, res) => {
+    res.json({ user: req.user });
+  });
+
+  route.post("/allow-beta-user", async (req, res) => {
     const { phone } = req.body;
 
-    // check if user exists
-    const user = await UserModel.findOne({
-      phone,
-      beta_user: true,
-    }).exec();
+    const user = await UserModel.findOne({ phone, beta_user: true });
 
-    if (user) {
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
     }
+
+    res.status(200).json({ success: true });
+  });
+
+  // Login handler
+  route.post("/login", async (req, res) => {
+    const { email } = req.body;
+
+    // Authenticate user (this is a simplified example)
+    const user = await UserModel.findOne({ email, beta_user: true });
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const params = { email };
+
+    const sres = await axiosInstance.post("/email/login_or_create", params);
+
+    res.json({
+      success: true,
+      data: {
+        email_id: sres.data.email_id,
+      },
+    });
+  });
+
+  route.post("/submit-otp", async (req, res) => {
+    const { email, email_id, otp } = req.body;
+
+    // Authenticate user (this is a simplified example)
+    const user = await UserModel.findOne({ email, beta_user: true });
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const params = {
+      method_id: email_id,
+      code: otp,
+    };
+
+    const stytchRes = await axiosInstance.post("/authenticate", params);
+
+    if (stytchRes.data.status_code === 200) {
+      // Create a JWT and set it in a cookie
+      const token = jwt.sign({ userId: user._id }, "your-secret-key", {
+        expiresIn: "24h",
+      });
+      res.cookie("jwt", token, { httpOnly: true });
+      res.json({ message: "Login successful" });
+    } else {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+  });
+
+  // Logout handler
+  route.post("/logout", (req, res) => {
+    // Clear the JWT cookie
+    res.clearCookie("jwt");
+    res.json({ message: "Logout successful" });
   });
 };
