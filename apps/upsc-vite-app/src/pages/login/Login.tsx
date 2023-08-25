@@ -1,12 +1,11 @@
 import { useStytchUser, useStytch } from "@stytch/react";
-import { useCallback } from "react";
 import styles from "./Login.module.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { Button, Input } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 function isPhoneNumber(value: string) {
   // Define a regular expression pattern for a phone number with Indian country code +91
