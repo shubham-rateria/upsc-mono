@@ -29,8 +29,6 @@ export const Login = () => {
   const [loading, setLoading] = useState(false);
   const [methodId, setMethodId] = useState("");
 
-  console.log({ user });
-
   const startCountdown = async () => {
     while (resendCodeTimer > 0) {
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
@@ -63,7 +61,6 @@ export const Login = () => {
       const res = await stytchClient.otps.authenticate(otp, methodId, {
         session_duration_minutes: 10000,
       });
-      console.log({ res });
       navigate("/search");
     } catch (error) {
       setError(true);
@@ -75,6 +72,19 @@ export const Login = () => {
 
   useEffect(() => {
     if (user.user) {
+      try {
+        // @ts-ignore
+        window.clarity(
+          "identify",
+          user.user.phone_numbers[0].phone_number,
+          null,
+          null,
+          user.user.phone_numbers[0].phone_number
+        );
+      } catch (error) {
+        console.error(error);
+      }
+
       navigate("/search");
     }
   }, []);
@@ -82,7 +92,6 @@ export const Login = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.InnerContainer}>
-        {/* <div className={styles.Welcome}>Welcome to</div> */}
         <div className={styles.Logo}>
           <img src={"/img/logo.svg"} alt="Logo" />
         </div>
