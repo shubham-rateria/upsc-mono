@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "usn-common": "workspace:*",
+    "@stytch/react": "^7.0.0",
+    "@stytch/vanilla-js": "^2.0.1",
     "axios": "^1.4.0",
     "clsx": "^2.0.0",
     "eslint": "8.45.0",
@@ -27,9 +28,12 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-intersection-observer": "^9.5.2",
     "react-pdf": "^7.3.3",
+    "react-phone-number-input": "^3.3.4",
     "react-router-dom": "^6.15.0",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4"
+    "semantic-ui-react": "^2.1.4",
+    "usn-common": "workspace:*",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.197",

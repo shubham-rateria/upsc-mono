@@ -8,6 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 // import { OpticMiddleware } from "@useoptic/express-middleware";
 const api_1 = __importDefault(require("../api"));
 const morgan_1 = __importDefault(require("morgan"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 exports.default = ({ app }) => {
     /**
      * Health Check endpoints
@@ -27,6 +28,7 @@ exports.default = ({ app }) => {
     // Enable Cross Origin Resource Sharing to all origins by default
     app.use((0, cors_1.default)());
     app.use((0, morgan_1.default)("dev"));
+    app.use((0, cookie_parser_1.default)());
     // Some sauce that always add since 2014
     // "Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it."
     // Maybe not needed anymore ?

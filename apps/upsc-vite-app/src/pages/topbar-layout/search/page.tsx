@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import styles from "./SearchPage.module.css"; // Import the CSS module
-import SearchBar from "../../components/SearchBar/SearchBar";
-import ResultSection from "../../components/ResultSection/ResultSection";
-import FilterSection from "../../components/FilterSection/FilterSection";
+import SearchBar from "../../../components/SearchBar/SearchBar";
+import ResultSection from "../../../components/ResultSection/ResultSection";
+import FilterSection from "../../../components/FilterSection/FilterSection";
 import {
   Button,
   Checkbox,
@@ -12,10 +12,10 @@ import {
   Loader,
 } from "semantic-ui-react";
 import { DocumentType, Tag } from "usn-common";
-import { SearchParamsContext } from "../../contexts/SearchParamsContext";
+import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
-import globalStyles from "../../styles/global.module.css";
+import globalStyles from "../../../styles/global.module.css";
 import { InView } from "react-intersection-observer";
 
 const SearchPage = observer(() => {

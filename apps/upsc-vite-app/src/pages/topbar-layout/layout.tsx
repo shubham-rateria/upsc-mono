@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./layout.module.css";
-import TopNavBar from "../components/TopNavbar/TopNavBar";
+import TopNavBar from "../../components/TopNavbar/TopNavBar";
 // import SearchParamsContextProvider from "../contexts/SearchParamsContextProvider";
 
 export default function TopBarLayout({
@@ -12,12 +12,10 @@ export default function TopBarLayout({
 }) {
   return (
     <div className={styles.Container}>
-      {/* <SearchParamsContextProvider> */}
       <div className={styles.TopNavContainer}>
         <TopNavBar />
       </div>
       <div className={styles.Children}>{children}</div>
-      {/* </SearchParamsContextProvider> */}
     </div>
   );
 }

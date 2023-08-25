@@ -3,6 +3,7 @@ import cors from "cors";
 // import { OpticMiddleware } from "@useoptic/express-middleware";
 import routes from "../api";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 export default ({ app }: { app: express.Application }) => {
   /**
@@ -26,6 +27,8 @@ export default ({ app }: { app: express.Application }) => {
   app.use(cors());
 
   app.use(morgan("dev"));
+
+  app.use(cookieParser());
 
   // Some sauce that always add since 2014
   // "Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it."

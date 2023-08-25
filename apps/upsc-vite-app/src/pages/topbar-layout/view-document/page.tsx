@@ -6,9 +6,9 @@ import "./DocumentViewer.css";
 import { Button, Checkbox, Icon, Input, Progress } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
-import axiosInstance from "../../utils/axios-instance";
+import axiosInstance from "../../../utils/axios-instance";
 import { useNavigate } from "react-router-dom";
-import { SearchParamsContext } from "../../contexts/SearchParamsContext";
+import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 

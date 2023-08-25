@@ -520,14 +520,14 @@ export const gs2Categories = {
             'OPEC Oil Prices Manipulation, etc.',
           ],
         'Indian Diaspora': {
-          'Spread of Indian Diaspora': '',
+          'Spread of Indian Diaspora': [],
           'India’s Diaspora Policy & Engagement Initiatives': [
             'OCI',
             'Pravasi Bharatiya Divas',
             'Know India Programme, etc.',
           ],
-          'LM Singhvi High Level Committee on the Diaspora': '',
-          'Role played by Indian Diaspora': '',
+          'LM Singhvi High Level Committee on the Diaspora': [],
+          'Role played by Indian Diaspora': [],
           'Issues Concerning the Diaspora': [
             'Dual Nationality',
             'Remittances, etc.',

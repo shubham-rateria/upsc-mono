@@ -622,10 +622,10 @@ declare const gs2Categories: {
             };
             "Effect of Policies & Politics of Developed & Developing Countries on India's Interests": string[];
             'Indian Diaspora': {
-                'Spread of Indian Diaspora': string;
+                'Spread of Indian Diaspora': never[];
                 'India\u2019s Diaspora Policy & Engagement Initiatives': string[];
-                'LM Singhvi High Level Committee on the Diaspora': string;
-                'Role played by Indian Diaspora': string;
+                'LM Singhvi High Level Committee on the Diaspora': never[];
+                'Role played by Indian Diaspora': never[];
                 'Issues Concerning the Diaspora': string[];
             };
             'Important International Institutions': string[];
