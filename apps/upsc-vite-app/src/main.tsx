@@ -18,7 +18,7 @@ const stytch = new StytchUIClient(
 );
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  window.innerWidth < 300 ? (
+  window.innerWidth < 600 ? (
     <NoMobileView />
   ) : (
     <StytchProvider stytch={stytch}>
