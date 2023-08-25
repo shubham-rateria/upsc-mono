@@ -23,7 +23,7 @@ export const Login = () => {
   const [resendCodeTimer, setResendCodeTimer] = useState(60);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
-  const [otpSubmitted, setOtpSubmitted] = useState(false);
+  //   const [otpSubmitted, setOtpSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,7 +58,7 @@ export const Login = () => {
   const submitOtp = async () => {
     setLoading(true);
     try {
-      const res = await stytchClient.otps.authenticate(otp, methodId, {
+      await stytchClient.otps.authenticate(otp, methodId, {
         session_duration_minutes: 10000,
       });
       navigate("/search");
