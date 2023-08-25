@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import styles from "./Login.module.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../utils/axios-instance";
+// import axiosInstance from "../../utils/axios-instance";
 
 export const Login = () => {
   const stytchClient = useStytch();
@@ -20,11 +20,11 @@ export const Login = () => {
     if (event.type === "OTP_AUTHENTICATE") {
       // check if the user with the phone number is allowed
       try {
-        const phone = event.data.user.phone_numbers[0].phone_number;
-        console.log({ phone });
-        await axiosInstance.post("/api/user/allow-beta-user", {
-          phone,
-        });
+        // const phone = event.data.user.phone_numbers[0].phone_number;
+        // console.log({ phone });
+        // await axiosInstance.post("/api/user/allow-beta-user", {
+        //   phone,
+        // });
         navigate("/search");
       } catch (error) {
         console.error("beta check error", error);
@@ -38,6 +38,9 @@ export const Login = () => {
       products: ["otp"],
       otpOptions: {
         methods: ["sms"],
+      },
+      sessionOptions: {
+        sessionDurationMinutes: 11000,
       },
     },
     styles: {

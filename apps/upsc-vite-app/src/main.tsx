@@ -14,11 +14,11 @@ import { Login } from "./pages/login/Login.tsx";
 import { AuthContext } from "./contexts/AuthContextProvider.tsx";
 
 const stytch = new StytchUIClient(
-  "public-token-test-6cf07f7e-63c8-4b0e-af28-e6bb0a8f5d3e"
+  "public-token-live-a3d62995-b815-4c9f-a173-37b55b05b087"
 );
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  window.innerWidth < 700 ? (
+  window.innerWidth < 300 ? (
     <NoMobileView />
   ) : (
     <StytchProvider stytch={stytch}>

@@ -1,12 +1,12 @@
-(node:97842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:73317) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 10:35:44 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 10:15:54 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:97856) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:73333) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,37 +19,37 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mGET /api/toppers [32m200[0m 82.343 ms - 13416[0m
+[0mGET /api/toppers [32m200[0m 99.584 ms - 13479[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 712.443 ms - 76516[0m
-[0mPOST /api/documents [32m200[0m 2.078 ms - 26[0m
-[0mGET /api/toppers [32m200[0m 83.865 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 301.462 ms - 13416[0m
-Found 4 for topper
-[0mPOST /api/documents [32m200[0m 1836.649 ms - 21287[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 53.706 ms - 26[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 130.678 ms - 26[0m
-[0mPOST /api/documents [32m200[0m 0.919 ms - 26[0m
-[0mPOST /api/user/allow-beta-user [32m200[0m 46.325 ms - 16[0m
-[0mGET /api/toppers [32m200[0m 104.540 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 99.537 ms - 13416[0m
-[0mGET /api/toppers [32m200[0m 90.944 ms - 13416[0m
+[0mPOST /api/documents [32m200[0m 942.551 ms - 77752[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 725.455 ms - 76516[0m
+[0mPOST /api/documents [32m200[0m 758.037 ms - 77752[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1663.578 ms - 80040[0m
+[0mPOST /api/documents [32m200[0m 689.843 ms - 77752[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 2606.098 ms - 79159[0m
+[0mPOST /api/documents [32m200[0m 444.277 ms - 62952[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 2277.925 ms - 80040[0m
+[0mPOST /api/documents [32m200[0m 459.943 ms - 69754[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1846.158 ms - 75997[0m
+[0mPOST /api/documents [32m200[0m 436.738 ms - 64650[0m
+[0mPOST /api/documents [32m200[0m 1.523 ms - 26[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 2062.971 ms - 77059[0m
-[0mPOST /api/documents [32m200[0m 1.009 ms - 26[0m
-searching for mehak jain
+[0mPOST /api/documents [32m200[0m 484.392 ms - 74705[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 461.293 ms - 72692[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 452.896 ms - 80619[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 466.999 ms - 78779[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 463.167 ms - 74558[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 718.256 ms - 80281[0m
+getting doc id
+[0mGET /api/documents/64c65c8143bc4f6a0bad9321 [32m201[0m 48.609 ms - 13540[0m
+[0mGET /api/toppers [32m200[0m 103.436 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 2.122 ms - 26[0m
+searching for unacademu
 {
   pipeline: [
     { '$search': [Object] },
@@ -62,10 +62,10 @@ searching for mehak jain
     { '$project': [Object] }
   ]
 }
-found docs 959
-Keyword search documents 360
-[0mPOST /api/documents [32m200[0m 1012.451 ms - 63230[0m
-searching for mehak jain
+found docs 0
+Keyword search documents 0
+[0mPOST /api/documents [32m200[0m 285.569 ms - 26[0m
+searching for unacademy
 {
   pipeline: [
     { '$search': [Object] },
@@ -78,29 +78,367 @@ searching for mehak jain
     { '$project': [Object] }
   ]
 }
-found docs 959
-Keyword search documents 360
-[0mPOST /api/documents [32m200[0m 994.005 ms - 172037[0m
-[0mPOST /api/documents [32m200[0m 1.114 ms - 26[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 2019.033 ms - 77059[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 466.742 ms - 77059[0m
-Found 1 for topper
-[0mPOST /api/documents [32m200[0m 762.821 ms - 2881[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 174.207 ms - 26[0m
-[0mPOST /api/documents [32m200[0m 0.513 ms - 26[0m
-Found 1 for topper
-[0mPOST /api/documents [32m200[0m 204.583 ms - 2881[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 39.127 ms - 26[0m
+found docs 326
+Keyword search documents 61
+[0mPOST /api/documents [32m200[0m 1317.938 ms - 92143[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 326
+Keyword search documents 61
+[0mPOST /api/documents [32m200[0m 694.993 ms - 85128[0m
 getting doc id
-[0mGET /api/documents/64be22f0abbb06888bf028fd [32m201[0m 43.130 ms - 4393[0m
+[0mGET /api/documents/64c65c8143bc4f6a0bad9321 [32m201[0m 60.483 ms - 13540[0m
+doc search
+[0mPOST /api/documents/64c65c8143bc4f6a0bad9321/search [32m201[0m 1021.719 ms - 1952[0m
+[0mGET /api/toppers [32m200[0m 110.745 ms - 13479[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 326
+Keyword search documents 61
+[0mPOST /api/documents [32m200[0m 627.516 ms - 58530[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 326
+Keyword search documents 61
+[0mPOST /api/documents [32m200[0m 546.199 ms - 944[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 544.321 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 495.315 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 483.201 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 479.297 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 417.841 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 451.245 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 498.330 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 310
+Keyword search documents 59
+[0mPOST /api/documents [32m200[0m 533.157 ms - 26[0m
 getting doc id
-[0mGET /api/documents/64be22f0abbb06888bf028fd [32m201[0m 40.372 ms - 4393[0m
-[0mGET /api/toppers [32m200[0m 92.905 ms - 13479[0m
-Found 5 for topper
-[0mPOST /api/documents [32m200[0m 317.445 ms - 26965[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 164.546 
+[0mGET /api/documents/64c200390c82f9c8472a5c8b [32m201[0m 60.186 ms - 10712[0m
+doc search
+[0mPOST /api/documents/64c200390c82f9c8472a5c8b/search [32m201[0m 751.443 ms - 2297[0m
+[0mGET /api/toppers [32m200[0m 115.802 ms - 13479[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 146
+Keyword search documents 26
+[0mPOST /api/documents [32m200[0m 431.828 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 109.388 ms - 13479[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 146
+Keyword search documents 26
+[0mPOST /api/documents [32m200[0m 344.145 ms - 72369[0m
+[0mGET /api/toppers [32m200[0m 109.478 ms - 13479[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 89
+Keyword search documents 17
+[0mPOST /api/documents [32m200[0m 288.612 ms - 64206[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 89
+Keyword search documents 17
+[0mPOST /api/documents [32m200[0m 285.065 ms - 26[0m
+searching for unacademy
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 89
+Keyword search documents 17
+[0mPOST /api/documents [32m200[0m 270.144 ms - 26[0m
+searching for byjus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 3
+Keyword search documents 3
+[0mPOST /api/documents [32m200[0m 90.045 ms - 2715[0m
+searching for byjus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 3
+Keyword search documents 3
+[0mPOST /api/documents [32m200[0m 60.572 ms - 26[0m
+searching for byju
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 0
+Keyword search documents 0
+[0mPOST /api/documents [32m200[0m 53.515 ms - 26[0m
+searching for byju
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 0
+Keyword search documents 0
+[0mPOST /api/documents [32m200[0m 58.954 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 482.782 ms - 77752[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 454.978 ms - 62952[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 435.309 ms - 69661[0m
+getting doc id
+[0mGET /api/documents/64c68f7343bc4f6a0badd6c8 [32m201[0m 62.658 ms - 12527[0m
+[0mGET /api/toppers [32m200[0m 128.299 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 509.528 ms - 77752[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 443.902 ms - 68113[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 435.704 ms - 69969[0m
+[0mGET /api/toppers [32m200[0m 118.172 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 487.709 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 454.808 ms - 68156[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 452.226 ms - 59163[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 456.865 ms - 61302[0m
+[0mGET /api/toppers [32m200[0m 109.114 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 480.136 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 420.76

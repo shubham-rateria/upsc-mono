@@ -26,12 +26,12 @@ const TopNavBar = () => {
       <div className={styles.avatarContainer}>
         {user.user && (
           <>
-            <div>
+            {/* <div>
               <Button className={styles.UnlockBtn}>
                 <img src="/icons/mdi_crown.svg" />
                 Unlock Access
               </Button>
-            </div>
+            </div> */}
             <Button onClick={logout} className={styles.LogoutBtn}>
               Logout
             </Button>

@@ -1,3 +1,0 @@
-class Auth {
-  public canUserLogin() {}
-}

@@ -304,6 +304,7 @@ export default async function searchBySubjectTags({
           .select({ pages: 0 })
           .skip((pageNumber - 1) * limit)
           .limit(limit)
+          .sort({ num_pages: -1 })
           .lean();
         // @ts-ignore
         results.push(...l0Results);

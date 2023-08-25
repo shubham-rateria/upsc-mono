@@ -10,15 +10,21 @@ export const AuthContext: FC<Props> = ({ children }) => {
   const user = useStytchUser();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user.user) {
-      navigate("/");
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (!user.user) {
+  //       navigate("/");
+  //     }
+  //   }, [user.user]);
 
-  if (!user.user) {
-    return <>no user</>;
-  } else {
-    return <>{children}</>;
-  }
+  //   if (!user.user) {
+  //     return (
+  //       <div>
+  //         Please <a href="/login">login.</a>
+  //       </div>
+  //     );
+  //   } else {
+  //     return <>{children}</>;
+  //   }
+
+  return <>{children}</>;
 };
