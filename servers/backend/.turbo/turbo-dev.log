@@ -1,0 +1,1068 @@
+(node:33760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `pnpm --trace-warnings ...` to show where the warning was created)
+
+> @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
+> tsnd --respawn app.ts
+
+[INFO] 17:41:11 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:33772) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mGET /api/toppers [32m200[0m 83.586 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 2597.056 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 93.101 ms - 13479[0m
+[0mGET /api/toppers [36m304[0m 102.624 ms - -[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1631.350 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 102.261 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1755.637 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 93.692 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1556.976 ms - 149788[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1642.660 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 97.019 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 99.995 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 122.770 ms - 13479[0m
+[0mGET /api/toppers [36m304[0m 86.968 ms - -[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1469.050 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 112.334 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 82.325 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1554.349 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 95.337 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.904 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1375.743 ms - 149788[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1492.498 ms - 149788[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1472.312 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 89.324 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1412.029 ms - 149788[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1447.890 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 151.833 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1407.956 ms - 149788[0m
+[0mGET /api/toppers [32m200[0m 91.159 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1522.609 ms - 149788[0m
+getting doc id
+[0mGET /api/documents/64b81ec899a912f8fecfe3a8 [32m201[0m 70.710 ms - 8151[0m
+[0mGET /api/toppers [32m200[0m 97.243 ms - 13479[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1450.766 ms - 149788[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 430
+Keyword search documents 168
+[0mPOST /api/documents [32m200[0m 1010.218 ms - 63031[0m
+searching for indus valley civilization
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1993
+Keyword search documents 687
+[0mPOST /api/documents [32m200[0m 1419.305 ms - 149788[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 4
+tagSearchResults 4
+[0mPOST /api/documents [32m200[0m 150.092 ms - 3237[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 1
+tagSearchResults 1
+[0mPOST /api/documents [32m200[0m 103.999 ms - 848[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 53.100 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 44.640 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.173 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.123 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.593 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.099 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.090 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 54.501 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.683 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 60.679 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 53.462 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 54.158 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 53.017 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 103.774 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 68.848 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 50.803 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 45.563 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 64.173 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 46.174 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 57.628 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.076 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.020 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.504 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.373 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.961 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 74.549 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.014 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.408 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.914 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 46.413 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.681 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.239 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 50.055 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 54.245 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 72.515 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 57.627 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 50.699 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.306 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.003 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.575 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.513 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.308 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 66.844 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 50.558 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.674 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 50.678 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 70.743 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 45.233 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 53.271 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 64.350 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.159 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 46.219 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 63.472 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.236 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.078 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.369 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 55.246 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 65.015 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.413 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.342 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.659 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 45.457 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.521 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 58.732 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.537 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 76.774 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.714 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.560 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.360 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.083 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 57.576 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 46.767 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.208 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.689 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.252 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.251 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.845 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 53.068 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 51.142 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.214 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 53.526 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 50.843 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 55.130 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 55.800 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 54.405 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.348 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 60.469 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.373 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 54.820 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 48.352 ms - 26[0m
+Finding keywords [ 'Weeds' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 66.810 ms - 26[0m
+getting doc id
+[0mGET /api/documents/64c624fd43bc4f6a0bad7b5f [32m201[0m 53.041 ms - 4850[0m
+doc search
+[0mPOST /api/documents/64c624fd43bc4f6a0bad7b5f/search [32m201[0m 294.620 ms - 36[0m
+doc search
+[0mPOST /api/documents/64c624fd43bc4f6a0bad7b5f/search [32m201[0m 65.929 ms - 36[0m
+[0mGET /api/toppers [32m200[0m 103.549 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 0.778 ms - 26[0m
+searching for weeds
+{
+  pipelin

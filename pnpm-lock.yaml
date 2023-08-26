@@ -29,6 +29,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+      driver.js:
+        specifier: ^1.2.1
+        version: 1.2.1
       eslint:
         specifier: 8.45.0
         version: 8.45.0
@@ -3264,6 +3267,10 @@ packages:
   /dotenv@16.3.1:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
+    dev: false
+
+  /driver.js@1.2.1:
+    resolution: {integrity: sha512-6nDbVnZdjRgTsJOOmGRmMf/t6cHnMyyZK/wLSbdLZp33I7odPglw1cVlX3TMaPnMDYIJUq7h8a0buejOLqM7XQ==}
     dev: false
 
   /duplexer@0.1.2:

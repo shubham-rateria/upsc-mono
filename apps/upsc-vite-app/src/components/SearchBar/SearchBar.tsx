@@ -48,6 +48,7 @@ const SearchBar: FC = observer(() => {
         value={searchParamsClass.searchParams.keyword || ""}
         onChange={handleChange}
         className={styles.Input}
+        id="search-input"
         labelPosition="right"
         onKeyPress={handleKeyPress}
         label={
@@ -56,6 +57,7 @@ const SearchBar: FC = observer(() => {
             className={styles.Button}
             loading={searchParamsClass.searching}
             disabled={!searchParamsClass.searchParams.keyword}
+            id="search-btn"
           >
             Search
           </Button>

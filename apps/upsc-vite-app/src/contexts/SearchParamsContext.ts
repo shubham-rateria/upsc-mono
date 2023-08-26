@@ -35,7 +35,7 @@ class CancelablePromise {
     this.isCanceled = true;
   }
 
-  async then(onFulfilled: any, onRejected?: any) {
+  public async then(onFulfilled: any, onRejected?: any) {
     return this.promise.then((response: any) => {
       if (this.isCanceled) {
         return Promise.reject(new Error("Promise canceled"));

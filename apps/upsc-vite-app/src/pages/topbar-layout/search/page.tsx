@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
@@ -12,11 +12,16 @@ import {
   Loader,
 } from "semantic-ui-react";
 import { DocumentType, Tag } from "usn-common";
-import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
+import {
+  SearchParamsContext,
+  searchParamsClass,
+} from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
 import globalStyles from "../../../styles/global.module.css";
 import { InView } from "react-intersection-observer";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
@@ -49,6 +54,88 @@ const SearchPage = observer(() => {
     searchParamsClass.setSearchParams({ topper: undefined });
     searchParamsClass.searchForDocuments();
   };
+
+  useEffect(() => {
+    const driverObj = driver({
+      popoverClass: "driverjs-theme",
+      showProgress: true,
+      steps: [
+        {
+          popover: {
+            title: "We will guide you in using the platform effectively",
+            description: "Please click on next to proceed",
+          },
+        },
+        {
+          element: "#search-input",
+          popover: {
+            title: "Enter a search term",
+            description: "Enter a search term like 'indus valley civilization'",
+            onNextClick: () => {
+              if ((searchParamsClass.searchParams.keyword || "").length > 0) {
+                driverObj.moveNext();
+              }
+            },
+          },
+        },
+        {
+          element: "#search-btn",
+          popover: {
+            title: "Search",
+            description: "Press the search button to search for the keyword",
+            // By passing onNextClick, you can override the default behavior of the next button.
+            // This will prevent the driver from moving to the next step automatically.
+            // You can then manually call driverObj.moveNext() to move to the next step.
+            onNextClick: async () => {
+              // .. load element dynamically
+              // .. and then call
+              searchParamsClass.setSearchParams({
+                keyword: "indus valley civilization",
+              });
+              await searchParamsClass.searchForDocuments();
+              // @ts-ignore
+              await searchParamsClass.lastSearchPromise;
+              driverObj.moveNext();
+            },
+          },
+        },
+        {
+          element: "#result-page-0",
+          popover: {
+            title: "Async Element",
+            description: "This element is loaded dynamically.",
+          },
+          // onDeselected is called when the element is deselected.
+          // Here we are simply removing the element from the DOM.
+          onDeselected: () => {
+            // .. remove element
+            document.querySelector(".dynamic-el")?.remove();
+          },
+        },
+        {
+          element: "#result-page-1",
+          popover: {
+            title: "Async Element",
+            description: "This element is loaded dynamically.",
+          },
+          // onDeselected is called when the element is deselected.
+          // Here we are simply removing the element from the DOM.
+          onDeselected: () => {
+            // .. remove element
+            document.querySelector(".dynamic-el")?.remove();
+          },
+        },
+        {
+          popover: {
+            title: "Last Step",
+            description: "This is the last step.",
+          },
+        },
+      ],
+    });
+
+    driverObj.drive();
+  }, []);
 
   return (
     <div>

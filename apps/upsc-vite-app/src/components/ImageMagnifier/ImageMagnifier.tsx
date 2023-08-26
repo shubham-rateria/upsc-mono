@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function ImageMagnifier({
   src,
+  id,
   magnifierHeight = 100,
   magnifierWidth = 100,
   pageMetadata,
@@ -18,6 +19,7 @@ function ImageMagnifier({
   magnifierWidth?: number;
   pageMetadata: PageMetadata;
   documentId: string;
+  id: string;
 }) {
   const [[x, y], setXY] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
@@ -32,7 +34,7 @@ function ImageMagnifier({
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} id={id}>
       <div
         style={{
           position: "relative",

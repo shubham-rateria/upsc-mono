@@ -677,14 +677,13 @@ const OptionalsAccodion: FC<FilterAccordionProps> = observer(
                       </List.Header>
                     </List.Content>
                   </List.Item>
-                  <List.Item
+                  {/* <List.Item
                     style={{
                       padding: 0,
                     }}
                   >
                     <List.Content>
                       <List.List className={styles.SubList}>
-                        {/* @ts-ignore */}
                         {Object.keys(category[l1]).map((l2: string) => (
                           <List.Item
                             key={l2}
@@ -764,7 +763,7 @@ const OptionalsAccodion: FC<FilterAccordionProps> = observer(
                         ))}
                       </List.List>
                     </List.Content>
-                  </List.Item>
+                  </List.Item> */}
                 </List>
               ))}
             </>

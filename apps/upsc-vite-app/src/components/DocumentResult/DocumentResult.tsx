@@ -216,10 +216,11 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
           </div>
         }
       >
-        {result.pages.map((page: PageResult) => (
+        {result.pages.map((page: PageResult, index: number) => (
           <div className={styles.PageResult} key={page.s3_img_object_name}>
             <div className={styles.PageImage}>
               <ImageMagnifier
+                id={`result-page-${index}`}
                 src={page.s3_signed_url ?? ""}
                 pageMetadata={{
                   pageNumber: page.page_number,

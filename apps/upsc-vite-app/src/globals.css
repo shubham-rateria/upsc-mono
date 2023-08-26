@@ -296,3 +296,8 @@ ui label
   animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both,
     animate-svg-fill-1 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.8s both;
 }
+
+.driver-popover-title,
+.driver-popover-description {
+  font-family: var(--font-mulish) !important;
+}
