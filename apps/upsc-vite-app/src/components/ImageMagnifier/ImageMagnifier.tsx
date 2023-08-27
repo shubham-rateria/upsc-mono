@@ -19,7 +19,7 @@ function ImageMagnifier({
   magnifierWidth?: number;
   pageMetadata: PageMetadata;
   documentId: string;
-  id: string;
+  id?: string;
 }) {
   const [[x, y], setXY] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);

@@ -12,16 +12,11 @@ import {
   Loader,
 } from "semantic-ui-react";
 import { DocumentType, Tag } from "usn-common";
-import {
-  SearchParamsContext,
-  searchParamsClass,
-} from "../../../contexts/SearchParamsContext";
+import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
 import globalStyles from "../../../styles/global.module.css";
 import { InView } from "react-intersection-observer";
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
@@ -55,87 +50,28 @@ const SearchPage = observer(() => {
     searchParamsClass.searchForDocuments();
   };
 
-  useEffect(() => {
-    const driverObj = driver({
-      popoverClass: "driverjs-theme",
-      showProgress: true,
-      steps: [
-        {
-          popover: {
-            title: "We will guide you in using the platform effectively",
-            description: "Please click on next to proceed",
-          },
-        },
-        {
-          element: "#search-input",
-          popover: {
-            title: "Enter a search term",
-            description: "Enter a search term like 'indus valley civilization'",
-            onNextClick: () => {
-              if ((searchParamsClass.searchParams.keyword || "").length > 0) {
-                driverObj.moveNext();
-              }
-            },
-          },
-        },
-        {
-          element: "#search-btn",
-          popover: {
-            title: "Search",
-            description: "Press the search button to search for the keyword",
-            // By passing onNextClick, you can override the default behavior of the next button.
-            // This will prevent the driver from moving to the next step automatically.
-            // You can then manually call driverObj.moveNext() to move to the next step.
-            onNextClick: async () => {
-              // .. load element dynamically
-              // .. and then call
-              searchParamsClass.setSearchParams({
-                keyword: "indus valley civilization",
-              });
-              await searchParamsClass.searchForDocuments();
-              // @ts-ignore
-              await searchParamsClass.lastSearchPromise;
-              driverObj.moveNext();
-            },
-          },
-        },
-        {
-          element: "#result-page-0",
-          popover: {
-            title: "Async Element",
-            description: "This element is loaded dynamically.",
-          },
-          // onDeselected is called when the element is deselected.
-          // Here we are simply removing the element from the DOM.
-          onDeselected: () => {
-            // .. remove element
-            document.querySelector(".dynamic-el")?.remove();
-          },
-        },
-        {
-          element: "#result-page-1",
-          popover: {
-            title: "Async Element",
-            description: "This element is loaded dynamically.",
-          },
-          // onDeselected is called when the element is deselected.
-          // Here we are simply removing the element from the DOM.
-          onDeselected: () => {
-            // .. remove element
-            document.querySelector(".dynamic-el")?.remove();
-          },
-        },
-        {
-          popover: {
-            title: "Last Step",
-            description: "This is the last step.",
-          },
-        },
-      ],
-    });
-
-    driverObj.drive();
-  }, []);
+  const getResultsText = () => {
+    if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
+      return (
+        <div>
+          {`Showing first ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents containing`}{" "}
+          <span className={styles.Keyword}>
+            "{searchParamsClass.lastSearchParams.keyword}"
+          </span>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {`Showing ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents out of many`}
+        </div>
+      );
+    }
+  };
 
   return (
     <div>
@@ -208,11 +144,7 @@ const SearchPage = observer(() => {
             <div className={styles.SelectorSection}>
               {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
                 !searchParamsClass.searching && (
-                  <div className={styles.DocFound}>
-                    {`Showing ${
-                      searchParamsClass.docSearchResults?.length ?? -1
-                    } documents of many`}
-                  </div>
+                  <div className={styles.DocFound}>{getResultsText()}</div>
                 )}
               <div className={styles.Action}>
                 <div className={styles.Item}>
@@ -328,7 +260,7 @@ const SearchPage = observer(() => {
                     </Dropdown>
                   </div>
                 </div>
-                <div className={styles.Item}>
+                <div className={styles.Item} id="document-type-selector">
                   <Button.Group className={styles.DocumentTypeSelector}>
                     <Button
                       className={clsx(
@@ -363,6 +295,7 @@ const SearchPage = observer(() => {
                       onClick={() => {
                         handleDocumentTypeChange(1);
                       }}
+                      id="btn-sample-answers"
                     >
                       Sample Answers
                     </Button>

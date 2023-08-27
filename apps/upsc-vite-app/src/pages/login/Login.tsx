@@ -1,11 +1,13 @@
 import { useStytchUser, useStytch } from "@stytch/react";
 import styles from "./Login.module.css";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { Button } from "semantic-ui-react";
+import axiosInstance from "../../utils/axios-instance";
+import { TourContext } from "../../contexts/TourContext";
 
 function isPhoneNumber(value: string) {
   // Define a regular expression pattern for a phone number with Indian country code +91
@@ -28,6 +30,7 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [methodId, setMethodId] = useState("");
+  const tourContextController = useContext(TourContext);
 
   const startCountdown = async () => {
     while (resendCodeTimer > 0) {
@@ -61,6 +64,11 @@ export const Login = () => {
       await stytchClient.otps.authenticate(otp, methodId, {
         session_duration_minutes: 10000,
       });
+      await axiosInstance.post("/api/user/login-or-create", {
+        phone: phoneNumber,
+      });
+      // @ts-ignore
+      tourContextController.setPhone(phoneNumber);
       navigate("/search");
     } catch (error) {
       setError(true);
@@ -84,10 +92,9 @@ export const Login = () => {
       } catch (error) {
         console.error(error);
       }
-
       navigate("/search");
     }
-  }, []);
+  }, [user.user]);
 
   return (
     <div className={styles.Container}>

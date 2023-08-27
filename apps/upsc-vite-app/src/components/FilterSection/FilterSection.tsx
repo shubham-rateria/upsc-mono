@@ -198,6 +198,7 @@ const FilterAccordion: FC<FilterAccordionProps> = observer(
             setActive(!active);
           }}
           className={clsx(styles.L0Title, active && styles.L0TitleExpanded)}
+          id={`chkbox-${tagType}`}
         >
           {showL0Checkbox ? (
             <Checkbox
@@ -456,8 +457,9 @@ const TopperFilter: FC = observer(() => {
   }, []);
 
   return (
-    <Accordion>
+    <Accordion id="topper-scroll">
       <Accordion.Title
+        id="topper-filter-title"
         active={active}
         onClick={() => {
           setActive(!active);
@@ -474,30 +476,32 @@ const TopperFilter: FC = observer(() => {
       </Accordion.Title>
       <Accordion.Content active={active} className={styles.Section}>
         {toppers.length > 0 && (
-          <Input
-            fluid
-            size="small"
-            className={styles.Input}
-            placeholder="Search for topper"
-            icon
-            onChange={(e) => {
-              setFilterText(e.target.value);
-            }}
-            value={filterText}
-          >
-            <input />
-            <Button
-              basic
-              icon
+          <div id="topper-search-input">
+            <Input
+              fluid
               size="small"
-              className={styles.CloseBtn}
-              onClick={() => {
-                setFilterText("");
+              className={styles.Input}
+              placeholder="Search for topper"
+              icon
+              onChange={(e) => {
+                setFilterText(e.target.value);
               }}
+              value={filterText}
             >
-              <Icon name="close" />
-            </Button>
-          </Input>
+              <input />
+              <Button
+                basic
+                icon
+                size="small"
+                className={styles.CloseBtn}
+                onClick={() => {
+                  setFilterText("");
+                }}
+              >
+                <Icon name="close" />
+              </Button>
+            </Input>
+          </div>
         )}
         <List className={styles.ListContainer}>
           {(filterText.length > 0

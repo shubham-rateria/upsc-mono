@@ -3,7 +3,14 @@ import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import { Button, Checkbox, Icon, Input, Progress } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Icon,
+  Input,
+  Modal,
+  Progress,
+} from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
@@ -37,6 +44,8 @@ const DocumentViewerPage: React.FC = () => {
   const [downloadRangeError, setDownloadRangeError] = useState(false);
   const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
+  const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
+
   const searchParamsClass = useContext(SearchParamsContext);
 
   const [error, setError] = useState<ApiError>({
@@ -227,6 +236,10 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
+  const handleDownload = () => {
+    setNoDownloadModalOpen(true);
+  };
+
   useEffect(() => {
     const init = async () => {
       setLoading(true);
@@ -260,6 +273,34 @@ const DocumentViewerPage: React.FC = () => {
 
   return (
     <div>
+      <Modal
+        open={noDownloadModalOpen}
+        onClose={() => {
+          setNoDownloadModalOpen(false);
+        }}
+        size="tiny"
+        closeOnEscape
+        closeIcon
+      >
+        <Modal.Content>
+          <p>
+            Download is currently unavailable since this is a trial product.
+          </p>
+          <p>
+            Our team is working on implementing these features and download will
+            be available in the final product.
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            onClick={() => {
+              setNoDownloadModalOpen(false);
+            }}
+          >
+            Close
+          </Button>
+        </Modal.Actions>
+      </Modal>
       <div className={styles.PageContainer}>
         <div className={styles.DocumentViewerContainer}>
           <div className={styles.DocumentTopBar}>
@@ -507,11 +548,12 @@ const DocumentViewerPage: React.FC = () => {
               {downloadRangeError && (
                 <div className={styles.Error}>{downloadRangeErrMsg}</div>
               )}
-              <div>
+              <div onClick={handleDownload}>
                 <Button
                   icon
                   className={styles.DownloadButton}
                   labelPosition="left"
+                  disabled
                 >
                   <Icon name="download" />
                   Download

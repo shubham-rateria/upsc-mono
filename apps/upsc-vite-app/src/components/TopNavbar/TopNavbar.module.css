@@ -54,12 +54,13 @@
   gap: 6px !important;
   border-radius: 8px !important;
   /* border: 1px solid var(--p7) !important; */
-  background: var(--p1) !important;
+  /* background: var(--p1) !important; */
+  background: white !important;
   color: var(--n5) !important;
   font-family: var(--font-mulish) !important;
   font-size: 12px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 500 !important;
   line-height: normal;
 }
 
@@ -68,3 +69,35 @@
   align-items: center;
   justify-content: center;
 } */
+
+.TutorialBtn {
+  font-family: "Mulish";
+  font-weight: 600;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.DropdownBtn {
+  border-radius: 9px !important;
+  background: white !important;
+  color: var(--p8) !important;
+  font-family: "Mulish";
+  font-weight: 1000;
+  justify-content: center;
+}
+
+.DropdownMenu {
+  border-radius: 9px !important;
+  padding: var(--padding-m) !important;
+  min-width: 200px !important;
+}
+
+.DropdownItem {
+  font-family: var(--font-mulish);
+  color: var(--n5);
+}
+
+.DropdownItem:hover {
+  background-color: var(--p8) !important;
+  color: white !important;
+}

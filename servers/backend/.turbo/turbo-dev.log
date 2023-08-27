@@ -1,12 +1,12 @@
-(node:33760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:53675) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 17:41:11 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 16:45:22 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:33772) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:53690) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,8 +19,9 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mGET /api/toppers [32m200[0m 83.586 ms - 13479[0m
-searching for indus valley civilization
+[0mPOST /api/user/check-user-onboarded [32m200[0m 47.749 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 83.496 ms - 13479[0m
+searching for indus valley
 {
   pipeline: [
     { '$search': [Object] },
@@ -33,12 +34,10 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 2597.056 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 93.101 ms - 13479[0m
-[0mGET /api/toppers [36m304[0m 102.624 ms - -[0m
-searching for indus valley civilization
+found docs 1942
+Keyword search documents 612
+[0mPOST /api/documents [32m200[0m 2351.434 ms - 165515[0m
+searching for indus valley
 {
   pipeline: [
     { '$search': [Object] },
@@ -51,11 +50,10 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1631.350 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 102.261 ms - 13479[0m
-searching for indus valley civilization
+found docs 1942
+Keyword search documents 612
+[0mPOST /api/documents [32m200[0m 2412.721 ms - 165515[0m
+searching for indus valley
 {
   pipeline: [
     { '$search': [Object] },
@@ -68,11 +66,12 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1755.637 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 93.692 ms - 13479[0m
-searching for indus valley civilization
+found docs 1942
+Keyword search documents 612
+[0mPOST /api/documents [32m200[0m 2021.028 ms - 165515[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 42.826 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 85.163 ms - 13479[0m
+searching for indus
 {
   pipeline: [
     { '$search': [Object] },
@@ -85,10 +84,10 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1556.976 ms - 149788[0m
-searching for indus valley civilization
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 812.417 ms - 80363[0m
+searching for indus
 {
   pipeline: [
     { '$search': [Object] },
@@ -101,14 +100,14 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1642.660 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 97.019 ms - 13479[0m
-[0mGET /api/toppers [32m200[0m 99.995 ms - 13479[0m
-[0mGET /api/toppers [32m200[0m 122.770 ms - 13479[0m
-[0mGET /api/toppers [36m304[0m 86.968 ms - -[0m
-searching for indus valley civilization
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 848.213 ms - 80363[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.344 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 90.780 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.495 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 96.416 ms - 13479[0m
+searching for indus
 {
   pipeline: [
     { '$search': [Object] },
@@ -121,164 +120,10 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1469.050 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 112.334 ms - 13479[0m
-[0mGET /api/toppers [32m200[0m 82.325 ms - 13479[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1554.349 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 95.337 ms - 13479[0m
-[0mGET /api/toppers [32m200[0m 90.904 ms - 13479[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1375.743 ms - 149788[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1492.498 ms - 149788[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1472.312 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 89.324 ms - 13479[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1412.029 ms - 149788[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1447.890 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 151.833 ms - 13479[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1407.956 ms - 149788[0m
-[0mGET /api/toppers [32m200[0m 91.159 ms - 13479[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1522.609 ms - 149788[0m
-getting doc id
-[0mGET /api/documents/64b81ec899a912f8fecfe3a8 [32m201[0m 70.710 ms - 8151[0m
-[0mGET /api/toppers [32m200[0m 97.243 ms - 13479[0m
-searching for indus valley civilization
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1450.766 ms - 149788[0m
-searching for indus valley civilization
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 780.203 ms - 80363[0m
+searching for indus
 {
   pipeline: [
     { '$search': [Object] },
@@ -292,10 +137,66 @@ searching for indus valley civilization
     { '$match': [Object] }
   ]
 }
-found docs 430
-Keyword search documents 168
-[0mPOST /api/documents [32m200[0m 1010.218 ms - 63031[0m
-searching for indus valley civilization
+found docs 124
+Keyword search documents 79
+[0mPOST /api/documents [32m200[0m 440.333 ms - 37734[0m
+[0mPOST /api/user/set-user-onboarded [33m401[0m 42.504 ms - -[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 46
+Keyword search documents 30
+[0mPOST /api/documents [32m200[0m 320.908 ms - 28344[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 210
+Keyword search documents 74
+[0mPOST /api/documents [32m200[0m 475.491 ms - 71950[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 256
+Keyword search documents 104
+[0mPOST /api/documents [32m200[0m 531.413 ms - 67352[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.636 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 80.780 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.017 ms - 19[0m
+[0mGET /api/toppers [36m304[0m 81.506 ms - -[0m
+searching for indus
 {
   pipeline: [
     { '$search': [Object] },
@@ -308,761 +209,937 @@ searching for indus valley civilization
     { '$project': [Object] }
   ]
 }
-found docs 1993
-Keyword search documents 687
-[0mPOST /api/documents [32m200[0m 1419.305 ms - 149788[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 4
-tagSearchResults 4
-[0mPOST /api/documents [32m200[0m 150.092 ms - 3237[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 1
-tagSearchResults 1
-[0mPOST /api/documents [32m200[0m 103.999 ms - 848[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 53.100 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 44.640 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.173 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.123 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.593 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.099 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.090 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 54.501 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.683 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 60.679 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 53.462 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 54.158 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 53.017 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 103.774 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 68.848 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 50.803 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 45.563 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 64.173 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 46.174 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 57.628 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.076 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.020 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.504 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.373 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.961 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 74.549 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 52.014 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.408 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.914 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 46.413 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.681 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.239 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 50.055 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 54.245 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 72.515 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 57.627 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 50.699 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.306 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.003 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.575 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.513 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.308 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 66.844 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 50.558 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 52.674 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 50.678 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 70.743 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 45.233 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 53.271 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 64.350 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.159 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 46.219 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 63.472 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.236 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.078 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 52.369 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 55.246 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 65.015 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.413 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.342 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.659 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 45.457 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.521 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 58.732 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.537 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 76.774 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 52.714 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 52.560 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.360 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.083 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 57.576 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 46.767 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.208 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.689 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.252 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.251 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 47.845 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 53.068 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 51.142 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.214 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 53.526 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 50.843 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 55.130 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 55.800 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 54.405 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 52.348 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 60.469 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 49.373 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 54.820 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 48.352 ms - 26[0m
-Finding keywords [ 'Weeds' ]
-{
-  additionalQueries: { '$match': { l0_categories: 17 } },
-  documentType: undefined
-}
-keywordResults 0
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 66.810 ms - 26[0m
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 738.924 ms - 80363[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 1120.820 ms - 80363[0m
+[0mPOST /api/user/set-user-onboarded [33m401[0m 37.045 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.847 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 78.382 ms - 13479[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 1055.070 ms - 80363[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 124
+Keyword search documents 79
+[0mPOST /api/documents [32m200[0m 549.026 ms - 37734[0m
+[0mPOST /api/user/set-user-onboarded [33m401[0m 40.980 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.304 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 82.762 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 39.525 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 169.166 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.201 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 77.886 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.454 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 81.894 ms - 13479[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 875.323 ms - 80363[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 1029.512 ms - 80363[0m
+[0mPOST /api/user/set-user-onboarded [32m200[0m 158.304 ms - 16[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.275 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 81.265 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1093.508 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.048 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.345 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.799 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.223 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.048 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.693 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.177 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.469 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 39.309 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 85.720 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 711.284 ms - 77947[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 468
+Keyword search documents 165
+[0mPOST /api/documents [32m200[0m 1250.747 ms - 86501[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.886 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 112.213 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 534.941 ms - 77947[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 256
+Keyword search documents 104
+[0mPOST /api/documents [32m200[0m 596.664 ms - 67352[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 703.329 ms - 80363[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.065 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.253 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 43.872 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 77.556 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.657 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 86.820 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 382.876 ms - 77947[0m
+[0mPOST /api/documents [32m200[0m 0.555 ms - 26[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.609 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.311 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 81.561 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 93.583 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 80.316 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 81.463 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 41.753 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 96.084 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.137 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 81.984 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.589 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 41.553 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 80.631 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 38.498 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 87.426 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.954 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.509 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.286 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.035 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 38.547 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.939 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.090 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 77.360 ms - 13479[0m
+Found 4 for topper
+[0mPOST /api/documents [32m200[0m 280.810 ms - 21283[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.867 ms - 26[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.032 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 81.223 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.555 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.720 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.088 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.296 ms - 13479[0m
+Found 4 for topper
+[0mPOST /api/documents [32m200[0m 281.141 ms - 21283[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.383 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 402.382 ms - 77947[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 5
+Keyword search documents 2
+[0mPOST /api/documents [32m200[0m 1245.521 ms - 3896[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 5
+Keyword search documents 2
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 1106.023 ms - 26[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 41.936 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 105.406 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 360.062 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 338.841 ms - 73743[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.952 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 83.822 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 351.901 ms - 77947[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 468
+Keyword search documents 165
+[0mPOST /api/documents [32m200[0m 1280.294 ms - 86501[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.452 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 89.614 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.247 ms - 19[0m
+[0mGET /api/toppers [36m304[0m 79.831 ms - -[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 907.476 ms - 80363[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 38.005 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 89.062 ms - 13479[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 776.063 ms - 80363[0m
+[0mPOST /api/user/set-user-onboarded [32m200[0m 95.682 ms - 16[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.400 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 87.067 ms - 13479[0m
+Found 7 for topper
+[0mPOST /api/documents [32m200[0m 313.142 ms - 36187[0m
+Found 4 for topper
+[0mPOST /api/documents [32m200[0m 294.537 ms - 21283[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.398 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 43.287 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 49.171 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.373 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.503 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 46.823 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.365 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.960 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.117 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.990 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.727 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 47.575 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.140 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.963 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.278 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.379 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.400 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.976 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.277 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.174 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.714 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.030 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.098 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.677 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 38.332 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.552 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.100 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.304 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 38.443 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.423 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.254 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.686 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.074 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.858 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 45.479 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 43.238 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.693 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.011 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.909 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 45.582 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.225 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.005 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.397 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.639 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.085 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.157 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 43.009 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.338 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.294 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.726 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.163 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.843 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.567 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.903 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.507 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.734 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.016 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.058 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.868 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 43.427 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 45.500 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.959 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.840 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.623 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.701 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.482 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 48.063 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.070 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.947 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 44.841 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.301 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.560 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.502 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.012 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.859 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.951 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.457 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.601 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.199 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 38.960 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.236 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.056 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.872 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 38.637 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.044 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.638 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 42.322 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.112 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.279 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.408 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 40.524 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.238 ms - 26[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 39.737 ms - 26[0m
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 833.621 ms - 144339[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 41.301 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 0.552 ms - 26[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 39.240 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 86.355 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 40.056 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 84.077 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.412 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 92.145 ms - 13479[0m
+searching for indus
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 731.560 ms - 80363[0m
 getting doc id
-[0mGET /api/documents/64c624fd43bc4f6a0bad7b5f [32m201[0m 53.041 ms - 4850[0m
+[0mGET /api/documents/64c818cfdb10f404e101c4e5 [32m201[0m 69.193 ms - 9223[0m
 doc search
-[0mPOST /api/documents/64c624fd43bc4f6a0bad7b5f/search [32m201[0m 294.620 ms - 36[0m
-doc search
-[0mPOST /api/documents/64c624fd43bc4f6a0bad7b5f/search [32m201[0m 65.929 ms - 36[0m
-[0mGET /api/toppers [32m200[0m 103.549 ms - 13479[0m
-[0mPOST /api/documents [32m200[0m 0.778 ms - 26[0m
-searching for weeds
+[0mPOST /api/documents/64c818cfdb10f404e101c4e5/search [32m201[0m 423.461 ms - 4163[0m
+[0mGET /api/toppers [32m200[0m 86.147 ms - 13479[0m
+searching for indus
 {
-  pipelin
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 747
+Keyword search documents 336
+[0mPOST /api/documents [32m200[0m 622.105 ms - 80363[0m
+getting doc id
+[0mGET /api/documents/64c818cfdb10f404e101c4e5 [32m201[0m 49.429 ms - 9223[0m
+doc search
+[0mPOST /api/documents/64c818cfdb10f404e101c4e5/search [32m201[0m 419.997 ms - 4163[0m
+[0mPOST /api/user/set-user-onboarded [32m200[0m 89.774 ms - 16[0m
+[0mGET /api/toppers [32m200[0m 96.658 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 41.194 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 83.278 ms - -[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 362.435 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 353.244 ms - 73743[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.989 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 87.570 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.031 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.820 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.823 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 80.540 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.599 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.393 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 42.322 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.850 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.516 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.433 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.649 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 80.432 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.428 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.886 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.689 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 80.890 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.773 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 81.426 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.004 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.134 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.789 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 80.546 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.664 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.339 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.993 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 77.912 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 44.454 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 86.319 ms - 13479[0m
+searching for mauryan empire
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1300
+Keyword search documents 361
+[0mPOST /api/documents [32m200[0m 2192.149 ms - 106963[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.235 ms - 19[0m
+[0mGET /api/toppers [32m200[0m 84.855 ms - 13479[0m
+searching for maruyan empire
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1130
+Keyword search documents 327
+[0mPOST /api/documents [32m200[0m 1205.988 ms - 244969[0m
+[0mPOST /api/user/set-user-onboarded [32m200[0m 86.841 ms - 16[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.758 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 85.807 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.006 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 95.499 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.362 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 81.571 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.666 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 81.476 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.434 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 82.403 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.198 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 85.240 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 341.636 ms - 77947[0m
+[0mPOST /api/documents [32m200[0m 0.934 ms - 26[0m
+Finding keywords [
+  '7th Schedule',
+  'Legislative Functions',
+  'Financial Functions',
+  'Administrative & Quasi-Judicial Functions',
+  'Functions & Responsibilities of the Union and the States'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 2 } },
+  documentType: undefined
+}
+keywordResults 24
+tagSearchResults 24
+[0mPOST /api/documents [32m200[0m 305.598 ms - 24207[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.163 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 83.058 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.468 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 82.386 ms - 13479[0m
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 692.629 ms - 144339[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.334 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 81.725 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 38.173 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 83.115 ms - -[0m
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 665.796 ms - 144339[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 32.853 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 80.520 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.903 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 79.747 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.813 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.721 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 398.840 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.251 ms - 18[0m
+[0mGET /api/toppers [0m-[0m - ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.330 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.735 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 374.335 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 339.757 ms - 73743[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.701 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.132 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 388.994 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 380.759 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 413.610 ms - 73743[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 357.642 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.351 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.099 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 367.003 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.148 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 82.267 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.262 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.981 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 349.090 ms - 77947[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 468
+Keyword search documents 165
+[0mPOST /api/documents [32m200[0m 1649.054 ms - 86501[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 468
+Keyword search documents 165
+[0mPOST /api/documents [32m200[0m 1369.982 ms - 86501[0m
+Found 27 for topper
+[0mPOST /api/documents [32m200[0m 669.940 ms - 144339[0m
+Found 8 for topper
+[0mPOST /api/documents [32m200[0m 311.776 ms - 42791[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 376
+Keyword search documents 176
+[0mPOST /api/documents [32m200[0m 1176.837 ms - 49172[0m
+[0mPOST /api/documents [32m200[0m 1.754 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 1.174 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 1.164 ms - 26[0m
+[0mPOST /api/documents [32m200[0m 1.239 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 380.185 ms - 77929[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 346.106 ms - 80327[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 350.844 ms - 79708[0m
+[0mPOST /api/documents [32m200[0m 1.466 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 405.394 ms - 74994[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 381.462 ms - 74994[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 488.127 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.583 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 85.053 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 243.509 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 296.903 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 37.965 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 87.691 ms - 13479[0m
+[0mGET /api/toppers [0m-[0m - ms - -[0m
+[0mPOST /api/user/check-user-onboarded [0m-[0m - ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 250.597 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 288.527 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.531 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 84.183 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 713.014 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.173 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.631 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 527.418 ms - 77947[0m
+[0mPOST /api/documents [32m200[0m 0.364 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 355.659 ms - 77947[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 468
+Keyword search documents 165
+[0mPOST /api/documents [32m200[0m 1455.747 ms - 86501[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 360.689 ms - 77947[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.393 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.510 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.382 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 80.447 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.804 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 79.694 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 360.140 ms - 77947[0m
+searching for indus valley
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 468
+Keyword search documents 165
+[0mPOST /api/documents [32m200[0m 1336.309 ms - 86501[0m
+getting doc id
+[0mGET /api/documents/64c642f043bc4f6a0bad8557 [32m201[0m 63.679 ms - 13569[0m
+[0mGET /api/toppers [32m200[0m 95.910 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.791 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 90.638 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.209 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 82.099 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 32.849 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 83.645 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.458 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 87.290 ms - -[0m
+searching for mauryan empire
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1300
+Keyword search documents 361
+[0mPOST /api/documents [32m200[0m 1768.708 ms - 106963[0m
+getting doc id
+[0mGET /api/documents/64c7aa42736223e25b711e90 [32m201[0m 50.949 ms - 13742[0m
+[0mGET /api/toppers [32m200[0m 93.310 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 32.686 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 77.442 ms - -[0m
+searching for maruyan empire
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1130
+Keyword search documents 327
+[0mPOST /api/documents [32m200[0m 1137.179 ms - 244969[0m
+getting doc id
+[0mGET /api/documents/64c6329c43bc4f6a0bad8012 [32m201[0m 109.021 ms - 19017[0m
+[0mGET /api/toppers [32m200[0m 102.710 ms - 13479[0m
+[0mPOST /api/user/set-user-onboarded [32m200[0m 99.350 ms - 16[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 34.439 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 82.456 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.656 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 80.413 ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.515 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 78.080 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 36.706 ms - 18[0m
+[0mGET /api/toppers [0m-[0m - ms - -[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 33.668 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 77.136 ms - 13479[0m
+[0mPOST /api/user/check-user-onboarded [32m200[0m 35.500 ms - 18[0m
+[0mGET /api/toppers [36m304[0m 83.704 ms - -[0m
+searching for maruyan empire
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1130
+Keyword search documents 327
+[0mPOST /api/documents [32m200[0m 1177.168 ms - 244969[0m
+getting doc id
+[0mGET /api/documents/64c6329c43bc4f6a0bad8012 [32m201[0m 95.541 ms - 19017[0m
+[0mGET /api/toppers [32m200[0m 88.379 ms - 13479[0m
+[0mPOST /api/user/set-user-onboarded [32m200[0m 93.601 ms - 16[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 403.032 ms - 77947[0m
+searching for indus v

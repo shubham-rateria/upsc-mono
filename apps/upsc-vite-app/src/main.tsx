@@ -12,6 +12,7 @@ import { StytchProvider } from "@stytch/react";
 import { StytchUIClient } from "@stytch/vanilla-js";
 import { Login } from "./pages/login/Login.tsx";
 import { AuthContext } from "./contexts/AuthContextProvider.tsx";
+import TourContext from "./contexts/TourContext.tsx";
 
 const stytch = new StytchUIClient(
   "public-token-live-a3d62995-b815-4c9f-a173-37b55b05b087"
@@ -24,27 +25,33 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <StytchProvider stytch={stytch}>
       <BrowserRouter>
         <SearchParamsContextProvider>
-          <TopBarLayout>
-            <Routes>
-              <Route
-                path="/search"
-                element={
-                  <AuthContext>
-                    <SearchPage />
-                  </AuthContext>
-                }
-              />
-              <Route path="/" element={<Login />} />
-              <Route
-                path="/view-document"
-                element={
-                  <AuthContext>
-                    <ViewDocument />
-                  </AuthContext>
-                }
-              />
-            </Routes>
-          </TopBarLayout>
+          <Routes>
+            <Route
+              path="/search"
+              element={
+                <AuthContext>
+                  <TourContext>
+                    <TopBarLayout>
+                      <SearchPage />
+                    </TopBarLayout>
+                  </TourContext>
+                </AuthContext>
+              }
+            />
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/view-document"
+              element={
+                <AuthContext>
+                  <TourContext>
+                    <TopBarLayout>
+                      <ViewDocument />
+                    </TopBarLayout>
+                  </TourContext>
+                </AuthContext>
+              }
+            />
+          </Routes>
         </SearchParamsContextProvider>
       </BrowserRouter>
     </StytchProvider>

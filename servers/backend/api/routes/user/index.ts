@@ -42,6 +42,44 @@ export default (app: Router) => {
     res.status(200).json({ success: true });
   });
 
+  route.post("/login-or-create", async (req, res) => {
+    const { phone } = req.body;
+
+    // check if the user exists
+    const userInDb = await UserModel.findOne({ phone }).exec();
+
+    if (!userInDb) {
+      const newUser = new UserModel({
+        phone,
+        onboarding: { onboarded: false },
+      });
+      await newUser.save();
+    }
+    res.status(200).json({ success: true });
+  });
+
+  route.post("/check-user-onboarded", async (req, res) => {
+    const { phone } = req.body;
+    const user = await UserModel.findOne({ phone }).exec();
+    if (!user) {
+      res.status(401).end();
+      return;
+    }
+    res.json({ onboarded: user?.onboarding?.onboarded });
+  });
+
+  route.post("/set-user-onboarded", async (req, res) => {
+    const { phone } = req.body;
+    const user = await UserModel.findOne({ phone }).exec();
+    if (!user) {
+      res.status(401).end();
+      return;
+    }
+    user.onboarding = { onboarded: true };
+    await user.save();
+    res.json({ success: true });
+  });
+
   // Login handler
   route.post("/login", async (req, res) => {
     const { email } = req.body;

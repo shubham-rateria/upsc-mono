@@ -144,17 +144,17 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
           }}
         />
         <div className={styles.MagnifierData}>
-          <div
-            className={styles.PageNumber}
-            style={{
-              paddingTop: "10px",
-            }}
-          >
+          {mClass.pageMetadata.matchingWords.length > 0 && (
+            <div className={styles.MatchingWords}>
+              Matching words:{" "}
+              <span className={styles.Keyword}>
+                {mClass.pageMetadata.matchingWords.join(", ")}
+              </span>
+            </div>
+          )}
+          {/* <div className={styles.PageNumber}>
             Page {mClass.pageMetadata.pageNumber}
-          </div>
-          <div className={styles.MatchingWords}>
-            {mClass.pageMetadata.matchingWords.join(", ")}
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -177,64 +177,68 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
         key={`${result._id}#${magnifierClass.pageMetadata.pageNumber}`}
         documentId={result._id ?? ""}
       />
-      <ScrollMenu
-        LeftArrow={<ArrowLeft />}
-        RightArrow={<ArrowRight />}
-        wrapperClassName={styles.Container}
-        scrollContainerClassName={styles.ScrollContainer}
-        Header={
-          <div className={styles.ResultTopBar}>
-            <div className={styles.DocumentName}>
-              <img src="/icons/do-document-text.svg" alt="document text" />
-              {result.s3_object_name}{" "}
-              <div className={styles.L0Tags}>
-                {result.l0_categories?.map(
-                  (category: number, index: number) => (
-                    <Label className={globalStyles.LabelPrimary} key={index}>
-                      {l0ToString[category]}
-                    </Label>
-                  )
-                )}
-              </div>
-              <span className={styles.NumPages}>{result.num_pages} Pages</span>
-            </div>
-            {canShowTopper() && (
-              <div className={styles.Topper}>
-                <div>
-                  <img
-                    className={styles.Icon}
-                    src="/icons/do-ribbon.svg"
-                    alt="icon"
-                  />
+      <div id="document-result">
+        <ScrollMenu
+          LeftArrow={<ArrowLeft />}
+          RightArrow={<ArrowRight />}
+          wrapperClassName={styles.Container}
+          scrollContainerClassName={styles.ScrollContainer}
+          Header={
+            <div className={styles.ResultTopBar}>
+              <div className={styles.DocumentName}>
+                <img src="/icons/do-document-text.svg" alt="document text" />
+                {result.s3_object_name}{" "}
+                <div className={styles.L0Tags}>
+                  {result.l0_categories?.map(
+                    (category: number, index: number) => (
+                      <Label className={globalStyles.LabelPrimary} key={index}>
+                        {l0ToString[category]}
+                      </Label>
+                    )
+                  )}
                 </div>
-                <div className={styles.Name}>{result.topper?.name}</div>
-                <div className={styles.Details}>
-                  {result.topper?.year} - AIR {result.topper?.rank}
-                </div>
+                <span className={styles.NumPages}>
+                  {result.num_pages} Pages
+                </span>
               </div>
-            )}
-          </div>
-        }
-      >
-        {result.pages.map((page: PageResult, index: number) => (
-          <div className={styles.PageResult} key={page.s3_img_object_name}>
-            <div className={styles.PageImage}>
-              <ImageMagnifier
-                id={`result-page-${index}`}
-                src={page.s3_signed_url ?? ""}
-                pageMetadata={{
-                  pageNumber: page.page_number,
-                  matchingWords: page.matching_words ?? [],
-                }}
-                documentId={result._id ?? ""}
-              />
-              <div
-                className={styles.PageNumber}
-              >{`Page # ${page.page_number}`}</div>
+              {canShowTopper() && (
+                <div className={styles.Topper}>
+                  <div>
+                    <img
+                      className={styles.Icon}
+                      src="/icons/do-ribbon.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <div className={styles.Name}>{result.topper?.name}</div>
+                  <div className={styles.Details}>
+                    {result.topper?.year} - AIR {result.topper?.rank}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        ))}
-      </ScrollMenu>
+          }
+        >
+          {result.pages.map((page: PageResult, index: number) => (
+            <div className={styles.PageResult} key={page.s3_img_object_name}>
+              <div className={styles.PageImage}>
+                <ImageMagnifier
+                  id={`result-page-${index}`}
+                  src={page.s3_signed_url ?? ""}
+                  pageMetadata={{
+                    pageNumber: page.page_number,
+                    matchingWords: page.matching_words ?? [],
+                  }}
+                  documentId={result._id ?? ""}
+                />
+                <div
+                  className={styles.PageNumber}
+                >{`Page # ${page.page_number}`}</div>
+              </div>
+            </div>
+          ))}
+        </ScrollMenu>
+      </div>
     </ImageMagnifierContext.Provider>
   );
 };
