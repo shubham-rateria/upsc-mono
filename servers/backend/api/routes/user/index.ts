@@ -61,10 +61,6 @@ export default (app: Router) => {
   route.post("/check-user-onboarded", async (req, res) => {
     const { phone } = req.body;
     const user = await UserModel.findOne({ phone }).exec();
-    if (!user) {
-      res.status(401).end();
-      return;
-    }
     res.json({ onboarded: user?.onboarding?.onboarded ?? false });
   });
 
