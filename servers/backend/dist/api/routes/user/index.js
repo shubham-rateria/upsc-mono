@@ -60,10 +60,6 @@ exports.default = (app) => {
         var _a, _b;
         const { phone } = req.body;
         const user = yield user_1.UserModel.findOne({ phone }).exec();
-        if (!user) {
-            res.status(401).end();
-            return;
-        }
         res.json({ onboarded: (_b = (_a = user === null || user === void 0 ? void 0 : user.onboarding) === null || _a === void 0 ? void 0 : _a.onboarded) !== null && _b !== void 0 ? _b : false });
     }));
     route.post("/set-user-onboarded", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
