@@ -43,6 +43,40 @@ exports.default = (app) => {
         }
         res.status(200).json({ success: true });
     }));
+    route.post("/login-or-create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { phone } = req.body;
+        // check if the user exists
+        const userInDb = yield user_1.UserModel.findOne({ phone }).exec();
+        if (!userInDb) {
+            const newUser = new user_1.UserModel({
+                phone,
+                onboarding: { onboarded: false },
+            });
+            yield newUser.save();
+        }
+        res.status(200).json({ success: true });
+    }));
+    route.post("/check-user-onboarded", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        var _a, _b;
+        const { phone } = req.body;
+        const user = yield user_1.UserModel.findOne({ phone }).exec();
+        if (!user) {
+            res.status(401).end();
+            return;
+        }
+        res.json({ onboarded: (_b = (_a = user === null || user === void 0 ? void 0 : user.onboarding) === null || _a === void 0 ? void 0 : _a.onboarded) !== null && _b !== void 0 ? _b : false });
+    }));
+    route.post("/set-user-onboarded", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { phone } = req.body;
+        const user = yield user_1.UserModel.findOne({ phone }).exec();
+        if (!user) {
+            res.status(401).end();
+            return;
+        }
+        user.onboarding = { onboarded: true };
+        yield user.save();
+        res.json({ success: true });
+    }));
     // Login handler
     route.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { email } = req.body;
@@ -60,29 +94,36 @@ exports.default = (app) => {
             },
         });
     }));
+    route.post("/create-beta-user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let { phone } = req.body;
+        if (!phone.startsWith("+91")) {
+            phone = "+91" + phone;
+        }
+        console.log({ phone });
+        const existingUser = yield user_1.UserModel.findOne({ phone }).exec();
+        if (existingUser) {
+            res.status(200).json({ success: false, message: "User Exists" });
+            return;
+        }
+        const user = new user_1.UserModel({ phone, beta_user: true });
+        yield user.save();
+        res.status(200).json({ success: true });
+    }));
     route.post("/submit-otp", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { email, email_id, otp } = req.body;
+        const { phone } = req.body;
         // Authenticate user (this is a simplified example)
-        const user = yield user_1.UserModel.findOne({ email, beta_user: true });
+        const user = yield user_1.UserModel.findOne({ phone, beta_user: true });
         if (!user) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
-        const params = {
-            method_id: email_id,
-            code: otp,
-        };
-        const stytchRes = yield axiosInstance.post("/authenticate", params);
-        if (stytchRes.data.status_code === 200) {
-            // Create a JWT and set it in a cookie
-            const token = jsonwebtoken_1.default.sign({ userId: user._id }, "your-secret-key", {
-                expiresIn: "24h",
-            });
-            res.cookie("jwt", token, { httpOnly: true });
-            res.json({ message: "Login successful" });
-        }
-        else {
-            return res.status(401).json({ message: "Invalid credentials" });
-        }
+        // Create a JWT and set it in a cookie
+        const token = jsonwebtoken_1.default.sign({ userId: user._id }, "your-secret-key", {
+            expiresIn: "24h",
+        });
+        res.cookie("jwt", token, {
+            httpOnly: true,
+        });
+        res.json({ message: "Login successful" });
     }));
     // Logout handler
     route.post("/logout", (req, res) => {

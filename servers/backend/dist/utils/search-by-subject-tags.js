@@ -266,6 +266,7 @@ function searchBySubjectTags({ subjectTags, pageNumber = 1, documentType, topper
                         .select({ pages: 0 })
                         .skip((pageNumber - 1) * limit)
                         .limit(limit)
+                        .sort({ num_pages: -1 })
                         .lean();
                     // @ts-ignore
                     results.push(...l0Results);
