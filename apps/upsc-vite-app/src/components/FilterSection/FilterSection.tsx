@@ -580,18 +580,18 @@ const OptionalsAccodion: FC<FilterAccordionProps> = observer(
       searchParamsClass.searchForDocuments();
     };
 
-    const handleL2Click = (tag: Tag, l1Tag?: Tag) => {
-      if (l1Tag) {
-        const l1Selected = searchParamsClass.tagExists(l1Tag);
+    // const handleL2Click = (tag: Tag, l1Tag?: Tag) => {
+    //   if (l1Tag) {
+    //     const l1Selected = searchParamsClass.tagExists(l1Tag);
 
-        if (l1Selected) {
-          searchParamsClass.removeSubjectTag(l1Tag);
-        }
-      }
+    //     if (l1Selected) {
+    //       searchParamsClass.removeSubjectTag(l1Tag);
+    //     }
+    //   }
 
-      handleCheckboxClick(tag);
-      searchParamsClass.searchForDocuments();
-    };
+    //   handleCheckboxClick(tag);
+    //   searchParamsClass.searchForDocuments();
+    // };
 
     return (
       <Accordion>

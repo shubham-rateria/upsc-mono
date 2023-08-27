@@ -20,12 +20,6 @@ const TopNavBar = () => {
 
   const logoUrl = "/img/logo.svg";
 
-  const options = [
-    { key: 1, text: "This is a super long item", value: 1 },
-    { key: 2, text: "Dropdown direction can help", value: 2 },
-    { key: 3, text: "Items are kept within view", value: 3 },
-  ];
-
   return (
     <div className={styles.topNavBar}>
       <div className={styles.logoContainer}>
