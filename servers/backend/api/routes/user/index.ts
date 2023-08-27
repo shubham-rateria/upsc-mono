@@ -65,7 +65,7 @@ export default (app: Router) => {
       res.status(401).end();
       return;
     }
-    res.json({ onboarded: user?.onboarding?.onboarded });
+    res.json({ onboarded: user?.onboarding?.onboarded ?? false });
   });
 
   route.post("/set-user-onboarded", async (req, res) => {
