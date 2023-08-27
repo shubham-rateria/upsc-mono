@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
@@ -48,6 +48,29 @@ const SearchPage = observer(() => {
   const handleClearTopper = () => {
     searchParamsClass.setSearchParams({ topper: undefined });
     searchParamsClass.searchForDocuments();
+  };
+
+  const getResultsText = () => {
+    if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
+      return (
+        <div>
+          {`Showing first ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents containing`}{" "}
+          <span className={styles.Keyword}>
+            "{searchParamsClass.lastSearchParams.keyword}"
+          </span>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {`Showing ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents out of many`}
+        </div>
+      );
+    }
   };
 
   return (
@@ -121,11 +144,7 @@ const SearchPage = observer(() => {
             <div className={styles.SelectorSection}>
               {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
                 !searchParamsClass.searching && (
-                  <div className={styles.DocFound}>
-                    {`Showing ${
-                      searchParamsClass.docSearchResults?.length ?? -1
-                    } documents of many`}
-                  </div>
+                  <div className={styles.DocFound}>{getResultsText()}</div>
                 )}
               <div className={styles.Action}>
                 <div className={styles.Item}>
@@ -241,7 +260,7 @@ const SearchPage = observer(() => {
                     </Dropdown>
                   </div>
                 </div>
-                <div className={styles.Item}>
+                <div className={styles.Item} id="document-type-selector">
                   <Button.Group className={styles.DocumentTypeSelector}>
                     <Button
                       className={clsx(
@@ -276,6 +295,7 @@ const SearchPage = observer(() => {
                       onClick={() => {
                         handleDocumentTypeChange(1);
                       }}
+                      id="btn-sample-answers"
                     >
                       Sample Answers
                     </Button>

@@ -125,6 +125,11 @@
   line-height: normal;
 }
 
+.DocFound .Keyword {
+  font-weight: 1000;
+  color: var(--p9);
+}
+
 .SelectorSection .Action {
   display: flex;
   flex-direction: row;

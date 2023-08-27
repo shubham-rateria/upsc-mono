@@ -123,6 +123,7 @@
 }
 
 .PageResult img {
+  min-height: 200px;
   background: white;
   width: 100%;
 }
@@ -177,4 +178,17 @@
 
 .L0Tags {
   margin-left: var(--margin-s);
+}
+
+.Keyword {
+  font-weight: 1000;
+  color: var(--p9);
+}
+
+.MagnifierData {
+  margin-top: var(--margin-s);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

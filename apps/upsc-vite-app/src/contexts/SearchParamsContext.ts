@@ -35,7 +35,7 @@ class CancelablePromise {
     this.isCanceled = true;
   }
 
-  async then(onFulfilled: any, onRejected?: any) {
+  public async then(onFulfilled: any, onRejected?: any) {
     return this.promise.then((response: any) => {
       if (this.isCanceled) {
         return Promise.reject(new Error("Promise canceled"));
@@ -59,6 +59,7 @@ class SearchParamsClass {
   public searching: boolean = false;
   public searchingNextResults: boolean = false;
   public lastSearchPromise: CancelablePromise | null = null;
+  public lastSearchParams: SearchParams = defaultValues;
 
   pageNumber: number = 1;
 
@@ -106,15 +107,17 @@ class SearchParamsClass {
 
   public clearFilters() {
     this.searchParams = defaultValues;
+    this.lastSearchParams = defaultValues;
+    this.docSearchResults = [];
     this.pageNumber = 1;
   }
 
   public defaultState() {
     return !(
-      (this.searchParams.subjectTags &&
-        this.searchParams.subjectTags?.length > 0) ||
-      this.searchParams.keyword ||
-      this.searchParams.topper
+      (this.lastSearchParams.subjectTags &&
+        this.lastSearchParams.subjectTags?.length > 0) ||
+      this.lastSearchParams.keyword ||
+      this.lastSearchParams.topper
     );
   }
 
@@ -167,6 +170,7 @@ class SearchParamsClass {
           }
         }
         this.searching = false;
+        this.lastSearchParams = data;
       })
       .catch((error: any) => {
         console.log("Promise error", error);

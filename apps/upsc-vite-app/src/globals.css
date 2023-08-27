@@ -231,6 +231,19 @@ a {
   background: var(--p7) !important;
 }
 
+.ui.menu {
+  margin: 0 !important;
+}
+
+.ui.menu .item:before {
+  background: none !important;
+}
+
+.ui.menu .ui.dropdown .menu > .item:hover {
+  background: var(--p1) !important;
+  color: var(--p8) !important;
+}
+
 /*
 ui label
 */
@@ -295,4 +308,21 @@ ui label
     animate-svg-fill-1 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.8s both;
   animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both,
     animate-svg-fill-1 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.8s both;
+}
+
+.driver-popover-title,
+.driver-popover-description {
+  font-family: var(--font-mulish) !important;
+  line-height: 1.3 !important;
+}
+
+.driver-popover-title {
+  color: var(--n8) !important;
+  font-size: 1.2rem;
+  margin-bottom: var(--margin-s);
+}
+
+.driver-popover-description {
+  /* margin-top: var(--margin-l); */
+  font-size: 1rem;
 }
