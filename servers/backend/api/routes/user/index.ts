@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 import authMiddleware from "../../../middlewares/auth.middleware";
 import axios from "axios";
 
-const stytch = require("stytch");
-
 const route = Router();
 
 const axiosInstance = axios.create({
