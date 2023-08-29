@@ -6,6 +6,10 @@ import {
   mapTagTypeToNumber,
   Tag,
   TagType,
+  gs1Categories,
+  gs2Categories,
+  gs3Categories,
+  gs4Categories,
 } from "usn-common";
 import { observer } from "mobx-react-lite";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
@@ -40,6 +44,12 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
 
     return options.concat(optionals);
   }, []);
+
+  const keywordOptions = useMemo(() => {
+    if (selectedL0 === "") {
+      return {};
+    }
+  }, [selectedL0]);
 
   const handleL0Change = (e: any, data: any) => {
     setSelectedL0(data.value);
@@ -94,6 +104,17 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           search
           selection
           clearable
+          options={options}
+          onChange={handleL0Change}
+          placeholder="Search for subject"
+          className={styles.Input}
+        />
+        <Dropdown
+          fluid
+          search
+          selection
+          clearable
+          allowAdditions
           options={options}
           onChange={handleL0Change}
           placeholder="Search for subject"
