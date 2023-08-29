@@ -12,11 +12,6 @@ const MTopNavBar = () => {
 
   console.log({ user });
 
-  // const logout = useCallback(async () => {
-  //   await stytchClient.session.revoke();
-  //   navigate("/");
-  // }, [stytchClient]);
-
   const logoUrl = "/img/logo.svg";
 
   return (
