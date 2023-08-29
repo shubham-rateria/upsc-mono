@@ -1,12 +1,12 @@
-(node:65842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:40587) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 22:27:44 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 23:05:06 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:65859) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:40601) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,25 +19,13 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/user/check-user-onboarded [33m401[0m 55.729 ms - -[0m
-[0mGET /api/toppers [32m200[0m 84.993 ms - 13479[0m
-[0mPOST /api/user/login-or-create [32m200[0m 98.200 ms - 16[0m
-[0mPOST /api/user/check-user-onboarded [32m200[0m 40.872 ms - 19[0m
-[0mGET /api/toppers [32m200[0m 80.158 ms - 13479[0m
-[0mPOST /api/user/check-user-onboarded [32m200[0m 34.343 ms - 19[0m
-[0mGET /api/toppers [32m200[0m 78.585 ms - 13479[0m
-[INFO] 22:31:45 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/user/index.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:66059) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
+[0mPOST /api/user/check-user-onboarded [32m200[0m 50.496 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 82.551 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 884.371 ms - 77947[0m
+tagSearchResults 1
+[0mPOST /api/documents [32m200[0m 301.743 ms - 8095[0m
+tagSearchResults 0
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 107.453 ms - 26[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed.[39m

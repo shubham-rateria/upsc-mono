@@ -300,6 +300,12 @@ export default async function searchBySubjectTags({
           documentL0Query["l0_categories"] = mapTagTypeToNumber[tag.type];
         }
 
+        if (topper) {
+          documentL0Query["topper.name"] = topper.name;
+          documentL0Query["topper.rank"] = topper.rank;
+          documentL0Query["topper.year"] = topper.year;
+        }
+
         const l0Results = await DocumentModel.find(documentL0Query)
           .select({ pages: 0 })
           .skip((pageNumber - 1) * limit)
