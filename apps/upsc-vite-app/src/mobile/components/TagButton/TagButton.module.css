@@ -17,4 +17,5 @@
   width: 100%;
   text-wrap: nowrap;
   word-wrap: unset;
+  white-space: nowrap;
 }

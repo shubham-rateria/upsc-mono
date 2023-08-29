@@ -44,12 +44,12 @@
 }
 
 .Content {
-  height: 100%;
+  height: 70%;
   width: 100%;
   padding: 0 var(--padding-m);
   overflow-y: auto;
   position: relative;
-  padding-bottom: calc(10 * var(--padding-m));
+  /* padding-bottom: calc(10 * var(--padding-m)); */
 }
 
 .Content::-webkit-scrollbar {
@@ -82,7 +82,7 @@
   flex-direction: row;
   gap: var(--padding-m);
   padding: var(--padding-m);
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   right: 0;
   left: 0;
