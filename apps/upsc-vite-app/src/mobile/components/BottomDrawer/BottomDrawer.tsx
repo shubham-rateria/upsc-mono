@@ -88,13 +88,15 @@ const BottomDrawer: FC<Props> = ({
       <div className={styles.Overlay} onClick={onClose}></div>
       <div
         className={`${styles.Drawer} ${isOpen ? "open" : ""}`}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
         ref={drawerRef}
       >
         <div className={styles.Header}>
-          <div className={styles.RectContainer}>
+          <div
+            className={styles.RectContainer}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className={styles.Rect} />
           </div>
           <div className={styles.Details}>
