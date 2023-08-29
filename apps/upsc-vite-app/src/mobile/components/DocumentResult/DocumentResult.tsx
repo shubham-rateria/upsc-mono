@@ -7,6 +7,7 @@ import "react-horizontal-scrolling-menu/dist/styles.css";
 import clsx from "clsx";
 import "./ScrollContainer.css";
 import { startCase, truncate } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   result: Result;
@@ -47,6 +48,8 @@ const ArrowLeft: React.FC = () => {
 };
 
 const DocumentResult: React.FC<Props> = ({ result }) => {
+  const navigate = useNavigate();
+
   const canShowTopper = () => {
     return (
       result.topper &&
@@ -54,6 +57,10 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
       result.topper.rank &&
       result.topper.year
     );
+  };
+
+  const handlePageClick = (pageNumber: number) => {
+    navigate(`/view-document/?page=${pageNumber}&documentId=${result._id}`);
   };
 
   return (
@@ -93,7 +100,12 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
         {result.pages.map((page: PageResult) => (
           <div className={styles.PageResult} key={page.s3_img_object_name}>
             <div className={styles.PageImage}>
-              <img src={page.s3_signed_url} />
+              <img
+                src={page.s3_signed_url}
+                onClick={() => {
+                  handlePageClick(page.page_number);
+                }}
+              />
               <div
                 className={styles.PageNumber}
               >{`Page # ${page.page_number}`}</div>

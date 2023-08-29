@@ -43,17 +43,17 @@ const BottomDrawer: FC<Props> = ({
     const deltaY = currentY - startY;
 
     if (deltaY < -300 && isOpen) {
-      //   if (drawerRef.current) {
-      //     // @ts-ignore
-      //     drawerRef.current.style.top = `100vh`;
-      //   }
-      //   onClose();
-    } else if (deltaY > 300 && !isOpen) {
       if (drawerRef.current) {
         // @ts-ignore
         drawerRef.current.style.top = `100vh`;
       }
       onClose();
+    } else if (deltaY > 300 && !isOpen) {
+      // if (drawerRef.current) {
+      //   // @ts-ignore
+      //   drawerRef.current.style.top = `100vh`;
+      // }
+      // onClose();
     }
 
     setStartY(0);

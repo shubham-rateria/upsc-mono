@@ -5,9 +5,10 @@
   gap: var(--padding-s);
 }
 
-.Input {
+.Input,
+.Input input {
   border-radius: 8px !important;
-  border: 1px solid var(--n2, #d3d6e0) !important;
+  /* border: 1px solid var(--n2, #d3d6e0) !important; */
   background: var(--n0, #fff) !important;
   font-family: var(--font-mulish) !important;
 }
