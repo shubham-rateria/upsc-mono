@@ -93,10 +93,6 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
     searchParamsClass.searchForDocuments();
   };
 
-  const handleKeywordChange = (_e: any, data: any) => {
-    setSearchKeyword(data.value);
-  };
-
   return (
     <BottomDrawer
       isOpen={isOpen}

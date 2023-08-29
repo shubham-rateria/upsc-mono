@@ -3,14 +3,7 @@ import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import {
-  Button,
-  Checkbox,
-  Icon,
-  Input,
-  Modal,
-  Progress,
-} from "semantic-ui-react";
+import { Button, Input, Modal, Progress } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range, truncate } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
@@ -36,13 +29,12 @@ const DocumentViewerPage: React.FC = () => {
   const [documentSearchText, setDocumentSearchText] = useState<string | null>(
     null
   );
-  const [downloadMode, setDownloadMode] = useState(0);
-  const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
-    null
-  );
-  const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
-  const [downloadRangeError, setDownloadRangeError] = useState(false);
-  const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
+  // const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
+  //   null
+  // );
+  // const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
+  // const [downloadRangeError, setDownloadRangeError] = useState(false);
+  // const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
 
@@ -203,27 +195,27 @@ const DocumentViewerPage: React.FC = () => {
     return elemHeight / getHeightForPage(pageNumber);
   };
 
-  const handleRangeFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setDownloadRangeFrom(val);
-    if (downloadRangeTo !== null && val > downloadRangeTo) {
-      setDownloadRangeError(true);
-      setDownloadRangeErrMsg("From value has to be less than To");
-    } else {
-      setDownloadRangeError(false);
-    }
-  };
+  // const handleRangeFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const val = parseInt(e.target.value);
+  //   setDownloadRangeFrom(val);
+  //   if (downloadRangeTo !== null && val > downloadRangeTo) {
+  //     setDownloadRangeError(true);
+  //     setDownloadRangeErrMsg("From value has to be less than To");
+  //   } else {
+  //     setDownloadRangeError(false);
+  //   }
+  // };
 
-  const handleRangeToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setDownloadRangeTo(val);
-    if (downloadRangeFrom !== null && val < downloadRangeFrom) {
-      setDownloadRangeError(true);
-      setDownloadRangeErrMsg("To value has to be less than From");
-    } else {
-      setDownloadRangeError(false);
-    }
-  };
+  // const handleRangeToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const val = parseInt(e.target.value);
+  //   setDownloadRangeTo(val);
+  //   if (downloadRangeFrom !== null && val < downloadRangeFrom) {
+  //     setDownloadRangeError(true);
+  //     setDownloadRangeErrMsg("To value has to be less than From");
+  //   } else {
+  //     setDownloadRangeError(false);
+  //   }
+  // };
 
   const handleBack = () => {
     // router.back();
@@ -236,9 +228,9 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
-  const handleDownload = () => {
-    setNoDownloadModalOpen(true);
-  };
+  // const handleDownload = () => {
+  //   setNoDownloadModalOpen(true);
+  // };
 
   useEffect(() => {
     const init = async () => {
