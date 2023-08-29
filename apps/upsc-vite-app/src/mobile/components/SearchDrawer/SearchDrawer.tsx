@@ -17,10 +17,14 @@ type Props = {
 };
 
 const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
-  const [selectedL0, setSelectedL0] = useState("");
-  const [searchKeyword, setSearchKeyword] = useState<string>();
-
   const searchParamsClass = useContext(SearchParamsContext);
+  const [selectedL0, setSelectedL0] = useState(
+    (searchParamsClass.searchParams.subjectTags ?? []).length > 0
+      ? // @ts-ignore
+        searchParamsClass.searchParams.subjectTags[0].value.tagText
+      : ""
+  );
+  const [searchKeyword, setSearchKeyword] = useState<string>();
 
   const options = useMemo(() => {
     const options = [
@@ -34,7 +38,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
       const value = Array.from(Object.keys(category))[0];
       return {
         key: value,
-        value: `optionals:${value}`,
+        value: value,
         text: value,
       };
     });
@@ -53,41 +57,37 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   };
 
   const handleApply = () => {
-    if (selectedL0 === "" && searchKeyword === "") {
-      onClose();
-      return;
-    }
-
     if (searchKeyword) {
       searchParamsClass.setSearchParams({
         keyword: searchKeyword,
       });
     }
 
-    if (selectedL0.startsWith("optionals:")) {
-      const value = selectedL0.split(":")[1];
-      const tag: Tag = {
-        level: "l0",
-        type: "Optionals",
-        optionalsId: mapTagTypeToNumber[value],
-        value: {
-          tagText: value,
-        },
-      };
-      searchParamsClass.setSearchParams({
-        subjectTags: [tag],
-      });
-    } else {
-      const tag: Tag = {
-        level: "l0",
-        type: selectedL0 as TagType,
-        value: {
-          tagText: selectedL0,
-        },
-      };
-      searchParamsClass.setSearchParams({
-        subjectTags: [tag],
-      });
+    if (selectedL0 !== "") {
+      if (!["GS1", "GS2", "GS3", "GS4", "Essay"].includes(selectedL0)) {
+        const tag: Tag = {
+          level: "l0",
+          type: "Optionals",
+          optionalsId: mapTagTypeToNumber[selectedL0],
+          value: {
+            tagText: selectedL0,
+          },
+        };
+        searchParamsClass.setSearchParams({
+          subjectTags: [tag],
+        });
+      } else {
+        const tag: Tag = {
+          level: "l0",
+          type: selectedL0 as TagType,
+          value: {
+            tagText: selectedL0,
+          },
+        };
+        searchParamsClass.setSearchParams({
+          subjectTags: [tag],
+        });
+      }
     }
 
     searchParamsClass.searchForDocuments();
@@ -112,6 +112,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           onChange={handleL0Change}
           placeholder="Search for subject"
           className={styles.Input}
+          value={selectedL0}
         />
         <Input
           fluid

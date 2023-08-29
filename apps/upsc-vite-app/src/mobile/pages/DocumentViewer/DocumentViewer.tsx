@@ -301,7 +301,7 @@ const DocumentViewerPage: React.FC = () => {
                 <img src="/icons/do-arrow-back.svg" />
                 Back
               </div>
-              <div>{truncate(document?.s3_object_name, { length: 20 })}</div>
+              <div>{truncate(document?.s3_object_name, { length: 30 })}</div>
             </div>
             <div className={styles.TopbarItem}>
               <div className={styles.DocumentSearchInput}>

@@ -9,11 +9,45 @@ import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import SearchDrawer from "../../components/SearchDrawer/SearchDrawer";
 import DocumentResult from "../../components/DocumentResult/DocumentResult";
 import { observer } from "mobx-react-lite";
+import DocTypeDrawer from "../../components/DocTypeDrawer/DocTypeDrawer";
 
 const Search = () => {
   const [openToppersDrawer, setOpenToppersDrawer] = useState(false);
   const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
+  const [openDocTypeDrawer, setOpenDocTypeDrawer] = useState(false);
   const searchParamsClass = useContext(SearchParamsContext);
+
+  const getTextForFakeInput = () => {
+    let text = "Search for subject, keywords";
+    if ((searchParamsClass.searchParams.keyword || "").length > 0) {
+      text = searchParamsClass.searchParams.keyword || "";
+    }
+    if ((searchParamsClass.searchParams.subjectTags ?? []).length > 0) {
+      // @ts-ignore
+      text = searchParamsClass.searchParams.subjectTags[0].value.tagText;
+    }
+    if (
+      (searchParamsClass.searchParams.keyword || "").length > 0 &&
+      (searchParamsClass.searchParams.subjectTags ?? []).length > 0
+    ) {
+      // @ts-ignore
+      text = `${searchParamsClass.searchParams.keyword} in ${searchParamsClass.searchParams.subjectTags[0].value.tagText}`;
+    }
+    return text;
+  };
+
+  const getDocTypeText = () => {
+    switch (searchParamsClass.searchParams.documentType) {
+      case -1:
+        return "Doc Type";
+      case 0:
+        return "Notes";
+      case 1:
+        return "Sample Answers";
+      default:
+        return "Doc Type";
+    }
+  };
 
   return (
     <MTopBarLayout>
@@ -24,7 +58,7 @@ const Search = () => {
             setOpenSearchDrawer(true);
           }}
         >
-          Search for subject, keywords
+          {getTextForFakeInput()}
         </div>
       </div>
       <div className={styles.TagButtons}>
@@ -37,7 +71,14 @@ const Search = () => {
             setOpenToppersDrawer(true);
           }}
         />
-        <TagButton hasValue={false} text="" placeholder="Doc Type" />
+        <TagButton
+          hasValue={false}
+          text=""
+          placeholder={getDocTypeText()}
+          onClick={() => {
+            setOpenDocTypeDrawer(true);
+          }}
+        />
         <TagButton hasValue={false} text="" placeholder="From Year" />
         <TagButton hasValue={false} text="" placeholder="Search In" />
       </div>
@@ -65,6 +106,12 @@ const Search = () => {
         isOpen={openSearchDrawer}
         onClose={() => {
           setOpenSearchDrawer(false);
+        }}
+      />
+      <DocTypeDrawer
+        isOpen={openDocTypeDrawer}
+        onClose={() => {
+          setOpenDocTypeDrawer(false);
         }}
       />
     </MTopBarLayout>

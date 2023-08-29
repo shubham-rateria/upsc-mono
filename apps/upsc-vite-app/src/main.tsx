@@ -10,6 +10,7 @@ import SearchParamsContextProvider from "./contexts/SearchParamsContextProvider.
 import { StytchProvider } from "@stytch/react";
 import { StytchUIClient } from "@stytch/vanilla-js";
 import { Login } from "./pages/login/Login.tsx";
+import { Login as MLogin } from "./mobile/pages/Login/Login.tsx";
 import { AuthContext } from "./contexts/AuthContextProvider.tsx";
 import TourContext from "./contexts/TourContext.tsx";
 import MSearch from "./mobile/pages/Search/Search.tsx";
@@ -25,8 +26,23 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <SearchParamsContextProvider>
           <Routes>
-            <Route path="/" index element={<MSearch />} />
-            <Route path="/view-document" element={<DocumentViewerPage />} />
+            <Route path="/" index element={<MLogin />} />
+            <Route
+              path="/search"
+              element={
+                <AuthContext>
+                  <MSearch />
+                </AuthContext>
+              }
+            />
+            <Route
+              path="/view-document"
+              element={
+                <AuthContext>
+                  <DocumentViewerPage />
+                </AuthContext>
+              }
+            />
           </Routes>
         </SearchParamsContextProvider>
       </BrowserRouter>
