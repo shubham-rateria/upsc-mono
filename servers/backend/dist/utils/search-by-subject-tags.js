@@ -262,6 +262,11 @@ function searchBySubjectTags({ subjectTags, pageNumber = 1, documentType, topper
                     else {
                         documentL0Query["l0_categories"] = usn_common_1.mapTagTypeToNumber[tag.type];
                     }
+                    if (topper) {
+                        documentL0Query["topper.name"] = topper.name;
+                        documentL0Query["topper.rank"] = topper.rank;
+                        documentL0Query["topper.year"] = topper.year;
+                    }
                     const l0Results = yield document_1.DocumentModel.find(documentL0Query)
                         .select({ pages: 0 })
                         .skip((pageNumber - 1) * limit)
