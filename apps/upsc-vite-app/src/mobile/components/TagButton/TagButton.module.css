@@ -1,0 +1,20 @@
+.Button {
+  display: flex !important;
+  padding: 6px 12px !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center;
+  gap: var(--padding-s) !important;
+  border-radius: 8px !important;
+  background: white !important;
+  border: 1px solid var(--n2, #d3d6e0) !important;
+  color: var(--n6, #485374) !important;
+  font-family: var(--font-mulish) !important;
+  font-size: 12px !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-wrap: nowrap;
+  word-wrap: unset;
+}

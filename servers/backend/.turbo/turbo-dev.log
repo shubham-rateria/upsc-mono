@@ -1,0 +1,158 @@
+(node:21532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `pnpm --trace-warnings ...` to show where the warning was created)
+
+> @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
+> tsnd --respawn app.ts
+
+[INFO] 19:35:55 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:21547) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mGET /api/toppers [32m200[0m 90.098 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.022 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.700 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.839 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 77.005 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 79.364 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 82.192 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.122 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 78.868 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.125 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 79.125 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 81.746 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 76.992 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 79.581 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 106.421 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 108.189 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 82.984 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.554 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 82.043 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.320 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 79.052 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.402 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 79.193 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 80.611 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 89.975 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 92.266 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.381 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 87.844 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 372.005 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 390.594 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 83.086 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.296 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 98.248 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 100.603 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 82.466 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 83.055 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 77.625 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 77.753 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.696 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 89.527 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.343 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.903 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 101.122 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 101.276 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 187.346 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 187.625 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 294.692 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 312.104 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.936 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 91.321 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 87.977 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.519 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 81.439 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 82.638 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.305 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 86.409 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 125.515 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 133.769 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 81.718 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.913 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 87.238 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 88.339 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 83.246 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.390 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 87.458 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 94.970 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 104.195 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 105.943 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 76.951 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 78.117 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 112.583 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 112.510 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 97.606 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 101.106 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.480 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.780 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.555 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.843 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 91.175 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 93.126 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 103.898 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 103.457 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 87.514 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 88.078 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.854 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 92.423 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 81.559 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.452 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 996.363 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 116.040 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 118.123 ms - 13479[0m
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 47.692 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 708.622 ms - 63008[0m
+[0mGET /api/toppers [32m200[0m 79.539 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 80.751 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 134.084 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 135.651 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 89.320 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 97.635 ms - 13479[0m
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 46.245 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 386.759 ms - 77929[0m
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 49.008 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 406.238 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 81.759 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 83.048 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 422.745 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 430.033 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 854.936 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 79.526 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.039 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 702.222 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 78.682 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 93.634 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 403.579 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 87.259 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 87.247 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 383.807 ms - 69927[0m
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 52.497 ms - 26[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 376.047 ms - 77929[0m
+[0mGET /api/toppers [32m200[0m 89.670 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 93.158 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 502.739 ms - 77947[0m
+[0mGET /api/to

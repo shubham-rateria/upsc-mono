@@ -1,6 +1,7 @@
 .Container {
   width: 100vw;
   height: 100vh;
+  padding: var(--padding-s) 0;
 }
 
 .TopNavContainer {

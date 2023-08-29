@@ -7,13 +7,12 @@ import "./globals.css";
 import "semantic-ui-css/semantic.min.css";
 
 import SearchParamsContextProvider from "./contexts/SearchParamsContextProvider.tsx";
-import NoMobileView from "./components/NoMobileView/NoMobileView.tsx";
 import { StytchProvider } from "@stytch/react";
 import { StytchUIClient } from "@stytch/vanilla-js";
 import { Login } from "./pages/login/Login.tsx";
 import { AuthContext } from "./contexts/AuthContextProvider.tsx";
 import TourContext from "./contexts/TourContext.tsx";
-import MSearch from "./mobile-pages/MSearch/MSearch.tsx";
+import MSearch from "./mobile/pages/Search/Search.tsx";
 
 const stytch = new StytchUIClient(
   "public-token-live-a3d62995-b815-4c9f-a173-37b55b05b087"
@@ -25,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <SearchParamsContextProvider>
           <Routes>
-            <Route path="/" element={<MSearch />} />
+            <Route path="/m" index element={<MSearch />} />
           </Routes>
           <MSearch />
         </SearchParamsContextProvider>

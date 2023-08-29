@@ -1,5 +1,5 @@
 import { Button, Dropdown, Menu } from "semantic-ui-react";
-import styles from "./mTopNavBar.module.css";
+import styles from "./Topnavbar.module.css";
 import { useCallback, useContext } from "react";
 import { useStytchUser, useStytch } from "@stytch/react";
 import { useNavigate } from "react-router-dom";

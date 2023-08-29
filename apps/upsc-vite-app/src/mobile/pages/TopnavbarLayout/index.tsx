@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./layout.module.css";
-import MTopNavBar from "../../components/mobile/mTopNavBar/MTopNavBar";
+import MTopNavBar from "../../components/TopnavBar/TopnavBar";
 
 export default function MTopBarLayout({
   children,
