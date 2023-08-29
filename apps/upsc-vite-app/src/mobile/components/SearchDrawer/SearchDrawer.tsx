@@ -6,10 +6,6 @@ import {
   mapTagTypeToNumber,
   Tag,
   TagType,
-  gs1Categories,
-  gs2Categories,
-  gs3Categories,
-  gs4Categories,
 } from "usn-common";
 import { observer } from "mobx-react-lite";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
@@ -45,13 +41,13 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
     return options.concat(optionals);
   }, []);
 
-  const keywordOptions = useMemo(() => {
-    if (selectedL0 === "") {
-      return {};
-    }
-  }, [selectedL0]);
+  //   const keywordOptions = useMemo(() => {
+  //     if (selectedL0 === "") {
+  //       return {};
+  //     }
+  //   }, [selectedL0]);
 
-  const handleL0Change = (e: any, data: any) => {
+  const handleL0Change = (_e: any, data: any) => {
     setSelectedL0(data.value);
   };
 

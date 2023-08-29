@@ -1,22 +1,21 @@
-import { Button, Dropdown, Menu } from "semantic-ui-react";
 import styles from "./Topnavbar.module.css";
-import { useCallback, useContext } from "react";
-import { useStytchUser, useStytch } from "@stytch/react";
-import { useNavigate } from "react-router-dom";
-import { TourContext } from "../../../contexts/TourContext";
+// import { useCallback, useContext } from "react";
+import { useStytchUser } from "@stytch/react";
+// import { useNavigate } from "react-router-dom";
+// import { TourContext } from "../../../contexts/TourContext";
 
 const MTopNavBar = () => {
-  const stytchClient = useStytch();
+  // const stytchClient = useStytch();
   const user = useStytchUser();
-  const navigate = useNavigate();
-  const tourContextController = useContext(TourContext);
+  // const navigate = useNavigate();
+  // const tourContextController = useContext(TourContext);
 
   console.log({ user });
 
-  const logout = useCallback(async () => {
-    await stytchClient.session.revoke();
-    navigate("/");
-  }, [stytchClient]);
+  // const logout = useCallback(async () => {
+  //   await stytchClient.session.revoke();
+  //   navigate("/");
+  // }, [stytchClient]);
 
   const logoUrl = "/img/logo.svg";
 

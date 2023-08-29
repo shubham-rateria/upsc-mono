@@ -1,7 +1,7 @@
-import { Dropdown } from "semantic-ui-react";
+// import { Dropdown } from "semantic-ui-react";
 import MTopBarLayout from "../TopnavbarLayout";
 import styles from "./Search.module.css";
-import { EmptyPagePlaceholder } from "../../../components/EmptyPagePlaceholder/EmptyPagePlaceholder";
+// import { EmptyPagePlaceholder } from "../../../components/EmptyPagePlaceholder/EmptyPagePlaceholder";
 import TagButton from "../../components/TagButton/TagButton";
 import { useContext, useState } from "react";
 import TopperDrawer from "../../components/TopperDrawer/TopperDrawer";

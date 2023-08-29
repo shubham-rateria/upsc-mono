@@ -16,7 +16,7 @@ type Props = {
 const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
   const [toppers, setToppers] = useState<Topper[]>([]);
   const searchParamsClass = useContext(SearchParamsContext);
-  const [loading, setLoading] = useState(true);
+  const [_loading, setLoading] = useState(true);
   const [filterText, setFilterText] = useState("");
   const [selectedTopper, setSelectedTopper] = useState<Topper>();
 

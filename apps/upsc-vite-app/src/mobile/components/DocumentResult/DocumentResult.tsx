@@ -1,5 +1,5 @@
 import { PageResult, Result } from "usn-common";
-import React, { useContext, useState } from "react";
+import React from "react";
 import styles from "./DocumentResult.module.css";
 // @ts-ignore
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
@@ -90,7 +90,7 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
           </div>
         }
       >
-        {result.pages.map((page: PageResult, index: number) => (
+        {result.pages.map((page: PageResult) => (
           <div className={styles.PageResult} key={page.s3_img_object_name}>
             <div className={styles.PageImage}>
               <img src={page.s3_signed_url} />

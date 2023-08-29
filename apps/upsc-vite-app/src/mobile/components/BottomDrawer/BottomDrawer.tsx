@@ -1,6 +1,5 @@
 import React, { useState, useRef, FC } from "react";
 import styles from "./BottomDrawer.module.css"; // Create a CSS file for styling
-import clsx from "clsx";
 import { Button } from "semantic-ui-react";
 
 type Props = {
