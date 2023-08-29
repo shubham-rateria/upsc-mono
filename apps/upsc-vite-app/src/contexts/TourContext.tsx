@@ -44,8 +44,12 @@ class TourContextController {
                 await searchParamsClass.searchForDocuments();
                 // @ts-ignore
                 await searchParamsClass.lastSearchPromise;
-                this.primaryTour.moveNext();
+              } else {
+                searchParamsClass.setSearchParams({
+                  keyword: "mauryan empire",
+                });
               }
+              this.primaryTour.moveNext();
             },
           },
         },
@@ -92,6 +96,7 @@ class TourContextController {
           await axiosInstance.post("/api/user/set-user-onboarded", {
             phone: this.phone,
           });
+          searchParamsClass.clearFilters();
         } catch (error) {
           console.error(error);
         }
