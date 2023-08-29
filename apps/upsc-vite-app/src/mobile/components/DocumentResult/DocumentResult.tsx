@@ -67,7 +67,7 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
           <div className={styles.ResultTopBar}>
             <div className={styles.DocumentName}>
               <img src="/icons/do-document-text.svg" alt="document text" />
-              {truncate(result.s3_object_name, { length: 40 })}{" "}
+              {truncate(result.s3_object_name, { length: 30 })}{" "}
               <span className={styles.NumPages}>{result.num_pages} Pages</span>
             </div>
             {canShowTopper() && (

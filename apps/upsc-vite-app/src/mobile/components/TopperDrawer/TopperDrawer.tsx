@@ -28,6 +28,7 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
     searchParamsClass.setSearchParams({
       topper: selectedTopper,
     });
+    searchParamsClass.searchForDocuments();
   };
 
   useEffect(() => {
