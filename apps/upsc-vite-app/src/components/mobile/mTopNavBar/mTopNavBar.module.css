@@ -1,0 +1,103 @@
+/* TopNavBar.module.css */
+
+.topNavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  width: 100%;
+  padding: var(--padding-s);
+}
+
+.logoContainer img {
+  /* height: 40px; */
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.PhoneNumber {
+  margin-right: 1rem;
+}
+
+.UnlockBtn {
+  display: flex !important;
+  padding: 6px 8px !important;
+  align-items: center;
+  gap: 6px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--p7) !important;
+  background: var(--p1) !important;
+  color: var(--n5) !important;
+  font-family: var(--font-mulish) !important;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: var(--margin-m) !important;
+}
+
+.LogoutBtn {
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  padding: 6px 8px !important;
+  align-items: center;
+  gap: 6px !important;
+  border-radius: 8px !important;
+  /* border: 1px solid var(--p7) !important; */
+  /* background: var(--p1) !important; */
+  background: white !important;
+  color: var(--n5) !important;
+  font-family: var(--font-mulish) !important;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500 !important;
+  line-height: normal;
+}
+
+/* .UnlockBtn img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+
+.TutorialBtn {
+  font-family: "Mulish";
+  font-weight: 600;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.DropdownBtn {
+  border-radius: 9px !important;
+  background: white !important;
+  color: var(--p8) !important;
+  font-family: "Mulish";
+  font-weight: 1000;
+  justify-content: center;
+}
+
+.DropdownMenu {
+  border-radius: 9px !important;
+  padding: var(--padding-m) !important;
+  min-width: 200px !important;
+}
+
+.DropdownItem {
+  font-family: var(--font-mulish);
+  color: var(--n5);
+}
+
+.DropdownItem:hover {
+  background-color: var(--p8) !important;
+  color: white !important;
+}

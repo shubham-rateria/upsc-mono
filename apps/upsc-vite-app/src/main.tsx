@@ -13,6 +13,7 @@ import { StytchUIClient } from "@stytch/vanilla-js";
 import { Login } from "./pages/login/Login.tsx";
 import { AuthContext } from "./contexts/AuthContextProvider.tsx";
 import TourContext from "./contexts/TourContext.tsx";
+import MSearch from "./mobile-pages/MSearch/MSearch.tsx";
 
 const stytch = new StytchUIClient(
   "public-token-live-a3d62995-b815-4c9f-a173-37b55b05b087"
@@ -20,7 +21,16 @@ const stytch = new StytchUIClient(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   window.innerWidth < 600 ? (
-    <NoMobileView />
+    <StytchProvider stytch={stytch}>
+      <BrowserRouter>
+        <SearchParamsContextProvider>
+          <Routes>
+            <Route path="/" element={<MSearch />} />
+          </Routes>
+          <MSearch />
+        </SearchParamsContextProvider>
+      </BrowserRouter>
+    </StytchProvider>
   ) : (
     <StytchProvider stytch={stytch}>
       <BrowserRouter>
