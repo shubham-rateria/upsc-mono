@@ -13,6 +13,20 @@ import { InView } from "react-intersection-observer";
 import { Loader } from "semantic-ui-react";
 import ResultsSection from "../../components/ResultsSection/ResultsSection";
 
+const tagTypeToText: any = {
+  GS1: "General Studies I",
+  GS2: "General Studies II",
+  GS3: "General Studies III",
+  GS4: "General Studies IV",
+};
+
+const convertTagTypeToText = (type: any, text: any) => {
+  if (["GS1", "GS2", "GS3", "GS4"].includes(type)) {
+    return tagTypeToText[type];
+  }
+  return text;
+};
+
 const Search = () => {
   const [openToppersDrawer, setOpenToppersDrawer] = useState(false);
   const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
@@ -25,15 +39,37 @@ const Search = () => {
       text = searchParamsClass.searchParams.keyword || "";
     }
     if ((searchParamsClass.searchParams.subjectTags ?? []).length > 0) {
-      // @ts-ignore
-      text = searchParamsClass.searchParams.subjectTags[0].value.tagText;
+      const l0Tags =
+        searchParamsClass.searchParams.subjectTags?.filter(
+          (tag) => tag.level === "l0"
+        ) ?? [];
+      const otherTags =
+        searchParamsClass.searchParams.subjectTags?.filter(
+          (tag) => tag.level !== "l0"
+        ) ?? [];
+      console.log({ l0Tags, otherTags });
+      if (otherTags.length > 0) {
+        text = `${otherTags[0].value.tagText} in ${convertTagTypeToText(
+          otherTags[0].type,
+          otherTags[0].value.tagText
+        )}`;
+      } else if (l0Tags.length > 0) {
+        text = l0Tags[0].value.tagText;
+      }
     }
     if (
       (searchParamsClass.searchParams.keyword || "").length > 0 &&
       (searchParamsClass.searchParams.subjectTags ?? []).length > 0
     ) {
       // @ts-ignore
-      text = `${searchParamsClass.searchParams.keyword} in ${searchParamsClass.searchParams.subjectTags[0].value.tagText}`;
+      text = `${
+        searchParamsClass.searchParams.keyword
+      } in ${convertTagTypeToText(
+        // @ts-ignore
+        searchParamsClass.searchParams.subjectTags[0].type,
+        // @ts-ignore
+        searchParamsClass.searchParams.subjectTags[0].value.tagText
+      )}`;
     }
     return text;
   };
@@ -48,6 +84,29 @@ const Search = () => {
         return "Sample Answers";
       default:
         return "Doc Type";
+    }
+  };
+
+  const getResultsText = () => {
+    if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
+      return (
+        <div>
+          {`Showing first ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents containing`}{" "}
+          <span className={styles.Keyword}>
+            "{searchParamsClass.lastSearchParams.keyword}"
+          </span>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {`Showing ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents out of many`}
+        </div>
+      );
     }
   };
 
@@ -84,7 +143,13 @@ const Search = () => {
         <TagButton hasValue={false} text="" placeholder="From Year" />
         <TagButton hasValue={false} text="" placeholder="Search In" />
       </div>
-
+      <div className={styles.ResultText}>
+        {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
+          !searchParamsClass.searching && (
+            <div className={styles.DocFound}>{getResultsText()}</div>
+          )}
+      </div>
+      <div className={styles.Divider} />
       <div className={styles.ResultSection}>
         <ResultsSection />
         {searchParamsClass.docSearchResults &&

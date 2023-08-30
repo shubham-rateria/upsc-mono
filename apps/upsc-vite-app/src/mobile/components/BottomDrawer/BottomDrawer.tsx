@@ -36,24 +36,17 @@ const BottomDrawer: FC<Props> = ({
       // @ts-ignore
       drawerRef.current.style.top = `${e.touches[0].clientY}px`;
     }
-    setStartY(e.touches[0].clientY);
+    setCurrentY(e.touches[0].clientY);
   };
 
   const handleTouchEnd = () => {
     const deltaY = currentY - startY;
 
-    if (deltaY < -300 && isOpen) {
-      if (drawerRef.current) {
-        // @ts-ignore
-        drawerRef.current.style.top = `100vh`;
-      }
+    if (deltaY > 150 && isOpen) {
       onClose();
-    } else if (deltaY > 300 && !isOpen) {
-      // if (drawerRef.current) {
-      //   // @ts-ignore
-      //   drawerRef.current.style.top = `100vh`;
-      // }
-      // onClose();
+    } else {
+      // @ts-ignore
+      drawerRef.current.style.top = `10vh`;
     }
 
     setStartY(0);

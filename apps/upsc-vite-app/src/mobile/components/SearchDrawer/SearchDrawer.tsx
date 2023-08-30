@@ -1,4 +1,4 @@
-import { FC, useContext, useMemo, useState } from "react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
 import BottomDrawer from "../BottomDrawer/BottomDrawer";
 import { Dropdown, Input } from "semantic-ui-react";
 import {
@@ -18,27 +18,15 @@ type Props = {
   onClose: () => void;
 };
 
-const tagTypeToText: any = {
-  GS1: "General Studies I",
-  GS2: "General Studies II",
-  GS3: "General Studies III",
-  GS4: "General Studies IV",
-  Essay: "Essay",
-};
-
 const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   const searchParamsClass = useContext(SearchParamsContext);
-  const [selectedL0, setSelectedL0] = useState(
-    (searchParamsClass.searchParams.subjectTags ?? []).length > 0
-      ? // @ts-ignore
-        searchParamsClass.searchParams.subjectTags[0].type
-      : ""
-  );
+  const [selectedL0, setSelectedL0] = useState("");
   const [searchKeyword, setSearchKeyword] = useState<string>(
     searchParamsClass.searchParams.keyword
       ? searchParamsClass.searchParams.keyword
       : ""
   );
+  const [selectedTag, setSelectedTag] = useState<Tag>();
 
   const options = useMemo(() => {
     const options = [
@@ -100,23 +88,22 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
 
   const handleL0Change = (_e: any, data: any) => {
     setSelectedL0(data.value);
-    if (data.value === "") {
-      searchParamsClass.setSearchParams({
-        subjectTags: [],
-        keyword: undefined,
-      });
-      setSearchKeyword("");
-    }
+    searchParamsClass.setSearchParams({
+      subjectTags: [],
+      keyword: undefined,
+    });
+    setSelectedTag(undefined);
+    setSearchKeyword("");
   };
 
   const handleApply = () => {
-    if (searchKeyword) {
+    if (searchKeyword && selectedTag === undefined) {
       searchParamsClass.setSearchParams({
         keyword: searchKeyword,
       });
     }
 
-    if (selectedL0 !== "") {
+    if (selectedL0 !== "" && selectedTag === undefined) {
       if (!["GS1", "GS2", "GS3", "GS4", "Essay"].includes(selectedL0)) {
         const tag: Tag = {
           level: "l0",
@@ -134,7 +121,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           level: "l0",
           type: selectedL0 as TagType,
           value: {
-            tagText: tagTypeToText[selectedL0],
+            tagText: selectedL0,
           },
         };
         searchParamsClass.setSearchParams({
@@ -143,15 +130,46 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
       }
     }
 
+    if (selectedTag) {
+      searchParamsClass.setSearchParams({
+        subjectTags: [selectedTag],
+      });
+    }
+
     searchParamsClass.searchForDocuments();
   };
 
   const handleKeywordTagClick = (tag: Tag) => {
-    searchParamsClass.setSearchParams({
-      subjectTags: [tag],
-    });
+    // searchParamsClass.setSearchParams({
+    //   subjectTags: [tag],
+    // });
+    setSelectedTag(tag);
     setSearchKeyword(tag.value.tagText);
   };
+
+  const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value);
+    setSelectedTag(undefined);
+  };
+
+  useEffect(() => {
+    const tags =
+      searchParamsClass.searchParams.subjectTags?.filter(
+        (tag) => tag.level !== "l0"
+      ) ?? [];
+    if (tags?.length > 0) {
+      setSelectedTag(tags[0]);
+      setSearchKeyword(tags[0].value.tagText);
+    }
+    const subjectTags = searchParamsClass.searchParams.subjectTags ?? [];
+    if (subjectTags.length > 0) {
+      if (subjectTags[0].type !== "Optionals") {
+        setSelectedL0(subjectTags[0].type);
+      } else {
+        setSelectedL0(subjectTags[0].value.tagText);
+      }
+    }
+  }, []);
 
   return (
     <BottomDrawer
@@ -185,25 +203,25 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           fluid
           placeholder="Search for a keyword or subtopic"
           value={searchKeyword}
-          onChange={(e) => {
-            setSearchKeyword(e.target.value);
-          }}
+          onChange={handleKeywordChange}
           className={styles.Input}
         />
       </div>
-      <div className={styles.KeywordFilterContainer}>
-        {keywordOptions.map((tag: Tag, index: number) => (
-          <div
-            className={styles.KeywordFilterItem}
-            key={index}
-            onClick={() => {
-              handleKeywordTagClick(tag);
-            }}
-          >
-            {tag.level === "l1" ? tag.value.tagText : `${tag.value.tagText}`}
-          </div>
-        ))}
-      </div>
+      {selectedTag === undefined && (
+        <div className={styles.KeywordFilterContainer}>
+          {keywordOptions.map((tag: Tag, index: number) => (
+            <div
+              className={styles.KeywordFilterItem}
+              key={index}
+              onClick={() => {
+                handleKeywordTagClick(tag);
+              }}
+            >
+              {tag.level === "l1" ? tag.value.tagText : `${tag.value.tagText}`}
+            </div>
+          ))}
+        </div>
+      )}
     </BottomDrawer>
   );
 };

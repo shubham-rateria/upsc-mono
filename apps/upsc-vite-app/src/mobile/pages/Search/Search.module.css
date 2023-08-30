@@ -54,3 +54,15 @@
   width: 0;
   height: 0;
 }
+
+.ResultText {
+  padding: 0 var(--padding-s) var(--padding-s) var(--padding-s);
+  font-family: var(--font-mulish);
+  font-weight: 400;
+  color: var(--n7);
+}
+
+.Divider {
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  width: 100%;
+}

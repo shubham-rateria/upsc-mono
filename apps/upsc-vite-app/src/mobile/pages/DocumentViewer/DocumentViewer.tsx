@@ -341,7 +341,7 @@ const DocumentViewerPage: React.FC = () => {
                         </div>
                         <div>
                           {(currentDocSearchResultIdx || 0) + 1} /{" "}
-                          {documentSearchResult.pages.length} Results
+                          {documentSearchResult.pages.length}
                         </div>
                         <div>
                           <div
@@ -361,9 +361,12 @@ const DocumentViewerPage: React.FC = () => {
                   </div>
                 )}
               </div>
-              <div className={styles.PageNumber}>
-                {currentActivePage || ""} / {document?.num_pages}
-              </div>
+              {(!documentSearchResult ||
+                documentSearchResult?.pages.length === 0) && (
+                <div className={styles.PageNumber}>
+                  {currentActivePage || ""} / {document?.num_pages}
+                </div>
+              )}
             </div>
           </div>
 
