@@ -5,9 +5,14 @@ import { observer } from "mobx-react-lite";
 import DocSearchPlaceholder from "../DocSearchPlaceholder/DocSearchPlaceholder";
 import styles from "./ResultsSection.module.css";
 import { EmptyPagePlaceholder } from "../../../components/EmptyPagePlaceholder/EmptyPagePlaceholder";
+import { Button } from "semantic-ui-react";
 
 const ResultsSection = () => {
   const searchParamsClass = useContext(SearchParamsContext);
+
+  const handleClear = () => {
+    searchParamsClass.clearFilters();
+  };
 
   if (searchParamsClass.searching) {
     return (
@@ -31,6 +36,19 @@ const ResultsSection = () => {
               description="Use the filters or enter any keyword to perform a search"
             ></EmptyPagePlaceholder>
           </div>
+        )}
+      {!searchParamsClass.defaultState() &&
+        searchParamsClass.docSearchResults &&
+        searchParamsClass.docSearchResults.length === 0 && (
+          <EmptyPagePlaceholder
+            imgSrc="/img/start-results.svg"
+            title="No Search Results"
+            description="Use the filters or enter any keyword to perform a search"
+          >
+            <Button className={styles.RemoveBtn} onClick={handleClear}>
+              Clear Filters
+            </Button>
+          </EmptyPagePlaceholder>
         )}
       {searchParamsClass.docSearchResults &&
         searchParamsClass.docSearchResults.length > 0 &&
