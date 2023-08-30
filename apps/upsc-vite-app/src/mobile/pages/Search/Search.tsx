@@ -7,7 +7,6 @@ import { useContext, useState } from "react";
 import TopperDrawer from "../../components/TopperDrawer/TopperDrawer";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import SearchDrawer from "../../components/SearchDrawer/SearchDrawer";
-import DocumentResult from "../../components/DocumentResult/DocumentResult";
 import { observer } from "mobx-react-lite";
 import DocTypeDrawer from "../../components/DocTypeDrawer/DocTypeDrawer";
 import { InView } from "react-intersection-observer";
