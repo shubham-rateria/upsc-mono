@@ -18,6 +18,14 @@ type Props = {
   onClose: () => void;
 };
 
+const tagTypeToText: any = {
+  GS1: "General Studies I",
+  GS2: "General Studies II",
+  GS3: "General Studies III",
+  GS4: "General Studies IV",
+  Essay: "Essay",
+};
+
 const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   const searchParamsClass = useContext(SearchParamsContext);
   const [selectedL0, setSelectedL0] = useState(
@@ -126,7 +134,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           level: "l0",
           type: selectedL0 as TagType,
           value: {
-            tagText: selectedL0,
+            tagText: tagTypeToText[selectedL0],
           },
         };
         searchParamsClass.setSearchParams({

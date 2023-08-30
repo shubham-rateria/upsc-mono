@@ -18,10 +18,20 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
   const searchParamsClass = useContext(SearchParamsContext);
   const [_loading, setLoading] = useState(true);
   const [filterText, setFilterText] = useState("");
-  const [selectedTopper, setSelectedTopper] = useState<Topper>();
+  const [selectedTopper, setSelectedTopper] = useState<Topper | undefined>(
+    searchParamsClass.searchParams.topper
+  );
 
   const handleCheckboxClick = (topper: Topper) => {
-    setSelectedTopper(topper);
+    if (
+      selectedTopper?.name === topper.name &&
+      selectedTopper?.rank === topper.rank &&
+      selectedTopper?.year === topper.year
+    ) {
+      setSelectedTopper(undefined);
+    } else {
+      setSelectedTopper(topper);
+    }
   };
 
   const handleApply = () => {
@@ -66,6 +76,7 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
                 topper: undefined,
               });
               searchParamsClass.searchForDocuments();
+              setSelectedTopper(undefined);
             }
           : undefined
       }
