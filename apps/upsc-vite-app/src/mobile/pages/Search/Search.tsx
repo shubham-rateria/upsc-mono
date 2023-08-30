@@ -12,6 +12,7 @@ import { observer } from "mobx-react-lite";
 import DocTypeDrawer from "../../components/DocTypeDrawer/DocTypeDrawer";
 import { InView } from "react-intersection-observer";
 import { Loader } from "semantic-ui-react";
+import ResultsSection from "../../components/ResultsSection/ResultsSection";
 
 const Search = () => {
   const [openToppersDrawer, setOpenToppersDrawer] = useState(false);
@@ -84,19 +85,9 @@ const Search = () => {
         <TagButton hasValue={false} text="" placeholder="From Year" />
         <TagButton hasValue={false} text="" placeholder="Search In" />
       </div>
-      {/* <div className={styles.EmptyContainer}>
-        <EmptyPagePlaceholder
-          imgSrc="/img/decide.svg"
-          title="Start a new search"
-          description="Use the filters or enter any keyword to perform a search"
-        ></EmptyPagePlaceholder>
-      </div> */}
+
       <div className={styles.ResultSection}>
-        {searchParamsClass.docSearchResults &&
-          searchParamsClass.docSearchResults.length > 0 &&
-          searchParamsClass.docSearchResults?.map((result, index) => (
-            <DocumentResult result={result} key={index} />
-          ))}
+        <ResultsSection />
         {searchParamsClass.docSearchResults &&
           searchParamsClass.docSearchResults?.length > 0 && (
             <InView

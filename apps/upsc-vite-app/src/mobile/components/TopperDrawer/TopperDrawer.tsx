@@ -65,6 +65,7 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
               searchParamsClass.setSearchParams({
                 topper: undefined,
               });
+              searchParamsClass.searchForDocuments();
             }
           : undefined
       }

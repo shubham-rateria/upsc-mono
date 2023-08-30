@@ -1,0 +1,7 @@
+.EmptyContainer {
+  height: 100%;
+  padding: var(--padding-m);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
