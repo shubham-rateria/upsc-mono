@@ -31,7 +31,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   const [selectedL0, setSelectedL0] = useState(
     (searchParamsClass.searchParams.subjectTags ?? []).length > 0
       ? // @ts-ignore
-        searchParamsClass.searchParams.subjectTags[0].value.tagText
+        searchParamsClass.searchParams.subjectTags[0].type
       : ""
   );
   const [searchKeyword, setSearchKeyword] = useState<string>(
@@ -66,7 +66,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
     }
     const options: Tag[] = [];
     const re = new RegExp(escapeRegExp(searchKeyword), "i");
-    if (["GS1", "GS2", "GS3", "GS4", "Essay"].includes(selectedL0)) {
+    if (["GS1", "GS2", "GS3", "GS4"].includes(selectedL0)) {
       const categoryType = mapTagTypeToCategories[selectedL0];
       for (const category of categoryType.categories) {
         Object.keys(category).forEach((key) => {
