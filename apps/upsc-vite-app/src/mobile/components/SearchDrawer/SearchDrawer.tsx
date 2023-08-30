@@ -92,6 +92,13 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
 
   const handleL0Change = (_e: any, data: any) => {
     setSelectedL0(data.value);
+    if (data.value === "") {
+      searchParamsClass.setSearchParams({
+        subjectTags: [],
+        keyword: undefined,
+      });
+      setSearchKeyword("");
+    }
   };
 
   const handleApply = () => {
@@ -129,6 +136,13 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
     }
 
     searchParamsClass.searchForDocuments();
+  };
+
+  const handleKeywordTagClick = (tag: Tag) => {
+    searchParamsClass.setSearchParams({
+      subjectTags: [tag],
+    });
+    setSearchKeyword(tag.value.tagText);
   };
 
   return (
@@ -174,9 +188,11 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           <div
             className={styles.KeywordFilterItem}
             key={index}
-            onClick={() => {}}
+            onClick={() => {
+              handleKeywordTagClick(tag);
+            }}
           >
-            {tag.value.tagText}
+            {tag.level === "l1" ? tag.value.tagText : `${tag.value.tagText}`}
           </div>
         ))}
       </div>
