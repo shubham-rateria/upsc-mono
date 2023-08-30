@@ -116,3 +116,14 @@
   height: 30px;
   width: 100vw;
 }
+
+.Clear {
+  margin-left: auto;
+  margin-right: var(--margin-m);
+  color: var(--p7, #7963ff);
+  font-family: var(--font-mulish);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

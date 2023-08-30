@@ -6,10 +6,12 @@ import {
   mapTagTypeToNumber,
   Tag,
   TagType,
+  mapTagTypeToCategories,
 } from "usn-common";
 import { observer } from "mobx-react-lite";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import styles from "./SearchDrawer.module.css";
+import { escapeRegExp } from "lodash";
 
 type Props = {
   isOpen: boolean;
@@ -24,7 +26,11 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
         searchParamsClass.searchParams.subjectTags[0].value.tagText
       : ""
   );
-  const [searchKeyword, setSearchKeyword] = useState<string>();
+  const [searchKeyword, setSearchKeyword] = useState<string>(
+    searchParamsClass.searchParams.keyword
+      ? searchParamsClass.searchParams.keyword
+      : ""
+  );
 
   const options = useMemo(() => {
     const options = [
@@ -46,11 +52,43 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
     return options.concat(optionals);
   }, []);
 
-  //   const keywordOptions = useMemo(() => {
-  //     if (selectedL0 === "") {
-  //       return {};
-  //     }
-  //   }, [selectedL0]);
+  const keywordOptions: Tag[] = useMemo(() => {
+    if (selectedL0 === "" || searchKeyword === "") {
+      return [];
+    }
+    const options: Tag[] = [];
+    const re = new RegExp(escapeRegExp(searchKeyword), "i");
+    if (["GS1", "GS2", "GS3", "GS4", "Essay"].includes(selectedL0)) {
+      const categoryType = mapTagTypeToCategories[selectedL0];
+      for (const category of categoryType.categories) {
+        Object.keys(category).forEach((key) => {
+          const option: Tag = {
+            type: selectedL0 as TagType,
+            level: "l1",
+            value: {
+              tagText: key,
+            },
+          };
+          if (re.test(key)) {
+            options.push(option);
+          }
+          Object.keys(category[key]).forEach((subKey) => {
+            const option: Tag = {
+              type: selectedL0 as TagType,
+              level: "l2",
+              value: {
+                tagText: subKey,
+              },
+            };
+            if (re.test(subKey)) {
+              options.push(option);
+            }
+          });
+        });
+      }
+    }
+    return options;
+  }, [selectedL0, searchKeyword]);
 
   const handleL0Change = (_e: any, data: any) => {
     setSelectedL0(data.value);
@@ -101,6 +139,13 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
       onApply={() => {
         handleApply();
       }}
+      onClear={() => {
+        searchParamsClass.setSearchParams({
+          keyword: undefined,
+          subjectTags: undefined,
+        });
+        searchParamsClass.searchForDocuments();
+      }}
     >
       <div className={styles.DrawerContainer}>
         <Dropdown
@@ -123,6 +168,17 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           }}
           className={styles.Input}
         />
+      </div>
+      <div className={styles.KeywordFilterContainer}>
+        {keywordOptions.map((tag: Tag, index: number) => (
+          <div
+            className={styles.KeywordFilterItem}
+            key={index}
+            onClick={() => {}}
+          >
+            {tag.value.tagText}
+          </div>
+        ))}
       </div>
     </BottomDrawer>
   );

@@ -12,3 +12,15 @@
   background: var(--n0, #fff) !important;
   font-family: var(--font-mulish) !important;
 }
+
+.KeywordFilterContainer {
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.KeywordFilterItem {
+  padding: var(--padding-xs) 0;
+  font-family: var(--font-mulish);
+  color: var(--n7);
+  font-weight: 500;
+}

@@ -18,4 +18,5 @@
   text-wrap: nowrap;
   word-wrap: unset;
   white-space: nowrap;
+  min-height: 30px !important;
 }

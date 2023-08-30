@@ -34,58 +34,56 @@ const DocTypeDrawer: FC<Props> = ({ isOpen, onClose }) => {
       title="Document Type"
       onApply={handleApply}
     >
-      <div>
-        <List>
-          <List.Item className={styles.ListItem}>
-            <List.Content>
-              <List.Header className={styles.SectionTitle} onClick={() => {}}>
-                <Checkbox
-                  checked={docType === -1}
-                  onClick={() => {
-                    handleChange(-1);
-                  }}
-                  radio
-                  label="All Documents"
-                />
-              </List.Header>
-            </List.Content>
-          </List.Item>
-          <List.Item className={styles.ListItem}>
-            <List.Content>
-              <List.Header
-                className={styles.SectionTitle}
+      <List className={styles.Container}>
+        <List.Item className={styles.ListItem}>
+          <List.Content>
+            <List.Header className={styles.SectionTitle} onClick={() => {}}>
+              <Checkbox
+                checked={docType === -1}
                 onClick={() => {
-                  handleChange(0);
+                  handleChange(-1);
                 }}
-              >
-                <Checkbox
-                  checked={docType === 0}
-                  onClick={() => {}}
-                  radio
-                  label="Notes"
-                />
-              </List.Header>
-            </List.Content>
-          </List.Item>
-          <List.Item className={styles.ListItem}>
-            <List.Content>
-              <List.Header
-                className={styles.SectionTitle}
-                onClick={() => {
-                  handleChange(1);
-                }}
-              >
-                <Checkbox
-                  checked={docType === 1}
-                  onClick={() => {}}
-                  radio
-                  label="Sample Answers"
-                />
-              </List.Header>
-            </List.Content>
-          </List.Item>
-        </List>
-      </div>
+                radio
+                label="All Documents"
+              />
+            </List.Header>
+          </List.Content>
+        </List.Item>
+        <List.Item className={styles.ListItem}>
+          <List.Content>
+            <List.Header
+              className={styles.SectionTitle}
+              onClick={() => {
+                handleChange(0);
+              }}
+            >
+              <Checkbox
+                checked={docType === 0}
+                onClick={() => {}}
+                radio
+                label="Notes"
+              />
+            </List.Header>
+          </List.Content>
+        </List.Item>
+        <List.Item className={styles.ListItem}>
+          <List.Content>
+            <List.Header
+              className={styles.SectionTitle}
+              onClick={() => {
+                handleChange(1);
+              }}
+            >
+              <Checkbox
+                checked={docType === 1}
+                onClick={() => {}}
+                radio
+                label="Sample Answers"
+              />
+            </List.Header>
+          </List.Content>
+        </List.Item>
+      </List>
     </BottomDrawer>
   );
 };

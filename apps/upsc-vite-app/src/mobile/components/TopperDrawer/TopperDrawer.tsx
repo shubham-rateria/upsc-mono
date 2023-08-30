@@ -99,14 +99,18 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
       )}
       <List className={styles.ListContainer}>
         {(filterText.length > 0
-          ? toppers.filter((t) => t.name?.toLowerCase().includes(filterText))
+          ? toppers.filter((t) =>
+              t.name?.toLowerCase().includes(filterText.toLowerCase())
+            )
           : toppers
         ).map((topper: Topper, index: number) => (
           <List.Item className={clsx(styles.ListItem)} key={index}>
             <List.Content>
               <List.Header
                 className={clsx(styles.SectionTitle)}
-                onClick={() => {}}
+                onClick={() => {
+                  handleCheckboxClick(topper);
+                }}
               >
                 <Checkbox
                   checked={
@@ -114,9 +118,6 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
                     selectedTopper?.rank === topper.rank &&
                     selectedTopper?.year === topper.year
                   }
-                  onClick={() => {
-                    handleCheckboxClick(topper);
-                  }}
                   radio
                 />
                 <div className={styles.TopperListItem}>

@@ -104,7 +104,7 @@ const BottomDrawer: FC<Props> = ({
             <div className={styles.Title}>{title}</div>
             {onClear && (
               <div className={styles.Clear} onClick={handleClear}>
-                Reset
+                Clear
               </div>
             )}
           </div>

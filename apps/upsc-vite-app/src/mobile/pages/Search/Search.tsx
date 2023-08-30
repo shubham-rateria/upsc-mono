@@ -10,6 +10,8 @@ import SearchDrawer from "../../components/SearchDrawer/SearchDrawer";
 import DocumentResult from "../../components/DocumentResult/DocumentResult";
 import { observer } from "mobx-react-lite";
 import DocTypeDrawer from "../../components/DocTypeDrawer/DocTypeDrawer";
+import { InView } from "react-intersection-observer";
+import { Loader } from "semantic-ui-react";
 
 const Search = () => {
   const [openToppersDrawer, setOpenToppersDrawer] = useState(false);
@@ -95,6 +97,32 @@ const Search = () => {
           searchParamsClass.docSearchResults?.map((result, index) => (
             <DocumentResult result={result} key={index} />
           ))}
+        {searchParamsClass.docSearchResults &&
+          searchParamsClass.docSearchResults?.length > 0 && (
+            <InView
+              key={searchParamsClass.pageNumber}
+              as="div"
+              threshold={1}
+              onChange={(inView) => {
+                if (inView) {
+                  searchParamsClass.getNext();
+                }
+              }}
+            >
+              <div />
+              {searchParamsClass.searchingNextResults && (
+                <div className={styles.PaginateLoader}>
+                  <Loader
+                    className={styles.Loader}
+                    active
+                    inline
+                    size="small"
+                  />
+                  <span>Loading...</span>
+                </div>
+              )}
+            </InView>
+          )}
       </div>
       <TopperDrawer
         isOpen={openToppersDrawer}
@@ -102,12 +130,14 @@ const Search = () => {
           setOpenToppersDrawer(false);
         }}
       />
-      <SearchDrawer
-        isOpen={openSearchDrawer}
-        onClose={() => {
-          setOpenSearchDrawer(false);
-        }}
-      />
+      {openSearchDrawer && (
+        <SearchDrawer
+          isOpen={openSearchDrawer}
+          onClose={() => {
+            setOpenSearchDrawer(false);
+          }}
+        />
+      )}
       <DocTypeDrawer
         isOpen={openDocTypeDrawer}
         onClose={() => {
