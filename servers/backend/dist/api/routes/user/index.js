@@ -17,7 +17,6 @@ const user_1 = require("../../../models/user");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const auth_middleware_1 = __importDefault(require("../../../middlewares/auth.middleware"));
 const axios_1 = __importDefault(require("axios"));
-const stytch = require("stytch");
 const route = (0, express_1.Router)();
 const axiosInstance = axios_1.default.create({
     baseURL: "https://test.stytch.com/v1/otps",
