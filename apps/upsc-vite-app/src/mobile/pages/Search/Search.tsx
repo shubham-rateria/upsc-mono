@@ -24,6 +24,9 @@ const convertTagTypeToText = (type: any, text: any) => {
   if (["GS1", "GS2", "GS3", "GS4"].includes(type)) {
     return tagTypeToText[type];
   }
+  if (type === "Essay") {
+    return "Essay";
+  }
   return text;
 };
 
@@ -51,7 +54,7 @@ const Search = () => {
       if (otherTags.length > 0) {
         text = `${otherTags[0].value.tagText} in ${convertTagTypeToText(
           otherTags[0].type,
-          otherTags[0].value.tagText
+          otherTags[0].optionalsName
         )}`;
       } else if (l0Tags.length > 0) {
         text = convertTagTypeToText(l0Tags[0].type, l0Tags[0].value.tagText);

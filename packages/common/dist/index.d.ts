@@ -2280,13 +2280,14 @@ type Result = {
 interface TagValue {
     tagText: string;
 }
-type TagType = "GS1" | "GS2" | "GS3" | "GS4" | "Essay" | "Optionals";
-type TagLevel = "l0" | "l1" | "l2";
+type TagType = 'GS1' | 'GS2' | 'GS3' | 'GS4' | 'Essay' | 'Optionals';
+type TagLevel = 'l0' | 'l1' | 'l2';
 interface Tag {
     type: TagType;
     level: TagLevel;
     value: TagValue;
     optionalsId?: number;
+    optionalsName?: string;
 }
 type DocumentType = -1 | 0 | 1 | 2;
 type Topper = {

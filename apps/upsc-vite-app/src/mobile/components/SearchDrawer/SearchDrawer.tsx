@@ -18,6 +18,28 @@ type Props = {
   onClose: () => void;
 };
 
+function flattenObject(obj: any) {
+  const result: any[] = [];
+
+  function extractLeafValues(obj: any) {
+    if (typeof obj === "object" && obj !== null) {
+      if (Array.isArray(obj)) {
+        obj.forEach((item) => extractLeafValues(item));
+      } else {
+        for (const key in obj) {
+          result.push(key);
+          extractLeafValues(obj[key]);
+        }
+      }
+    } else {
+      result.push(obj);
+    }
+  }
+
+  extractLeafValues(obj);
+  return result;
+}
+
 const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   const searchParamsClass = useContext(SearchParamsContext);
   const [selectedL0, setSelectedL0] = useState("");
@@ -49,7 +71,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   }, []);
 
   const keywordOptions: Tag[] = useMemo(() => {
-    if (selectedL0 === "" || searchKeyword === "") {
+    if (selectedL0 === "" || searchKeyword === "" || selectedL0 === "Essay") {
       return [];
     }
     const options: Tag[] = [];
@@ -82,6 +104,27 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
           });
         });
       }
+    } else {
+      optionalsCategories.categories.forEach((category) => {
+        const keys = Array.from(Object.keys(category));
+        if (keys.includes(selectedL0)) {
+          const values = Array.from(Object.values(category));
+          Object.keys(values[0]).forEach((key) => {
+            const option: Tag = {
+              level: "l1",
+              type: "Optionals",
+              optionalsId: mapTagTypeToNumber[selectedL0],
+              optionalsName: selectedL0,
+              value: {
+                tagText: key,
+              },
+            };
+            if (re.test(key)) {
+              options.push(option);
+            }
+          });
+        }
+      });
     }
     return options;
   }, [selectedL0, searchKeyword]);
