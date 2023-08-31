@@ -46,7 +46,7 @@ const BottomDrawer: FC<Props> = ({
       onClose();
     } else {
       // @ts-ignore
-      drawerRef.current.style.top = `10vh`;
+      drawerRef.current.style.top = `7vh`;
     }
 
     setStartY(0);
