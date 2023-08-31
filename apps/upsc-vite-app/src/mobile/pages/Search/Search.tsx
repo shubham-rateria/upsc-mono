@@ -54,7 +54,7 @@ const Search = () => {
           otherTags[0].value.tagText
         )}`;
       } else if (l0Tags.length > 0) {
-        text = l0Tags[0].value.tagText;
+        text = convertTagTypeToText(l0Tags[0].type, l0Tags[0].value.tagText);
       }
     }
     if (
