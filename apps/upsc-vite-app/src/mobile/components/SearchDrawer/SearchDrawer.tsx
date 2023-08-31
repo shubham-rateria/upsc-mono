@@ -194,7 +194,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
       if (subjectTags[0].type !== "Optionals") {
         setSelectedL0(subjectTags[0].type);
       } else {
-        setSelectedL0(subjectTags[0].optionalsName);
+        setSelectedL0(subjectTags[0].optionalsName ?? "");
       }
     }
   }, []);
