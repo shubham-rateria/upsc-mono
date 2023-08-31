@@ -1,0 +1,27 @@
+.DrawerContainer {
+  padding: var(--padding-s) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-s);
+}
+
+.Input,
+.Input input {
+  border-radius: 8px !important;
+  /* border: 1px solid var(--n2, #d3d6e0) !important; */
+  background: var(--n0, #fff) !important;
+  font-family: var(--font-mulish) !important;
+}
+
+.KeywordFilterContainer {
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.KeywordFilterItem {
+  padding: var(--padding-s) var(--padding-s);
+  font-family: var(--font-mulish);
+  color: var(--n7);
+  border-bottom: 1px solid var(--n1);
+  font-weight: 500;
+}

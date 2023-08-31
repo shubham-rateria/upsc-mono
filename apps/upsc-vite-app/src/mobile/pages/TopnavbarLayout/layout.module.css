@@ -1,0 +1,17 @@
+.Container {
+  width: 100vw;
+  height: 100vh;
+  padding: var(--padding-s) 0;
+}
+
+.TopNavContainer {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Children {
+  height: 90vh;
+  padding: var(--padding-s);
+}
