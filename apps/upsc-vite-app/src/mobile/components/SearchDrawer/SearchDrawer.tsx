@@ -97,6 +97,12 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
   };
 
   const handleApply = () => {
+    if (searchKeyword === "" || searchKeyword === undefined) {
+      searchParamsClass.setSearchParams({
+        keyword: undefined,
+      });
+    }
+
     if (searchKeyword && selectedTag === undefined) {
       searchParamsClass.setSearchParams({
         keyword: searchKeyword,
@@ -133,6 +139,7 @@ const SearchDrawer: FC<Props> = ({ isOpen, onClose }) => {
     if (selectedTag) {
       searchParamsClass.setSearchParams({
         subjectTags: [selectedTag],
+        keyword: undefined,
       });
     }
 

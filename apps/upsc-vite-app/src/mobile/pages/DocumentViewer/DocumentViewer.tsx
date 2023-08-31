@@ -65,7 +65,7 @@ const DocumentViewerPage: React.FC = () => {
     if (pageNumber) {
       setTimeout(() => {
         scrollToPageNumber(pageNumber);
-      }, 100);
+      }, 1000);
     }
 
     if (
