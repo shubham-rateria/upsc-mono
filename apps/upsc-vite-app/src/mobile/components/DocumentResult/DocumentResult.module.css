@@ -35,6 +35,10 @@
   align-items: center;
 }
 
+.DocumentName a {
+  color: var(--n8) !important;
+}
+
 .DocumentName img {
   margin-right: var(--margin-s);
 }

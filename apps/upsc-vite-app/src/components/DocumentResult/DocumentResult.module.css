@@ -38,6 +38,18 @@
   align-items: center;
 }
 
+.DocumentName a {
+  color: var(--n8) !important;
+  font-family: var(--font-mulish) !important;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.DocumentName a:hover {
+  color: var(--p8) !important;
+  transition: color 0.1s;
+}
+
 .DocumentName img {
   margin-right: var(--margin-s);
 }

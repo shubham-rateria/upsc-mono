@@ -14,6 +14,7 @@ import {
 import { observer } from "mobx-react-lite";
 import { Label } from "semantic-ui-react";
 import globalStyles from "../../styles/global.module.css";
+import { Link } from "react-router-dom";
 
 type Props = {
   result: Result;
@@ -187,7 +188,9 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
             <div className={styles.ResultTopBar}>
               <div className={styles.DocumentName}>
                 <img src="/icons/do-document-text.svg" alt="document text" />
-                {result.s3_object_name}{" "}
+                <Link to={`/view-document/?documentId=${result._id}`}>
+                  {result.s3_object_name}
+                </Link>
                 <div className={styles.L0Tags}>
                   {result.l0_categories?.map(
                     (category: number, index: number) => (

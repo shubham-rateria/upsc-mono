@@ -7,7 +7,7 @@ import "react-horizontal-scrolling-menu/dist/styles.css";
 import clsx from "clsx";
 import "./ScrollContainer.css";
 import { startCase, truncate } from "lodash";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type Props = {
   result: Result;
@@ -74,7 +74,9 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
           <div className={styles.ResultTopBar}>
             <div className={styles.DocumentName}>
               <img src="/icons/do-document-text.svg" alt="document text" />
-              {truncate(result.s3_object_name, { length: 30 })}{" "}
+              <Link to={`/view-document/?documentId=${result._id}`}>
+                {truncate(result.s3_object_name, { length: 30 })}{" "}
+              </Link>
               <span className={styles.NumPages}>{result.num_pages} Pages</span>
             </div>
             {canShowTopper() && (

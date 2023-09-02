@@ -1,0 +1,34 @@
+(node:23051) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `pnpm --trace-warnings ...` to show where the warning was created)
+
+> @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
+> tsnd --respawn app.ts
+
+[INFO] 15:11:01 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:23067) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mPOST /api/user/check-user-onboarded [32m200[0m 57.574 ms - 18[0m
+[0mGET /api/toppers [32m200[0m 127.545 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1097.288 ms - 77947[0m
+getting doc id
+[0mPOST /api/user/check-user-onboarded [32m200[0m 56.754 ms - 18[0m
+[0mGET /api/documents/64c7da4cd0cb65f1ad4af6e1 [32m201[0m 120.869 ms - 35378[0m
+[0mGET /api/toppers [32m200[0m 109.707 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 909.593 ms - 77947[0m
+getting doc id
+[0mGET /api/documents/64c7da4cd0cb65f1ad4af6e1 [32m201[0m 201.858 ms - 35378[0m
+[0mGET /api/toppers [32m200[0m 164.553 ms - 13479[0m
