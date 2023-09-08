@@ -285,27 +285,27 @@ const TourWrapper: FC<Props> = ({ children }) => {
   const user = useStytchUser();
   const navigator = useNavigate();
 
-  const init = async () => {
-    try {
-      const res = await axiosInstance.post("/api/user/check-user-onboarded", {
-        phone: user.user?.phone_numbers[0].phone_number,
-      });
-      if (!res.data.onboarded) {
-        tourContextController.startPrimaryTour();
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const init = async () => {
+  //   try {
+  //     const res = await axiosInstance.post("/api/user/check-user-onboarded", {
+  //       phone: user.user?.phone_numbers[0].phone_number,
+  //     });
+  //     if (!res.data.onboarded) {
+  //       tourContextController.startPrimaryTour();
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    tourContextController.setPhone(
-      user.user?.phone_numbers[0].phone_number || ""
-    );
-    tourContextController.setNavigator(navigator);
-    console.log("[ttc phone]", tourContextController.phone);
-    init();
-  }, [user.user]);
+  // useEffect(() => {
+  //   tourContextController.setPhone(
+  //     user.user?.phone_numbers[0].phone_number || ""
+  //   );
+  //   tourContextController.setNavigator(navigator);
+  //   console.log("[ttc phone]", tourContextController.phone);
+  //   init();
+  // }, [user.user]);
 
   return (
     <TourContext.Provider value={tourContextController}>

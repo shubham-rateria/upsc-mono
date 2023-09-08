@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
@@ -8,18 +8,23 @@ import {
   Checkbox,
   Dropdown,
   Icon,
+  Input,
   Label,
   Loader,
 } from "semantic-ui-react";
-import { DocumentType, Tag } from "usn-common";
+import { DocumentType, Tag, Topper } from "usn-common";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
 import globalStyles from "../../../styles/global.module.css";
 import { InView } from "react-intersection-observer";
+import axiosInstance from "../../../utils/axios-instance";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
+  const [toppers, setToppers] = useState<Topper[]>([]);
+  const [topperLoading, setTopperLoading] = useState(false);
+  const [topperNameSearch, setTopperNameSearch] = useState("");
 
   const handleDocumentTypeChange = (documentType: DocumentType) => {
     searchParamsClass.setSearchParams({
@@ -50,6 +55,20 @@ const SearchPage = observer(() => {
     searchParamsClass.searchForDocuments();
   };
 
+  const handleSelectTopper = (topper: Topper) => {
+    setTopperNameSearch("");
+    searchParamsClass.setSearchParams({
+      topper,
+    });
+    searchParamsClass.searchForDocuments();
+  };
+
+  const handleTopperNameInput = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTopperNameSearch(event.target.value);
+  };
+
   const getResultsText = () => {
     if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
       return (
@@ -73,16 +92,35 @@ const SearchPage = observer(() => {
     }
   };
 
+  useEffect(() => {
+    /**
+     * get toppers
+     */
+
+    const init = async () => {
+      setTopperLoading(true);
+      try {
+        const response = await axiosInstance.get("/api/toppers");
+        setToppers(response.data.data);
+      } catch (error) {
+        console.error("Error in getting toppers", error);
+      }
+      setTopperLoading(false);
+    };
+
+    init();
+  }, []);
+
   return (
     <div>
       <div className={styles.SearchPage}>
-        <div className={styles.filterSection}>
+        {/* <div className={styles.filterSection}>
           <h2 className={styles.Header}>
             <img src="/icons/do-filter-circle.svg" />
             <div>Filters</div>
           </h2>
           <FilterSection />
-        </div>
+        </div> */}
         <div className={styles.mainContent}>
           <div className={styles.topSection}>
             <div className={styles.flashText}>
@@ -110,7 +148,7 @@ const SearchPage = observer(() => {
             <div className={styles.searchBarContainer}>
               <SearchBar />
             </div>
-            <div className={styles.subjectLabels}>
+            {/* <div className={styles.subjectLabels}>
               <div>
                 {searchParamsClass.searchParams.subjectTags?.map(
                   (tag: Tag, index: number) => (
@@ -140,7 +178,7 @@ const SearchPage = observer(() => {
                   </Label>
                 </div>
               )}
-            </div>
+            </div> */}
             <div className={styles.SelectorSection}>
               {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
                 !searchParamsClass.searching && (
@@ -148,67 +186,133 @@ const SearchPage = observer(() => {
                 )}
               <div className={styles.Action}>
                 <div className={styles.Item}>
-                  <div className={styles.ItemHeader}>Year</div>
-                  <div>
+                  <div className={styles.DropdownBtn}>
+                    <img src="/icons/do-ribbon.svg" />
                     <Dropdown
                       text={
-                        searchParamsClass.searchParams.year !== -1
-                          ? `${searchParamsClass.searchParams.year} Onwards`
-                          : "All Years"
+                        searchParamsClass.searchParams.topper?.name ??
+                        "Select Topper"
                       }
                       floating
-                      labeled
                       button
                       item
                       direction="left"
-                      className={styles.Dropdown}
+                      className={`${styles.Dropdown}`}
                     >
-                      <Dropdown.Menu className={styles.Dropdown}>
-                        <Dropdown.Item
-                          onClick={() => {
-                            handleYearChange(-1);
+                      <Dropdown.Menu
+                        className={styles.Dropdown}
+                        style={{
+                          maxHeight: "500px",
+                          overflowY: "auto",
+                        }}
+                      >
+                        <Input
+                          onClick={(e: any) => {
+                            e.stopPropagation();
                           }}
-                        >
-                          <Checkbox
-                            label="All"
-                            radio
-                            onMouseDown={() => {
-                              handleYearChange(-1);
-                            }}
-                            checked={searchParamsClass.searchParams.year === -1}
-                          />
-                        </Dropdown.Item>
-                        <Dropdown.Header
-                          content="Onwards"
-                          className={styles.Title}
+                          onKeyDown={(e: any) => {
+                            e.stopPropagation();
+                          }}
+                          className={styles.TopperInput}
+                          onChange={handleTopperNameInput}
+                          value={topperNameSearch}
+                          placeholder="Search for topper"
                         />
-                        {[2022, 2021, 2020, 2019, 2018].map((year: number) => (
+                        {(topperNameSearch.length > 0
+                          ? toppers.filter((t) =>
+                              t.name?.toLowerCase().includes(topperNameSearch)
+                            )
+                          : toppers
+                        ).map((topper: Topper) => (
                           <Dropdown.Item
-                            key={year}
+                            key={topper.name}
                             onClick={() => {
-                              handleYearChange(year);
+                              handleSelectTopper(topper);
                             }}
                           >
-                            <Checkbox
-                              label={year}
-                              radio
-                              value={year}
-                              id={year}
-                              name="year"
-                              checked={
-                                searchParamsClass.searchParams.year === year
-                              }
-                              onMouseDown={() => {
-                                handleYearChange(year);
-                              }}
-                            />
+                            <div className={styles.TopperItem}>
+                              <input
+                                name="year"
+                                type="radio"
+                                checked={searchParamsClass.topperSelected(
+                                  topper
+                                )}
+                              ></input>
+                              <span className={styles.TopperName}>
+                                {topper.name}
+                              </span>
+                              <span className={styles.TopperAttribs}>
+                                Rank {topper.rank}
+                              </span>
+                              <span className={styles.TopperAttribs}>
+                                Year {topper.year}
+                              </span>
+                            </div>
                           </Dropdown.Item>
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
                 </div>
-
+                <div className={styles.Item}>
+                  <div className={styles.ItemHeader}>Year</div>
+                  <Dropdown
+                    text={
+                      searchParamsClass.searchParams.year !== -1
+                        ? `${searchParamsClass.searchParams.year} Onwards`
+                        : "All Years"
+                    }
+                    floating
+                    labeled
+                    button
+                    item
+                    direction="left"
+                    className={styles.Dropdown}
+                  >
+                    <Dropdown.Menu className={styles.Dropdown}>
+                      <Dropdown.Item
+                        onClick={() => {
+                          handleYearChange(-1);
+                        }}
+                      >
+                        <Checkbox
+                          label="All"
+                          radio
+                          onMouseDown={() => {
+                            handleYearChange(-1);
+                          }}
+                          checked={searchParamsClass.searchParams.year === -1}
+                        />
+                      </Dropdown.Item>
+                      <Dropdown.Header
+                        content="Onwards"
+                        className={styles.Title}
+                      />
+                      {[2022, 2021, 2020, 2019, 2018].map((year: number) => (
+                        <Dropdown.Item
+                          key={year}
+                          onClick={() => {
+                            handleYearChange(year);
+                          }}
+                        >
+                          <Checkbox
+                            label={year}
+                            radio
+                            value={year}
+                            id={year}
+                            name="year"
+                            checked={
+                              searchParamsClass.searchParams.year === year
+                            }
+                            onMouseDown={() => {
+                              handleYearChange(year);
+                            }}
+                          />
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
                 <div className={styles.Item}>
                   <div className={styles.ItemHeader}>Show From</div>
                   <div>

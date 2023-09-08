@@ -95,7 +95,8 @@
 }
 
 .resultSection {
-  width: 80vw;
+  width: 100vw;
+  max-width: 2000px;
   overflow-y: auto;
   height: 100%;
   padding: var(--padding-m) var(--padding-m) 2vh var(--padding-m);
@@ -161,6 +162,20 @@
   font-style: normal !important;
   font-weight: 400 !important;
   line-height: normal !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white !important;
+  padding: 0 !important;
+  /* max-height: 500px; */
+  /* overflow-y: auto; */
+}
+
+.DropdownBtn {
+  border-radius: 8px !important;
+  border: 1px solid var(--n1, #e4e7f1) !important;
+  padding: var(--padding-s) !important;
+  background: white !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -231,4 +246,43 @@
 
 .PaginateLoader .Loader:after {
   border-color: var(--p5) transparent transparent !important;
+}
+
+.TopperInput {
+  position: sticky !important;
+  top: 0;
+  margin: 0 !important;
+  padding: var(--padding-m) var(--padding-m);
+  z-index: 100;
+  background: white !important;
+  opacity: 1;
+}
+
+.TopperInput input {
+  background-color: white;
+  z-index: 110;
+}
+
+.TopperItem {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-s);
+}
+
+.TopperItem input {
+}
+
+.TopperName {
+  font-size: 0.9rem;
+}
+
+.TopperAttribs {
+  font-size: 0.9rem;
+  color: var(--n3);
+  font-weight: bold;
+}
+
+.TopperChkBox input {
+  z-index: 10 !important;
+  opacity: 1 !important;
 }
