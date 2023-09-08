@@ -135,7 +135,18 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+}
+
+.SelectorSection .Right {
+  display: flex;
+  align-items: center;
   margin-left: auto;
+}
+
+.SelectorSection .Left {
+  display: flex;
+  align-items: center;
 }
 
 .SelectorSection .Item {
@@ -205,6 +216,7 @@
   font-family: var(--font-mulish) !important;
   font-weight: 500 !important;
   color: var(--n7, #3f4765) !important;
+  padding: var(--padding-s) var(--padding-m) !important;
 }
 
 .DocumentTypeSelector .Button:hover {

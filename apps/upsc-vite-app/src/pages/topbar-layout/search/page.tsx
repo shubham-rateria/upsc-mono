@@ -177,225 +177,233 @@ const SearchPage = observer(() => {
                   <div className={styles.DocFound}>{getResultsText()}</div>
                 )}
               <div className={styles.Action}>
-                <div className={styles.Item}>
-                  <div className={styles.DropdownBtn}>
-                    <img src="/icons/do-ribbon.svg" />
-                    <Dropdown
-                      text={
-                        searchParamsClass.searchParams.topper?.name ??
-                        "Select Topper"
-                      }
-                      floating
-                      button
-                      item
-                      direction="left"
-                      className={`${styles.Dropdown}`}
-                    >
-                      <Dropdown.Menu
-                        className={styles.Dropdown}
-                        style={{
-                          maxHeight: "500px",
-                          overflowY: "auto",
-                        }}
-                      >
-                        <Input
-                          onClick={(e: any) => {
-                            e.stopPropagation();
-                          }}
-                          onKeyDown={(e: any) => {
-                            e.stopPropagation();
-                          }}
-                          className={styles.TopperInput}
-                          onChange={handleTopperNameInput}
-                          value={topperNameSearch}
-                          placeholder="Search for topper"
-                        />
-                        {(topperNameSearch.length > 0
-                          ? toppers.filter((t) =>
-                              t.name?.toLowerCase().includes(topperNameSearch)
-                            )
-                          : toppers
-                        ).map((topper: Topper) => (
-                          <Dropdown.Item
-                            key={topper.name}
-                            onClick={() => {
-                              handleSelectTopper(topper);
-                            }}
-                          >
-                            <div className={styles.TopperItem}>
-                              <input
-                                name="year"
-                                type="radio"
-                                checked={searchParamsClass.topperSelected(
-                                  topper
-                                )}
-                              ></input>
-                              <span className={styles.TopperName}>
-                                {topper.name}
-                              </span>
-                              <span className={styles.TopperAttribs}>
-                                Rank {topper.rank}
-                              </span>
-                              <span className={styles.TopperAttribs}>
-                                Year {topper.year}
-                              </span>
-                            </div>
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                </div>
-                <div className={styles.Item}>
-                  <div className={styles.ItemHeader}>Year</div>
-                  <Dropdown
-                    text={
-                      searchParamsClass.searchParams.year !== -1
-                        ? `${searchParamsClass.searchParams.year} Onwards`
-                        : "All Years"
-                    }
-                    floating
-                    labeled
-                    button
-                    item
-                    direction="left"
-                    className={styles.Dropdown}
-                  >
-                    <Dropdown.Menu className={styles.Dropdown}>
-                      <Dropdown.Item
+                <div className={styles.Left}>
+                  <div className={styles.Item} id="document-type-selector">
+                    <Button.Group className={styles.DocumentTypeSelector}>
+                      <Button
+                        className={clsx(
+                          styles.Button,
+                          searchParamsClass.searchParams.documentType === -1 &&
+                            styles.ButtonActive
+                        )}
                         onClick={() => {
-                          handleYearChange(-1);
+                          handleDocumentTypeChange(-1);
                         }}
                       >
-                        <Checkbox
-                          label="All"
-                          radio
-                          onMouseDown={() => {
-                            handleYearChange(-1);
-                          }}
-                          checked={searchParamsClass.searchParams.year === -1}
-                        />
-                      </Dropdown.Item>
-                      <Dropdown.Header
-                        content="Onwards"
-                        className={styles.Title}
-                      />
-                      {[2022, 2021, 2020, 2019, 2018].map((year: number) => (
-                        <Dropdown.Item
-                          key={year}
-                          onClick={() => {
-                            handleYearChange(year);
+                        All
+                      </Button>
+                      <Button
+                        className={clsx(
+                          styles.Button,
+                          searchParamsClass.searchParams.documentType === 0 &&
+                            styles.ButtonActive
+                        )}
+                        onClick={() => {
+                          handleDocumentTypeChange(0);
+                        }}
+                      >
+                        Notes
+                      </Button>
+                      <Button
+                        className={clsx(
+                          styles.Button,
+                          searchParamsClass.searchParams.documentType === 1 &&
+                            styles.ButtonActive
+                        )}
+                        onClick={() => {
+                          handleDocumentTypeChange(1);
+                        }}
+                        id="btn-sample-answers"
+                      >
+                        Sample Answers
+                      </Button>
+                    </Button.Group>
+                  </div>
+                  <div className={styles.Item}>
+                    <div className={styles.DropdownBtn}>
+                      <img src="/icons/do-ribbon.svg" />
+                      <Dropdown
+                        text={
+                          searchParamsClass.searchParams.topper?.name ??
+                          "Select Topper"
+                        }
+                        floating
+                        button
+                        item
+                        direction="left"
+                        className={`${styles.Dropdown}`}
+                      >
+                        <Dropdown.Menu
+                          className={styles.Dropdown}
+                          style={{
+                            maxHeight: "500px",
+                            overflowY: "auto",
                           }}
                         >
-                          <Checkbox
-                            label={year}
-                            radio
-                            value={year}
-                            id={year}
-                            name="year"
-                            checked={
-                              searchParamsClass.searchParams.year === year
-                            }
-                            onMouseDown={() => {
-                              handleYearChange(year);
+                          <Input
+                            onClick={(e: any) => {
+                              e.stopPropagation();
                             }}
+                            onKeyDown={(e: any) => {
+                              e.stopPropagation();
+                            }}
+                            className={styles.TopperInput}
+                            onChange={handleTopperNameInput}
+                            value={topperNameSearch}
+                            placeholder="Search for topper"
                           />
-                        </Dropdown.Item>
-                      ))}
-                    </Dropdown.Menu>
-                  </Dropdown>
+                          {(topperNameSearch.length > 0
+                            ? toppers.filter((t) =>
+                                t.name?.toLowerCase().includes(topperNameSearch)
+                              )
+                            : toppers
+                          ).map((topper: Topper) => (
+                            <Dropdown.Item
+                              key={topper.name}
+                              onClick={() => {
+                                handleSelectTopper(topper);
+                              }}
+                            >
+                              <div className={styles.TopperItem}>
+                                <input
+                                  name="year"
+                                  type="radio"
+                                  checked={searchParamsClass.topperSelected(
+                                    topper
+                                  )}
+                                ></input>
+                                <span className={styles.TopperName}>
+                                  {topper.name}
+                                </span>
+                                <span className={styles.TopperAttribs}>
+                                  Rank {topper.rank}
+                                </span>
+                                <span className={styles.TopperAttribs}>
+                                  Year {topper.year}
+                                </span>
+                              </div>
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.Item}>
-                  <div className={styles.ItemHeader}>Show From</div>
-                  <div>
+                <div className={styles.Right}>
+                  <div className={styles.Item}>
+                    <div className={styles.ItemHeader}>Year</div>
                     <Dropdown
                       text={
-                        searchParamsClass.searchParams.favourites
-                          ? "Favourites"
-                          : "All"
+                        searchParamsClass.searchParams.year !== -1
+                          ? `${searchParamsClass.searchParams.year} Onwards`
+                          : "All Years"
                       }
                       floating
                       labeled
                       button
+                      item
                       direction="left"
                       className={styles.Dropdown}
                     >
                       <Dropdown.Menu className={styles.Dropdown}>
                         <Dropdown.Item
                           onClick={() => {
-                            handleFavouritesChange(false);
+                            handleYearChange(-1);
                           }}
                         >
                           <Checkbox
                             label="All"
                             radio
-                            checked={!searchParamsClass.searchParams.favourites}
                             onMouseDown={() => {
-                              handleFavouritesChange(false);
+                              handleYearChange(-1);
                             }}
+                            checked={searchParamsClass.searchParams.year === -1}
                           />
                         </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => {
-                            handleFavouritesChange(true);
-                          }}
-                        >
-                          <Checkbox
-                            label="Favourites"
-                            radio
-                            value={"Favourites"}
-                            id={"Favourites"}
-                            name="favourites"
-                            checked={searchParamsClass.searchParams.favourites}
-                            onMouseDown={() => {
-                              handleFavouritesChange(true);
+                        <Dropdown.Header
+                          content="Onwards"
+                          className={styles.Title}
+                        />
+                        {[2022, 2021, 2020, 2019, 2018].map((year: number) => (
+                          <Dropdown.Item
+                            key={year}
+                            onClick={() => {
+                              handleYearChange(year);
                             }}
-                          />
-                        </Dropdown.Item>
+                          >
+                            <Checkbox
+                              label={year}
+                              radio
+                              value={year}
+                              id={year}
+                              name="year"
+                              checked={
+                                searchParamsClass.searchParams.year === year
+                              }
+                              onMouseDown={() => {
+                                handleYearChange(year);
+                              }}
+                            />
+                          </Dropdown.Item>
+                        ))}
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                </div>
-                <div className={styles.Item} id="document-type-selector">
-                  <Button.Group className={styles.DocumentTypeSelector}>
-                    <Button
-                      className={clsx(
-                        styles.Button,
-                        searchParamsClass.searchParams.documentType === -1 &&
-                          styles.ButtonActive
-                      )}
-                      onClick={() => {
-                        handleDocumentTypeChange(-1);
-                      }}
-                    >
-                      All
-                    </Button>
-                    <Button
-                      className={clsx(
-                        styles.Button,
-                        searchParamsClass.searchParams.documentType === 0 &&
-                          styles.ButtonActive
-                      )}
-                      onClick={() => {
-                        handleDocumentTypeChange(0);
-                      }}
-                    >
-                      Notes
-                    </Button>
-                    <Button
-                      className={clsx(
-                        styles.Button,
-                        searchParamsClass.searchParams.documentType === 1 &&
-                          styles.ButtonActive
-                      )}
-                      onClick={() => {
-                        handleDocumentTypeChange(1);
-                      }}
-                      id="btn-sample-answers"
-                    >
-                      Sample Answers
-                    </Button>
-                  </Button.Group>
+                  <div className={styles.Item}>
+                    <div className={styles.ItemHeader}>Show From</div>
+                    <div>
+                      <Dropdown
+                        text={
+                          searchParamsClass.searchParams.favourites
+                            ? "Favourites"
+                            : "All"
+                        }
+                        floating
+                        labeled
+                        button
+                        direction="left"
+                        className={styles.Dropdown}
+                      >
+                        <Dropdown.Menu className={styles.Dropdown}>
+                          <Dropdown.Item
+                            onClick={() => {
+                              handleFavouritesChange(false);
+                            }}
+                          >
+                            <Checkbox
+                              label="All"
+                              radio
+                              checked={
+                                !searchParamsClass.searchParams.favourites
+                              }
+                              onMouseDown={() => {
+                                handleFavouritesChange(false);
+                              }}
+                            />
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => {
+                              handleFavouritesChange(true);
+                            }}
+                          >
+                            <Checkbox
+                              label="Favourites"
+                              radio
+                              value={"Favourites"}
+                              id={"Favourites"}
+                              name="favourites"
+                              checked={
+                                searchParamsClass.searchParams.favourites
+                              }
+                              onMouseDown={() => {
+                                handleFavouritesChange(true);
+                              }}
+                            />
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
