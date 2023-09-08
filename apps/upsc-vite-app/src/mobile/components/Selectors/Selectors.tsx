@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
-import { Button, Dropdown, Icon, Input } from "semantic-ui-react";
+import { Button, Dropdown, Input } from "semantic-ui-react";
 import { Topper, DocumentType } from "usn-common";
 import { searchParamsClass } from "../../../contexts/SearchParamsContext";
 import { useEffect, useState } from "react";

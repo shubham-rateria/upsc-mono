@@ -1,6 +1,6 @@
 import { Button } from "semantic-ui-react";
 import styles from "./TopNavbar.module.css";
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
 import { useStytchUser, useStytch } from "@stytch/react";
 import { useNavigate } from "react-router-dom";
 
