@@ -18,21 +18,24 @@ exports.default = (app) => {
     route.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { tag } = req.body;
         let l0Category = -1;
-        if (tag.optionalsId) {
-            l0Category = tag.optionalsId;
-        }
-        else {
-            l0Category = usn_common_1.mapTagTypeToNumber[tag.type];
+        const matchQuery = {
+            $match: {
+                "topper.name": { $ne: null },
+                "topper.rank": { $ne: null },
+                "topper.year": { $ne: null },
+            },
+        };
+        if (tag) {
+            if (tag.optionalsId) {
+                l0Category = tag.optionalsId;
+            }
+            else {
+                l0Category = usn_common_1.mapTagTypeToNumber[tag.type];
+            }
+            matchQuery.$match["l0_categories"] = l0Category;
         }
         const toppers = yield document_1.DocumentModel.aggregate([
-            {
-                $match: {
-                    l0_categories: l0Category,
-                    "topper.name": { $ne: null },
-                    "topper.rank": { $ne: null },
-                    "topper.year": { $ne: null },
-                },
-            },
+            matchQuery,
             {
                 $group: {
                     _id: "$topper.name",

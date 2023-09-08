@@ -12,21 +12,25 @@ export default (app: Router) => {
 
     let l0Category: number = -1;
 
-    if (tag.optionalsId) {
-      l0Category = tag.optionalsId;
-    } else {
-      l0Category = mapTagTypeToNumber[tag.type];
+    const matchQuery = {
+      $match: {
+        "topper.name": { $ne: null },
+        "topper.rank": { $ne: null },
+        "topper.year": { $ne: null },
+      },
+    };
+
+    if (tag) {
+      if (tag.optionalsId) {
+        l0Category = tag.optionalsId;
+      } else {
+        l0Category = mapTagTypeToNumber[tag.type];
+      }
+      matchQuery.$match["l0_categories"] = l0Category;
     }
 
     const toppers = await DocumentModel.aggregate([
-      {
-        $match: {
-          l0_categories: l0Category,
-          "topper.name": { $ne: null },
-          "topper.rank": { $ne: null },
-          "topper.year": { $ne: null },
-        },
-      },
+      matchQuery,
       {
         $group: {
           _id: "$topper.name",

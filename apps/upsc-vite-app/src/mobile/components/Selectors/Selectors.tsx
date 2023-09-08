@@ -36,6 +36,7 @@ const Selectors = observer(() => {
     searchParamsClass.setSearchParams({
       topper: undefined,
     });
+    searchParamsClass.searchForDocuments();
   };
 
   const disableSelectors = () => {
@@ -55,14 +56,14 @@ const Selectors = observer(() => {
 
     const init = async () => {
       setTopperLoading(true);
+      const data: any = { tag: null };
       try {
         if ((searchParamsClass.searchParams.subjectTags || []).length > 0) {
-          const response = await axiosInstance.post("/api/toppers", {
-            // @ts-ignore
-            tag: searchParamsClass.searchParams.subjectTags[0],
-          });
-          setToppers(response.data.data);
+          // @ts-ignore
+          data.tag = searchParamsClass.searchParams.subjectTags[0];
         }
+        const response = await axiosInstance.post("/api/toppers", data);
+        setToppers(response.data.data);
       } catch (error) {
         console.error("Error in getting toppers", error);
       }
