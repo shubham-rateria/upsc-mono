@@ -1,12 +1,12 @@
-(node:7119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:10726) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 16:20:01 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 16:51:57 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:7134) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:10741) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,73 +19,542 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 54.383 ms - 4941[0m
-[0mPOST /api/toppers [32m200[0m 53.978 ms - 4934[0m
-[0mPOST /api/toppers [32m200[0m 48.737 ms - 3290[0m
-[0mPOST /api/toppers [32m200[0m 85.833 ms - 4941[0m
+[0mPOST /api/toppers [32m200[0m 62.040 ms - 4941[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1013.508 ms - 77947[0m
-tagSearchResults 1
-[0mPOST /api/documents [32m200[0m 1171.253 ms - 8128[0m
-tagSearchResults 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 204.481 ms - 26[0m
-[0mPOST /api/documents [32m200[0m 2.604 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 52.107 ms - 4934[0m
+[0mPOST /api/documents [32m200[0m 825.232 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+[0mPOST /api/toppers [32m200[0m 106.016 ms - 4941[0m
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 1112.410 ms - 31526[0m
+searching for Art 
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 319.318 ms - 4941[0m
+found docs 451
+Keyword search documents 176
+[0mPOST /api/documents [32m200[0m 5757.106 ms - 77060[0m
+[0mPOST /api/toppers [32m200[0m 103.073 ms - 4941[0m
+searching for art 
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 62.157 ms - 4941[0m
+found docs 451
+Keyword search documents 176
+[0mPOST /api/documents [32m200[0m 2013.822 ms - 77060[0m
+[0mPOST /api/toppers [32m200[0m 83.447 ms - 4941[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 658.791 ms - 69927[0m
-[0mPOST /api/documents [32m200[0m 1.336 ms - 26[0m
-tagSearchResults 0
-[0mPOST /api/documents [32m200[0m 596.119 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 616.445 ms - 11[0m
-[0mPOST /api/documents [32m200[0m 0.842 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 49.852 ms - 5570[0m
+[0mPOST /api/documents [32m200[0m 1068.387 ms - 77947[0m
+[0mPOST /api/toppers [32m200[0m 54.773 ms - 4941[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 402.378 ms - 74994[0m
-[0mPOST /api/documents [32m200[0m 1.241 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 52.407 ms - 4934[0m
+[0mPOST /api/documents [32m200[0m 661.672 ms - 77947[0m
+searching for harappan
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 62.177 ms - 4941[0m
+found docs 143
+Keyword search documents 50
+[0mPOST /api/documents [32m200[0m 1827.886 ms - 77274[0m
+[0mPOST /api/toppers [32m200[0m 48.999 ms - 4941[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 419.481 ms - 69927[0m
-[0mPOST /api/toppers [32m200[0m 56.445 ms - 4934[0m
-[0mPOST /api/toppers [32m200[0m 47.093 ms - 4934[0m
-[0mPOST /api/toppers [32m200[0m 50.701 ms - 4934[0m
-[0mPOST /api/toppers [32m200[0m 59.565 ms - 4941[0m
+[0mPOST /api/documents [32m200[0m 1007.359 ms - 77947[0m
+[0mPOST /api/documents [32m200[0m 0.689 ms - 26[0m
+searching for art and culture
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+}
+found docs 1996
+Keyword search documents 635
+[0mPOST /api/documents [32m200[0m 5836.702 ms - 136094[0m
+[0mPOST /api/documents [32m200[0m 1.066 ms - 26[0m
+[0mPOST /api/toppers [32m200[0m 54.950 ms - 4941[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 591.744 ms - 77947[0m
-[0mPOST /api/toppers [32m200[0m 349.604 ms - 4941[0m
-tagSearchResults 7
-[0mPOST /api/documents [32m200[0m 1418.231 ms - 56566[0m
-[0mPOST /api/toppers [32m200[0m 47.619 ms - 4941[0m
-[0mPOST /api/toppers [32m200[0m 49.692 ms - 4941[0m
+[0mPOST /api/documents [32m200[0m 675.696 ms - 77947[0m
+searching for harappan
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 37.356 ms - 4941[0m
+found docs 143
+Keyword search documents 50
+[0mPOST /api/documents [32m200[0m 701.839 ms - 77274[0m
+[0mPOST /api/documents [32m200[0m 1.456 ms - 26[0m
+[0mPOST /api/toppers [32m200[0m 33.455 ms - 4709[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 507.255 ms - 77947[0m
-tagSearchResults 5
-[0mPOST /api/documents [32m200[0m 829.212 ms - 40063[0m
-[0mPOST /api/toppers [32m200[0m 88.625 ms - 4941[0m
-[0mPOST /api/toppers [32m200[0m 58.877 ms - 4934[0m
+[0mPOST /api/documents [32m200[0m 658.291 ms - 77929[0m
+Finding keywords [
+  'Rationale for Land Reforms',
+  'Components of Land Reforms',
+  'Impact of Land Reforms',
+  'Problems in Implementation of Land Reforms',
+  'Success of Land Reforms',
+  'Recent Initiatives - Land Leasing, Land Acquisition, Rehabilitation & Resettlement Act, etc.',
+  'Land Reforms in India'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 3 } },
+  documentType: undefined
+}
+[0mPOST /api/toppers [32m200[0m 54.612 ms - 4709[0m
+keywordResults 16
+tagSearchResults 16
+[0mPOST /api/documents [32m200[0m 251.614 ms - 16755[0m
+[0mPOST /api/toppers [32m200[0m 69.212 ms - 4709[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 453.760 ms - 69927[0m
-[0mPOST /api/toppers [32m200[0m 52.612 ms - 4934[0m
-[0mPOST /api/toppers [32m200[0m 47.562 ms - 4941[0m
+[0mPOST /api/documents [32m200[0m 764.966 ms - 77929[0m
+[0mPOST /api/toppers [32m200[0m 35.116 ms - 4934[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 438.599 ms - 77947[0m
-[0mPOST /api/toppers [32m200[0m 49.460 ms - 4941[0m
-[0mPOST /api/toppers [32m200[0m 52.101 ms - 4934[0m
+[0mPOST /api/documents [32m200[0m 671.468 ms - 69927[0m
+[0mPOST /api/toppers [32m200[0m 52.867 ms - 4941[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 622.213 ms - 69927[0m
-tagSearchResults 1
-[0mPOST /api/documents [32m200[0m 2271.747 ms - 8129[0m
-tagSearchResults 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 820.243 ms - 26[0m
-tagSearchResults 1
-[0mPOST /api/documents [32m200[0m 8836.486 ms - 8129[0m
-tagSearchResults 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 1887.005 ms - 26[0m
-tagSearchResults 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 1543.874 ms - 26[0m
-[0mPOST /api/documents [32m200[0m 1.417 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 50.765 ms - 4941[0m
-tagSearchResu
+[0mPOST /api/documents [32m200[0m 637.775 ms - 77947[0m
+[0mPOST /api/toppers [32m200[0m 55.612 ms - 4941[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 483.422 ms - 77947[0m
+[0mPOST /api/toppers [32m200[0m 50.465 ms - 4941[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 449.316 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+[0mPOST /api/toppers [32m200[0m 191.750 ms - 4941[0m
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 360.919 ms - 31526[0m
+[0mPOST /api/toppers [32m200[0m 49.672 ms - 4941[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 469.883 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+[0mPOST /api/toppers [32m200[0m 126.803 ms - 4941[0m
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 237.239 ms - 31526[0m
+searching for Art 
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 209.562 ms - 4941[0m
+found docs 451
+Keyword search documents 176
+[0mPOST /api/documents [32m200[0m 4924.625 ms - 77060[0m
+searching for harappan
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 152.965 ms - 4941[0m
+found docs 143
+Keyword search documents 50
+[0mPOST /api/documents [32m200[0m 891.324 ms - 77274[0m
+[0mPOST /api/toppers [32m200[0m 178.346 ms - 4941[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1527.453 ms - 77947[0m
+[0mPOST /api/documents [32m200[0m 0.657 ms - 26[0m
+[0mPOST /api/toppers [32m200[0m 85.629 ms - 4709[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1212.999 ms - 77929[0m
+Finding keywords [
+  'Importance of Cropping Pattern',
+  'Types of Cropping Pattern',
+  'Reasons Why Cropping Pattern Differ',
+  'Factors Influencing Cropping Pattern',
+  'Emerging Trends in Cropping Pattern',
+  'Long-Run Effects of Current Trends in Cropping Pattern',
+  'Major Crops Cropping Patterns in Various Parts of the Country'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 3 } },
+  documentType: undefined
+}
+[0mPOST /api/toppers [32m200[0m 132.498 ms - 4709[0m
+keywordResults 22
+tagSearchResults 22
+[0mPOST /api/documents [32m200[0m 228.535 ms - 22475[0m
+searching for Major Crops Cropping Patterns
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+[0mPOST /api/toppers [32m200[0m 98.301 ms - 4709[0m
+found docs 499
+Keyword search documents 143
+[0mPOST /api/documents [32m200[0m 5829.843 ms - 118201[0m
+[0mPOST /api/toppers [32m200[0m 53.355 ms - 4709[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1483.267 ms - 77929[0m
+[0mPOST /api/documents [32m200[0m 0.863 ms - 26[0m
+[0mPOST /api/toppers [32m200[0m 60.479 ms - 5570[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 726.614 ms - 74994[0m
+Finding keywords [ 'Citizen’s Charters' ]
+{
+  additionalQueries: { '$match': { l0_categories: 4 } },
+  documentType: undefined
+}
+[0mPOST /api/toppers [32m200[0m 141.670 ms - 5570[0m
+keywordResults 19
+tagSearchResults 19
+[0mPOST /api/documents [32m200[0m 206.907 ms - 17978[0m
+[0mPOST /api/toppers [32m200[0m 105.607 ms - 5570[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1051.800 ms - 74994[0m
+searching for art
+{
+  pipeline: 

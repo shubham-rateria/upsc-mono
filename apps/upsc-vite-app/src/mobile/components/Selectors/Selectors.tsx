@@ -39,7 +39,10 @@ const Selectors = observer(() => {
   };
 
   const disableSelectors = () => {
-    if ((searchParamsClass.searchParams.subjectTags || []).length === 0) {
+    if (
+      (searchParamsClass.searchParams.subjectTags || []).length === 0 &&
+      (searchParamsClass.searchParams.keyword || "").length === 0
+    ) {
       return true;
     }
     return false;

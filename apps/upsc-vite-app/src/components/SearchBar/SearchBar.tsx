@@ -31,8 +31,6 @@ const SearchBar: FC = observer(() => {
    * @param event change event
    */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // searchParamsClass.setSearchParams({ keyword: event.target.value });
-    // setInputText(event.target.value);
     searchParamsClass.setSearchParams({
       subjectTags: [],
     });
@@ -138,11 +136,36 @@ const SearchBar: FC = observer(() => {
   };
 
   const handleInputClear = () => {
-    if ((searchParamsClass.searchParams.subjectTags || []).length > 0) {
-      searchParamsClass.setSearchParams({
-        subjectTags: [],
-      });
+    if (selectedL0 !== "") {
+      if (!["GS1", "GS2", "GS3", "GS4", "Essay"].includes(selectedL0)) {
+        const tag: Tag = {
+          level: "l0",
+          type: "Optionals",
+          optionalsId: mapTagTypeToNumber[selectedL0],
+          value: {
+            tagText: selectedL0,
+          },
+        };
+        searchParamsClass.setSearchParams({
+          subjectTags: [tag],
+        });
+      } else {
+        const tag: Tag = {
+          level: "l0",
+          type: selectedL0 as TagType,
+          value: {
+            tagText: selectedL0,
+          },
+        };
+        searchParamsClass.setSearchParams({
+          subjectTags: [tag],
+        });
+      }
     }
+    searchParamsClass.setSearchParams({
+      keyword: undefined,
+    });
+    searchParamsClass.searchForDocuments();
     setSearchKeyword("");
   };
 
