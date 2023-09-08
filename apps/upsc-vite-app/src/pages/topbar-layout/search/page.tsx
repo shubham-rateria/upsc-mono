@@ -4,7 +4,7 @@ import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
 // import FilterSection from "../../../components/FilterSection/FilterSection";
 import { Button, Dropdown, Input, Loader } from "semantic-ui-react";
-import { DocumentType, Tag, Topper } from "usn-common";
+import { DocumentType, Topper } from "usn-common";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
