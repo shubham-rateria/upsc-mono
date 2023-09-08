@@ -2,28 +2,20 @@ import { useContext, useEffect, useState } from "react";
 import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
-import FilterSection from "../../../components/FilterSection/FilterSection";
-import {
-  Button,
-  Checkbox,
-  Dropdown,
-  Icon,
-  Input,
-  Label,
-  Loader,
-} from "semantic-ui-react";
-import { DocumentType, Tag, Topper } from "usn-common";
+// import FilterSection from "../../../components/FilterSection/FilterSection";
+import { Button, Checkbox, Dropdown, Input, Loader } from "semantic-ui-react";
+import { DocumentType, Topper } from "usn-common";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
-import globalStyles from "../../../styles/global.module.css";
+// import globalStyles from "../../../styles/global.module.css";
 import { InView } from "react-intersection-observer";
 import axiosInstance from "../../../utils/axios-instance";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
   const [toppers, setToppers] = useState<Topper[]>([]);
-  const [topperLoading, setTopperLoading] = useState(false);
+  const [_topperLoading, setTopperLoading] = useState(false);
   const [topperNameSearch, setTopperNameSearch] = useState("");
 
   const handleDocumentTypeChange = (documentType: DocumentType) => {
@@ -45,15 +37,15 @@ const SearchPage = observer(() => {
     });
   };
 
-  const handleClearTag = (tag: Tag) => {
-    searchParamsClass.removeSubjectTag(tag);
-    searchParamsClass.searchForDocuments();
-  };
+  // const handleClearTag = (tag: Tag) => {
+  //   searchParamsClass.removeSubjectTag(tag);
+  //   searchParamsClass.searchForDocuments();
+  // };
 
-  const handleClearTopper = () => {
-    searchParamsClass.setSearchParams({ topper: undefined });
-    searchParamsClass.searchForDocuments();
-  };
+  // const handleClearTopper = () => {
+  //   searchParamsClass.setSearchParams({ topper: undefined });
+  //   searchParamsClass.searchForDocuments();
+  // };
 
   const handleSelectTopper = (topper: Topper) => {
     setTopperNameSearch("");

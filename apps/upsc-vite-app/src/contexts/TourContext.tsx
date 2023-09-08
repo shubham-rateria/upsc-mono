@@ -1,11 +1,11 @@
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { FC, createContext, useEffect } from "react";
+import { FC, createContext } from "react";
 import { searchParamsClass } from "./SearchParamsContext";
-import { useStytchUser } from "@stytch/react";
+// import { useStytchUser } from "@stytch/react";
 import axiosInstance from "../utils/axios-instance";
 import { Tag } from "usn-common";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
@@ -282,8 +282,8 @@ export const TourContext = createContext<TourContextController>(
 );
 
 const TourWrapper: FC<Props> = ({ children }) => {
-  const user = useStytchUser();
-  const navigator = useNavigate();
+  // const user = useStytchUser();
+  // const navigator = useNavigate();
 
   // const init = async () => {
   //   try {
