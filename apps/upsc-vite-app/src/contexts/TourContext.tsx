@@ -1,10 +1,12 @@
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { FC, createContext } from "react";
+import { FC, createContext, useEffect } from "react";
 import { searchParamsClass } from "./SearchParamsContext";
 // import { useStytchUser } from "@stytch/react";
 import axiosInstance from "../utils/axios-instance";
 import { Tag } from "usn-common";
+import { useNavigate } from "react-router-dom";
+import { useStytchUser } from "@stytch/react";
 // import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -35,17 +37,60 @@ class TourContextController {
           },
         },
         {
+          element: "#subject-select-dropdown",
+          popover: {
+            title: "Select any subject you want to study",
+            description: "Let's select General Studies I",
+            onNextClick: async () => {
+              if (
+                (searchParamsClass.searchParams.subjectTags || []).length === 0
+              ) {
+                searchParamsClass.setSearchParams({
+                  subjectTags: [
+                    {
+                      level: "l0",
+                      type: "GS1",
+                      value: {
+                        tagText: "GS1",
+                      },
+                    },
+                  ],
+                });
+              }
+
+              await searchParamsClass.searchForDocuments();
+              // @ts-ignore
+              await searchParamsClass.lastSearchPromise;
+              this.primaryTour.moveNext();
+            },
+          },
+        },
+        {
           element: "#search-input",
           popover: {
-            title: "You can search for any content with a few clicks!",
-            description: "Let's search for 'Mauryan Empire' here",
+            title: "You can search for any keyword",
+            description: "Let's search for 'Mauryan Empire'",
             onNextClick: async () => {
-              if ((searchParamsClass.searchParams.keyword || "").length > 0) {
-                await searchParamsClass.searchForDocuments();
-                // @ts-ignore
-                await searchParamsClass.lastSearchPromise;
-                this.primaryTour.moveNext();
+              if (
+                (searchParamsClass.searchParams.subjectTags || []).length === 0
+              ) {
+                searchParamsClass.setSearchParams({
+                  subjectTags: [
+                    {
+                      level: "l1",
+                      type: "GS1",
+                      value: {
+                        tagText: "Mauryan Empire",
+                      },
+                    },
+                  ],
+                });
               }
+
+              await searchParamsClass.searchForDocuments();
+              // @ts-ignore
+              await searchParamsClass.lastSearchPromise;
+              this.primaryTour.moveNext();
             },
           },
         },
@@ -282,30 +327,31 @@ export const TourContext = createContext<TourContextController>(
 );
 
 const TourWrapper: FC<Props> = ({ children }) => {
-  // const user = useStytchUser();
-  // const navigator = useNavigate();
+  const user = useStytchUser();
+  const navigator = useNavigate();
 
-  // const init = async () => {
-  //   try {
-  //     const res = await axiosInstance.post("/api/user/check-user-onboarded", {
-  //       phone: user.user?.phone_numbers[0].phone_number,
-  //     });
-  //     if (!res.data.onboarded) {
-  //       tourContextController.startPrimaryTour();
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const init = async () => {
+    try {
+      // const res = await axiosInstance.post("/api/user/check-user-onboarded", {
+      //   phone: user.user?.phone_numbers[0].phone_number,
+      // });
+      // if (!res.data.onboarded) {
+      //   tourContextController.startPrimaryTour();
+      // }
+      // tourContextController.startPrimaryTour();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   tourContextController.setPhone(
-  //     user.user?.phone_numbers[0].phone_number || ""
-  //   );
-  //   tourContextController.setNavigator(navigator);
-  //   console.log("[ttc phone]", tourContextController.phone);
-  //   init();
-  // }, [user.user]);
+  useEffect(() => {
+    tourContextController.setPhone(
+      user.user?.phone_numbers[0].phone_number || ""
+    );
+    tourContextController.setNavigator(navigator);
+    console.log("[ttc phone]", tourContextController.phone);
+    init();
+  }, [user.user]);
 
   return (
     <TourContext.Provider value={tourContextController}>

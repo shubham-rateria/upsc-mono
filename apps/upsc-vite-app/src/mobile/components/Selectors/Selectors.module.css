@@ -1,0 +1,195 @@
+.SelectorSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.SelectorSection .DocFound {
+  color: #535353;
+  font-family: var(--font-mulish);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: var(--margin-m);
+  font-size: 1.1rem;
+}
+
+.DocFound .Keyword {
+  font-weight: 1000;
+  color: var(--p9);
+}
+
+.SelectorSection .Action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.SelectorSection .Right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.SelectorSection .Left {
+  display: flex;
+  align-items: center;
+}
+
+.SelectorSection .Item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 var(--margin-s);
+}
+
+.SelectorSection .ItemHeader {
+  color: var(--n4);
+  font-family: var(--font-mulish);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.Dropdown {
+  margin-left: var(--margin-s) !important;
+  color: var(--p8) !important;
+  font-family: var(--font-mulish) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white !important;
+  padding: 0 !important;
+  /* max-height: 500px; */
+  /* overflow-y: auto; */
+}
+
+.DropdownBtn {
+  border-radius: 8px !important;
+  border: 1px solid var(--n1, #e4e7f1) !important;
+  padding: var(--padding-s) !important;
+  background: white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+}
+
+.Dropdown .Title {
+  color: var(--n4) !important;
+  font-family: var(--font-mulish) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: normal !important;
+}
+
+.DocumentTypeSelector {
+  border-radius: 8px !important;
+  border: 1px solid var(--n2, #d3d6e0) !important;
+  background: none !important;
+  height: 2.5rem;
+}
+
+.DocumentTypeSelector a {
+  margin: 0 !important;
+}
+
+.DocumentTypeSelector .Button {
+  /* border-right: 1px solid var(--n-2, #D3D6E0); */
+  background: none !important;
+  font-family: var(--font-mulish) !important;
+  font-weight: 500 !important;
+  color: var(--n7, #3f4765) !important;
+  padding: var(--padding-s) var(--padding-m) !important;
+}
+
+.DocumentTypeSelector .Button:hover {
+  color: var(--p8) !important;
+  font-weight: 600 !important;
+}
+
+.DocumentTypeSelector .ButtonActive {
+  background: var(--p-2, #e4e0ff) !important;
+  color: var(--p-8, #614fcc) !important;
+}
+
+.TopperTag {
+  color: var(--n7, #3f4765);
+  font-family: var(--font-mulish);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.PaginateLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: var(--n7);
+  font-family: var(--font-mulish);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: var(--padding-m);
+}
+
+.Loader {
+  margin-right: var(--margin-m) !important;
+}
+
+.PaginateLoader .Loader:after {
+  border-color: var(--p5) transparent transparent !important;
+}
+
+.TopperInput {
+  position: sticky !important;
+  top: 0;
+  margin: 0 !important;
+  padding: var(--padding-m) var(--padding-m);
+  z-index: 100;
+  background: white !important;
+  opacity: 1;
+}
+
+.TopperInput input {
+  background-color: white;
+  z-index: 110;
+}
+
+.TopperItem {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-s);
+}
+
+.TopperItem input {
+}
+
+.TopperName {
+  font-size: 0.9rem;
+}
+
+.TopperAttribs {
+  font-size: 0.9rem;
+  color: var(--n3);
+  font-weight: bold;
+}
+
+.TopperChkBox input {
+  z-index: 10 !important;
+  opacity: 1 !important;
+}
+
+.TopperClearBtn {
+  background: none !important;
+  color: var(--n4) !important;
+}

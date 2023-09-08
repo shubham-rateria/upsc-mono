@@ -114,12 +114,18 @@ const SearchBar: FC = observer(() => {
           subjectTags: [tag],
         });
       }
-      searchParamsClass.searchForDocuments();
+    } else {
+      searchParamsClass.setSearchParams({
+        subjectTags: [],
+      });
     }
     setSearchKeyword("");
     searchParamsClass.setSearchParams({
       keyword: undefined,
+      topper: undefined,
+      documentType: -1,
     });
+    searchParamsClass.searchForDocuments();
   };
 
   const handleKeywordTagClick = (tag: Tag) => {
@@ -221,15 +227,18 @@ const SearchBar: FC = observer(() => {
 
   return (
     <div className={styles.Container}>
-      <Dropdown
-        placeholder="Select Subject"
-        selection
-        search
-        clearable
-        options={options}
-        className={styles.SubjectDropdown}
-        onChange={handleL0Change}
-      />
+      <div>
+        <Dropdown
+          placeholder="Select Subject"
+          selection
+          search
+          clearable
+          options={options}
+          className={styles.SubjectDropdown}
+          onChange={handleL0Change}
+          id="subject-select-dropdown"
+        />
+      </div>
       <div
         style={{
           position: "relative",
@@ -256,7 +265,7 @@ const SearchBar: FC = observer(() => {
         )}
         {keywordOptions.length > 0 &&
           (searchParamsClass.searchParams.subjectTags || []).length === 0 && (
-            <div className={styles.Suggestions}>
+            <div className={styles.Suggestions} id="suggestions">
               {keywordOptions.map((tag: Tag, index: number) => (
                 <div
                   className={styles.KeywordFilterItem}
