@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from "react";
 import styles from "./SearchBar.module.css";
-import { Button, Dropdown, Input } from "semantic-ui-react";
+import { Button, Dropdown, Icon, Input } from "semantic-ui-react";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import {
@@ -89,9 +89,35 @@ const SearchBar: FC = observer(() => {
 
   const handleL0Change = (_e: any, data: any) => {
     setSelectedL0(data.value);
+    if (data.value !== "") {
+      if (!["GS1", "GS2", "GS3", "GS4", "Essay"].includes(data.value)) {
+        const tag: Tag = {
+          level: "l0",
+          type: "Optionals",
+          optionalsId: mapTagTypeToNumber[data.value],
+          value: {
+            tagText: data.value,
+          },
+        };
+        searchParamsClass.setSearchParams({
+          subjectTags: [tag],
+        });
+      } else {
+        const tag: Tag = {
+          level: "l0",
+          type: data.value as TagType,
+          value: {
+            tagText: data.value,
+          },
+        };
+        searchParamsClass.setSearchParams({
+          subjectTags: [tag],
+        });
+      }
+      searchParamsClass.searchForDocuments();
+    }
     setSearchKeyword("");
     searchParamsClass.setSearchParams({
-      subjectTags: [],
       keyword: undefined,
     });
   };
@@ -103,6 +129,15 @@ const SearchBar: FC = observer(() => {
     });
     setSearchKeyword(tag.value.tagText);
     searchParamsClass.searchForDocuments();
+  };
+
+  const handleInputClear = () => {
+    if ((searchParamsClass.searchParams.subjectTags || []).length > 0) {
+      searchParamsClass.setSearchParams({
+        subjectTags: [],
+      });
+    }
+    setSearchKeyword("");
   };
 
   const options = useMemo(() => {
@@ -190,6 +225,7 @@ const SearchBar: FC = observer(() => {
         placeholder="Select Subject"
         selection
         search
+        clearable
         options={options}
         className={styles.SubjectDropdown}
         onChange={handleL0Change}
@@ -208,10 +244,16 @@ const SearchBar: FC = observer(() => {
           onChange={handleChange}
           className={styles.Input}
           id="search-input"
-          labelPosition="right"
           onKeyPress={handleKeyPress}
           fluid
         />
+        {searchKeyword.length > 0 && (
+          <Button
+            icon="close"
+            className={styles.InputCloseBtn}
+            onClick={handleInputClear}
+          />
+        )}
         {keywordOptions.length > 0 &&
           (searchParamsClass.searchParams.subjectTags || []).length === 0 && (
             <div className={styles.Suggestions}>

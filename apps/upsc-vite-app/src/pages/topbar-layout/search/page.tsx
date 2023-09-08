@@ -4,13 +4,14 @@ import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
 // import FilterSection from "../../../components/FilterSection/FilterSection";
 import { Button, Checkbox, Dropdown, Input, Loader } from "semantic-ui-react";
-import { DocumentType, Topper } from "usn-common";
+import { DocumentType, Tag, Topper } from "usn-common";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
 // import globalStyles from "../../../styles/global.module.css";
 import { InView } from "react-intersection-observer";
 import axiosInstance from "../../../utils/axios-instance";
+import ResultsText from "../../../mobile/components/ResultsText/ResultsText";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
@@ -24,28 +25,6 @@ const SearchPage = observer(() => {
     });
     searchParamsClass.searchForDocuments();
   };
-
-  const handleYearChange = (year: number) => {
-    searchParamsClass.setSearchParams({
-      year,
-    });
-  };
-
-  const handleFavouritesChange = (favourites: boolean) => {
-    searchParamsClass.setSearchParams({
-      favourites,
-    });
-  };
-
-  // const handleClearTag = (tag: Tag) => {
-  //   searchParamsClass.removeSubjectTag(tag);
-  //   searchParamsClass.searchForDocuments();
-  // };
-
-  // const handleClearTopper = () => {
-  //   searchParamsClass.setSearchParams({ topper: undefined });
-  //   searchParamsClass.searchForDocuments();
-  // };
 
   const handleSelectTopper = (topper: Topper) => {
     setTopperNameSearch("");
@@ -62,6 +41,21 @@ const SearchPage = observer(() => {
   };
 
   const getResultsText = () => {
+    const l0Topics = (searchParamsClass.searchParams.subjectTags ?? []).filter(
+      (tag: Tag) => tag.level === "l0"
+    );
+    console.log({ l0Topics, tags: searchParamsClass.searchParams.subjectTags });
+    if (l0Topics.length > 0) {
+      return (
+        <div>
+          {`Showing ${
+            searchParamsClass.docSearchResults?.length ?? -1
+          } documents of`}{" "}
+          <span className={styles.Keyword}>{l0Topics[0].value.tagText}</span>
+          out of many
+        </div>
+      );
+    }
     if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
       return (
         <div>
@@ -106,13 +100,6 @@ const SearchPage = observer(() => {
   return (
     <div>
       <div className={styles.SearchPage}>
-        {/* <div className={styles.filterSection}>
-          <h2 className={styles.Header}>
-            <img src="/icons/do-filter-circle.svg" />
-            <div>Filters</div>
-          </h2>
-          <FilterSection />
-        </div> */}
         <div className={styles.mainContent}>
           <div className={styles.topSection}>
             <div className={styles.flashText}>
@@ -140,44 +127,9 @@ const SearchPage = observer(() => {
             <div className={styles.searchBarContainer}>
               <SearchBar />
             </div>
-            {/* <div className={styles.subjectLabels}>
-              <div>
-                {searchParamsClass.searchParams.subjectTags?.map(
-                  (tag: Tag, index: number) => (
-                    <Label key={index} className={globalStyles.LabelPrimary}>
-                      {tag.value.tagText}{" "}
-                      <Icon
-                        name="close"
-                        onClick={() => {
-                          handleClearTag(tag);
-                        }}
-                      />
-                    </Label>
-                  )
-                )}
-              </div>
-              {searchParamsClass.searchParams.topper && (
-                <div className={styles.TopperTag}>
-                  Topper{" "}
-                  <Label className={globalStyles.LabelPrimary}>
-                    {searchParamsClass.searchParams.topper.name}
-                    <Icon
-                      name="close"
-                      onClick={() => {
-                        handleClearTopper();
-                      }}
-                    />
-                  </Label>
-                </div>
-              )}
-            </div> */}
             <div className={styles.SelectorSection}>
-              {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
-                !searchParamsClass.searching && (
-                  <div className={styles.DocFound}>{getResultsText()}</div>
-                )}
               <div className={styles.Action}>
-                <div className={styles.Left}>
+                <div className={styles.Right}>
                   <div className={styles.Item} id="document-type-selector">
                     <Button.Group className={styles.DocumentTypeSelector}>
                       <Button
@@ -289,7 +241,7 @@ const SearchPage = observer(() => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.Right}>
+                {/* <div className={styles.Right}>
                   <div className={styles.Item}>
                     <div className={styles.ItemHeader}>Year</div>
                     <Dropdown
@@ -404,8 +356,17 @@ const SearchPage = observer(() => {
                       </Dropdown>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
+            </div>
+            <div>
+              {/* <div>
+                {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
+                  !searchParamsClass.searching && (
+                    <div className={styles.DocFound}>{getResultsText()}</div>
+                  )}
+              </div> */}
+              <ResultsText />
             </div>
           </div>
           <div className={styles.resultSection} id="results-section">

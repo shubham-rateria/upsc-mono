@@ -124,6 +124,8 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  margin: var(--margin-m);
+  font-size: 1.1rem;
 }
 
 .DocFound .Keyword {
@@ -190,6 +192,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 2.5rem;
 }
 
 .Dropdown .Title {
@@ -204,6 +207,7 @@
   border-radius: 8px !important;
   border: 1px solid var(--n2, #d3d6e0) !important;
   background: none !important;
+  height: 2.5rem;
 }
 
 .DocumentTypeSelector a {

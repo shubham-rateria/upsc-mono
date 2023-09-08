@@ -1,0 +1,1001 @@
+(node:92749) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `pnpm --trace-warnings ...` to show where the warning was created)
+
+> @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
+> tsnd --respawn app.ts
+
+[INFO] 13:36:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:92766) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[0mGET /api/toppers [32m200[0m 138.507 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 128.140 ms - 13479[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 618.359 ms - 31526[0m
+[0mGET /api/toppers [32m200[0m 125.671 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 98.969 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 89.821 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.680 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 83.371 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.453 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 101.971 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.421 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 93.963 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 96.464 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 84.702 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 98.957 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 85.209 ms - 13479[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 133.699 ms - 31526[0m
+[0mGET /api/toppers [32m200[0m 94.108 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 90.748 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 95.068 ms - 13479[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 340.885 ms - 31526[0m
+[0mGET /api/toppers [32m200[0m 117.223 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 133.920 ms - 13479[0m
+[0mGET /api/toppers [36m304[0m 160.698 ms - -[0m
+[0mGET /api/toppers [36m304[0m 125.296 ms - -[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 147.474 ms - 31526[0m
+[0mGET /api/toppers [32m200[0m 113.991 ms - 13479[0m
+Finding keywords [
+  'Arrival of Indo-Greeks, Shakas, Parthians & Kushana',
+  'Satavahanas and Other Indigenous Dynasties',
+  'Schools of Art: Gandhara; Mathura; Amravati',
+  'Imperial Guptas',
+  'Harshavardana',
+  'The Southern Dynasties',
+  'Post-Mauryan India'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 304.145 ms - 33235[0m
+searching for hello world
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 342
+Keyword search documents 164
+[0mPOST /api/documents [32m200[0m 4725.014 ms - 39907[0m
+searching for hello world
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 342
+Keyword search documents 164
+[0mPOST /api/documents [32m200[0m 3653.809 ms - 38178[0m
+[0mGET /api/toppers [32m200[0m 148.874 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 118.389 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 125.940 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 128.963 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 120.903 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 89.968 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 106.522 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 972.653 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 572.320 ms - 31526[0m
+Finding keywords [
+  'Babur',
+  'Humayun',
+  'Akbar',
+  'Jahangir',
+  'Shah Jahan',
+  'Aurangzeb',
+  'Later Mughals',
+  'Decline of Mughal Empire',
+  'Mughals'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 16
+tagSearchResults 16
+[0mPOST /api/documents [32m200[0m 232.935 ms - 28515[0m
+Finding keywords [
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Literature'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 28
+tagSearchResults 28
+[0mPOST /api/documents [32m200[0m 215.718 ms - 28375[0m
+Found 15 for topper
+[0mPOST /api/documents [32m200[0m 989.369 ms - 79219[0m
+[0mGET /api/toppers [32m200[0m 164.985 ms - 13479[0m
+Found 25 for topper
+[0mPOST /api/documents [32m200[0m 1080.107 ms - 134291[0m
+[0mGET /api/toppers [32m200[0m 214.076 ms - 13479[0m
+Found 3 for topper
+[0mPOST /api/documents [32m200[0m 355.683 ms - 15801[0m
+Found 22 for topper
+[0mPOST /api/documents [32m200[0m 2006.434 ms - 118515[0m
+Found 1 for topper
+[0mPOST /api/documents [32m200[0m 664.321 ms - 5476[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 82.627 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 101.141 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 108.885 ms - 13479[0m
+tagSearchResults 1
+[0mPOST /api/documents [32m200[0m 331.518 ms - 8166[0m
+Found 0 for topper
+[0mPOST /api/documents [32m200[0m 46.505 ms - 26[0m
+[0mGET /api/toppers [32m200[0m 184.699 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 522.042 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 143.385 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 115.722 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 485.336 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 536.795 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 613.045 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 96.528 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1586.313 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 98.263 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 113.495 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 574.462 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 238.021 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 102.722 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 455.268 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 582.565 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 91.755 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 107.690 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 749.084 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 419.051 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 205.882 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 641.664 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 96.954 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 94.274 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 282.903 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 98.161 ms - 13479[0m
+[0mGET /api/toppers [32m200[0m 101.586 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 637.432 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 174.782 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 665.583 ms - 77947[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 484.037 ms - 77929[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 1812.572 ms - 74994[0m
+[0mGET /api/toppers [32m200[0m 89.986 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 468.218 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 557.205 ms - 31526[0m
+Finding keywords [ 'Ecology and its relevance to man' ]
+{
+  additionalQueries: { '$match': { l0_categories: 17 } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+[0mPOST /api/documents [32m200[0m 181.882 ms - 26[0m
+searching for Ecology 
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+}
+found docs 4
+Keyword search documents 4
+[0mPOST /api/documents [32m200[0m 1814.054 ms - 3705[0m
+[0mGET /api/toppers [32m200[0m 133.247 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 450.628 ms - 77947[0m
+[0mGET /api/toppers [32m200[0m 98.593 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 494.378 ms - 77929[0m
+[0mGET /api/toppers [32m200[0m 102.095 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 431.165 ms - 74994[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 453.280 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 26
+tagSearchResults 26
+[0mPOST /api/documents [32m200[0m 546.172 ms - 31526[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 4419.028 ms - 77929[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 890.292 ms - 74994[0m
+tagSearchResults 10
+[0mPOST /api/documents [32m200[0m 2257.047 ms - 77947[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+ 
