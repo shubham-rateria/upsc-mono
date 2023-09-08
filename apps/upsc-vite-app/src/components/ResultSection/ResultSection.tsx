@@ -57,7 +57,7 @@ const ResultSection: FC = observer(() => {
           <EmptyPagePlaceholder
             imgSrc="/img/decide.svg"
             title="Start a new search"
-            description="Use the filters or enter any keyword to perform a search"
+            description="Start a new search by selecting subject or search for specific keywords"
           ></EmptyPagePlaceholder>
         )}
       {!searchParamsClass.defaultState() &&
