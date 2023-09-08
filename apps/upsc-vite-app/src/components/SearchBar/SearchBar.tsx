@@ -164,6 +164,7 @@ const SearchBar: FC = observer(() => {
     }
     searchParamsClass.setSearchParams({
       keyword: undefined,
+      topper: undefined,
     });
     searchParamsClass.searchForDocuments();
     setSearchKeyword("");
