@@ -3,7 +3,7 @@ import styles from "./SearchPage.module.css"; // Import the CSS module
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import ResultSection from "../../../components/ResultSection/ResultSection";
 // import FilterSection from "../../../components/FilterSection/FilterSection";
-import { Button, Checkbox, Dropdown, Input, Loader } from "semantic-ui-react";
+import { Button, Dropdown, Input, Loader } from "semantic-ui-react";
 import { DocumentType, Tag, Topper } from "usn-common";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
@@ -38,44 +38,6 @@ const SearchPage = observer(() => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setTopperNameSearch(event.target.value);
-  };
-
-  const getResultsText = () => {
-    const l0Topics = (searchParamsClass.searchParams.subjectTags ?? []).filter(
-      (tag: Tag) => tag.level === "l0"
-    );
-    console.log({ l0Topics, tags: searchParamsClass.searchParams.subjectTags });
-    if (l0Topics.length > 0) {
-      return (
-        <div>
-          {`Showing ${
-            searchParamsClass.docSearchResults?.length ?? -1
-          } documents of`}{" "}
-          <span className={styles.Keyword}>{l0Topics[0].value.tagText}</span>
-          out of many
-        </div>
-      );
-    }
-    if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
-      return (
-        <div>
-          {`Showing first ${
-            searchParamsClass.docSearchResults?.length ?? -1
-          } documents containing`}{" "}
-          <span className={styles.Keyword}>
-            "{searchParamsClass.lastSearchParams.keyword}"
-          </span>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          {`Showing ${
-            searchParamsClass.docSearchResults?.length ?? -1
-          } documents out of many`}
-        </div>
-      );
-    }
   };
 
   useEffect(() => {
