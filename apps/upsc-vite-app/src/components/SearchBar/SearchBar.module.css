@@ -8,7 +8,8 @@
 
 .Input {
   font-family: "Mulish";
-  width: 70%;
+  min-width: 500px;
+
   /* border-radius: 10px; */
   /* border: 1px solid var(--n-2, #D3D6E0); */
   /* background: var(--n-0, #FFF); */
@@ -16,8 +17,9 @@
 
 .Input input {
   padding: 2rem;
-  border-radius: 10px !important;
-  border: 1px solid var(--n-2, #d3d6e0) !important;
+  border-radius: 0 !important;
+  border: 1px solid var(--n2, #d3d6e0) !important;
+  border-left: 0px !important;
   background: var(--n-0, #fff) !important;
   line-height: 1.5rem;
   color: var(--n-5, #5a6892);
@@ -38,12 +40,50 @@
   border: 1px solid rgb(207, 207, 207);
 }
 
+.InputCloseBtn {
+  top: 0%;
+  position: absolute;
+  right: 0%;
+  height: 100%;
+  font-size: 0.85rem;
+  background: none !important;
+}
+
 .Button {
   border-radius: 0px 9px 9px 0px !important;
   background: var(--p-7, #7963ff) !important;
+  border: 1px solid var(--p-7, #7963ff) !important;
   color: white !important;
   font-family: "Mulish";
   font-weight: 600;
   width: 10vw;
   justify-content: center;
+}
+
+.SubjectDropdown {
+  border-radius: 10px 0 0 10px !important;
+}
+
+.Suggestions {
+  position: absolute;
+  max-height: 500px;
+  background: white;
+  top: 100%;
+  width: 100%;
+  border: 1px solid var(--n2);
+  z-index: 150;
+  overflow-y: auto;
+  border-radius: 0 0 10px 10px;
+}
+
+.KeywordFilterItem {
+  padding: var(--padding-s);
+  font-family: var(--font-mulish);
+  color: var(--n7);
+}
+
+.KeywordFilterItem:hover {
+  cursor: pointer;
+  background: var(--p5);
+  color: white;
 }

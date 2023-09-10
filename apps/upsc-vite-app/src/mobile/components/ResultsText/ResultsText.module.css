@@ -1,0 +1,13 @@
+.DocFound {
+  color: #535353;
+  font-family: var(--font-mulish);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-size: 1rem;
+}
+
+.DocFound .Keyword {
+  font-weight: 1000;
+  color: var(--p9);
+}

@@ -9,20 +9,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const usn_common_1 = require("usn-common");
 const document_1 = require("../../../models/document");
 const express_1 = require("express");
 const route = (0, express_1.Router)();
 exports.default = (app) => {
     app.use("/toppers", route);
-    route.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const toppers = yield document_1.DocumentModel.aggregate([
-            {
-                $match: {
-                    "topper.name": { $ne: null },
-                    "topper.rank": { $ne: null },
-                    "topper.year": { $ne: null },
-                },
+    route.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { tag } = req.body;
+        let l0Category = -1;
+        const matchQuery = {
+            $match: {
+                "topper.name": { $ne: null },
+                "topper.rank": { $ne: null },
+                "topper.year": { $ne: null },
             },
+        };
+        if (tag) {
+            if (tag.optionalsId) {
+                l0Category = tag.optionalsId;
+            }
+            else {
+                l0Category = usn_common_1.mapTagTypeToNumber[tag.type];
+            }
+            matchQuery.$match["l0_categories"] = l0Category;
+        }
+        const toppers = yield document_1.DocumentModel.aggregate([
+            matchQuery,
             {
                 $group: {
                     _id: "$topper.name",

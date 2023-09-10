@@ -1,88 +1,21 @@
-import { useContext } from "react";
-import styles from "./SearchPage.module.css"; // Import the CSS module
-import SearchBar from "../../../components/SearchBar/SearchBar";
-import ResultSection from "../../../components/ResultSection/ResultSection";
-import FilterSection from "../../../components/FilterSection/FilterSection";
-import {
-  Button,
-  Checkbox,
-  Dropdown,
-  Icon,
-  Label,
-  Loader,
-} from "semantic-ui-react";
-import { DocumentType, Tag } from "usn-common";
-import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { observer } from "mobx-react-lite";
-import clsx from "clsx";
-import globalStyles from "../../../styles/global.module.css";
+import { useContext } from "react";
 import { InView } from "react-intersection-observer";
+import { Loader } from "semantic-ui-react";
+
+import ResultSection from "../../../components/ResultSection/ResultSection";
+import SearchBar from "../../../components/SearchBar/SearchBar";
+import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
+import ResultsText from "../../../mobile/components/ResultsText/ResultsText";
+import styles from "./SearchPage.module.css";
+import Selectors from "../../../mobile/components/Selectors/Selectors";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
 
-  const handleDocumentTypeChange = (documentType: DocumentType) => {
-    searchParamsClass.setSearchParams({
-      documentType,
-    });
-    searchParamsClass.searchForDocuments();
-  };
-
-  const handleYearChange = (year: number) => {
-    searchParamsClass.setSearchParams({
-      year,
-    });
-  };
-
-  const handleFavouritesChange = (favourites: boolean) => {
-    searchParamsClass.setSearchParams({
-      favourites,
-    });
-  };
-
-  const handleClearTag = (tag: Tag) => {
-    searchParamsClass.removeSubjectTag(tag);
-    searchParamsClass.searchForDocuments();
-  };
-
-  const handleClearTopper = () => {
-    searchParamsClass.setSearchParams({ topper: undefined });
-    searchParamsClass.searchForDocuments();
-  };
-
-  const getResultsText = () => {
-    if ((searchParamsClass.lastSearchParams.keyword || "").length > 0) {
-      return (
-        <div>
-          {`Showing first ${
-            searchParamsClass.docSearchResults?.length ?? -1
-          } documents containing`}{" "}
-          <span className={styles.Keyword}>
-            "{searchParamsClass.lastSearchParams.keyword}"
-          </span>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          {`Showing ${
-            searchParamsClass.docSearchResults?.length ?? -1
-          } documents out of many`}
-        </div>
-      );
-    }
-  };
-
   return (
     <div>
       <div className={styles.SearchPage}>
-        <div className={styles.filterSection}>
-          <h2 className={styles.Header}>
-            <img src="/icons/do-filter-circle.svg" />
-            <div>Filters</div>
-          </h2>
-          <FilterSection />
-        </div>
         <div className={styles.mainContent}>
           <div className={styles.topSection}>
             <div className={styles.flashText}>
@@ -110,198 +43,11 @@ const SearchPage = observer(() => {
             <div className={styles.searchBarContainer}>
               <SearchBar />
             </div>
-            <div className={styles.subjectLabels}>
-              <div>
-                {searchParamsClass.searchParams.subjectTags?.map(
-                  (tag: Tag, index: number) => (
-                    <Label key={index} className={globalStyles.LabelPrimary}>
-                      {tag.value.tagText}{" "}
-                      <Icon
-                        name="close"
-                        onClick={() => {
-                          handleClearTag(tag);
-                        }}
-                      />
-                    </Label>
-                  )
-                )}
-              </div>
-              {searchParamsClass.searchParams.topper && (
-                <div className={styles.TopperTag}>
-                  Topper{" "}
-                  <Label className={globalStyles.LabelPrimary}>
-                    {searchParamsClass.searchParams.topper.name}
-                    <Icon
-                      name="close"
-                      onClick={() => {
-                        handleClearTopper();
-                      }}
-                    />
-                  </Label>
-                </div>
-              )}
+            <div>
+              <Selectors />
             </div>
-            <div className={styles.SelectorSection}>
-              {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
-                !searchParamsClass.searching && (
-                  <div className={styles.DocFound}>{getResultsText()}</div>
-                )}
-              <div className={styles.Action}>
-                <div className={styles.Item}>
-                  <div className={styles.ItemHeader}>Year</div>
-                  <div>
-                    <Dropdown
-                      text={
-                        searchParamsClass.searchParams.year !== -1
-                          ? `${searchParamsClass.searchParams.year} Onwards`
-                          : "All Years"
-                      }
-                      floating
-                      labeled
-                      button
-                      item
-                      direction="left"
-                      className={styles.Dropdown}
-                    >
-                      <Dropdown.Menu className={styles.Dropdown}>
-                        <Dropdown.Item
-                          onClick={() => {
-                            handleYearChange(-1);
-                          }}
-                        >
-                          <Checkbox
-                            label="All"
-                            radio
-                            onMouseDown={() => {
-                              handleYearChange(-1);
-                            }}
-                            checked={searchParamsClass.searchParams.year === -1}
-                          />
-                        </Dropdown.Item>
-                        <Dropdown.Header
-                          content="Onwards"
-                          className={styles.Title}
-                        />
-                        {[2022, 2021, 2020, 2019, 2018].map((year: number) => (
-                          <Dropdown.Item
-                            key={year}
-                            onClick={() => {
-                              handleYearChange(year);
-                            }}
-                          >
-                            <Checkbox
-                              label={year}
-                              radio
-                              value={year}
-                              id={year}
-                              name="year"
-                              checked={
-                                searchParamsClass.searchParams.year === year
-                              }
-                              onMouseDown={() => {
-                                handleYearChange(year);
-                              }}
-                            />
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                </div>
-
-                <div className={styles.Item}>
-                  <div className={styles.ItemHeader}>Show From</div>
-                  <div>
-                    <Dropdown
-                      text={
-                        searchParamsClass.searchParams.favourites
-                          ? "Favourites"
-                          : "All"
-                      }
-                      floating
-                      labeled
-                      button
-                      direction="left"
-                      className={styles.Dropdown}
-                    >
-                      <Dropdown.Menu className={styles.Dropdown}>
-                        <Dropdown.Item
-                          onClick={() => {
-                            handleFavouritesChange(false);
-                          }}
-                        >
-                          <Checkbox
-                            label="All"
-                            radio
-                            checked={!searchParamsClass.searchParams.favourites}
-                            onMouseDown={() => {
-                              handleFavouritesChange(false);
-                            }}
-                          />
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => {
-                            handleFavouritesChange(true);
-                          }}
-                        >
-                          <Checkbox
-                            label="Favourites"
-                            radio
-                            value={"Favourites"}
-                            id={"Favourites"}
-                            name="favourites"
-                            checked={searchParamsClass.searchParams.favourites}
-                            onMouseDown={() => {
-                              handleFavouritesChange(true);
-                            }}
-                          />
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                </div>
-                <div className={styles.Item} id="document-type-selector">
-                  <Button.Group className={styles.DocumentTypeSelector}>
-                    <Button
-                      className={clsx(
-                        styles.Button,
-                        searchParamsClass.searchParams.documentType === -1 &&
-                          styles.ButtonActive
-                      )}
-                      onClick={() => {
-                        handleDocumentTypeChange(-1);
-                      }}
-                    >
-                      All
-                    </Button>
-                    <Button
-                      className={clsx(
-                        styles.Button,
-                        searchParamsClass.searchParams.documentType === 0 &&
-                          styles.ButtonActive
-                      )}
-                      onClick={() => {
-                        handleDocumentTypeChange(0);
-                      }}
-                    >
-                      Notes
-                    </Button>
-                    <Button
-                      className={clsx(
-                        styles.Button,
-                        searchParamsClass.searchParams.documentType === 1 &&
-                          styles.ButtonActive
-                      )}
-                      onClick={() => {
-                        handleDocumentTypeChange(1);
-                      }}
-                      id="btn-sample-answers"
-                    >
-                      Sample Answers
-                    </Button>
-                  </Button.Group>
-                </div>
-              </div>
+            <div>
+              <ResultsText />
             </div>
           </div>
           <div className={styles.resultSection} id="results-section">

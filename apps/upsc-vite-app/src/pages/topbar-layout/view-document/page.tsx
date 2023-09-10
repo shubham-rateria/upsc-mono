@@ -227,7 +227,7 @@ const DocumentViewerPage: React.FC = () => {
 
   const handleBack = () => {
     // router.back();
-    navigate("/");
+    navigate("/search");
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -308,10 +308,10 @@ const DocumentViewerPage: React.FC = () => {
               <img src="/icons/do-arrow-back.svg" />
               Back
             </div>
-            <Button icon basic className={styles.BookmarkButton}>
+            {/* <Button icon basic className={styles.BookmarkButton}>
               <Icon name="bookmark" />
               Bookmark
-            </Button>
+            </Button> */}
             <div className={styles.DocumentSearchInput}>
               <Input
                 onChange={handleDocSearchTextChange}
