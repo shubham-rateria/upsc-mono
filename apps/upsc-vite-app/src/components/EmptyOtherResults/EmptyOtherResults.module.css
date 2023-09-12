@@ -1,0 +1,43 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  padding: var(--padding-l) var(--padding-m);
+  border-bottom: 1px solid var(--n2);
+  margin-bottom: var(--margin-m);
+}
+
+.Graphic {
+  /* width: 20vw; */
+}
+
+.Graphic img {
+  width: 100%;
+  max-height: 100px;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.Heading {
+  font-family: var(--font-mulish);
+  color: var(--n8);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  font-size: 1.2rem;
+}
+
+.Description {
+  color: var(--n7);
+  font-family: var(--font-mulish);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

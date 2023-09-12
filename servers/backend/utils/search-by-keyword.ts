@@ -36,7 +36,7 @@ export default async function searchByKeyword({
 
   let documentsResult: any[] = [];
 
-  console.log("searching for", keyword);
+  console.log("searching for", keyword, topper);
 
   const pipeline: any = [
     {
@@ -159,7 +159,7 @@ export default async function searchByKeyword({
     pipeline.push(additionalDocumentQueries);
   }
 
-  console.log({ pipeline });
+  console.log({ pipeline }, additionalDocumentQueries, topper);
 
   const pages = await PageModel.aggregate(pipeline).exec();
 

@@ -7,6 +7,7 @@ import DocSearchPlaceholder from "../DocSearchPlaceholder/DocSearchPlaceholder";
 import { EmptyPagePlaceholder } from "../EmptyPagePlaceholder/EmptyPagePlaceholder";
 import { Button } from "semantic-ui-react";
 import styles from "./ResultSection.module.css";
+import EmptyOtherResults from "../EmptyOtherResults/EmptyOtherResults";
 
 const ResultSection: FC = observer(() => {
   const searchParamsClass = React.useContext(SearchParamsContext);
@@ -62,6 +63,7 @@ const ResultSection: FC = observer(() => {
         )}
       {!searchParamsClass.defaultState() &&
         searchParamsClass.docSearchResults &&
+        searchParamsClass.otherResults.length === 0 &&
         searchParamsClass.docSearchResults.length === 0 && (
           <EmptyPagePlaceholder
             imgSrc="/img/start-results.svg"
@@ -72,6 +74,49 @@ const ResultSection: FC = observer(() => {
               Clear Filters
             </Button>
           </EmptyPagePlaceholder>
+        )}
+      {!searchParamsClass.defaultState() &&
+        searchParamsClass.docSearchResults &&
+        searchParamsClass.otherResults.length > 0 &&
+        searchParamsClass.docSearchResults.length > 0 && (
+          <div>
+            {searchParamsClass.docSearchResults?.map((result, index) => (
+              <DocumentResult result={result} key={index} />
+            ))}
+            <EmptyOtherResults
+              heading={`Other documents containing "${searchParamsClass.searchParams.keyword}"`}
+              description="Results matching your selected criteria ended. Below are other documents matching your keywords."
+            />
+            <div className={styles.OtherResultsTitle}>
+              Other documents containing{" "}
+              <span className={styles.Keyword}>
+                "{searchParamsClass.searchParams.keyword}"
+              </span>
+            </div>
+            {searchParamsClass.otherResults?.map((result, index) => (
+              <DocumentResult result={result} key={index} />
+            ))}
+          </div>
+        )}
+      {!searchParamsClass.defaultState() &&
+        searchParamsClass.docSearchResults &&
+        searchParamsClass.otherResults.length > 0 &&
+        searchParamsClass.docSearchResults.length === 0 && (
+          <div>
+            <EmptyOtherResults
+              heading="No search results found"
+              description="We could not find any results matching your criteria. Below are similar documents matching your search."
+            />
+            <div className={styles.OtherResultsTitle}>
+              Other documents containing{" "}
+              <span className={styles.Keyword}>
+                "{searchParamsClass.searchParams.keyword}"
+              </span>
+            </div>
+            {searchParamsClass.otherResults?.map((result, index) => (
+              <DocumentResult result={result} key={index} />
+            ))}
+          </div>
         )}
       <div>
         {searchParamsClass.docSearchResults &&

@@ -56,6 +56,7 @@ class CancelablePromise {
 class SearchParamsClass {
   public searchParams: SearchParams = defaultValues;
   public docSearchResults: Result[] = [];
+  public otherResults: Result[] = [];
   public searching: boolean = false;
   public searchingNextResults: boolean = false;
   public lastSearchPromise: CancelablePromise | null = null;
@@ -161,11 +162,18 @@ class SearchParamsClass {
           if (this.pageNumber === 1) {
             // @ts-ignore
             this.docSearchResults.replace(response.data.data);
+            // @ts-ignore
+            this.otherResults.replace(response.data.others);
           } else {
             // @ts-ignore
             this.docSearchResults.replace([
               ...this.docSearchResults,
               ...response.data.data,
+            ]);
+            // @ts-ignore
+            this.otherResults.replace([
+              ...this.otherResults,
+              ...response.data.others,
             ]);
           }
         }

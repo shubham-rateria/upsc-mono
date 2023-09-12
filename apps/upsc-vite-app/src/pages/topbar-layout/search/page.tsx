@@ -52,8 +52,10 @@ const SearchPage = observer(() => {
           </div>
           <div className={styles.resultSection} id="results-section">
             <ResultSection />
-            {searchParamsClass.docSearchResults &&
-              searchParamsClass.docSearchResults?.length > 0 && (
+            {(searchParamsClass.docSearchResults ||
+              searchParamsClass.otherResults) &&
+              (searchParamsClass.docSearchResults?.length > 0 ||
+                searchParamsClass.otherResults?.length > 0) && (
                 <InView
                   key={searchParamsClass.pageNumber}
                   as="div"
