@@ -37,7 +37,7 @@ function searchByKeyword({ keyword, pageNumber = 1, documentType, subjectTags, t
         const limit = 20;
         const skipCount = (pageNumber - 1) * limit;
         let documentsResult = [];
-        console.log("searching for", keyword);
+        console.log("searching for", keyword, topper);
         const pipeline = [
             {
                 $search: {
@@ -150,7 +150,7 @@ function searchByKeyword({ keyword, pageNumber = 1, documentType, subjectTags, t
         if (Object.keys(additionalDocumentQueries.$match).length > 0) {
             pipeline.push(additionalDocumentQueries);
         }
-        console.log({ pipeline });
+        console.log({ pipeline }, additionalDocumentQueries, topper);
         const pages = yield page_1.PageModel.aggregate(pipeline).exec();
         console.log("found docs", pages.length);
         const docMap = new Map();

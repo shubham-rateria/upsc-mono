@@ -48,10 +48,21 @@ exports.default = (app) => {
     route.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const searchParams = req.body;
         let documentsResult = [];
+        let otherResults = [];
         let hasKeyword = false;
         if (searchParams.keyword && searchParams.keyword.length > 0) {
             hasKeyword = true;
             const keywordSearchDocResults = yield (0, search_by_keyword_1.default)(searchParams);
+            // if keyword search results is 0, remove all remaining params
+            // and search only for keyword and add to other results
+            if (keywordSearchDocResults.length <= 2) {
+                console.log("searching for others");
+                otherResults = yield (0, search_by_keyword_1.default)({
+                    keyword: searchParams.keyword,
+                    pageNumber: searchParams.pageNumber,
+                });
+                console.log("done", otherResults.length);
+            }
             documentsResult.push(...keywordSearchDocResults);
         }
         if (!hasKeyword &&
@@ -70,7 +81,7 @@ exports.default = (app) => {
                 documentsResult = tagSearchResults;
             }
         }
-        if (searchParams.topper) {
+        if (searchParams.topper && !searchParams.keyword) {
             if (documentsResult.length > 0) {
                 // documentsResult = documentsResult.filter((doc) => {
                 //   return (
@@ -94,7 +105,20 @@ exports.default = (app) => {
                 return doc;
             }
         })));
-        res.status(200).json({ success: true, data: documentsResult });
+        console.log("other results", otherResults.length);
+        otherResults = yield Promise.all(otherResults.map((doc) => __awaiter(void 0, void 0, void 0, function* () {
+            const pages = yield (0, fill_doc_with_pages_1.default)(doc);
+            if (pages) {
+                return Object.assign(Object.assign({}, doc), { pages });
+            }
+            else {
+                return doc;
+            }
+        })));
+        console.log("other results 2", otherResults.length);
+        res
+            .status(200)
+            .json({ success: true, data: documentsResult, others: otherResults });
     }));
     route.post("/:documentId/search", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
