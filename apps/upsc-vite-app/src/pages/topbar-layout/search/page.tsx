@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { InView } from "react-intersection-observer";
 import { Loader } from "semantic-ui-react";
 
@@ -12,20 +12,28 @@ import Selectors from "../../../mobile/components/Selectors/Selectors";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const elem = document.getElementById(`results-section`);
+    setScrollPosition(elem?.scrollTop || 0);
+  };
+
+  useEffect(() => {
+    const elem = document.getElementById(`results-section`);
+    elem?.addEventListener("scroll", handleScroll);
+    return () => {
+      elem?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (
       searchParamsClass.docSearchResults.length > 0 ||
       searchParamsClass.otherResults.length > 0
     ) {
-      const elem = document.getElementById(
-        `last-result-page-${searchParamsClass.pageNumber - 1}`
-      );
-      elem?.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest",
-      });
+      const elem = document.getElementById(`results-section`);
+      elem?.scrollTo(0, scrollPosition);
     }
   }, [searchParamsClass.searchingNextResults]);
 

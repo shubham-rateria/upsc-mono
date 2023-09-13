@@ -1,12 +1,12 @@
-(node:86605) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:23238) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 18:33:48 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 12:18:29 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:86622) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:23254) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,7 +19,220 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 163.076 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 52.407 ms - 5570[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 711.325 ms - 75006[0m
+[0mPOST /api/toppers [32m200[0m 258.740 ms - 13479[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+[0mPOST /api/toppers [32m200[0m 191.348 ms - 5570[0m
+found docs 4
+Keyword search documents 4
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 219.920 ms - 3613[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 746.762 ms - 22792[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
+done 8
+other results 8
+other results 2 8
+[0mPOST /api/documents [32m200[0m 1185.950 ms - 9346[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
+done 0
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 373.037 ms - 38[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
+done 0
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 685.850 ms - 38[0m
+[0mPOST /api/toppers [32m200[0m 116.810 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 88.241 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 83.750 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 80.811 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 109.908 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 121.850 ms - 13479[0m
+searching for ndrdf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 0
+Keyword search documents 0
+searching for others
+searching for ndrdf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 0
+Keyword search documents 0
+done 0
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 78.183 ms - 38[0m
+[0mPOST /api/toppers [32m200[0m 96.466 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 79.181 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 83.279 ms - 13479[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -37,7 +250,7 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 328.016 ms - 39151[0m
+[0mPOST /api/documents [32m200[0m 197.366 ms - 39151[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -55,7 +268,12 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 472.431 ms - 22792[0m
+[0mPOST /api/documents [32m200[0m 467.475 ms - 22792[0m
+[0mPOST /api/toppers [32m200[0m 72.651 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 76.595 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 85.779 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 77.075 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 80.477 ms - 13479[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -73,7 +291,43 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 318.029 ms - 9346[0m
+[0mPOST /api/documents [32m200[0m 197.953 ms - 39151[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 492.257 ms - 22792[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] }
+  ]
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 222.248 ms - 9346[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -108,13 +362,8 @@ Keyword search documents 48
 done 0
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 624.981 ms - 38[0m
-searching for ndrf {
-  _id: 'JAYANT SINGH RATHORE',
-  name: 'JAYANT SINGH RATHORE',
-  rank: '59',
-  year: '2020'
-}
+[0mPOST /api/documents [32m200[0m 396.632 ms - 38[0m
+searching for ndrf undefined
 {
   pipeline: [
     { '$search': [Object] },
@@ -124,23 +373,11 @@ searching for ndrf {
     { '$addFields': [Object] },
     { '$lookup': [Object] },
     { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
+    { '$project': [Object] }
   ]
-} {
-  '$match': {
-    'topper.name': 'JAYANT SINGH RATHORE',
-    'topper.rank': '59',
-    'topper.year': '2020'
-  }
-} {
-  _id: 'JAYANT SINGH RATHORE',
-  name: 'JAYANT SINGH RATHORE',
-  rank: '59',
-  year: '2020'
-}
-found docs 0
-Keyword search documents 0
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
 searching for others
 searching for ndrf undefined
 {
@@ -157,445 +394,10 @@ searching for ndrf undefined
 } { '$match': {} } undefined
 found docs 89
 Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 595.631 ms - 39151[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 681.635 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 1,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 0
-Keyword search documents 0
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1005.596 ms - 39151[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 0,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1027.819 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1104.875 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 2534.844 ms - 22792[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 1,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 0
-Keyword search documents 0
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1086.247 ms - 39151[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 0,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1411.470 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1451.975 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 1,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 0
-Keyword search documents 0
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 735.853 ms - 39151[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 0,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 713.074 ms - 40783[0m
-[0mPOST /api/toppers [32m200[0m 80.111 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 85.809 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 468.565 ms - 13479[0m
-tagSearchResults 10
-[0mPOST /api/toppers [32m200[0m 219.428 ms - 4941[0m
+done 0
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 1155.373 ms - 77959[0m
-[0mPOST /api/toppers [32m200[0m 544.138 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 289.216 ms - 38[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -606,13 +408,11 @@ searching for ndrf undefined
     { '$addFields': [Object] },
     { '$lookup': [Object] },
     { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
+    { '$project': [Object] }
   ]
-} { '$match': { l0_categories: { '$in': [Array] } } } undefined
-[0mPOST /api/toppers [32m200[0m 170.992 ms - 4941[0m
-found docs 4
-Keyword search documents 2
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
 searching for others
 searching for ndrf undefined
 {
@@ -629,123 +429,11 @@ searching for ndrf undefined
 } { '$match': {} } undefined
 found docs 89
 Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1241.481 ms - 42227[0m
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} { '$match': { document_type: 1, l0_categories: { '$in': [Array] } } } undefined
-found docs 3
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 653.232 ms - 41283[0m
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} { '$match': { document_type: 0, l0_categories: { '$in': [Array] } } } undefined
-found docs 1
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 497.431 ms - 40094[0m
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} { '$match': { l0_categories: { '$in': [Array] } } } undefined
-found docs 4
-Keyword search documents 2
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 366.288 ms - 42227[0m
+done 0
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 0.789 ms - 38[0m
-[0mPOST /api/toppers [32m200[0m 405.398 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 463.495 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 330.052 ms - 38[0m
+[0mPOST /api/toppers [32m200[0m 92.702 ms - 13479[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -763,7 +451,7 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 731.547 ms - 39151[0m
+[0mPOST /api/documents [32m200[0m 242.978 ms - 39151[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -781,50 +469,12 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 803.856 ms - 22792[0m
-[0mPOST /api/toppers [32m200[0m 73.578 ms - 13479[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 297.255 ms - 40783[0m
+[0mPOST /api/documents [32m200[0m 490.522 ms - 22792[0m
+[0mPOST /api/toppers [32m200[0m 86.084 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 93.289 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 84.618 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 93.817 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 85.972 ms - 13479[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -842,111 +492,7 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 374.011 ms - 39151[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 499.467 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 1,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 0
-Keyword search documents 0
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 246.799 ms - 39151[0m
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} { '$match': { document_type: 1 } } undefined
-found docs 24
-Keyword search documents 16
-other results 0
-other results 2 0
-[0mPOST /api/documents [32m200[0m 136.249 ms - 19519[0m
+[0mPOST /api/documents [32m200[0m 201.986 ms - 39151[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -964,98 +510,7 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 253.326 ms - 39151[0m
-getting doc id
-[0mGET /api/documents/64c662f743bc4f6a0bad9be9 [32m201[0m 60.195 ms - 8524[0m
-[0mPOST /api/toppers [32m200[0m 109.749 ms - 13479[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 385.551 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 1,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 0
-Keyword search documents 0
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-} { '$match': {} } undefined
-found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 916.904 ms - 39151[0m
-[0mPOST /api/toppers [0m-[0m - ms - -[0m
-[0mPOST /api/toppers [32m200[0m 298.201 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 185.694 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 431.830 ms - 22792[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -1073,7 +528,7 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 384.698 ms - 39151[0m
+[0mPOST /api/documents [32m200[0m 464.038 ms - 9346[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -1084,57 +539,11 @@ searching for ndrf undefined
     { '$addFields': [Object] },
     { '$lookup': [Object] },
     { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
+    { '$project': [Object] }
   ]
-} { '$match': { document_type: 1 } } undefined
-found docs 24
-Keyword search documents 16
-other results 0
-other results 2 0
-[0mPOST /api/documents [32m200[0m 308.606 ms - 19519[0m
-searching for ndrf undefined
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} { '$match': { document_type: 0 } } undefined
-found docs 65
-Keyword search documents 32
-other results 0
-other results 2 0
-[0mPOST /api/documents [32m200[0m 577.466 ms - 38120[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    document_type: 0,
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
+} { '$match': {} } undefined
+found docs 89
+Keyword search documents 48
 searching for others
 searching for ndrf undefined
 {
@@ -1151,33 +560,14 @@ searching for ndrf undefined
 } { '$match': {} } undefined
 found docs 89
 Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1434.163 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
+done 0
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1116.989 ms - 38[0m
+[0mPOST /api/toppers [32m200[0m 93.987 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 78.910 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 85.667 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 78.006 ms - 13479[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -1191,15 +581,12 @@ searching for ndrf undefined
     { '$project': [Object] }
   ]
 } { '$match': {} } undefined
+[0mPOST /api/toppers [32m200[0m 112.241 ms - 13479[0m
 found docs 89
 Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1124.932 ms - 40783[0m
-[0mPOST /api/toppers [0m-[0m - ms - -[0m
-[0mPOST /api/toppers [32m200[0m 72.211 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 74.510 ms - 13479[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 148.525 ms - 39151[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -1217,30 +604,7 @@ found docs 89
 Keyword search documents 48
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 221.188 ms - 39151[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
+[0mPOST /api/documents [32m200[0m 875.845 ms - 22792[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -1255,35 +619,4 @@ searching for ndrf undefined
   ]
 } { '$match': {} } undefined
 found docs 89
-Keyword search documents 48
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 510.557 ms - 40783[0m
-searching for ndrf { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} {
-  '$match': {
-    'topper.name': 'DWIJ GOEL',
-    'topper.rank': '71',
-    'topper.year': '2022'
-  }
-} { _id: 'DWIJ GOEL', name: 'DWIJ GOEL', rank: '71', year: '2022' }
-found docs 2
-Keyword search documents 1
-searching for others
-searching for ndrf undefined
-{
-  pipeline: [
- 
+Keyword search docume
