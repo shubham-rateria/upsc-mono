@@ -19,8 +19,6 @@ const ResultSection: FC = observer(() => {
   };
 
   const handleObserver = useCallback(async () => {
-    console.log("triggering observer");
-
     if (searchParamsClass.defaultState() || searchParamsClass.searching) {
       return;
     }
@@ -94,7 +92,15 @@ const ResultSection: FC = observer(() => {
               </span>
             </div>
             {searchParamsClass.otherResults?.map((result, index) => (
-              <DocumentResult result={result} key={index} />
+              <div
+                id={
+                  index === searchParamsClass.otherResults.length - 1
+                    ? `last-result-page-${searchParamsClass.pageNumber}`
+                    : ""
+                }
+              >
+                <DocumentResult result={result} key={index} />
+              </div>
             ))}
           </div>
         )}
@@ -114,7 +120,15 @@ const ResultSection: FC = observer(() => {
               </span>
             </div>
             {searchParamsClass.otherResults?.map((result, index) => (
-              <DocumentResult result={result} key={index} />
+              <div
+                id={
+                  index === searchParamsClass.otherResults.length - 1
+                    ? `last-result-page-${searchParamsClass.pageNumber}`
+                    : ""
+                }
+              >
+                <DocumentResult result={result} key={index} />
+              </div>
             ))}
           </div>
         )}
@@ -122,7 +136,15 @@ const ResultSection: FC = observer(() => {
         {searchParamsClass.docSearchResults &&
           searchParamsClass.docSearchResults.length > 0 &&
           searchParamsClass.docSearchResults?.map((result, index) => (
-            <DocumentResult result={result} key={index} />
+            <div
+              id={
+                index === searchParamsClass.docSearchResults.length - 1
+                  ? `last-result-page-${searchParamsClass.pageNumber}`
+                  : ""
+              }
+            >
+              <DocumentResult result={result} key={index} />
+            </div>
           ))}
       </div>
     </>

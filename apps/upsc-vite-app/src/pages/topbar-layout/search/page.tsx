@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { InView } from "react-intersection-observer";
 import { Loader } from "semantic-ui-react";
 
@@ -12,6 +12,22 @@ import Selectors from "../../../mobile/components/Selectors/Selectors";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
+
+  useEffect(() => {
+    if (
+      searchParamsClass.docSearchResults.length > 0 ||
+      searchParamsClass.otherResults.length > 0
+    ) {
+      const elem = document.getElementById(
+        `last-result-page-${searchParamsClass.pageNumber - 1}`
+      );
+      elem?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+    }
+  }, [searchParamsClass.searchingNextResults]);
 
   return (
     <div>

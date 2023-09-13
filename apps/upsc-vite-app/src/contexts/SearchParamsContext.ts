@@ -128,8 +128,6 @@ class SearchParamsClass {
       return;
     }
 
-    console.log("calling get next");
-
     this.searchingNextResults = true;
     this.pageNumber += 1;
     // @ts-ignore
@@ -196,6 +194,8 @@ class SearchParamsClass {
 
     try {
       this.lastSearchPromise = this.getCancelableSearchPromise();
+      const elem = document.getElementById("results-section");
+      elem?.scrollTo(0, 0);
     } catch (error) {
       console.error("Error in getting documents:", error);
     }
