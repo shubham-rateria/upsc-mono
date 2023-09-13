@@ -1,7 +1,9 @@
 import { DocumentModel } from "../../../models/document";
 import { Request, Response, Router } from "express";
 import { getSignedUrl } from "../../../services/s3";
-import searchByKeyword from "../../../utils/search-by-keyword";
+import searchByKeyword, {
+  searchByKeywordNot,
+} from "../../../utils/search-by-keyword";
 import searchBySubjectTags from "../../../utils/search-by-subject-tags";
 import searchByTopper from "../../../utils/search-by-topper";
 import fillDocWithPages from "../../../utils/fill-doc-with-pages";
@@ -59,10 +61,7 @@ export default (app: Router) => {
       // and search only for keyword and add to other results
       if (keywordSearchDocResults.length <= 2) {
         console.log("searching for others");
-        otherResults = await searchByKeyword({
-          keyword: searchParams.keyword,
-          pageNumber: searchParams.pageNumber,
-        });
+        otherResults = await searchByKeywordNot(searchParams);
         console.log("done", otherResults.length);
       }
       documentsResult.push(...keywordSearchDocResults);

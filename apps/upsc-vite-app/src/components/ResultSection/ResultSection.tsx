@@ -135,6 +135,7 @@ const ResultSection: FC = observer(() => {
       <div>
         {searchParamsClass.docSearchResults &&
           searchParamsClass.docSearchResults.length > 0 &&
+          searchParamsClass.otherResults.length === 0 &&
           searchParamsClass.docSearchResults?.map((result, index) => (
             <div
               id={
