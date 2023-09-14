@@ -15,6 +15,7 @@ import { AuthContext } from "./contexts/AuthContextProvider.tsx";
 import TourContext from "./contexts/TourContext.tsx";
 import MSearch from "./mobile/pages/Search/Search.tsx";
 import DocumentViewerPage from "./mobile/pages/DocumentViewer/DocumentViewer.tsx";
+import AnalyticsContextProvider from "./analytics/AnalyticsContextProvider.tsx";
 
 const stytch = new StytchUIClient(
   "public-token-live-a3d62995-b815-4c9f-a173-37b55b05b087"
@@ -51,33 +52,35 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <StytchProvider stytch={stytch}>
       <BrowserRouter>
         <SearchParamsContextProvider>
-          <Routes>
-            <Route
-              path="/search"
-              element={
-                <AuthContext>
-                  <TourContext>
-                    <TopBarLayout>
-                      <SearchPage />
-                    </TopBarLayout>
-                  </TourContext>
-                </AuthContext>
-              }
-            />
-            <Route path="/" element={<Login />} />
-            <Route
-              path="/view-document"
-              element={
-                <AuthContext>
-                  <TourContext>
-                    <TopBarLayout>
-                      <ViewDocument />
-                    </TopBarLayout>
-                  </TourContext>
-                </AuthContext>
-              }
-            />
-          </Routes>
+          <AnalyticsContextProvider>
+            <Routes>
+              <Route
+                path="/search"
+                element={
+                  <AuthContext>
+                    <TourContext>
+                      <TopBarLayout>
+                        <SearchPage />
+                      </TopBarLayout>
+                    </TourContext>
+                  </AuthContext>
+                }
+              />
+              <Route path="/" element={<Login />} />
+              <Route
+                path="/view-document"
+                element={
+                  <AuthContext>
+                    <TourContext>
+                      <TopBarLayout>
+                        <ViewDocument />
+                      </TopBarLayout>
+                    </TourContext>
+                  </AuthContext>
+                }
+              />
+            </Routes>
+          </AnalyticsContextProvider>
         </SearchParamsContextProvider>
       </BrowserRouter>
     </StytchProvider>

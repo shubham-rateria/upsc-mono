@@ -7,6 +7,7 @@ import {
 import React from "react";
 import { makeAutoObservable } from "mobx";
 import axiosInstance from "../utils/axios-instance";
+import { analyticsClass } from "../analytics/AnalyticsClass";
 
 const defaultValues: SearchParams = {
   documentType: -1,
@@ -151,9 +152,19 @@ class SearchParamsClass {
     };
     const axiosPromise = axiosInstance.post("/api/documents", data);
     const cancelablePromise = new CancelablePromise(axiosPromise);
+    const startTime = Date.now();
     cancelablePromise
       .then((response: any) => {
         if (response.data) {
+          const subjectSelected =
+            searchParamsClass.searchParams.subjectTags || [];
+          const tags =
+            searchParamsClass.searchParams.subjectTags?.filter(
+              (tag: Tag) => tag.level === "l1" || tag.level === "l2"
+            ) || [];
+          const endTime = Date.now() - startTime;
+          let searchType = "keyword";
+
           if (this.docSearchResults === null) {
             this.docSearchResults = [];
           }
@@ -173,6 +184,146 @@ class SearchParamsClass {
               ...this.otherResults,
               ...response.data.others,
             ]);
+          }
+
+          if ((this.searchParams.keyword || "").length > 0) {
+            analyticsClass.triggerKeywordSearchUsed({
+              search_type: "keyword",
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched: searchParamsClass.searchParams.keyword || "",
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+            });
+            searchType = "keyword";
+          }
+
+          if (tags.length > 0) {
+            analyticsClass.triggerKeywordSearchUsed({
+              search_type: "topic",
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched: tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+            });
+            searchType = "topic";
+          }
+
+          if (this.lastSearchParams.documentType !== data.documentType) {
+            analyticsClass.triggerNotesTypesFilterUsed({
+              // @ts-ignore
+              search_type: searchType,
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched:
+                searchType === "keyword"
+                  ? this.searchParams.keyword
+                  : tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+              notes_filter_used: true,
+            });
+          }
+
+          if (!Object.is(this.lastSearchParams.topper, data.topper)) {
+            analyticsClass.triggerTopperFilterUsed({
+              // @ts-ignore
+              search_type: searchType,
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched:
+                searchType === "keyword"
+                  ? this.searchParams.keyword
+                  : tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+              used: true,
+            });
+          }
+
+          if (
+            response.data.data.length > 0 &&
+            response.data.others.length === 0
+          ) {
+            analyticsClass.triggerResultsShown({
+              // @ts-ignore
+              search_type: searchType,
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched:
+                searchType === "keyword"
+                  ? this.searchParams.keyword
+                  : tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+              result: "pass",
+              time_taken: endTime,
+              feed_type: "primary",
+              primary_feed_item_count: response.data.data.length,
+              pagination_page_number: data.pageNumber || -1,
+            });
+          }
+
+          if (
+            response.data.data.length > 0 &&
+            response.data.others.length > 0
+          ) {
+            analyticsClass.triggerResultsShown({
+              // @ts-ignore
+              search_type: searchType,
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched:
+                searchType === "keyword"
+                  ? this.searchParams.keyword
+                  : tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+              result: "pass",
+              time_taken: endTime,
+              feed_type: "primary, secondary",
+              primary_feed_item_count: response.data.data.length,
+              secondary_feed_item_count: response.data.others.length,
+              pagination_page_number: data.pageNumber || -1,
+            });
+          }
+
+          if (
+            response.data.others.length > 0 &&
+            response.data.data.length === 0
+          ) {
+            analyticsClass.triggerResultsShown({
+              // @ts-ignore
+              search_type: searchType,
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched:
+                searchType === "keyword"
+                  ? this.searchParams.keyword
+                  : tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+              result: "pass",
+              time_taken: endTime,
+              feed_type: "secondary",
+              primary_feed_item_count: response.data.others.length,
+              pagination_page_number: data.pageNumber || -1,
+            });
           }
         }
         this.searching = false;

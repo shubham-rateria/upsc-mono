@@ -79,7 +79,12 @@ const ResultSection: FC = observer(() => {
         searchParamsClass.docSearchResults.length > 0 && (
           <div>
             {searchParamsClass.docSearchResults?.map((result, index) => (
-              <DocumentResult result={result} key={index} />
+              <DocumentResult
+                result={result}
+                key={index}
+                feedIndex={index}
+                feedType="primary"
+              />
             ))}
             <EmptyOtherResults
               heading={`Other documents containing "${searchParamsClass.searchParams.keyword}"`}
@@ -99,7 +104,12 @@ const ResultSection: FC = observer(() => {
                     : ""
                 }
               >
-                <DocumentResult result={result} key={index} />
+                <DocumentResult
+                  result={result}
+                  key={index}
+                  feedIndex={index}
+                  feedType="secondary"
+                />
               </div>
             ))}
           </div>
@@ -127,7 +137,12 @@ const ResultSection: FC = observer(() => {
                     : ""
                 }
               >
-                <DocumentResult result={result} key={index} />
+                <DocumentResult
+                  result={result}
+                  key={index}
+                  feedIndex={index}
+                  feedType="secondary"
+                />
               </div>
             ))}
           </div>
@@ -144,7 +159,12 @@ const ResultSection: FC = observer(() => {
                   : ""
               }
             >
-              <DocumentResult result={result} key={index} />
+              <DocumentResult
+                result={result}
+                key={index}
+                feedIndex={index}
+                feedType="primary"
+              />
             </div>
           ))}
       </div>

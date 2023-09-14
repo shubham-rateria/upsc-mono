@@ -14,10 +14,15 @@ import {
 import { observer } from "mobx-react-lite";
 import { Label } from "semantic-ui-react";
 import globalStyles from "../../styles/global.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { SearchParamsContext } from "../../contexts/SearchParamsContext";
+import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
+import { GeneralSearchQueries } from "../../analytics/types";
 
 type Props = {
   result: Result;
+  feedType: "primary" | "secondary";
+  feedIndex: number;
 };
 
 const l0ToString: any = {
@@ -162,7 +167,11 @@ const MagnifierViewer: React.FC<MagnifierViewerProps> = observer(
   }
 );
 
-const DocumentResult: React.FC<Props> = ({ result }) => {
+const DocumentResult: React.FC<Props> = ({ result, feedIndex, feedType }) => {
+  const searchParamsClass = useContext(SearchParamsContext);
+  const analyticsClass = useContext(AnalyticsClassContext);
+  const navigate = useNavigate();
+
   const canShowTopper = () => {
     return (
       result.topper &&
@@ -170,6 +179,70 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
       result.topper.rank &&
       result.topper.year
     );
+  };
+
+  const handlePageClick = (pageNumber: number, colNo: number) => {
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    analyticsClass.triggerDocumentClicked({
+      page_number: pageNumber,
+      ...data,
+      clicked_on: "page",
+      document_name: result.s3_object_name,
+      column_no: colNo,
+      feed_type: feedType,
+      row_no: feedIndex,
+    });
+
+    magnifierClass.setShowMagnifier(false);
+    navigate(
+      `/view-document/?page=${pageNumber}&documentId=${result._id}&feedType=${feedType}&rowNo=${feedIndex}&colNo=${colNo}&documentName=${result.s3_object_name}`
+    );
+  };
+
+  const triggerHoverAnalyticsEvent = (
+    pageNumber: number,
+    colNo: number,
+    timeSpent: number
+  ) => {
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    analyticsClass.triggerPageHovered({
+      page_number: pageNumber,
+      ...data,
+      clicked_on: "page",
+      document_name: result.s3_object_name,
+      column_no: colNo,
+      feed_type: feedType,
+      row_no: feedIndex,
+      time_spent: timeSpent,
+    });
   };
 
   return (
@@ -227,12 +300,22 @@ const DocumentResult: React.FC<Props> = ({ result }) => {
               <div className={styles.PageImage}>
                 <ImageMagnifier
                   id={`result-page-${index}`}
+                  onClick={() => {
+                    handlePageClick(page.page_number, index);
+                  }}
                   src={page.s3_signed_url ?? ""}
                   pageMetadata={{
                     pageNumber: page.page_number,
                     matchingWords: page.matching_words ?? [],
                   }}
                   documentId={result._id ?? ""}
+                  triggerAnalyticsEvent={(timeSpent: number) => {
+                    triggerHoverAnalyticsEvent(
+                      page.page_number,
+                      index,
+                      timeSpent
+                    );
+                  }}
                 />
                 <div
                   className={styles.PageNumber}

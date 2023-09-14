@@ -16,6 +16,8 @@ import { range } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
 import { useNavigate } from "react-router-dom";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
+import { GeneralSearchQueries } from "../../../analytics/types";
+import { AnalyticsClassContext } from "../../../analytics/AnalyticsClass";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -47,6 +49,7 @@ const DocumentViewerPage: React.FC = () => {
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
 
   const searchParamsClass = useContext(SearchParamsContext);
+  const analyticsClass = useContext(AnalyticsClassContext);
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -128,6 +131,25 @@ const DocumentViewerPage: React.FC = () => {
       return;
     }
     setSearchLoading(true);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    const startTime = Date.now();
+
     try {
       const response = await axiosInstance.post(
         `/api/documents/${documentId}/search`,
@@ -135,6 +157,22 @@ const DocumentViewerPage: React.FC = () => {
           searchTerm: text,
         }
       );
+
+      analyticsClass.triggerSearchInDocViewer({
+        page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+        ...data,
+        clicked_on: "page",
+        document_name: response.data.data?.s3_object_name || "",
+        column_no: parseInt(urlParams.get("colNo") || "-1"),
+        // @ts-ignore
+        feed_type: urlParams.get("feedType") || "primary",
+        row_no: parseInt(urlParams.get("rowNo") || "-1"),
+        result: "pass",
+        time_taken: Date.now() - startTime,
+        doc_viewer_text_searched: text,
+        matching_results_count: response.data.data.pages.length,
+      });
+
       setDocumentSearchResult(response.data.data);
       if (response.data.data.pages.length > 0) {
         setCurrentDocSearchResultIdx(-1);
@@ -246,12 +284,55 @@ const DocumentViewerPage: React.FC = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const documentId = urlParams.get("documentId");
       setDocumentId(documentId);
+
+      const data: GeneralSearchQueries = {
+        text_searched: searchParamsClass.searchParams.keyword,
+        notes_filter_type:
+          searchParamsClass.searchParams.documentType === -1
+            ? undefined
+            : searchParamsClass.searchParams.documentType,
+        subject_selected:
+          (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+            ? // @ts-ignore
+              searchParamsClass.searchParams.subjectTags[0].value.tagText
+            : undefined,
+        topper_filter_selected: searchParamsClass.searchParams.topper,
+        search_type: "keyword",
+      };
+
+      const startTime = Date.now();
+
       try {
         const response = await axiosInstance.get(
           `/api/documents/${documentId}`
         );
+
+        analyticsClass.triggerDocumentOpened({
+          page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+          ...data,
+          clicked_on: "page",
+          document_name: response.data.data?.s3_object_name || "",
+          column_no: parseInt(urlParams.get("colNo") || "-1"),
+          // @ts-ignore
+          feed_type: urlParams.get("feedType") || "primary",
+          row_no: parseInt(urlParams.get("rowNo") || "-1"),
+          result: "pass",
+          time_taken: Date.now() - startTime,
+        });
         setDocument(response.data.data);
       } catch (error: any) {
+        analyticsClass.triggerDocumentOpened({
+          page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+          ...data,
+          clicked_on: "page",
+          document_name: urlParams.get("documentName") || "",
+          column_no: parseInt(urlParams.get("colNo") || "-1"),
+          // @ts-ignore
+          feed_type: urlParams.get("feedType") || "primary",
+          row_no: parseInt(urlParams.get("rowNo") || "-1"),
+          result: "fail",
+          time_taken: Date.now() - startTime,
+        });
         setError({
           error: true,
           message: error.message,
