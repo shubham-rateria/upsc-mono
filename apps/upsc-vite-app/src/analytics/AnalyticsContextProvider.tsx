@@ -8,7 +8,7 @@ type Props = {
 
 const AnalyticsContextProvider: FC<Props> = ({ children }) => {
   useEffect(() => {
-    mixpanel.init("d55e0363a01ca94640164c3326c2466e", {
+    mixpanel.init("d3bf51a56521ecb79c0e330786004dce", {
       debug: true,
       track_pageview: true,
       persistence: "localStorage",
