@@ -217,6 +217,45 @@ export interface EventSearchInDocViewer
   matching_results_count: number;
 }
 
+export interface EventDocViewerSearchNav {
+  // result_no= < integer number of item jumped to>
+  // jump_to=<next_match / previous_match>
+  // doc_viewer_text_searched= <text typed and searched>
+  current_result_no: number;
+  jump_to: number;
+  doc_viewer_text_search: string;
+}
+
 /**
  * Login based events
  */
+
+/**
+ * otp_requested
+ * phone_number= <>
+ * attempt_number= <0 for first request otp clicked, 1 and onwards for resend clicked>
+ * login
+ * phone_number= <>
+ * attempt_number= <0 for first request otp clicked, 1 and onwards for resend clicked>
+ * result= <pass/ fail>
+ * logout
+ * phone_number= <>
+ * result= <pass/ fail>
+ *
+ */
+
+export interface EventOtpRequested {
+  phone_number: string;
+  attempt_number: number;
+}
+
+export interface EventLogin {
+  phone_number: string;
+  attempt_number: number;
+  result: "pass" | "fail";
+}
+
+export interface EventLogout {
+  phone_number: string;
+  result: "pass" | "fail";
+}

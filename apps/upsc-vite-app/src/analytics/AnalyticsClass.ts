@@ -1,10 +1,14 @@
 import { createContext } from "react";
 import {
+  EventDocViewerSearchNav,
   EventDocumentClicked,
   EventDocumentOpened,
   EventDocumentPageImpression,
   EventKeywordSearchUsed,
+  EventLogin,
+  EventLogout,
   EventNotesFilterTypeUsed,
+  EventOtpRequested,
   EventPageHovered,
   EventResultsShown,
   EventSearchInDocViewer,
@@ -68,6 +72,26 @@ export class AnalyticsClass {
   public triggerSearchInDocViewer(event: EventSearchInDocViewer) {
     console.log("event:search-in-doc-viewer", { event });
     mixpanel.track("search-in-doc-viewer", event);
+  }
+
+  public triggerDocViewerSearchNav(event: EventDocViewerSearchNav) {
+    console.log("event:doc-viewer-search-nav", event);
+    mixpanel.track("doc-viewer-search-nav", event);
+  }
+
+  public triggerOtpRequested(event: EventOtpRequested) {
+    console.log("event:otp-requested", event);
+    mixpanel.track("otp-requested", event);
+  }
+
+  public triggerLogin(event: EventLogin) {
+    console.log("event:login", event);
+    mixpanel.track("login", event);
+  }
+
+  public triggerLogout(event: EventLogout) {
+    console.log("event:logout", event);
+    mixpanel.track("logout", event);
   }
 }
 

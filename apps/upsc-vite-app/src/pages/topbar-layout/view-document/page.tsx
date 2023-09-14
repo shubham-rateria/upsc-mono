@@ -101,6 +101,11 @@ const DocumentViewerPage: React.FC = () => {
       if (updatedIdx >= documentSearchResult.pages.length) {
         updatedIdx = 0;
       }
+      analyticsClass.triggerDocViewerSearchNav({
+        current_result_no: currentDocSearchResultIdx,
+        doc_viewer_text_search: documentSearchText || "",
+        jump_to: updatedIdx,
+      });
       setCurrentDocSearchResultIdx(updatedIdx);
       scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
     }
@@ -112,6 +117,11 @@ const DocumentViewerPage: React.FC = () => {
       if (updatedIdx < 0) {
         updatedIdx = documentSearchResult.pages.length - 1;
       }
+      analyticsClass.triggerDocViewerSearchNav({
+        current_result_no: currentDocSearchResultIdx,
+        doc_viewer_text_search: documentSearchText || "",
+        jump_to: updatedIdx,
+      });
       setCurrentDocSearchResultIdx(updatedIdx);
       scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
     }
