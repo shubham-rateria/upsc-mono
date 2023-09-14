@@ -4,6 +4,7 @@ import {
   EventDocumentClicked,
   EventDocumentOpened,
   EventDocumentPageImpression,
+  EventDocumentViewerExited,
   EventKeywordSearchUsed,
   EventLogin,
   EventLogout,
@@ -92,6 +93,11 @@ export class AnalyticsClass {
   public triggerLogout(event: EventLogout) {
     console.log("event:logout", event);
     mixpanel.track("logout", event);
+  }
+
+  public triggerDocViewExited(event: EventDocumentViewerExited) {
+    console.log("event:doc-viewer-exited", event);
+    mixpanel.track("doc-viewer-exited", event);
   }
 }
 

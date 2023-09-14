@@ -274,6 +274,35 @@ const DocumentViewerPage: React.FC = () => {
   };
 
   const handleBack = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    analyticsClass.triggerDocViewExited({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...data,
+      document_name: urlParams.get("documentName") || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "pass",
+      exited_through: "back_button",
+    });
+
     // router.back();
     navigate("/search");
   };
