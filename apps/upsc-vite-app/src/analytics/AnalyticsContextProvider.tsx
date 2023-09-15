@@ -18,7 +18,7 @@ const AnalyticsContextProvider: FC<Props> = ({ children }) => {
       disable_cookie: true,
     });
     mixpanel.identify(user.user?.phone_numbers[0].phone_number);
-  }, []);
+  }, [user.user?.phone_numbers]);
 
   return (
     <AnalyticsClassContext.Provider value={analyticsClass}>
