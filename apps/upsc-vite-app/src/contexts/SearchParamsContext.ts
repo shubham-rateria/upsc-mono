@@ -345,7 +345,7 @@ class SearchParamsClass {
               topper_filter_selected: searchParamsClass.searchParams.topper,
               result: "pass",
               time_taken: endTime,
-              feed_type: "secondary",
+              feed_type: "none",
               primary_feed_item_count: 0,
               secondary_feed_item_count: 0,
               pagination_page_number: data.pageNumber || -1,
