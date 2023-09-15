@@ -186,7 +186,7 @@ const DocumentViewerPage: React.FC = () => {
         page_number: parseInt(urlParams.get("pageNumber") || "-1"),
         ...data,
         clicked_on: "page",
-        document_name: response.data.data?.s3_object_name || "",
+        document_name: document?.s3_object_name || "",
         column_no: parseInt(urlParams.get("colNo") || "-1"),
         // @ts-ignore
         feed_type: urlParams.get("feedType") || "primary",
