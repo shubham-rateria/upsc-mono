@@ -47,7 +47,7 @@ const DocumentViewerPage: React.FC = () => {
   const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
-  const [lastPageChangeTime, setLastPageChangeTime] = useState(-1);
+  const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
 
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
