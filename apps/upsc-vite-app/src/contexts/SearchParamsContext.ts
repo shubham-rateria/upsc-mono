@@ -321,7 +321,7 @@ class SearchParamsClass {
               result: "pass",
               time_taken: endTime,
               feed_type: "secondary",
-              primary_feed_item_count: response.data.others.length,
+              secondary_feed_item_count: response.data.others.length,
               pagination_page_number: data.pageNumber || -1,
             });
           }
