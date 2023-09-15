@@ -187,6 +187,17 @@ class SearchParamsClass {
           }
 
           if ((this.searchParams.keyword || "").length > 0) {
+            searchType = "keyword";
+          }
+
+          if (tags.length > 0) {
+            searchType = "topic";
+          }
+
+          if (
+            (this.searchParams.keyword || "").length > 0 &&
+            this.searchParams.keyword !== this.lastSearchParams.keyword
+          ) {
             analyticsClass.triggerKeywordSearchUsed({
               search_type: "keyword",
               subject_selected:
@@ -197,24 +208,36 @@ class SearchParamsClass {
               text_searched: searchParamsClass.searchParams.keyword || "",
               topper_filter_selected: searchParamsClass.searchParams.topper,
             });
-            searchType = "keyword";
           }
 
-          if (tags.length > 0) {
+          if (
+            tags.length > 0 &&
+            !Object.is(
+              this.searchParams.subjectTags,
+              this.lastSearchParams.subjectTags
+            )
+          ) {
             analyticsClass.triggerKeywordSearchUsed({
               search_type: "topic",
               subject_selected:
                 subjectSelected.length > 0
-                  ? subjectSelected[0].value.tagText
+                  ? subjectSelected[0].optionalsName || subjectSelected[0].type
                   : undefined,
               notes_filter_type: searchParamsClass.searchParams.documentType,
               text_searched: tags[0].value.tagText,
               topper_filter_selected: searchParamsClass.searchParams.topper,
             });
-            searchType = "topic";
           }
 
-          if (this.lastSearchParams.documentType !== data.documentType) {
+          if (
+            this.lastSearchParams.documentType !==
+            this.searchParams.documentType
+          ) {
+            console.log(
+              "note change",
+              this.lastSearchParams.documentType,
+              this.searchParams.documentType
+            );
             analyticsClass.triggerNotesTypesFilterUsed({
               // @ts-ignore
               search_type: searchType,
@@ -353,7 +376,10 @@ class SearchParamsClass {
           }
         }
         this.searching = false;
-        this.lastSearchParams = data;
+        this.lastSearchParams = {
+          ...data,
+          documentType: this.searchParams.documentType,
+        };
       })
       .catch((error: any) => {
         console.log("Promise error", error);

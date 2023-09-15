@@ -89,7 +89,6 @@ const SearchBar: FC = observer(() => {
   };
 
   const handleL0Change = (_e: any, data: any) => {
-    setSelectedL0(data.value);
     if (data.value !== "") {
       if (!["GS1", "GS2", "GS3", "GS4", "Essay"].includes(data.value)) {
         const tag: Tag = {
@@ -123,8 +122,9 @@ const SearchBar: FC = observer(() => {
       searchParamsClass.setSearchParams({
         subjectTags: [],
       });
-      analyticsClass.triggerSubjectRemoved({ subject_selected: data.value });
+      analyticsClass.triggerSubjectRemoved({ subject_selected: selectedL0 });
     }
+    setSelectedL0(data.value);
     setSearchKeyword("");
     searchParamsClass.setSearchParams({
       keyword: undefined,

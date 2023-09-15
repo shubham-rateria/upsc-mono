@@ -181,7 +181,11 @@ const DocumentResult: React.FC<Props> = ({ result, feedIndex, feedType }) => {
     );
   };
 
-  const handlePageClick = (pageNumber: number, colNo: number) => {
+  const handlePageClick = (
+    pageNumber: number,
+    colNo: number,
+    clicked_on: "page" | "file_name"
+  ) => {
     const data: GeneralSearchQueries = {
       text_searched: searchParamsClass.searchParams.keyword,
       notes_filter_type:
@@ -200,7 +204,7 @@ const DocumentResult: React.FC<Props> = ({ result, feedIndex, feedType }) => {
     analyticsClass.triggerDocumentClicked({
       page_number: pageNumber,
       ...data,
-      clicked_on: "page",
+      clicked_on,
       document_name: result.s3_object_name,
       column_no: colNo,
       feed_type: feedType,
@@ -262,9 +266,14 @@ const DocumentResult: React.FC<Props> = ({ result, feedIndex, feedType }) => {
             <div className={styles.ResultTopBar}>
               <div className={styles.DocumentName}>
                 <img src="/icons/do-document-text.svg" alt="document text" />
-                <Link to={`/view-document/?documentId=${result._id}`}>
+                <div
+                  className={styles.Link}
+                  onClick={() => {
+                    handlePageClick(-1, -1, "file_name");
+                  }}
+                >
                   {result.s3_object_name}
-                </Link>
+                </div>
                 <div className={styles.L0Tags}>
                   {result.l0_categories?.map(
                     (category: number, index: number) => (
@@ -302,7 +311,7 @@ const DocumentResult: React.FC<Props> = ({ result, feedIndex, feedType }) => {
                 <ImageMagnifier
                   id={`result-page-${index}`}
                   onClick={() => {
-                    handlePageClick(page.page_number, index);
+                    handlePageClick(page.page_number, index, "page");
                   }}
                   src={page.s3_signed_url ?? ""}
                   pageMetadata={{
