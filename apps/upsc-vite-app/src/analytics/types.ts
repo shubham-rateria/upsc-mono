@@ -232,6 +232,7 @@ export interface EventDocumentViewerExited
   extends GeneralSearchQueries,
     DocResult {
   exited_through: "back_button" | "closed_tab";
+  time_spent: number;
 }
 
 /**

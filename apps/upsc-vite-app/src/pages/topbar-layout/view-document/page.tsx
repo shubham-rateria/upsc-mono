@@ -48,6 +48,7 @@ const DocumentViewerPage: React.FC = () => {
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
+  const [docLoadedTimestamp, setDocLoadedTimestamp] = useState(-1);
 
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
@@ -71,6 +72,8 @@ const DocumentViewerPage: React.FC = () => {
   };
 
   const handlePdfLoadSuccess = () => {
+    setDocLoadedTimestamp(Date.now());
+
     const urlParams = new URLSearchParams(window.location.search);
     const pageNumber = urlParams.get("page");
 
@@ -315,6 +318,7 @@ const DocumentViewerPage: React.FC = () => {
       row_no: parseInt(urlParams.get("rowNo") || "-1"),
       result: "pass",
       exited_through: "back_button",
+      time_spent: Date.now() - docLoadedTimestamp,
     });
 
     // router.back();
