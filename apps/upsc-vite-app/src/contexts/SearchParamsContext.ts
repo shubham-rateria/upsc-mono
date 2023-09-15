@@ -325,6 +325,32 @@ class SearchParamsClass {
               pagination_page_number: data.pageNumber || -1,
             });
           }
+
+          if (
+            response.data.others.length === 0 &&
+            response.data.data.length === 0
+          ) {
+            analyticsClass.triggerResultsShown({
+              // @ts-ignore
+              search_type: searchType,
+              subject_selected:
+                subjectSelected.length > 0
+                  ? subjectSelected[0].value.tagText
+                  : undefined,
+              notes_filter_type: searchParamsClass.searchParams.documentType,
+              text_searched:
+                searchType === "keyword"
+                  ? this.searchParams.keyword
+                  : tags[0].value.tagText,
+              topper_filter_selected: searchParamsClass.searchParams.topper,
+              result: "pass",
+              time_taken: endTime,
+              feed_type: "secondary",
+              primary_feed_item_count: 0,
+              secondary_feed_item_count: 0,
+              pagination_page_number: data.pageNumber || -1,
+            });
+          }
         }
         this.searching = false;
         this.lastSearchParams = data;
