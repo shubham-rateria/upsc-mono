@@ -47,6 +47,7 @@ const DocumentViewerPage: React.FC = () => {
   const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
+  const [lastPageChangeTime, setLastPageChangeTime] = useState(-1);
 
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
@@ -89,9 +90,22 @@ const DocumentViewerPage: React.FC = () => {
         pageNumber ? false : true
       );
     }
+
+    setLastPageChangeTime(Date.now());
   };
 
   const handlePageChange = (pageNumber: number) => {
+    const timeNow = Date.now();
+    const delta = timeNow - lastPageChangeTime;
+    if (delta > 2000) {
+      // console.log({ timeNow, lastPageChangeTime });
+      analyticsClass.triggerDocumentPageImpression({
+        document_name: document?.s3_object_name || "",
+        page_no: currentActivePage || -1,
+        time_spent: timeNow - lastPageChangeTime,
+      });
+    }
+    setLastPageChangeTime(Date.now());
     setCurrentActivePage(pageNumber);
   };
 

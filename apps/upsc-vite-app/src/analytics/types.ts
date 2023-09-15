@@ -12,15 +12,15 @@ export interface GeneralSearchQueries {
   notes_filter_type?: DocumentType;
   subject_selected?: string;
   text_searched?: string;
-  search_type: "keyword" | "topic";
+  search_type?: "keyword" | "topic";
   topper_filter_selected?: Topper;
 }
 
 export interface DocResult {
-  clicked_on: "file_name" | "page";
-  feed_type: "primary" | "secondary";
-  row_no: number;
-  column_no: number;
+  clicked_on?: "file_name" | "page";
+  feed_type?: "primary" | "secondary";
+  row_no?: number;
+  column_no?: number;
   document_name: string;
   pages?: number;
   pages_shown?: number;
@@ -185,6 +185,7 @@ export interface EventDocumentPageImpression
   extends GeneralSearchQueries,
     DocResult {
   page_no: number;
+  time_spent: number;
 }
 
 /**
