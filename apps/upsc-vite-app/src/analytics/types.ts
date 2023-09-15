@@ -105,6 +105,7 @@ export interface EventResultsShown extends GeneralSearchQueries {
 export interface EventPageHovered extends GeneralSearchQueries, DocResult {
   page_number: number;
   time_spent: number;
+  pages_shown: number;
 }
 
 /**

@@ -242,6 +242,7 @@ const DocumentResult: React.FC<Props> = ({ result, feedIndex, feedType }) => {
       feed_type: feedType,
       row_no: feedIndex,
       time_spent: timeSpent,
+      pages_shown: result.pages.length,
     });
   };
 
