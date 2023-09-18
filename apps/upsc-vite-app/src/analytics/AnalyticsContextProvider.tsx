@@ -2,6 +2,7 @@ import { FC, ReactNode, useEffect } from "react";
 import { AnalyticsClassContext, analyticsClass } from "./AnalyticsClass";
 import mixpanel from "mixpanel-browser";
 import { useStytchUser } from "@stytch/react";
+import config from "../config";
 
 type Props = {
   children: ReactNode;
@@ -11,7 +12,7 @@ const AnalyticsContextProvider: FC<Props> = ({ children }) => {
   const user = useStytchUser();
 
   useEffect(() => {
-    mixpanel.init("3820ada0dc3a1522789870b3fc471f57", {
+    mixpanel.init(config.MIXPANEL_PROJECT_ID, {
       debug: true,
       track_pageview: true,
       disable_persistence: true,
