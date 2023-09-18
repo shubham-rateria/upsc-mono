@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { InView } from "react-intersection-observer";
 import { Loader } from "semantic-ui-react";
 
@@ -12,6 +12,30 @@ import Selectors from "../../../mobile/components/Selectors/Selectors";
 
 const SearchPage = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const elem = document.getElementById(`results-section`);
+    setScrollPosition(elem?.scrollTop || 0);
+  };
+
+  useEffect(() => {
+    const elem = document.getElementById(`results-section`);
+    elem?.addEventListener("scroll", handleScroll);
+    return () => {
+      elem?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      searchParamsClass.docSearchResults.length > 0 ||
+      searchParamsClass.otherResults.length > 0
+    ) {
+      const elem = document.getElementById(`results-section`);
+      elem?.scrollTo(0, scrollPosition);
+    }
+  }, [searchParamsClass.searchingNextResults]);
 
   return (
     <div>
@@ -52,8 +76,10 @@ const SearchPage = observer(() => {
           </div>
           <div className={styles.resultSection} id="results-section">
             <ResultSection />
-            {searchParamsClass.docSearchResults &&
-              searchParamsClass.docSearchResults?.length > 0 && (
+            {(searchParamsClass.docSearchResults ||
+              searchParamsClass.otherResults) &&
+              (searchParamsClass.docSearchResults?.length > 0 ||
+                searchParamsClass.otherResults?.length > 0) && (
                 <InView
                   key={searchParamsClass.pageNumber}
                   as="div"

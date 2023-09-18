@@ -1,7 +1,9 @@
 import { DocumentModel } from "../../../models/document";
 import { Request, Response, Router } from "express";
 import { getSignedUrl } from "../../../services/s3";
-import searchByKeyword from "../../../utils/search-by-keyword";
+import searchByKeyword, {
+  searchByKeywordNot,
+} from "../../../utils/search-by-keyword";
 import searchBySubjectTags from "../../../utils/search-by-subject-tags";
 import searchByTopper from "../../../utils/search-by-topper";
 import fillDocWithPages from "../../../utils/fill-doc-with-pages";
@@ -48,11 +50,20 @@ export default (app: Router) => {
   route.post("/", async (req: Request, res: Response) => {
     const searchParams: SearchParams = req.body;
     let documentsResult: any[] = [];
+    let otherResults: any[] = [];
     let hasKeyword = false;
 
     if (searchParams.keyword && searchParams.keyword.length > 0) {
       hasKeyword = true;
       const keywordSearchDocResults = await searchByKeyword(searchParams);
+
+      // if keyword search results is 0, remove all remaining params
+      // and search only for keyword and add to other results
+      if (keywordSearchDocResults.length <= 2) {
+        console.log("searching for others");
+        otherResults = await searchByKeywordNot(searchParams);
+        console.log("done", otherResults.length);
+      }
       documentsResult.push(...keywordSearchDocResults);
     }
 
@@ -75,7 +86,7 @@ export default (app: Router) => {
       }
     }
 
-    if (searchParams.topper) {
+    if (searchParams.topper && !searchParams.keyword) {
       if (documentsResult.length > 0) {
         // documentsResult = documentsResult.filter((doc) => {
         //   return (
@@ -101,7 +112,24 @@ export default (app: Router) => {
       })
     );
 
-    res.status(200).json({ success: true, data: documentsResult });
+    console.log("other results", otherResults.length);
+
+    otherResults = await Promise.all(
+      otherResults.map(async (doc) => {
+        const pages = await fillDocWithPages(doc);
+        if (pages) {
+          return { ...doc, pages };
+        } else {
+          return doc;
+        }
+      })
+    );
+
+    console.log("other results 2", otherResults.length);
+
+    res
+      .status(200)
+      .json({ success: true, data: documentsResult, others: otherResults });
   });
 
   route.post("/:documentId/search", async (req: Request, res: Response) => {

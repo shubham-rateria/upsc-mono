@@ -19,3 +19,12 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.OtherResultsTitle {
+  margin-bottom: var(--margin-m);
+  font-weight: 500;
+}
+
+.Keyword {
+  color: var(--p7);
+}

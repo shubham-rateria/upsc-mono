@@ -4,7 +4,6 @@ import {
   PageMetadata,
 } from "../DocumentResult/contexts/ImageMagnifierContext/ImageMagnifierContext";
 import styles from "./ImageMagnifier.module.css";
-import { useNavigate } from "react-router-dom";
 
 function ImageMagnifier({
   src,
@@ -13,6 +12,8 @@ function ImageMagnifier({
   magnifierWidth = 100,
   pageMetadata,
   documentId,
+  onClick,
+  triggerAnalyticsEvent,
 }: {
   src: string;
   magnifierHeight?: number;
@@ -20,18 +21,13 @@ function ImageMagnifier({
   pageMetadata: PageMetadata;
   documentId: string;
   id?: string;
+  onClick: () => void;
+  triggerAnalyticsEvent: (timeSpent: number) => void;
 }) {
   const [[x, y], setXY] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
+  const [enterTime, setEnterTime] = useState(-1);
   const imageMagnifierContext = useContext(ImageMagnifierContext);
-  const navigate = useNavigate();
-
-  const handlePageClick = () => {
-    imageMagnifierContext.setShowMagnifier(false);
-    navigate(
-      `/view-document/?page=${pageMetadata.pageNumber}&documentId=${documentId}`
-    );
-  };
 
   return (
     <div style={{ position: "relative" }} id={id}>
@@ -45,8 +41,9 @@ function ImageMagnifier({
         <img
           src={src}
           className={styles.Img}
-          onClick={handlePageClick}
+          onClick={onClick}
           onMouseEnter={(e) => {
+            setEnterTime(Date.now());
             // update image size and turn-on magnifier
             const elem = e.currentTarget;
             const { top, left, width, height } = elem.getBoundingClientRect();
@@ -84,6 +81,10 @@ function ImageMagnifier({
             setXY([x, y]);
           }}
           onMouseLeave={() => {
+            const time = Date.now();
+            if (time - enterTime > 2000) {
+              triggerAnalyticsEvent(time - enterTime);
+            }
             // close magnifier
             imageMagnifierContext.setShowMagnifier(false);
             setShowMagnifier(false);

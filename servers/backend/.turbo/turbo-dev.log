@@ -1,12 +1,12 @@
-(node:13569) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:6036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 17:20:00 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 12:36:37 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:13583) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:6052) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,368 +19,114 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 75.250 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 78.732 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 70.171 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 74.700 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 69.417 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 63.449 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 61.770 ms - 13479[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 747
-Keyword search documents 336
-[0mPOST /api/documents [32m200[0m 2445.201 ms - 80363[0m
-[0mPOST /api/toppers [32m200[0m 140.009 ms - 11[0m
+[0mPOST /api/toppers [32m200[0m 64.914 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 40.306 ms - 4934[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1955.982 ms - 77947[0m
-[0mPOST /api/toppers [32m200[0m 47.902 ms - 11[0m
-[0mPOST /api/toppers [32m200[0m 49.025 ms - 11[0m
-[0mPOST /api/toppers [32m200[0m 105.941 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 61.356 ms - 11[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 822.414 ms - 69939[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1.670 ms - 38[0m
+[0mPOST /api/toppers [32m200[0m 580.694 ms - 13479[0m
 tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 649.358 ms - 77947[0m
-[0mPOST /api/toppers [32m200[0m 48.418 ms - 11[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 599.309 ms - 69927[0m
-[0mPOST /api/toppers [32m200[0m 59.182 ms - 11[0m
-[INFO] 17:23:48 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/toppers/index.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:13887) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[0mPOST /api/toppers [32m200[0m 113.715 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 70.568 ms - 4941[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 845.906 ms - 77947[0m
-[0mPOST /api/documents [32m200[0m 1.557 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 110.785 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 96.871 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 93.901 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 118.309 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 100.977 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 98.400 ms - 13479[0m
-searching for indus
+[0mPOST /api/toppers [32m200[0m 1498.211 ms - 4941[0m
+Finding keywords [
+  'Art and culture',
+  'Indian Art Forms',
+  'Indian Paintings',
+  'Mural Paintings',
+  'Miniature Paintings',
+  'Mughal, Rajput, Pahari Paintings',
+  'Dances in India',
+  'Classical Dance Forms',
+  'Folk Dance Forms',
+  'Modern Dance',
+  'Music',
+  'Classical Music',
+  'Folk Music',
+  'Puppetry',
+  'String Puppets',
+  'Shadow Puppets',
+  'Rod Puppets',
+  'Glove puppets',
+  'Modern Puppetry',
+  'Tribal Puppetry',
+  'Pottery',
+  'Ochre Coloured Pottery(OCP)',
+  'Black and Red Ware (BRW)',
+  'Painted Grey Ware (PGW)',
+  'Northern Black Polished Ware (NBPW)',
+  'Glazed and Unglazed Pottery',
+  'Drama/Theatre',
+  'Classical Sanskrit Theatre',
+  'Regional Theatre',
+  'Modern Theatre',
+  'Martial Arts',
+  'Thang Ta',
+  'Gatka',
+  'Kalaripayattu',
+  'Mallakhamb',
+  'Silambam',
+  'Other Important Martial Arts',
+  'Visual Art',
+  'Sculptures of Harappan Civilization',
+  'Sculptures of the Mauryan Age',
+  'Post-Mauryan Period',
+  'Jain Sculptures',
+  'Buddhist Sculpture',
+  'Gupta Sculpture',
+  'Medieval School of Sculpture',
+  'Modern Indian Sculpture',
+  'Bhakti & Sufi Movements',
+  'Spread of Bhakti and Sufi Movements',
+  'Women Poets of Bhakti',
+  'Literature',
+  'Classical Sanskrit Literature',
+  'Vedas, Upanishads, Puranas',
+  'Books written by Kalidasa, Vishakhadatta etc',
+  'Ancient Buddhist Literature',
+  'Ancient Jainism Literature',
+  'Early Dravidian Literature (eg Sangam Period)',
+  'Medieval Literature',
+  'Trends in Medieval Literature',
+  'Modern Indian Literature',
+  'Architecture',
+  'Harappan Architecture',
+  'Mauryan Architecture',
+  'Post-Mauryan Period Gupta Period',
+  'Temple Architecture',
+  'Nagara Style',
+  'Dravida Style',
+  'Vesara Style',
+  'Cave Architecture',
+  'Buddhist Cave',
+  'Jaina Caves',
+  'Gupta Period Caves',
+  'Medieval and Indo-Islamic Architecture',
+  'Imperial Style Delhi Sultanate',
+  'Provincial Style',
+  'Mughal Style',
+  'Sikh Style of Architecture',
+  'Rajput Architecture',
+  'Salient features',
+  'Colonial Architecture & Modern Architecture',
+  'European Influence',
+  'Indo-Saracenic Architecture',
+  'Post-Independence Period',
+  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
+  'Rock Cut Architecture',
+  'South Indian',
+  'Western Indian',
+  'Eastern Indian',
+  'Art and culture'
+]
 {
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
 }
-found docs 747
-Keyword search documents 336
-[0mPOST /api/documents [32m200[0m 1860.948 ms - 80363[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 1 for topper
-[0mPOST /api/documents [32m200[0m 1219.930 ms - 5439[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 604.300 ms - 26[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 747
-Keyword search documents 336
-[0mPOST /api/documents [32m200[0m 926.114 ms - 41691[0m
-[0mPOST /api/documents [32m200[0m 1.064 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 370.821 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 347.498 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 621.052 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 855.400 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 812.228 ms - 13479[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 747
-Keyword search documents 336
-[0mPOST /api/documents [32m200[0m 4286.470 ms - 80363[0m
-[0mPOST /api/documents [32m200[0m 3.727 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 78.874 ms - 4934[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 1707.862 ms - 69927[0m
-[0mPOST /api/documents [32m200[0m 0.620 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 312.276 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 281.104 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 274.670 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 303.369 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 322.496 ms - 13479[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-[0mPOST /api/toppers [32m200[0m 371.945 ms - 13479[0m
-found docs 747
-Keyword search documents 336
-[0mPOST /api/documents [32m200[0m 3295.505 ms - 80363[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 1 for topper
-[0mPOST /api/documents [32m200[0m 1446.692 ms - 5090[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 411.735 ms - 26[0m
-Found 1 for topper
-[0mPOST /api/documents [32m200[0m 754.391 ms - 5090[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 156.554 ms - 26[0m
-[0mPOST /api/documents [32m200[0m 0.632 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 102.766 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 98.461 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 114.695 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 101.783 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 104.572 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 98.990 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 96.303 ms - 13479[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] }
-  ]
-}
-found docs 747
-Keyword search documents 336
-[0mPOST /api/documents [32m200[0m 1431.137 ms - 80363[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 2 for topper
-[0mPOST /api/documents [32m200[0m 1728.398 ms - 10877[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 555.864 ms - 26[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 495.866 ms - 26[0m
-searching for indus
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 0
-Keyword search documents 0
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 598.730 ms - 26[0m
-Found 2 for topper
-[0mPOST /api/documents [32m200[0m 448.139 ms - 10877[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 63.112 ms - 26[0m
-Found 0 for topper
-[0mPOST /api/documents [32m200[0m 522.514 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 381.838 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 57.802 ms - 4934[0m
-tagSearchResults 10
-[0mPOST /api/documents [32m200[0m 491.344 ms - 69927[0m
-tagSearchResults 3
-[0mPOST /api/documents [32m200[0m 579.775 ms - 24257[0m
-getting doc id
-[0mGET /api/documents/64c82f95db10f404e101dbf2 [32m201[0m 180.811 ms - 9253[0m
-[0mPOST /api/toppers [32m200[0m 47.417 ms - 4934[0m
-[0mPOST /api/toppers [32m200[0m 172.653 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 173.258 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 94.380 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 101.068 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 94.619 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 100.574 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 109.344 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 95.400 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 95.008 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 99.263 ms - 13479[0m
-searching for population
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-}
-found docs 11
-Keyword search documents 5
-[0mPOST /api/documents [32m200[0m 4013.651 ms - 9100[0m
-searching for population
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Ob
+[0mPOST /api/toppers [32m200[0m 2016.929 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 2000.375 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 2600.977 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 1227.172 ms - 4941[0m
+[0mPOST 

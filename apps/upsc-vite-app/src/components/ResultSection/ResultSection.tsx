@@ -7,6 +7,7 @@ import DocSearchPlaceholder from "../DocSearchPlaceholder/DocSearchPlaceholder";
 import { EmptyPagePlaceholder } from "../EmptyPagePlaceholder/EmptyPagePlaceholder";
 import { Button } from "semantic-ui-react";
 import styles from "./ResultSection.module.css";
+import EmptyOtherResults from "../EmptyOtherResults/EmptyOtherResults";
 
 const ResultSection: FC = observer(() => {
   const searchParamsClass = React.useContext(SearchParamsContext);
@@ -18,8 +19,6 @@ const ResultSection: FC = observer(() => {
   };
 
   const handleObserver = useCallback(async () => {
-    console.log("triggering observer");
-
     if (searchParamsClass.defaultState() || searchParamsClass.searching) {
       return;
     }
@@ -62,6 +61,7 @@ const ResultSection: FC = observer(() => {
         )}
       {!searchParamsClass.defaultState() &&
         searchParamsClass.docSearchResults &&
+        searchParamsClass.otherResults.length === 0 &&
         searchParamsClass.docSearchResults.length === 0 && (
           <EmptyPagePlaceholder
             imgSrc="/img/start-results.svg"
@@ -73,11 +73,99 @@ const ResultSection: FC = observer(() => {
             </Button>
           </EmptyPagePlaceholder>
         )}
+      {!searchParamsClass.defaultState() &&
+        searchParamsClass.docSearchResults &&
+        searchParamsClass.otherResults.length > 0 &&
+        searchParamsClass.docSearchResults.length > 0 && (
+          <div>
+            {searchParamsClass.docSearchResults?.map((result, index) => (
+              <DocumentResult
+                result={result}
+                key={index}
+                feedIndex={index}
+                feedType="primary"
+              />
+            ))}
+            <EmptyOtherResults
+              heading={`Other documents containing "${searchParamsClass.searchParams.keyword}"`}
+              description="Results matching your selected criteria ended. Below are other documents matching your keywords."
+            />
+            <div className={styles.OtherResultsTitle}>
+              Other documents containing{" "}
+              <span className={styles.Keyword}>
+                "{searchParamsClass.searchParams.keyword}"
+              </span>
+            </div>
+            {searchParamsClass.otherResults?.map((result, index) => (
+              <div
+                id={
+                  index === searchParamsClass.otherResults.length - 1
+                    ? `last-result-page-${searchParamsClass.pageNumber}`
+                    : ""
+                }
+              >
+                <DocumentResult
+                  result={result}
+                  key={index}
+                  feedIndex={index}
+                  feedType="secondary"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      {!searchParamsClass.defaultState() &&
+        searchParamsClass.docSearchResults &&
+        searchParamsClass.otherResults.length > 0 &&
+        searchParamsClass.docSearchResults.length === 0 && (
+          <div>
+            <EmptyOtherResults
+              heading="No search results found"
+              description="We could not find any results matching your criteria. Below are similar documents matching your search."
+            />
+            <div className={styles.OtherResultsTitle}>
+              Other documents containing{" "}
+              <span className={styles.Keyword}>
+                "{searchParamsClass.searchParams.keyword}"
+              </span>
+            </div>
+            {searchParamsClass.otherResults?.map((result, index) => (
+              <div
+                id={
+                  index === searchParamsClass.otherResults.length - 1
+                    ? `last-result-page-${searchParamsClass.pageNumber}`
+                    : ""
+                }
+              >
+                <DocumentResult
+                  result={result}
+                  key={index}
+                  feedIndex={index}
+                  feedType="secondary"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       <div>
         {searchParamsClass.docSearchResults &&
           searchParamsClass.docSearchResults.length > 0 &&
+          searchParamsClass.otherResults.length === 0 &&
           searchParamsClass.docSearchResults?.map((result, index) => (
-            <DocumentResult result={result} key={index} />
+            <div
+              id={
+                index === searchParamsClass.docSearchResults.length - 1
+                  ? `last-result-page-${searchParamsClass.pageNumber}`
+                  : ""
+              }
+            >
+              <DocumentResult
+                result={result}
+                key={index}
+                feedIndex={index}
+                feedType="primary"
+              />
+            </div>
           ))}
       </div>
     </>

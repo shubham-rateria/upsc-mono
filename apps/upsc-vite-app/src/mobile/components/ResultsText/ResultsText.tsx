@@ -40,7 +40,7 @@ const ResultsText = observer(() => {
   const l2Topics = (searchParamsClass.searchParams.subjectTags ?? []).filter(
     (tag: Tag) => tag.level === "l2"
   );
-  console.log({ tags: searchParamsClass.searchParams.subjectTags });
+
   if (
     l0Topics.length > 0 &&
     (searchParamsClass.searchParams.keyword ?? "").length === 0
