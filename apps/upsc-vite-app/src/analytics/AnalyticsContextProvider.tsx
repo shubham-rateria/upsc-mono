@@ -11,7 +11,7 @@ const AnalyticsContextProvider: FC<Props> = ({ children }) => {
   const user = useStytchUser();
 
   useEffect(() => {
-    mixpanel.init("d55e0363a01ca94640164c3326c2466e", {
+    mixpanel.init("3820ada0dc3a1522789870b3fc471f57", {
       debug: true,
       track_pageview: true,
       disable_persistence: true,
