@@ -14,7 +14,7 @@ import {
 import { observer } from "mobx-react-lite";
 import { Label } from "semantic-ui-react";
 import globalStyles from "../../styles/global.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SearchParamsContext } from "../../contexts/SearchParamsContext";
 import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
 import { GeneralSearchQueries } from "../../analytics/types";
