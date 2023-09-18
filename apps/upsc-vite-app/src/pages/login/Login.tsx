@@ -8,6 +8,7 @@ import PhoneInput from "react-phone-number-input";
 import { Button } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
+import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
 
 function isPhoneNumber(value: string) {
   // Define a regular expression pattern for a phone number with Indian country code +91
@@ -25,12 +26,12 @@ export const Login = () => {
   const [resendCodeTimer, setResendCodeTimer] = useState(60);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
-  //   const [otpSubmitted, setOtpSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [methodId, setMethodId] = useState("");
   const tourContextController = useContext(TourContext);
+  const analyticsClass = useContext(AnalyticsClassContext);
 
   const startCountdown = async () => {
     while (resendCodeTimer > 0) {
@@ -55,6 +56,10 @@ export const Login = () => {
       setMethodId(res.method_id);
       setLoading(false);
       setOtpSent(true);
+      analyticsClass.triggerOtpRequested({
+        attempt_number: -1,
+        phone_number: phoneNumber,
+      });
     }
   };
 
@@ -69,8 +74,18 @@ export const Login = () => {
       });
       // @ts-ignore
       tourContextController.setPhone(phoneNumber);
+      analyticsClass.triggerLogin({
+        attempt_number: -1,
+        phone_number: phoneNumber || "",
+        result: "pass",
+      });
       navigate("/search");
     } catch (error) {
+      analyticsClass.triggerLogin({
+        attempt_number: -1,
+        phone_number: phoneNumber || "",
+        result: "fail",
+      });
       setError(true);
       setErrorMessage("Please enter the correct OTP.");
     }

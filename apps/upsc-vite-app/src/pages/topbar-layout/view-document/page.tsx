@@ -16,6 +16,8 @@ import { range } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
 import { useNavigate } from "react-router-dom";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
+import { GeneralSearchQueries } from "../../../analytics/types";
+import { AnalyticsClassContext } from "../../../analytics/AnalyticsClass";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -45,8 +47,12 @@ const DocumentViewerPage: React.FC = () => {
   const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
+  const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
+  const [docLoadedTimestamp, setDocLoadedTimestamp] = useState(-1);
+  const [docLoadStartTime, setDocLoadStartTime] = useState(-1);
 
   const searchParamsClass = useContext(SearchParamsContext);
+  const analyticsClass = useContext(AnalyticsClassContext);
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -67,7 +73,38 @@ const DocumentViewerPage: React.FC = () => {
   };
 
   const handlePdfLoadSuccess = () => {
+    setDocLoadedTimestamp(Date.now());
     const urlParams = new URLSearchParams(window.location.search);
+
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].optionalsName ??
+            // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].type
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    analyticsClass.triggerDocumentOpened({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...data,
+      document_name: document?.s3_object_name || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "pass",
+      time_taken: Date.now() - docLoadStartTime,
+    });
+
     const pageNumber = urlParams.get("page");
 
     if (pageNumber) {
@@ -86,9 +123,55 @@ const DocumentViewerPage: React.FC = () => {
         pageNumber ? false : true
       );
     }
+
+    setLastPageChangeTime(Date.now());
+  };
+
+  const handlePdfLoadError = () => {
+    setDocLoadedTimestamp(Date.now());
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    analyticsClass.triggerDocumentOpened({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...data,
+      document_name: document?.s3_object_name || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "fail",
+      time_taken: Date.now() - docLoadStartTime,
+    });
+    setLastPageChangeTime(Date.now());
   };
 
   const handlePageChange = (pageNumber: number) => {
+    const timeNow = Date.now();
+    const delta = timeNow - lastPageChangeTime;
+    if (delta > 2000) {
+      // console.log({ timeNow, lastPageChangeTime });
+      analyticsClass.triggerDocumentPageImpression({
+        document_name: document?.s3_object_name || "",
+        page_no: currentActivePage || -1,
+        time_spent: timeNow - lastPageChangeTime,
+      });
+    }
+    setLastPageChangeTime(Date.now());
     setCurrentActivePage(pageNumber);
   };
 
@@ -98,6 +181,11 @@ const DocumentViewerPage: React.FC = () => {
       if (updatedIdx >= documentSearchResult.pages.length) {
         updatedIdx = 0;
       }
+      analyticsClass.triggerDocViewerSearchNav({
+        current_result_no: currentDocSearchResultIdx,
+        doc_viewer_text_search: documentSearchText || "",
+        jump_to: updatedIdx,
+      });
       setCurrentDocSearchResultIdx(updatedIdx);
       scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
     }
@@ -109,6 +197,11 @@ const DocumentViewerPage: React.FC = () => {
       if (updatedIdx < 0) {
         updatedIdx = documentSearchResult.pages.length - 1;
       }
+      analyticsClass.triggerDocViewerSearchNav({
+        current_result_no: currentDocSearchResultIdx,
+        doc_viewer_text_search: documentSearchText || "",
+        jump_to: updatedIdx,
+      });
       setCurrentDocSearchResultIdx(updatedIdx);
       scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
     }
@@ -128,6 +221,25 @@ const DocumentViewerPage: React.FC = () => {
       return;
     }
     setSearchLoading(true);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    const startTime = Date.now();
+
     try {
       const response = await axiosInstance.post(
         `/api/documents/${documentId}/search`,
@@ -135,6 +247,22 @@ const DocumentViewerPage: React.FC = () => {
           searchTerm: text,
         }
       );
+
+      analyticsClass.triggerSearchInDocViewer({
+        page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+        ...data,
+        clicked_on: "page",
+        document_name: document?.s3_object_name || "",
+        column_no: parseInt(urlParams.get("colNo") || "-1"),
+        // @ts-ignore
+        feed_type: urlParams.get("feedType") || "primary",
+        row_no: parseInt(urlParams.get("rowNo") || "-1"),
+        result: "pass",
+        time_taken: Date.now() - startTime,
+        doc_viewer_text_searched: text,
+        matching_results_count: response.data.data.pages.length,
+      });
+
       setDocumentSearchResult(response.data.data);
       if (response.data.data.pages.length > 0) {
         setCurrentDocSearchResultIdx(-1);
@@ -226,6 +354,36 @@ const DocumentViewerPage: React.FC = () => {
   };
 
   const handleBack = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const data: GeneralSearchQueries = {
+      text_searched: searchParamsClass.searchParams.keyword,
+      notes_filter_type:
+        searchParamsClass.searchParams.documentType === -1
+          ? undefined
+          : searchParamsClass.searchParams.documentType,
+      subject_selected:
+        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+          ? // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].value.tagText
+          : undefined,
+      topper_filter_selected: searchParamsClass.searchParams.topper,
+      search_type: "keyword",
+    };
+
+    analyticsClass.triggerDocViewExited({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...data,
+      document_name: urlParams.get("documentName") || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "pass",
+      exited_through: "back_button",
+      time_spent: Date.now() - docLoadedTimestamp,
+    });
+
     // router.back();
     navigate("/search");
   };
@@ -246,12 +404,40 @@ const DocumentViewerPage: React.FC = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const documentId = urlParams.get("documentId");
       setDocumentId(documentId);
+
+      const data: GeneralSearchQueries = {
+        text_searched: searchParamsClass.searchParams.keyword,
+        notes_filter_type:
+          searchParamsClass.searchParams.documentType === -1
+            ? undefined
+            : searchParamsClass.searchParams.documentType,
+        subject_selected:
+          (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+            ? // @ts-ignore
+              searchParamsClass.searchParams.subjectTags[0].value.tagText
+            : undefined,
+        topper_filter_selected: searchParamsClass.searchParams.topper,
+        search_type: "keyword",
+      };
+
       try {
         const response = await axiosInstance.get(
           `/api/documents/${documentId}`
         );
+        setDocLoadStartTime(Date.now());
         setDocument(response.data.data);
       } catch (error: any) {
+        analyticsClass.triggerDocumentOpened({
+          page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+          ...data,
+          document_name: urlParams.get("documentName") || "",
+          column_no: parseInt(urlParams.get("colNo") || "-1"),
+          // @ts-ignore
+          feed_type: urlParams.get("feedType") || "primary",
+          row_no: parseInt(urlParams.get("rowNo") || "-1"),
+          result: "fail",
+          time_taken: -1,
+        });
         setError({
           error: true,
           message: error.message,
@@ -377,6 +563,7 @@ const DocumentViewerPage: React.FC = () => {
             file={document?.s3_signed_url}
             className={styles.Document}
             onLoadSuccess={handlePdfLoadSuccess}
+            onLoadError={handlePdfLoadError}
             onLoadProgress={({ loaded, total }) => {
               setDocumentLoadingPercent((loaded * 100) / total);
             }}

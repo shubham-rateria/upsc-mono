@@ -11,6 +11,7 @@ import {
   optionalsCategories,
 } from "usn-common";
 import { escapeRegExp } from "lodash";
+import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
 
 /**
  * The search bar should return the complete parameters for keyword search
@@ -19,6 +20,8 @@ import { escapeRegExp } from "lodash";
  */
 const SearchBar: FC = observer(() => {
   const searchParamsClass = React.useContext(SearchParamsContext);
+  const analyticsClass = React.useContext(AnalyticsClassContext);
+
   const [selectedL0, setSelectedL0] = useState("");
   const [searchKeyword, setSearchKeyword] = useState<string>(
     searchParamsClass.searchParams.keyword
@@ -86,7 +89,6 @@ const SearchBar: FC = observer(() => {
   };
 
   const handleL0Change = (_e: any, data: any) => {
-    setSelectedL0(data.value);
     if (data.value !== "") {
       if (!["GS1", "GS2", "GS3", "GS4", "Essay"].includes(data.value)) {
         const tag: Tag = {
@@ -112,11 +114,17 @@ const SearchBar: FC = observer(() => {
           subjectTags: [tag],
         });
       }
+
+      analyticsClass.triggerSubjectSelected({
+        subject_selected: data.value,
+      });
     } else {
       searchParamsClass.setSearchParams({
         subjectTags: [],
       });
+      analyticsClass.triggerSubjectRemoved({ subject_selected: selectedL0 });
     }
+    setSelectedL0(data.value);
     setSearchKeyword("");
     searchParamsClass.setSearchParams({
       keyword: undefined,
