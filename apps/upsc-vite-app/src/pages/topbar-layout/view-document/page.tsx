@@ -85,7 +85,9 @@ const DocumentViewerPage: React.FC = () => {
       subject_selected:
         (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
           ? // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].value.tagText
+            searchParamsClass.searchParams.subjectTags[0].optionalsName ??
+            // @ts-ignore
+            searchParamsClass.searchParams.subjectTags[0].type
           : undefined,
       topper_filter_selected: searchParamsClass.searchParams.topper,
       search_type: "keyword",
