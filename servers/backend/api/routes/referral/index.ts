@@ -1,6 +1,5 @@
 import { ReferralPlanModel } from "../../../models/referral_plan";
 import { UserModel } from "../../../models/user";
-import { FileDownloadedModel } from "./../../../models/files-downloaded";
 import { Request, Response, Router } from "express";
 
 const route = Router();

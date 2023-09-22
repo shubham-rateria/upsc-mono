@@ -13,7 +13,7 @@ const FreeDownloadSchema = new mongoose.Schema({
 
   downloads: {
     type: Number,
-    default: 3,
+    default: 1,
   },
 });
 

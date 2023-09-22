@@ -717,7 +717,7 @@ const DocumentViewerPage: React.FC = observer(() => {
           <div className={styles.DownloadSection}>
             <div className={styles.Header}>Download</div>
             <div className={styles.DownloadOptions}>
-              <Checkbox
+              {/* <Checkbox
                 radio
                 label="All Pages"
                 name="checkboxRadioGroup"
@@ -727,8 +727,8 @@ const DocumentViewerPage: React.FC = observer(() => {
                 onMouseDown={() => {
                   setDownloadMode(0);
                 }}
-              />
-              <Checkbox
+              /> */}
+              {/* <Checkbox
                 radio
                 label="Page Range"
                 name="checkboxRadioGroup"
@@ -779,7 +779,7 @@ const DocumentViewerPage: React.FC = observer(() => {
               </div>
               {downloadRangeError && (
                 <div className={styles.Error}>{downloadRangeErrMsg}</div>
-              )}
+              )} */}
               <div>{user.remainingDownloads.free} downloads remaining</div>
               <div onClick={handleDownload}>
                 <Button

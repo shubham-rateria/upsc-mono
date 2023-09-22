@@ -18,6 +18,8 @@ function isPhoneNumber(value: string) {
   return phoneNumberPattern.test(value);
 }
 
+const DEFAULT_REFERRAL_CODE = "ZJ3B78";
+
 export const Login = () => {
   const stytchClient = useStytch();
   const user = useStytchUser();
@@ -80,20 +82,19 @@ export const Login = () => {
       );
       // @ts-ignore
       tourContextController.setPhone(phoneNumber);
-      if (referralCode.length > 0) {
-        const data = {
-          referralCode,
-          userId: userResponse.data.user.userId,
-        };
-        try {
-          await axiosInstance.post("/api/referral/apply", data);
-          // console.log("referral applied");
-        } catch (error: any) {
-          setError(true);
-          setErrorMessage(error.response.data.message);
-          setLoading(false);
-          return;
-        }
+      const data = {
+        referralCode:
+          referralCode.length > 0 ? referralCode : DEFAULT_REFERRAL_CODE,
+        userId: userResponse.data.user.userId,
+      };
+      try {
+        await axiosInstance.post("/api/referral/apply", data);
+        // console.log("referral applied");
+      } catch (error: any) {
+        setError(true);
+        setErrorMessage(error.response.data.message);
+        setLoading(false);
+        return;
       }
       analyticsClass.triggerLogin({
         attempt_number: -1,
@@ -155,7 +156,7 @@ export const Login = () => {
                   fluid
                   placeholder="Enter referral code"
                   onChange={(e) => {
-                    setReferralCode(e.target.value);
+                    setReferralCode(e.target.value.toUpperCase());
                   }}
                 />
               )}

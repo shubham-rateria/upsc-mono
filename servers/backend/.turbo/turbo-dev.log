@@ -1,12 +1,12 @@
-(node:37410) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:48567) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 11:59:04 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 13:11:45 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:37426) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:48582) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,15 +19,12 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/user/me [32m200[0m 48.084 ms - 226[0m
-[0mPOST /api/user/login-or-create [32m200[0m 65.592 ms - 226[0m
-[0mPOST /api/toppers [32m200[0m 54.212 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 52.110 ms - 4934[0m
 tagSearchResults 10
-[0mPOST /api/toppers [32m200[0m 44.724 ms - 4941[0m
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 661.032 ms - 77959[0m
-[0mPOST /api/toppers [32m200[0m 187.251 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 837.443 ms - 69939[0m
+[0mPOST /api/toppers [32m200[0m 125.503 ms - 13479[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -42,132 +39,57 @@ searching for ndrf undefined
     { '$match': [Object] }
   ]
 } { '$match': { l0_categories: { '$in': [Array] } } } undefined
-[0mPOST /api/toppers [32m200[0m 96.344 ms - 4941[0m
+[0mPOST /api/toppers [32m200[0m 91.569 ms - 4934[0m
 found docs 4
-Keyword search documents 2
-searching for others
-searching for ndrf undefined
-{ l0Categories: [ 1 ] }
-{
-  pipeline: [
-    { '$search': [Object] },
-    { '$skip': 0 },
-    { '$limit': 2000 },
-    { '$project': [Object] },
-    { '$addFields': [Object] },
-    { '$lookup': [Object] },
-    { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
-  ]
-} { '$match': { l0_categories: { '$not': [Object] } } } undefined
-found docs 85
-Keyword search documents 46
-done 20
-other results 20
-other results 2 20
-[0mPOST /api/documents [32m200[0m 1106.424 ms - 40958[0m
-getting doc id
-[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 105.034 ms - 7963[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 285.917 ms - 26[0m
-doc search
-[0mPOST /api/documents/64c61a5b43bc4f6a0bad6859/search [32m201[0m 1089.838 ms - 587[0m
-getting doc id
-[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 44.300 ms - 7963[0m
-[0mPOST /api/user/me [32m200[0m 45.615 ms - 226[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 115.500 ms - 25[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 113.097 ms - 26[0m
-getting doc id
-[0mPOST /api/user/me [32m200[0m 48.713 ms - 226[0m
-[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 55.843 ms - 7963[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 121.454 ms - 25[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 111.580 ms - 26[0m
-getting doc id
-[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 40.155 ms - 7963[0m
-[0mPOST /api/user/me [32m200[0m 37.290 ms - 226[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 105.970 ms - 25[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 109.710 ms - 26[0m
-getting doc id
-[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 62.355 ms - 7963[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 123.439 ms - 26[0m
-getting doc id
-[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 152.047 ms - 7963[0m
-[0mPOST /api/user/me [32m200[0m 142.578 ms - 226[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 688.581 ms - 25[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 915.692 ms - 26[0m
-[0mPOST /api/toppers [32m200[0m 96.091 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 45.766 ms - 4941[0m
-tagSearchResults 10
+Keyword search documents 4
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 747.009 ms - 77959[0m
+[0mPOST /api/documents [32m200[0m 117.330 ms - 3657[0m
 getting doc id
+[0mGET /api/documents/64c624b343bc4f6a0bad7afa [32m201[0m 143.244 ms - 7305[0m
 {
   freePlanDownloads: 0,
   referralPlanDownloads: 0,
   referralPlan: [],
-  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+  userId: null
 }
-[0mPOST /api/usage/remaining-downloads [32m200[0m 66.068 ms - 26[0m
-[0mGET /api/documents/64bb97287fd3cfae0c30e1c3 [32m201[0m 80.747 ms - 20107[0m
-[41m[30m ELIFECYCLE [39m[49m [31mCommand failed.[39m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 228.067 ms - 25[0m
+doc search
+[0mPOST /api/documents/64c624b343bc4f6a0bad7afa/search [32m201[0m 246.690 ms - 222[0m
+[0mPOST /api/toppers [32m200[0m 46.124 ms - 4934[0m
+[0mPOST /api/user/login-or-create [32m200[0m 56.738 ms - 226[0m
+[0mPOST /api/user/me [32m200[0m 53.346 ms - 226[0m
+[0mPOST /api/toppers [32m200[0m 209.509 ms - 4934[0m
+getting doc id
+[0mGET /api/documents/64bb940f7fd3cfae0c30dda0 [32m201[0m 190.836 ms - 8008[0m
+{
+  freePlanDownloads: 3,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: 'ef0042ad-f25d-4b40-820f-35812a1b24b5'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 301.300 ms - 25[0m
+[0mPOST /api/toppers [32m200[0m 93.466 ms - 4934[0m
+[0mPOST /api/user/me [32m200[0m 38.523 ms - 226[0m
+[0mPOST /api/toppers [32m200[0m 132.575 ms - 13479[0m
+[INFO] 13:19:07 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/referral/index.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:49216) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Connected to MongoDB
+db loaded...
+express loaded...
+
+      ################################################
+      🛡️  Server listening on port: 3000 🛡️
+      ################################################
+    
+[INFO] 13:22:23 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/models/free-downloads.ts has been modified
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
+(node:49466) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMC
