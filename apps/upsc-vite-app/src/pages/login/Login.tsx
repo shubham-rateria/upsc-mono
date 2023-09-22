@@ -18,7 +18,7 @@ function isPhoneNumber(value: string) {
   return phoneNumberPattern.test(value);
 }
 
-const DEFAULT_REFERRAL_CODE = "ZJ3B78";
+const DEFAULT_REFERRAL_CODE = "ME32DA";
 
 export const Login = () => {
   const stytchClient = useStytch();
