@@ -1,5 +1,7 @@
 import { createContext } from "react";
 import {
+  EventDocDownloadClicked,
+  EventDocDownloadStarted,
   EventDocViewerSearchNav,
   EventDocumentClicked,
   EventDocumentOpened,
@@ -11,6 +13,8 @@ import {
   EventNotesFilterTypeUsed,
   EventOtpRequested,
   EventPageHovered,
+  EventReferNowClicked,
+  EventReferralCodeCopied,
   EventResultsShown,
   EventSearchInDocViewer,
   EventSubjectRemoved,
@@ -98,6 +102,26 @@ export class AnalyticsClass {
   public triggerDocViewExited(event: EventDocumentViewerExited) {
     console.log("event:doc-viewer-exited", event);
     mixpanel.track("doc-viewer-exited", event);
+  }
+
+  public triggerDocDownloadClicked(event: EventDocDownloadClicked) {
+    console.log("event:doc-download-clicked", event);
+    mixpanel.track("doc-download-clicked", event);
+  }
+
+  public triggerDocDownloadStarted(event: EventDocDownloadStarted) {
+    console.log("event:doc-download-started", event);
+    mixpanel.track("doc-download-started", event);
+  }
+
+  public triggerReferNowClicked(event: EventReferNowClicked) {
+    console.log("event:refer-now-clicked", event);
+    mixpanel.track("refer-now-clicked", event);
+  }
+
+  public triggerReferNowCopied(event: EventReferralCodeCopied) {
+    console.log("event:referral-code-copied", event);
+    mixpanel.track("referral-code-copied", event);
   }
 }
 

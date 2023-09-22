@@ -5,12 +5,14 @@ import { useStytchUser, useStytch } from "@stytch/react";
 import { useNavigate } from "react-router-dom";
 import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
 import ReferralModal from "../ReferralModal/ReferralModal";
+import { UserContext } from "../../contexts/UserContextProvider";
 
 const TopNavBar = () => {
   const stytchClient = useStytch();
   const user = useStytchUser();
   const navigate = useNavigate();
   const analyticsClass = useContext(AnalyticsClassContext);
+  const userClass = useContext(UserContext);
 
   const [openReferModal, setOpenReferModal] = useState(false);
 
@@ -27,11 +29,27 @@ const TopNavBar = () => {
     navigate("/");
   }, [stytchClient]);
 
+  const handleReferBtnClick = () => {
+    setOpenReferModal(true);
+    analyticsClass.triggerReferNowClicked({
+      accessed_from: 0,
+      downloads_left: userClass.remainingDownloads.free,
+      free_downloads_left: userClass.remainingDownloads.free,
+      used: true,
+      user_type: 0,
+      paid_downloads_left: 0,
+    });
+  };
+
   const logoUrl = "/img/logo.svg";
 
   return (
     <div className={styles.topNavBar}>
-      <ReferralModal open={openReferModal} onClose={handleReferModalClose} />
+      <ReferralModal
+        open={openReferModal}
+        onClose={handleReferModalClose}
+        accessFrom={0}
+      />
       <div className={styles.logoContainer}>
         <img src={logoUrl} alt="Logo" />
       </div>
@@ -39,12 +57,7 @@ const TopNavBar = () => {
       <div className={styles.avatarContainer}>
         {user.user && (
           <div>
-            <Button
-              onClick={() => {
-                setOpenReferModal(true);
-              }}
-              className={styles.ReferBtn}
-            >
+            <Button onClick={handleReferBtnClick} className={styles.ReferBtn}>
               Refer
             </Button>
           </div>

@@ -2,19 +2,30 @@ import { useContext, type FC, useState } from "react";
 import { Modal } from "semantic-ui-react";
 import { UserContext } from "../../contexts/UserContextProvider";
 import styles from "./ReferralModal.module.css";
+import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
 
 type Props = {
   open: boolean;
   onClose: () => void;
+  accessFrom: number;
 };
 
-const ReferralModal: FC<Props> = ({ open, onClose }) => {
+const ReferralModal: FC<Props> = ({ open, onClose, accessFrom }) => {
   const user = useContext(UserContext);
+  const analyticsClass = useContext(AnalyticsClassContext);
   const [showCopied, setShowCopied] = useState(false);
 
   const handleIconClick = () => {
     if (user.referralCode && user.referralCode.length > 0) {
       navigator.clipboard.writeText(user.referralCode || "");
+      analyticsClass.triggerReferNowCopied({
+        accessed_from: accessFrom,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+        referral_code: user.referralCode,
+        user_type: 0,
+        paid_downloads_left: 0,
+      });
       setShowCopied(true);
     } else {
       console.error("error copying code");

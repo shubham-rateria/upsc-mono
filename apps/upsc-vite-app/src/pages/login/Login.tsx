@@ -64,6 +64,8 @@ export const Login = () => {
       analyticsClass.triggerOtpRequested({
         attempt_number: -1,
         phone_number: phoneNumber,
+        refer_code:
+          referralCode.length > 0 ? referralCode : DEFAULT_REFERRAL_CODE,
       });
     }
   };
@@ -100,6 +102,7 @@ export const Login = () => {
         attempt_number: -1,
         phone_number: phoneNumber || "",
         result: "pass",
+        refer_code: data.referralCode,
       });
       navigate("/search");
     } catch (error) {
@@ -107,6 +110,7 @@ export const Login = () => {
         attempt_number: -1,
         phone_number: phoneNumber || "",
         result: "fail",
+        refer_code: "",
       });
       setError(true);
       setErrorMessage("Please enter the correct OTP.");

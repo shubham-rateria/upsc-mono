@@ -46,6 +46,23 @@ const DocumentViewerPage: React.FC = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
 
+  const analyticsData: GeneralSearchQueries = {
+    text_searched: searchParamsClass.searchParams.keyword,
+    notes_filter_type:
+      searchParamsClass.searchParams.documentType === -1
+        ? undefined
+        : searchParamsClass.searchParams.documentType,
+    subject_selected:
+      (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+        ? // @ts-ignore
+          searchParamsClass.searchParams.subjectTags[0].optionalsName ??
+          // @ts-ignore
+          searchParamsClass.searchParams.subjectTags[0].type
+        : undefined,
+    topper_filter_selected: searchParamsClass.searchParams.topper,
+    search_type: "keyword",
+  };
+
   const [error, setError] = useState<ApiError>({
     error: false,
     message: "",
@@ -367,9 +384,32 @@ const DocumentViewerPage: React.FC = observer(() => {
   const handleDownload = async (e: any) => {
     e.stopPropagation();
     setFileDownloading(true);
+    const urlParams = new URLSearchParams(window.location.search);
+
+    analyticsClass.triggerDocDownloadClicked({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...analyticsData,
+      document_name: document?.s3_object_name || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "pass",
+      time_taken: Date.now() - docLoadStartTime,
+      downloads_left: user.remainingDownloads.free,
+      free_downloads_left: user.remainingDownloads.free,
+    });
 
     if (user.remainingDownloads.free <= 0) {
       setOpenReferralModal(true);
+      analyticsClass.triggerReferNowClicked({
+        accessed_from: 1,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+        user_type: 0,
+        used: true,
+        paid_downloads_left: 0,
+      });
       setFileDownloading(false);
       return;
     }
@@ -385,6 +425,21 @@ const DocumentViewerPage: React.FC = observer(() => {
       element.setAttribute("target", "_blank");
       element.className = self.name;
       element.click();
+
+      analyticsClass.triggerDocDownloadStarted({
+        page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+        ...analyticsData,
+        document_name: document?.s3_object_name || "",
+        column_no: parseInt(urlParams.get("colNo") || "-1"),
+        // @ts-ignore
+        feed_type: urlParams.get("feedType") || "primary",
+        row_no: parseInt(urlParams.get("rowNo") || "-1"),
+        result: "pass",
+        time_taken: Date.now() - docLoadStartTime,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+      });
+
       window.document.body.removeChild(element);
       const data = {
         fileS3ObjectName: response.data.data.s3_object_name,
@@ -467,7 +522,11 @@ const DocumentViewerPage: React.FC = observer(() => {
 
   return (
     <div>
-      <ReferralModal open={openReferralModal} onClose={handleModalClose} />
+      <ReferralModal
+        open={openReferralModal}
+        onClose={handleModalClose}
+        accessFrom={1}
+      />
       <Modal
         open={noDownloadModalOpen}
         onClose={() => {
