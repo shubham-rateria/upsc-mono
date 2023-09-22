@@ -26,8 +26,6 @@ export default (app: Router) => {
       // check if the referral has been applied before
       const oldReferralPlan = await ReferralPlanModel.findOne({
         userId,
-        referral_code_used: referralCode,
-        referred_by_user_id: referringUser.userId,
       }).exec();
 
       if (oldReferralPlan) {
