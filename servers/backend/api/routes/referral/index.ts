@@ -31,7 +31,9 @@ export default (app: Router) => {
       if (oldReferralPlan) {
         res
           .status(500)
-          .send({ success: false, message: "Referral already used." });
+          .send({ success: false, message: "Referral already used." })
+          .end();
+        return;
       }
 
       const referralPlan = new ReferralPlanModel({
