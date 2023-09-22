@@ -31,8 +31,6 @@ exports.default = (app) => {
             // check if the referral has been applied before
             const oldReferralPlan = yield referral_plan_1.ReferralPlanModel.findOne({
                 userId,
-                referral_code_used: referralCode,
-                referred_by_user_id: referringUser.userId,
             }).exec();
             if (oldReferralPlan) {
                 res
