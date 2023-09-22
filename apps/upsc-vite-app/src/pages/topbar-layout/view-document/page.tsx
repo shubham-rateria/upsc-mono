@@ -3,14 +3,7 @@ import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import {
-  Button,
-  Checkbox,
-  Icon,
-  Input,
-  Modal,
-  Progress,
-} from "semantic-ui-react";
+import { Button, Icon, Input, Modal, Progress } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
@@ -42,13 +35,10 @@ const DocumentViewerPage: React.FC = observer(() => {
   const [documentSearchText, setDocumentSearchText] = useState<string | null>(
     null
   );
-  const [downloadMode, setDownloadMode] = useState(0);
   const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
     null
   );
   const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
-  const [downloadRangeError, setDownloadRangeError] = useState(false);
-  const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
@@ -335,28 +325,6 @@ const DocumentViewerPage: React.FC = observer(() => {
     );
     const elemHeight = el?.clientHeight ?? 0;
     return elemHeight / getHeightForPage(pageNumber);
-  };
-
-  const handleRangeFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setDownloadRangeFrom(val);
-    if (downloadRangeTo !== null && val > downloadRangeTo) {
-      setDownloadRangeError(true);
-      setDownloadRangeErrMsg("From value has to be less than To");
-    } else {
-      setDownloadRangeError(false);
-    }
-  };
-
-  const handleRangeToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setDownloadRangeTo(val);
-    if (downloadRangeFrom !== null && val < downloadRangeFrom) {
-      setDownloadRangeError(true);
-      setDownloadRangeErrMsg("To value has to be less than From");
-    } else {
-      setDownloadRangeError(false);
-    }
   };
 
   const handleBack = () => {
@@ -717,69 +685,6 @@ const DocumentViewerPage: React.FC = observer(() => {
           <div className={styles.DownloadSection}>
             <div className={styles.Header}>Download</div>
             <div className={styles.DownloadOptions}>
-              {/* <Checkbox
-                radio
-                label="All Pages"
-                name="checkboxRadioGroup"
-                value="all"
-                className={styles.Option}
-                checked={downloadMode === 0}
-                onMouseDown={() => {
-                  setDownloadMode(0);
-                }}
-              /> */}
-              {/* <Checkbox
-                radio
-                label="Page Range"
-                name="checkboxRadioGroup"
-                value="range"
-                className={styles.Option}
-                checked={downloadMode === 1}
-                onMouseDown={() => {
-                  setDownloadMode(1);
-                }}
-              />
-              <div
-                className={styles.NumberInputs}
-                onClick={() => {
-                  if (downloadMode !== 1) {
-                    setDownloadMode(1);
-                  }
-                }}
-              >
-                <Input
-                  placeholder="Page From"
-                  fluid
-                  type="number"
-                  size="mini"
-                  disabled={downloadMode !== 1}
-                  error={downloadRangeError}
-                  value={downloadRangeFrom}
-                  onChange={handleRangeFromChange}
-                />
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  -
-                </div>
-                <Input
-                  placeholder="Page To"
-                  fluid
-                  type="number"
-                  size="mini"
-                  disabled={downloadMode !== 1}
-                  error={downloadRangeError}
-                  value={downloadRangeTo}
-                  onChange={handleRangeToChange}
-                />
-              </div>
-              {downloadRangeError && (
-                <div className={styles.Error}>{downloadRangeErrMsg}</div>
-              )} */}
               <div>{user.remainingDownloads.free} downloads remaining</div>
               <div onClick={handleDownload}>
                 <Button
