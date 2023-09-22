@@ -14,6 +14,7 @@ import {
   EventOtpRequested,
   EventPageHovered,
   EventReferNowClicked,
+  EventReferralCodeAdded,
   EventReferralCodeCopied,
   EventResultsShown,
   EventSearchInDocViewer,
@@ -122,6 +123,11 @@ export class AnalyticsClass {
   public triggerReferNowCopied(event: EventReferralCodeCopied) {
     console.log("event:referral-code-copied", event);
     mixpanel.track("referral-code-copied", event);
+  }
+
+  public triggerReferralCodeAdded(event: EventReferralCodeAdded) {
+    console.log("event:referral-code-added", event);
+    mixpanel.track("referral-code-added", event);
   }
 }
 

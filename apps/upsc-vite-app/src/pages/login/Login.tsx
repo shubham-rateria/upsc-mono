@@ -91,11 +91,19 @@ export const Login = () => {
       };
       try {
         await axiosInstance.post("/api/referral/apply", data);
+        analyticsClass.triggerReferralCodeAdded({
+          referral_code: data.referralCode,
+          applied: true,
+        });
         // console.log("referral applied");
       } catch (error: any) {
         setError(true);
         setErrorMessage(error.response.data.message);
         setLoading(false);
+        analyticsClass.triggerReferralCodeAdded({
+          referral_code: data.referralCode,
+          applied: false,
+        });
         return;
       }
       analyticsClass.triggerLogin({

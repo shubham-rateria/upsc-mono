@@ -271,6 +271,11 @@ export interface EventReferralCodeCopied extends Referral {
   referral_code: string;
 }
 
+export interface EventReferralCodeAdded {
+  referral_code: string;
+  applied: boolean;
+}
+
 /**
  * Login based events
  */
