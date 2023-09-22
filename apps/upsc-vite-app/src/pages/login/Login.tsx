@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { Button } from "semantic-ui-react";
+import { Button, Input } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
 import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
@@ -30,6 +30,9 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [methodId, setMethodId] = useState("");
+  const [showReferralInput, setShowReferralInput] = useState(false);
+  const [referralCode, setReferralCode] = useState("");
+
   const tourContextController = useContext(TourContext);
   const analyticsClass = useContext(AnalyticsClassContext);
 
@@ -69,11 +72,29 @@ export const Login = () => {
       await stytchClient.otps.authenticate(otp, methodId, {
         session_duration_minutes: 10000,
       });
-      await axiosInstance.post("/api/user/login-or-create", {
-        phone: phoneNumber,
-      });
+      const userResponse = await axiosInstance.post(
+        "/api/user/login-or-create",
+        {
+          phone: phoneNumber,
+        }
+      );
       // @ts-ignore
       tourContextController.setPhone(phoneNumber);
+      if (referralCode.length > 0) {
+        const data = {
+          referralCode,
+          userId: userResponse.data.user.userId,
+        };
+        try {
+          await axiosInstance.post("/api/referral/apply", data);
+          // console.log("referral applied");
+        } catch (error: any) {
+          setError(true);
+          setErrorMessage(error.response.data.message);
+          setLoading(false);
+          return;
+        }
+      }
       analyticsClass.triggerLogin({
         attempt_number: -1,
         phone_number: phoneNumber || "",
@@ -129,6 +150,28 @@ export const Login = () => {
                 onChange={setPhoneNumber}
                 className={styles.Input}
               />
+              {showReferralInput && (
+                <Input
+                  fluid
+                  placeholder="Enter referral code"
+                  onChange={(e) => {
+                    setReferralCode(e.target.value);
+                  }}
+                />
+              )}
+              <Button
+                className={styles.ButtonSecondary}
+                onClick={() => {
+                  if (!showReferralInput) {
+                    setShowReferralInput(true);
+                  } else {
+                    setShowReferralInput(false);
+                    setReferralCode("");
+                  }
+                }}
+              >
+                {!showReferralInput ? "Enter" : "Remove"} Referral Code
+              </Button>
               <Button
                 disabled={!isPhoneNumber(phoneNumber || "")}
                 onClick={sendPasscode}

@@ -1,12 +1,12 @@
-(node:6036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:37410) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 12:36:37 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 11:59:04 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:6052) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:37426) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,114 +19,155 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 64.914 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 40.306 ms - 4934[0m
+[0mPOST /api/user/me [32m200[0m 48.084 ms - 226[0m
+[0mPOST /api/user/login-or-create [32m200[0m 65.592 ms - 226[0m
+[0mPOST /api/toppers [32m200[0m 54.212 ms - 13479[0m
 tagSearchResults 10
+[0mPOST /api/toppers [32m200[0m 44.724 ms - 4941[0m
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 822.414 ms - 69939[0m
-other results 0
-other results 2 0
-[0mPOST /api/documents [32m200[0m 1.670 ms - 38[0m
-[0mPOST /api/toppers [32m200[0m 580.694 ms - 13479[0m
-tagSearchResults 10
-[0mPOST /api/toppers [32m200[0m 1498.211 ms - 4941[0m
-Finding keywords [
-  'Art and culture',
-  'Indian Art Forms',
-  'Indian Paintings',
-  'Mural Paintings',
-  'Miniature Paintings',
-  'Mughal, Rajput, Pahari Paintings',
-  'Dances in India',
-  'Classical Dance Forms',
-  'Folk Dance Forms',
-  'Modern Dance',
-  'Music',
-  'Classical Music',
-  'Folk Music',
-  'Puppetry',
-  'String Puppets',
-  'Shadow Puppets',
-  'Rod Puppets',
-  'Glove puppets',
-  'Modern Puppetry',
-  'Tribal Puppetry',
-  'Pottery',
-  'Ochre Coloured Pottery(OCP)',
-  'Black and Red Ware (BRW)',
-  'Painted Grey Ware (PGW)',
-  'Northern Black Polished Ware (NBPW)',
-  'Glazed and Unglazed Pottery',
-  'Drama/Theatre',
-  'Classical Sanskrit Theatre',
-  'Regional Theatre',
-  'Modern Theatre',
-  'Martial Arts',
-  'Thang Ta',
-  'Gatka',
-  'Kalaripayattu',
-  'Mallakhamb',
-  'Silambam',
-  'Other Important Martial Arts',
-  'Visual Art',
-  'Sculptures of Harappan Civilization',
-  'Sculptures of the Mauryan Age',
-  'Post-Mauryan Period',
-  'Jain Sculptures',
-  'Buddhist Sculpture',
-  'Gupta Sculpture',
-  'Medieval School of Sculpture',
-  'Modern Indian Sculpture',
-  'Bhakti & Sufi Movements',
-  'Spread of Bhakti and Sufi Movements',
-  'Women Poets of Bhakti',
-  'Literature',
-  'Classical Sanskrit Literature',
-  'Vedas, Upanishads, Puranas',
-  'Books written by Kalidasa, Vishakhadatta etc',
-  'Ancient Buddhist Literature',
-  'Ancient Jainism Literature',
-  'Early Dravidian Literature (eg Sangam Period)',
-  'Medieval Literature',
-  'Trends in Medieval Literature',
-  'Modern Indian Literature',
-  'Architecture',
-  'Harappan Architecture',
-  'Mauryan Architecture',
-  'Post-Mauryan Period Gupta Period',
-  'Temple Architecture',
-  'Nagara Style',
-  'Dravida Style',
-  'Vesara Style',
-  'Cave Architecture',
-  'Buddhist Cave',
-  'Jaina Caves',
-  'Gupta Period Caves',
-  'Medieval and Indo-Islamic Architecture',
-  'Imperial Style Delhi Sultanate',
-  'Provincial Style',
-  'Mughal Style',
-  'Sikh Style of Architecture',
-  'Rajput Architecture',
-  'Salient features',
-  'Colonial Architecture & Modern Architecture',
-  'European Influence',
-  'Indo-Saracenic Architecture',
-  'Post-Independence Period',
-  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
-  'Rock Cut Architecture',
-  'South Indian',
-  'Western Indian',
-  'Eastern Indian',
-  'Art and culture'
-]
+[0mPOST /api/documents [32m200[0m 661.032 ms - 77959[0m
+[0mPOST /api/toppers [32m200[0m 187.251 ms - 13479[0m
+searching for ndrf undefined
 {
-  additionalQueries: { '$match': { l0_categories: 1 } },
-  documentType: undefined
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+[0mPOST /api/toppers [32m200[0m 96.344 ms - 4941[0m
+found docs 4
+Keyword search documents 2
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 1 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 46
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 1106.424 ms - 40958[0m
+getting doc id
+[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 105.034 ms - 7963[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
 }
-[0mPOST /api/toppers [32m200[0m 2016.929 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 2000.375 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 2600.977 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 1227.172 ms - 4941[0m
-[0mPOST 
+[0mPOST /api/usage/remaining-downloads [32m200[0m 285.917 ms - 26[0m
+doc search
+[0mPOST /api/documents/64c61a5b43bc4f6a0bad6859/search [32m201[0m 1089.838 ms - 587[0m
+getting doc id
+[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 44.300 ms - 7963[0m
+[0mPOST /api/user/me [32m200[0m 45.615 ms - 226[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: null
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 115.500 ms - 25[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 113.097 ms - 26[0m
+getting doc id
+[0mPOST /api/user/me [32m200[0m 48.713 ms - 226[0m
+[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 55.843 ms - 7963[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: null
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 121.454 ms - 25[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 111.580 ms - 26[0m
+getting doc id
+[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 40.155 ms - 7963[0m
+[0mPOST /api/user/me [32m200[0m 37.290 ms - 226[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: null
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 105.970 ms - 25[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 109.710 ms - 26[0m
+getting doc id
+[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 62.355 ms - 7963[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 123.439 ms - 26[0m
+getting doc id
+[0mGET /api/documents/64c61a5b43bc4f6a0bad6859 [32m201[0m 152.047 ms - 7963[0m
+[0mPOST /api/user/me [32m200[0m 142.578 ms - 226[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: null
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 688.581 ms - 25[0m
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 915.692 ms - 26[0m
+[0mPOST /api/toppers [32m200[0m 96.091 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 45.766 ms - 4941[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 747.009 ms - 77959[0m
+getting doc id
+{
+  freePlanDownloads: 0,
+  referralPlanDownloads: 0,
+  referralPlan: [],
+  userId: '705c496e-e96e-47e4-bc3b-20e93427c905'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 66.068 ms - 26[0m
+[0mGET /api/documents/64bb97287fd3cfae0c30e1c3 [32m201[0m 80.747 ms - 20107[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed.[39m

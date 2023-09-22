@@ -18,11 +18,15 @@ import { useNavigate } from "react-router-dom";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { GeneralSearchQueries } from "../../../analytics/types";
 import { AnalyticsClassContext } from "../../../analytics/AnalyticsClass";
+import { UserContext } from "../../../contexts/UserContextProvider";
+import { observer } from "mobx-react-lite";
+import ReferralModal from "../../../components/ReferralModal/ReferralModal";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-const DocumentViewerPage: React.FC = () => {
+const DocumentViewerPage: React.FC = observer(() => {
   const navigate = useNavigate();
+  const user = useContext(UserContext);
   const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
@@ -50,6 +54,8 @@ const DocumentViewerPage: React.FC = () => {
   const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
   const [docLoadedTimestamp, setDocLoadedTimestamp] = useState(-1);
   const [docLoadStartTime, setDocLoadStartTime] = useState(-1);
+  const [fileDownloading, setFileDownloading] = useState(false);
+  const [openReferralModal, setOpenReferralModal] = useState(false);
 
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
@@ -394,8 +400,42 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
-  const handleDownload = () => {
-    setNoDownloadModalOpen(true);
+  const handleDownload = async (e: any) => {
+    e.stopPropagation();
+    setFileDownloading(true);
+
+    if (user.remainingDownloads.free <= 0) {
+      setOpenReferralModal(true);
+      setFileDownloading(false);
+      return;
+    }
+
+    // setNoDownloadModalOpen(true);
+    try {
+      const response = await axiosInstance.get(`/api/documents/${documentId}`);
+      const url = response.data.data.s3_signed_url;
+      const element = window.document.createElement("a");
+      element.style.display = "none";
+      window.document.body.appendChild(element);
+      element.setAttribute("href", url);
+      element.setAttribute("target", "_blank");
+      element.className = self.name;
+      element.click();
+      window.document.body.removeChild(element);
+      const data = {
+        fileS3ObjectName: response.data.data.s3_object_name,
+        userId: user.userId,
+      };
+      await axiosInstance.post("/api/usage/file-download", data);
+      await user.getRemainingDownloads();
+    } catch (error) {
+      console.log("Could not download part", error);
+    }
+    setFileDownloading(false);
+  };
+
+  const handleModalClose = () => {
+    setOpenReferralModal(false);
   };
 
   useEffect(() => {
@@ -449,6 +489,10 @@ const DocumentViewerPage: React.FC = () => {
     init();
   }, []);
 
+  useEffect(() => {
+    user.getRemainingDownloads();
+  }, [user.userId]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -459,6 +503,7 @@ const DocumentViewerPage: React.FC = () => {
 
   return (
     <div>
+      <ReferralModal open={openReferralModal} onClose={handleModalClose} />
       <Modal
         open={noDownloadModalOpen}
         onClose={() => {
@@ -735,12 +780,13 @@ const DocumentViewerPage: React.FC = () => {
               {downloadRangeError && (
                 <div className={styles.Error}>{downloadRangeErrMsg}</div>
               )}
+              <div>{user.remainingDownloads.free} downloads remaining</div>
               <div onClick={handleDownload}>
                 <Button
                   icon
                   className={styles.DownloadButton}
                   labelPosition="left"
-                  disabled
+                  loading={fileDownloading}
                 >
                   <Icon name="download" />
                   Download
@@ -752,6 +798,6 @@ const DocumentViewerPage: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default DocumentViewerPage;
