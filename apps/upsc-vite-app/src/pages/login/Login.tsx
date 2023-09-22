@@ -9,6 +9,7 @@ import { Button, Input } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
 import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
+import { UserContext } from "../../contexts/UserContextProvider";
 
 function isPhoneNumber(value: string) {
   // Define a regular expression pattern for a phone number with Indian country code +91
@@ -37,6 +38,7 @@ export const Login = () => {
 
   const tourContextController = useContext(TourContext);
   const analyticsClass = useContext(AnalyticsClassContext);
+  const userClass = useContext(UserContext);
 
   const startCountdown = async () => {
     while (resendCodeTimer > 0) {
@@ -82,6 +84,8 @@ export const Login = () => {
           phone: phoneNumber,
         }
       );
+      userClass.setUserId(userResponse.data.user.userId);
+      userClass.setReferralCode(userResponse.data.user.referral_code);
       // @ts-ignore
       tourContextController.setPhone(phoneNumber);
       const data = {
