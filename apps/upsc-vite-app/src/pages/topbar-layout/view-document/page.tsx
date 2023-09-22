@@ -35,10 +35,6 @@ const DocumentViewerPage: React.FC = observer(() => {
   const [documentSearchText, setDocumentSearchText] = useState<string | null>(
     null
   );
-  const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
-    null
-  );
-  const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
