@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { UserModel } from "../../../models/user";
 import jwt from "jsonwebtoken";
 import { FreeDownloadModel } from "../../../models/free-downloads";
+import generateReferralId from "../../../utils/generate-referral-id";
 
 const route = Router();
 
@@ -54,6 +55,7 @@ export default (app: Router) => {
       user = new UserModel({
         phone,
         onboarding: { onboarded: false },
+        referral_code: generateReferralId(),
       });
       const freePlan = new FreeDownloadModel({
         userId: user.userId,
