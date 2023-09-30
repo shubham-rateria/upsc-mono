@@ -74,6 +74,9 @@ importers:
       react-router-dom:
         specifier: ^6.15.0
         version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
+      react-usestateref:
+        specifier: ^1.0.8
+        version: 1.0.8(react@18.2.0)
       semantic-ui-css:
         specifier: ^2.5.0
         version: 2.5.0
@@ -5961,6 +5964,14 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.8.0
+      react: 18.2.0
+    dev: false
+
+  /react-usestateref@1.0.8(react@18.2.0):
+    resolution: {integrity: sha512-whaE6H0XGarFKwZ3EYbpHBsRRCLZqdochzg/C7e+b6VFMTA3LS3K4ZfpI4NT40iy83jG89rGXrw70P9iDfOdsA==}
+    peerDependencies:
+      react: '>16.0.0'
+    dependencies:
       react: 18.2.0
     dev: false
 

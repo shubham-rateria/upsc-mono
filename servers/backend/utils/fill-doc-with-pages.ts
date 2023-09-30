@@ -28,11 +28,11 @@ export default async function fillDocWithPages(doc: DocumentModel) {
           })
           .lean();
         // @ts-ignore
-        if (pageData.s3_img_object_name) {
+        if (pageData.s3_img_object_name_small) {
           const s3_signed_url = await getSignedUrl(
             "page-img",
             // @ts-ignore
-            pageData.s3_img_object_name,
+            pageData.s3_img_object_name_small,
             5
           );
           // @ts-ignore

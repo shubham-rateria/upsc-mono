@@ -1,12 +1,12 @@
-(node:48567) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:13390) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 13:11:45 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 15:36:26 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:48582) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:13407) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,12 +19,17 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 52.110 ms - 4934[0m
+[0mGET /favicon.ico [33m404[0m 1.176 ms - 34[0m
+[0mPOST /api/user/login-or-create [32m200[0m 114.338 ms - 227[0m
+[0mPOST /api/user/me [32m200[0m 94.589 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 250.897 ms - 13479[0m
+[0mPOST /api/referral/apply [32m200[0m 641.622 ms - 16[0m
 tagSearchResults 10
+[0mPOST /api/toppers [32m200[0m 104.037 ms - 4934[0m
+[0mPOST /api/toppers [32m200[0m 1380.885 ms - 13479[0m
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 837.443 ms - 69939[0m
-[0mPOST /api/toppers [32m200[0m 125.503 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 4880.201 ms - 27919[0m
 searching for ndrf undefined
 {
   pipeline: [
@@ -39,57 +44,166 @@ searching for ndrf undefined
     { '$match': [Object] }
   ]
 } { '$match': { l0_categories: { '$in': [Array] } } } undefined
-[0mPOST /api/toppers [32m200[0m 91.569 ms - 4934[0m
+[0mPOST /api/toppers [32m200[0m 512.448 ms - 4934[0m
 found docs 4
 Keyword search documents 4
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 117.330 ms - 3657[0m
-getting doc id
-[0mGET /api/documents/64c624b343bc4f6a0bad7afa [32m201[0m 143.244 ms - 7305[0m
+[0mPOST /api/documents [32m200[0m 559.400 ms - 2710[0m
+searching for ndrf undefined
 {
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 228.067 ms - 25[0m
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 2 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 44
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 1038.390 ms - 13960[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 120.341 ms - 11239[0m
 doc search
-[0mPOST /api/documents/64c624b343bc4f6a0bad7afa/search [32m201[0m 246.690 ms - 222[0m
-[0mPOST /api/toppers [32m200[0m 46.124 ms - 4934[0m
-[0mPOST /api/user/login-or-create [32m200[0m 56.738 ms - 226[0m
-[0mPOST /api/user/me [32m200[0m 53.346 ms - 226[0m
-[0mPOST /api/toppers [32m200[0m 209.509 ms - 4934[0m
-getting doc id
-[0mGET /api/documents/64bb940f7fd3cfae0c30dda0 [32m201[0m 190.836 ms - 8008[0m
 {
-  freePlanDownloads: 3,
-  referralPlanDownloads: 0,
-  referralPlan: [],
-  userId: 'ef0042ad-f25d-4b40-820f-35812a1b24b5'
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
 }
-[0mPOST /api/usage/remaining-downloads [32m200[0m 301.300 ms - 25[0m
-[0mPOST /api/toppers [32m200[0m 93.466 ms - 4934[0m
-[0mPOST /api/user/me [32m200[0m 38.523 ms - 226[0m
-[0mPOST /api/toppers [32m200[0m 132.575 ms - 13479[0m
-[INFO] 13:19:07 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/referral/index.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:49216) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-[INFO] 13:22:23 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/models/free-downloads.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:49466) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMC
+[0mPOST /api/usage/remaining-downloads [32m200[0m 668.973 ms - 25[0m
+[0mPOST /api/documents/64b8f817d2e135d53625879f/search [32m201[0m 1149.912 ms - 222[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 1533.096 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d53625877a [32m201[0m 2039.742 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80ad2e135d536258772 [32m201[0m 3656.017 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80ad2e135d536258771 [32m201[0m 3598.802 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80cd2e135d53625877e [32m201[0m 1905.462 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80cd2e135d53625877f [32m201[0m 2164.878 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f803d2e135d536258743 [32m201[0m 2483.153 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f808d2e135d536258764 [32m201[0m 841.541 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f808d2e135d536258763 [32m201[0m 5556.689 ms - 394[0m
+getting page id
+getting page id
+[0mPOST /api/toppers [32m200[0m 208.480 ms - 4934[0m
+[0mGET /api/documents/signed_page/64b8f808d2e135d536258766 [32m201[0m 865.298 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f808d2e135d536258765 [32m201[0m 1070.216 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 686.566 ms - 11239[0m
+doc search
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 1417.295 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f7ffd2e135d536258736 [32m201[0m 560.454 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f7ffd2e135d536258737 [32m201[0m 1534.776 ms - 394[0m
+[0mPOST /api/documents/64b8f817d2e135d53625879f/search [32m201[0m 3429.611 ms - 222[0m
+[0mPOST /api/toppers [32m200[0m 423.611 ms - 4934[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 440.934 ms - 11239[0m
+doc search
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 664.341 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f7ffd2e135d536258736 [32m201[0m 482.827 ms - 394[0m
+[0mPOST /api/documents/64b8f817d2e135d53625879f/search [32m201[0m 2682.428 ms - 222[0m
+[0mGET /api/documents/signed_page/64b8f7ffd2e135d536258737 [32m201[0m 1914.995 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f7ffd2e135d536258738 [32m201[0m 1754.016 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f808d2e135d53625876a [32m201[0m 1720.822 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f808d2e135d536258769 [32m201[0m 2212.316 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f808d2e135d53625876b [32m201[0m 794.012 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f805d2e135d53625874f [32m201[0m 1032.957 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f805d2e135d53625874e [32m201[0m 1899.586 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 7227.681 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d53625877a [32m201[0m 7285.108 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d53625877a [32m201[0m 2402.425 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f803d2e135d536258741 [32m201[0m 1407.780 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f803d2e135d536258742 [32m201[0m 632.041 ms - 394[0m
+getting page id
+getting pag

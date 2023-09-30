@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Document, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
 import { Button, Icon, Input, Modal, Progress } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
@@ -14,6 +14,7 @@ import { AnalyticsClassContext } from "../../../analytics/AnalyticsClass";
 import { UserContext } from "../../../contexts/UserContextProvider";
 import { observer } from "mobx-react-lite";
 import ReferralModal from "../../../components/ReferralModal/ReferralModal";
+import Page from "./components/Page/Page";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -46,6 +47,8 @@ const DocumentViewerPage: React.FC = observer(() => {
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
 
+  const urlParams = new URLSearchParams(window.location.search);
+
   const analyticsData: GeneralSearchQueries = {
     text_searched: searchParamsClass.searchParams.keyword,
     notes_filter_type:
@@ -74,100 +77,100 @@ const DocumentViewerPage: React.FC = observer(() => {
     );
     if (el) {
       el.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
+        // behavior: "smooth",
+        block: "start",
         inline: "nearest",
       });
     }
   };
 
-  const handlePdfLoadSuccess = () => {
-    setDocLoadedTimestamp(Date.now());
-    const urlParams = new URLSearchParams(window.location.search);
+  // const handlePdfLoadSuccess = () => {
+  //   setDocLoadedTimestamp(Date.now());
+  //   const urlParams = new URLSearchParams(window.location.search);
 
-    const data: GeneralSearchQueries = {
-      text_searched: searchParamsClass.searchParams.keyword,
-      notes_filter_type:
-        searchParamsClass.searchParams.documentType === -1
-          ? undefined
-          : searchParamsClass.searchParams.documentType,
-      subject_selected:
-        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
-          ? // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].optionalsName ??
-            // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].type
-          : undefined,
-      topper_filter_selected: searchParamsClass.searchParams.topper,
-      search_type: "keyword",
-    };
+  //   const data: GeneralSearchQueries = {
+  //     text_searched: searchParamsClass.searchParams.keyword,
+  //     notes_filter_type:
+  //       searchParamsClass.searchParams.documentType === -1
+  //         ? undefined
+  //         : searchParamsClass.searchParams.documentType,
+  //     subject_selected:
+  //       (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+  //         ? // @ts-ignore
+  //           searchParamsClass.searchParams.subjectTags[0].optionalsName ??
+  //           // @ts-ignore
+  //           searchParamsClass.searchParams.subjectTags[0].type
+  //         : undefined,
+  //     topper_filter_selected: searchParamsClass.searchParams.topper,
+  //     search_type: "keyword",
+  //   };
 
-    analyticsClass.triggerDocumentOpened({
-      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-      ...data,
-      document_name: document?.s3_object_name || "",
-      column_no: parseInt(urlParams.get("colNo") || "-1"),
-      // @ts-ignore
-      feed_type: urlParams.get("feedType") || "primary",
-      row_no: parseInt(urlParams.get("rowNo") || "-1"),
-      result: "pass",
-      time_taken: Date.now() - docLoadStartTime,
-    });
+  //   analyticsClass.triggerDocumentOpened({
+  //     page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+  //     ...data,
+  //     document_name: document?.s3_object_name || "",
+  //     column_no: parseInt(urlParams.get("colNo") || "-1"),
+  //     // @ts-ignore
+  //     feed_type: urlParams.get("feedType") || "primary",
+  //     row_no: parseInt(urlParams.get("rowNo") || "-1"),
+  //     result: "pass",
+  //     time_taken: Date.now() - docLoadStartTime,
+  //   });
 
-    const pageNumber = urlParams.get("page");
+  //   const pageNumber = urlParams.get("page");
 
-    if (pageNumber) {
-      setTimeout(() => {
-        scrollToPageNumber(pageNumber);
-      }, 100);
-    }
+  //   if (pageNumber) {
+  //     setTimeout(() => {
+  //       scrollToPageNumber(pageNumber);
+  //     }, 100);
+  //   }
 
-    if (
-      searchParamsClass.searchParams.keyword &&
-      searchParamsClass.searchParams.keyword.length > 0
-    ) {
-      setDocumentSearchText(searchParamsClass.searchParams.keyword);
-      handleDocumentSearch(
-        searchParamsClass.searchParams.keyword,
-        pageNumber ? false : true
-      );
-    }
+  //   if (
+  //     searchParamsClass.searchParams.keyword &&
+  //     searchParamsClass.searchParams.keyword.length > 0
+  //   ) {
+  //     setDocumentSearchText(searchParamsClass.searchParams.keyword);
+  //     handleDocumentSearch(
+  //       searchParamsClass.searchParams.keyword,
+  //       pageNumber ? false : true
+  //     );
+  //   }
 
-    setLastPageChangeTime(Date.now());
-  };
+  //   setLastPageChangeTime(Date.now());
+  // };
 
-  const handlePdfLoadError = () => {
-    setDocLoadedTimestamp(Date.now());
-    const urlParams = new URLSearchParams(window.location.search);
+  // const handlePdfLoadError = () => {
+  //   setDocLoadedTimestamp(Date.now());
+  //   const urlParams = new URLSearchParams(window.location.search);
 
-    const data: GeneralSearchQueries = {
-      text_searched: searchParamsClass.searchParams.keyword,
-      notes_filter_type:
-        searchParamsClass.searchParams.documentType === -1
-          ? undefined
-          : searchParamsClass.searchParams.documentType,
-      subject_selected:
-        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
-          ? // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].value.tagText
-          : undefined,
-      topper_filter_selected: searchParamsClass.searchParams.topper,
-      search_type: "keyword",
-    };
+  //   const data: GeneralSearchQueries = {
+  //     text_searched: searchParamsClass.searchParams.keyword,
+  //     notes_filter_type:
+  //       searchParamsClass.searchParams.documentType === -1
+  //         ? undefined
+  //         : searchParamsClass.searchParams.documentType,
+  //     subject_selected:
+  //       (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+  //         ? // @ts-ignore
+  //           searchParamsClass.searchParams.subjectTags[0].value.tagText
+  //         : undefined,
+  //     topper_filter_selected: searchParamsClass.searchParams.topper,
+  //     search_type: "keyword",
+  //   };
 
-    analyticsClass.triggerDocumentOpened({
-      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-      ...data,
-      document_name: document?.s3_object_name || "",
-      column_no: parseInt(urlParams.get("colNo") || "-1"),
-      // @ts-ignore
-      feed_type: urlParams.get("feedType") || "primary",
-      row_no: parseInt(urlParams.get("rowNo") || "-1"),
-      result: "fail",
-      time_taken: Date.now() - docLoadStartTime,
-    });
-    setLastPageChangeTime(Date.now());
-  };
+  //   analyticsClass.triggerDocumentOpened({
+  //     page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+  //     ...data,
+  //     document_name: document?.s3_object_name || "",
+  //     column_no: parseInt(urlParams.get("colNo") || "-1"),
+  //     // @ts-ignore
+  //     feed_type: urlParams.get("feedType") || "primary",
+  //     row_no: parseInt(urlParams.get("rowNo") || "-1"),
+  //     result: "fail",
+  //     time_taken: Date.now() - docLoadStartTime,
+  //   });
+  //   setLastPageChangeTime(Date.now());
+  // };
 
   const handlePageChange = (pageNumber: number) => {
     const timeNow = Date.now();
@@ -224,7 +227,8 @@ const DocumentViewerPage: React.FC = observer(() => {
 
   const handleDocumentSearch = async (
     text: string | null,
-    scrollToResult: boolean = true
+    scrollToResult: boolean = true,
+    docId: string = ""
   ) => {
     if (!text) {
       return;
@@ -251,7 +255,7 @@ const DocumentViewerPage: React.FC = observer(() => {
 
     try {
       const response = await axiosInstance.post(
-        `/api/documents/${documentId}/search`,
+        `/api/documents/${documentId || docId}/search`,
         {
           searchTerm: text,
         }
@@ -277,6 +281,10 @@ const DocumentViewerPage: React.FC = observer(() => {
         setCurrentDocSearchResultIdx(-1);
         if (scrollToResult) {
           setCurrentDocSearchResultIdx(0);
+          console.log(
+            "[doc:search:scrolling]",
+            response.data.data.pages[0].page_number
+          );
           scrollToPageNumber(response.data.data.pages[0].page_number);
         }
       }
@@ -460,9 +468,17 @@ const DocumentViewerPage: React.FC = observer(() => {
   useEffect(() => {
     const init = async () => {
       setLoading(true);
-      const urlParams = new URLSearchParams(window.location.search);
       const documentId = urlParams.get("documentId");
       setDocumentId(documentId);
+
+      const pageNumber = parseInt(urlParams.get("page") || "-1");
+
+      if (pageNumber !== -1) {
+        setTimeout(() => {
+          console.log("scrolling to page", pageNumber);
+          scrollToPageNumber(pageNumber);
+        }, 300);
+      }
 
       const data: GeneralSearchQueries = {
         text_searched: searchParamsClass.searchParams.keyword,
@@ -485,6 +501,18 @@ const DocumentViewerPage: React.FC = observer(() => {
         );
         setDocLoadStartTime(Date.now());
         setDocument(response.data.data);
+
+        if (
+          searchParamsClass.searchParams.keyword &&
+          searchParamsClass.searchParams.keyword.length > 0
+        ) {
+          setDocumentSearchText(searchParamsClass.searchParams.keyword);
+          handleDocumentSearch(
+            searchParamsClass.searchParams.keyword,
+            pageNumber !== -1 ? false : true,
+            documentId || ""
+          );
+        }
       } catch (error: any) {
         analyticsClass.triggerDocumentOpened({
           page_number: parseInt(urlParams.get("pageNumber") || "-1"),
@@ -627,76 +655,54 @@ const DocumentViewerPage: React.FC = observer(() => {
               Page {currentActivePage || ""} / {document?.num_pages}
             </div>
           </div>
-          <Document
-            file={document?.s3_signed_url}
-            className={styles.Document}
-            onLoadSuccess={handlePdfLoadSuccess}
-            onLoadError={handlePdfLoadError}
-            onLoadProgress={({ loaded, total }) => {
-              setDocumentLoadingPercent((loaded * 100) / total);
-            }}
-            loading={
-              <div className={styles.DocumentLoadingContainer}>
-                <Progress
-                  className={styles.DocLoadProgress}
-                  active
-                  percent={documentLoadingPercent.toFixed(0)}
-                  // progress
-                  size="tiny"
-                >
-                  Loading <span>{document?.s3_object_name} </span>
-                </Progress>
-              </div>
-            }
-          >
-            {range(document?.num_pages || 0).map((index: number) => (
-              <div className={styles.Page} key={index}>
-                {getMatchingResultsForPage(index + 1)?.matching_blocks?.map(
-                  (block: MatchingBlock, idx: number) => (
-                    <div
-                      className={styles.MatchingResults}
-                      key={idx}
-                      style={{
-                        color: "blue",
-                        background: "purple",
-                        opacity: 0.3,
-                        top: `${
-                          (block.boundingBox.vertices[0].y * 100) /
-                          getHeightForPage(index + 1)
-                        }%`,
-                        left: `${
-                          (block.boundingBox.vertices[0].x * 100) /
-                          getWidthForPage(index + 1)
-                        }%`,
-                        width: `${
-                          skewX(index + 1) *
-                          (block.boundingBox.vertices[1].x -
-                            block.boundingBox.vertices[0].x)
-                        }px`,
-                        height: `${
-                          skewY(index + 1) *
-                          (block.boundingBox.vertices[3].y -
-                            block.boundingBox.vertices[0].y)
-                        }px`,
-                      }}
-                    />
-                  )
-                )}
-                <InView
-                  as="div"
-                  threshold={0.8}
-                  onChange={() => {
-                    handlePageChange(index + 1);
-                  }}
-                >
-                  <Page
-                    pageNumber={index + 1}
-                    width={window.innerWidth * 0.65 * 0.6}
+          {range(document?.num_pages || 0).map((index: number) => (
+            <div className={styles.Page} key={index}>
+              {getMatchingResultsForPage(index + 1)?.matching_blocks?.map(
+                (block: MatchingBlock, idx: number) => (
+                  <div
+                    className={styles.MatchingResults}
+                    key={idx}
+                    style={{
+                      color: "blue",
+                      background: "purple",
+                      opacity: 0.3,
+                      top: `${
+                        (block.boundingBox.vertices[0].y * 100) /
+                        getHeightForPage(index + 1)
+                      }%`,
+                      left: `${
+                        (block.boundingBox.vertices[0].x * 100) /
+                        getWidthForPage(index + 1)
+                      }%`,
+                      width: `${
+                        skewX(index + 1) *
+                        (block.boundingBox.vertices[1].x -
+                          block.boundingBox.vertices[0].x)
+                      }px`,
+                      height: `${
+                        skewY(index + 1) *
+                        (block.boundingBox.vertices[3].y -
+                          block.boundingBox.vertices[0].y)
+                      }px`,
+                    }}
                   />
-                </InView>
-              </div>
-            ))}
-          </Document>
+                )
+              )}
+              <InView
+                as="div"
+                threshold={0.8}
+                onChange={() => {
+                  handlePageChange(index + 1);
+                }}
+              >
+                <Page
+                  page={document?.pages[index]}
+                  pageNumber={index + 1}
+                  scrollToPageNumber={parseInt(urlParams.get("page") || "-1")}
+                />
+              </InView>
+            </div>
+          ))}
         </div>
         <div className={styles.DocumentDetails}>
           <div className={styles.Card}>

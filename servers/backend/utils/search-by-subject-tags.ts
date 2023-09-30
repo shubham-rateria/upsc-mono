@@ -43,6 +43,8 @@ async function findDocumentsForKeywordsSearch(
         _id: 1,
         documentId: 1,
         s3_img_object_name: 1,
+        s3_img_object_name_small: 1,
+        s3_img_object_name_medium: 1,
         page_number: 1,
         score: {
           $meta: "searchScore",
@@ -115,10 +117,10 @@ async function findDocumentsForKeywordsSearch(
     let scoreSum = 0;
     for (const page of document.pages) {
       scoreSum += page.score;
-      if (page.s3_img_object_name) {
+      if (page.s3_img_object_name_small) {
         const s3_signed_url = await getSignedUrl(
           "page-img",
-          page.s3_img_object_name,
+          page.s3_img_object_name_small,
           5
         );
         page.s3_signed_url = s3_signed_url;
@@ -162,6 +164,8 @@ async function findDocumentsForKeywords(
         keyword_tags: 1,
         documentId: 1,
         s3_img_object_name: 1,
+        s3_img_object_name_small: 1,
+        s3_img_object_name_medium: 1,
         page_number: 1,
       },
     },
@@ -243,10 +247,10 @@ async function findDocumentsForKeywords(
       scoreSum += pageScore;
       page.score = pageScore;
       delete page.keyword_tags;
-      if (page.s3_img_object_name) {
+      if (page.s3_img_object_name_small) {
         const s3_signed_url = await getSignedUrl(
           "page-img",
-          page.s3_img_object_name,
+          page.s3_img_object_name_small,
           5
         );
         page.s3_signed_url = s3_signed_url;
@@ -307,7 +311,13 @@ export default async function searchBySubjectTags({
         }
 
         const l0Results = await DocumentModel.find(documentL0Query)
-          .select({ pages: 0 })
+          .select({
+            pages: 0,
+            category_tags: 0,
+            category_tags_1: 0,
+            percentage_keywords: 0,
+            median_keywords: 0,
+          })
           .skip((pageNumber - 1) * limit)
           .limit(limit)
           .sort({ num_pages: -1 })
