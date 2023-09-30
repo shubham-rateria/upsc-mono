@@ -24,7 +24,6 @@ const DocumentViewerPage: React.FC = observer(() => {
   const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
-  const [documentLoadingPercent, setDocumentLoadingPercent] = useState(0);
   const [currentActivePage, setCurrentActivePage] = useState<number | null>(
     null
   );

@@ -114,3 +114,9 @@
   width: 100%;
   background: white !important;
 }
+
+@media (max-width: 600px) {
+  .InnerContainer {
+    width: 100vw !important;
+  }
+}

@@ -65,6 +65,7 @@ const UserContextProvider: FC<Props> = ({ children }) => {
           const response = await axiosInstance.post("/api/user/me", data);
           userClass.setUserId(response.data.user.userId);
           userClass.setReferralCode(response.data.user.referral_code);
+          userClass.getRemainingDownloads();
           console.log("User id set", userClass.userId);
         } catch (error) {
           console.error("Error in getting user", error);

@@ -143,8 +143,8 @@ const Search = () => {
             setOpenDocTypeDrawer(true);
           }}
         />
-        <TagButton hasValue={false} text="" placeholder="From Year" />
-        <TagButton hasValue={false} text="" placeholder="Search In" />
+        {/* <TagButton hasValue={false} text="" placeholder="From Year" /> */}
+        {/* <TagButton hasValue={false} text="" placeholder="Search In" /> */}
       </div>
       <div className={styles.ResultText}>
         {(searchParamsClass.docSearchResults?.length ?? -1) > 0 &&
