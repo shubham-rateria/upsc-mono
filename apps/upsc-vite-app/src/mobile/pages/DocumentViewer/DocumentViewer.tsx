@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
 import "./DocumentViewer.css";
-import { Button, Input, Modal } from "semantic-ui-react";
+import { Button, Modal } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range, truncate } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
 import { useNavigate } from "react-router-dom";
-import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import Page from "../../components/Page/Page";
 import { UserContext } from "../../../contexts/UserContextProvider";
 
@@ -16,32 +15,23 @@ const DocumentViewerPage: React.FC = () => {
   const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
-  const [documentLoadingPercent, setDocumentLoadingPercent] = useState(0);
+  // const [documentLoadingPercent, setDocumentLoadingPercent] = useState(0);
   const [currentActivePage, setCurrentActivePage] = useState<number | null>(
     null
   );
-  const [documentSearchResult, setDocumentSearchResult] =
+  const [documentSearchResult, _setDocumentSearchResult] =
     useState<Result | null>(null);
-  const [currentDocSearchResultIdx, setCurrentDocSearchResultIdx] = useState<
+  const [_currentDocSearchResultIdx, _setCurrentDocSearchResultIdx] = useState<
     number | null
   >(0);
-  const [documentSearchText, setDocumentSearchText] = useState<string | null>(
+  const [_documentSearchText, _setDocumentSearchText] = useState<string | null>(
     null
   );
-  const [fileDownloading, setFileDownloading] = useState(false);
+  const [_fileDownloading, setFileDownloading] = useState(false);
   const user = useContext(UserContext);
-
-  // const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
-  //   null
-  // );
-  // const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
-  // const [downloadRangeError, setDownloadRangeError] = useState(false);
-  // const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
-  const [searchLoading, setSearchLoading] = useState(false);
+  const [_searchLoading, _setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
-
-  const searchParamsClass = useContext(SearchParamsContext);
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -63,88 +53,88 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
-  const handlePdfLoadSuccess = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const pageNumber = urlParams.get("page");
+  // const handlePdfLoadSuccess = () => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const pageNumber = urlParams.get("page");
 
-    if (pageNumber) {
-      setTimeout(() => {
-        scrollToPageNumber(pageNumber);
-      }, 1000);
-    }
+  //   if (pageNumber) {
+  //     setTimeout(() => {
+  //       scrollToPageNumber(pageNumber);
+  //     }, 1000);
+  //   }
 
-    if (
-      searchParamsClass.searchParams.keyword &&
-      searchParamsClass.searchParams.keyword.length > 0
-    ) {
-      setDocumentSearchText(searchParamsClass.searchParams.keyword);
-      handleDocumentSearch(
-        searchParamsClass.searchParams.keyword,
-        pageNumber ? false : true
-      );
-    }
-  };
+  //   if (
+  //     searchParamsClass.searchParams.keyword &&
+  //     searchParamsClass.searchParams.keyword.length > 0
+  //   ) {
+  //     setDocumentSearchText(searchParamsClass.searchParams.keyword);
+  //     handleDocumentSearch(
+  //       searchParamsClass.searchParams.keyword,
+  //       pageNumber ? false : true
+  //     );
+  //   }
+  // };
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentActivePage(pageNumber);
   };
 
-  const handleNextDocSearchResult = () => {
-    if (currentDocSearchResultIdx !== null && documentSearchResult !== null) {
-      let updatedIdx = currentDocSearchResultIdx + 1;
-      if (updatedIdx >= documentSearchResult.pages.length) {
-        updatedIdx = 0;
-      }
-      setCurrentDocSearchResultIdx(updatedIdx);
-      scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
-    }
-  };
+  // const handleNextDocSearchResult = () => {
+  //   if (currentDocSearchResultIdx !== null && documentSearchResult !== null) {
+  //     let updatedIdx = currentDocSearchResultIdx + 1;
+  //     if (updatedIdx >= documentSearchResult.pages.length) {
+  //       updatedIdx = 0;
+  //     }
+  //     setCurrentDocSearchResultIdx(updatedIdx);
+  //     scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
+  //   }
+  // };
 
-  const handlePrevDocSearchResult = () => {
-    if (currentDocSearchResultIdx !== null && documentSearchResult !== null) {
-      let updatedIdx = currentDocSearchResultIdx - 1;
-      if (updatedIdx < 0) {
-        updatedIdx = documentSearchResult.pages.length - 1;
-      }
-      setCurrentDocSearchResultIdx(updatedIdx);
-      scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
-    }
-  };
+  // const handlePrevDocSearchResult = () => {
+  //   if (currentDocSearchResultIdx !== null && documentSearchResult !== null) {
+  //     let updatedIdx = currentDocSearchResultIdx - 1;
+  //     if (updatedIdx < 0) {
+  //       updatedIdx = documentSearchResult.pages.length - 1;
+  //     }
+  //     setCurrentDocSearchResultIdx(updatedIdx);
+  //     scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
+  //   }
+  // };
 
-  const handleDocSearchTextChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDocumentSearchText(e.target.value);
-  };
+  // const handleDocSearchTextChange = (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setDocumentSearchText(e.target.value);
+  // };
 
-  const handleDocumentSearch = async (
-    text: string | null,
-    scrollToResult: boolean = true
-  ) => {
-    if (!text) {
-      return;
-    }
-    setSearchLoading(true);
-    try {
-      const response = await axiosInstance.post(
-        `/api/documents/${documentId}/search`,
-        {
-          searchTerm: text,
-        }
-      );
-      setDocumentSearchResult(response.data.data);
-      if (response.data.data.pages.length > 0) {
-        setCurrentDocSearchResultIdx(-1);
-        if (scrollToResult) {
-          setCurrentDocSearchResultIdx(0);
-          scrollToPageNumber(response.data.data.pages[0].page_number);
-        }
-      }
-    } catch (error) {
-      console.error("error", error);
-    }
-    setSearchLoading(false);
-  };
+  // const handleDocumentSearch = async (
+  //   text: string | null,
+  //   scrollToResult: boolean = true
+  // ) => {
+  //   if (!text) {
+  //     return;
+  //   }
+  //   setSearchLoading(true);
+  //   try {
+  //     const response = await axiosInstance.post(
+  //       `/api/documents/${documentId}/search`,
+  //       {
+  //         searchTerm: text,
+  //       }
+  //     );
+  //     setDocumentSearchResult(response.data.data);
+  //     if (response.data.data.pages.length > 0) {
+  //       setCurrentDocSearchResultIdx(-1);
+  //       if (scrollToResult) {
+  //         setCurrentDocSearchResultIdx(0);
+  //         scrollToPageNumber(response.data.data.pages[0].page_number);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("error", error);
+  //   }
+  //   setSearchLoading(false);
+  // };
 
   const getMatchingResultsForPage = (
     pageNumber: number
@@ -205,11 +195,11 @@ const DocumentViewerPage: React.FC = () => {
     navigate(-1);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.code === "Enter") {
-      handleDocumentSearch(documentSearchText);
-    }
-  };
+  // const handleKeyPress = (e: React.KeyboardEvent) => {
+  //   if (e.code === "Enter") {
+  //     handleDocumentSearch(documentSearchText);
+  //   }
+  // };
 
   // const handleDownload = () => {
   //   setNoDownloadModalOpen(true);
@@ -218,7 +208,7 @@ const DocumentViewerPage: React.FC = () => {
   const handleDownload = async (e: any) => {
     e.stopPropagation();
     setFileDownloading(true);
-    const urlParams = new URLSearchParams(window.location.search);
+    // const urlParams = new URLSearchParams(window.location.search);
 
     // analyticsClass.triggerDocDownloadClicked({
     //   page_number: parseInt(urlParams.get("pageNumber") || "-1"),

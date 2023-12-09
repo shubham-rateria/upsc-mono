@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { PageResult } from "usn-common";
 import axiosInstance from "../../../utils/axios-instance";
 import { InView } from "react-intersection-observer";
@@ -39,14 +39,14 @@ class PageTimer {
   }
 }
 
-const Page: FC<Props> = ({ page, pageNumber, scrollToPageNumber }) => {
+const Page: FC<Props> = ({ page, pageNumber }) => {
   const [signedUrl, setSignedUrl] = useState();
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [_error, setError] = useState(false);
+  const [_errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadingCount, setLoadingCount] = useState(0);
-  const [loaded, setLoaded, loadedRef] = useStateRef(false);
-  const [entryTime, setEntryTime, entryTimeRef] = useStateRef(0);
+  const [_loaded, setLoaded, loadedRef] = useStateRef(false);
+  const [_entryTime, setEntryTime, entryTimeRef] = useStateRef(0);
   const [timer, _] = useState(
     new PageTimer(() => {
       if (loadedRef.current) {
@@ -84,7 +84,7 @@ const Page: FC<Props> = ({ page, pageNumber, scrollToPageNumber }) => {
     <InView
       as="div"
       threshold={0.2}
-      onChange={(inView, entry) => {
+      onChange={(inView, _page) => {
         if (inView) {
           setEntryTime(Date.now());
           timer.startTimer();

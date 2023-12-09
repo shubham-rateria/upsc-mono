@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
-import { Document, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import { Button, Icon, Input, Modal, Progress } from "semantic-ui-react";
+import { Button, Icon, Input, Modal } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
@@ -15,8 +14,6 @@ import { UserContext } from "../../../contexts/UserContextProvider";
 import { observer } from "mobx-react-lite";
 import ReferralModal from "../../../components/ReferralModal/ReferralModal";
 import Page from "./components/Page/Page";
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const DocumentViewerPage: React.FC = observer(() => {
   const navigate = useNavigate();
@@ -38,7 +35,7 @@ const DocumentViewerPage: React.FC = observer(() => {
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
-  const [docLoadedTimestamp, setDocLoadedTimestamp] = useState(-1);
+  const [docLoadedTimestamp, _setDocLoadedTimestamp] = useState(-1);
   const [docLoadStartTime, setDocLoadStartTime] = useState(-1);
   const [fileDownloading, setFileDownloading] = useState(false);
   const [openReferralModal, setOpenReferralModal] = useState(false);

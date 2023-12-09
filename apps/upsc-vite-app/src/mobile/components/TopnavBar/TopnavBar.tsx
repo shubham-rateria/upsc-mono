@@ -1,7 +1,7 @@
-import { Menu, Dropdown, Button, Icon } from "semantic-ui-react";
+import { Menu, Dropdown, Icon } from "semantic-ui-react";
 import styles from "./Topnavbar.module.css";
 // import { useCallback, useContext } from "react";
-import { useStytch, useStytchUser } from "@stytch/react";
+import { useStytch } from "@stytch/react";
 import { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -11,7 +11,7 @@ import { UserContext } from "../../../contexts/UserContextProvider";
 
 const MTopNavBar = observer(() => {
   const stytchClient = useStytch();
-  const stytchUser = useStytchUser();
+  // const stytchUser = useStytchUser();
   const navigate = useNavigate();
   const user = useContext(UserContext);
   const [showCopied, setShowCopied] = useState(false);
