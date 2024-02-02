@@ -4,6 +4,7 @@
 
 import mongoose from "mongoose";
 import { v4 } from "uuid";
+import generateReferralId from "../utils/generate-referral-id";
 
 const UserSchema = new mongoose.Schema({
   userId: {
@@ -46,6 +47,12 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
     default: false,
+  },
+
+  referral_code: {
+    type: String,
+    required: false,
+    default: generateReferralId(),
   },
 });
 

@@ -62,6 +62,8 @@ export default async function searchByKeyword({
         documentId: 1,
         page_number: 1,
         s3_img_object_name: 1,
+        s3_img_object_name_small: 1,
+        s3_img_object_name_medium: 1,
         highlights: { $meta: "searchHighlights" },
         score: {
           $meta: "searchScore",
@@ -96,6 +98,8 @@ export default async function searchByKeyword({
         document_type: "$targetDoc.document_type",
         page_number: 1,
         s3_img_object_name: 1,
+        s3_img_object_name_small: 1,
+        s3_img_object_name_medium: 1,
         highlights: { $meta: "searchHighlights" },
       },
     },
@@ -195,10 +199,10 @@ export default async function searchByKeyword({
 
     delete page.highlights;
 
-    if (page.s3_img_object_name) {
+    if (page.s3_img_object_name_small) {
       const s3_signed_url = await getSignedUrl(
         "page-img",
-        page.s3_img_object_name,
+        page.s3_img_object_name_small,
         5
       );
       page.s3_signed_url = s3_signed_url;
@@ -274,6 +278,8 @@ export async function searchByKeywordNot({
         documentId: 1,
         page_number: 1,
         s3_img_object_name: 1,
+        s3_img_object_name_small: 1,
+        s3_img_object_name_medium: 1,
         highlights: { $meta: "searchHighlights" },
         score: {
           $meta: "searchScore",
@@ -308,6 +314,8 @@ export async function searchByKeywordNot({
         document_type: "$targetDoc.document_type",
         page_number: 1,
         s3_img_object_name: 1,
+        s3_img_object_name_small: 1,
+        s3_img_object_name_medium: 1,
         highlights: { $meta: "searchHighlights" },
       },
     },
@@ -409,10 +417,10 @@ export async function searchByKeywordNot({
 
     delete page.highlights;
 
-    if (page.s3_img_object_name) {
+    if (page.s3_img_object_name_small) {
       const s3_signed_url = await getSignedUrl(
         "page-img",
-        page.s3_img_object_name,
+        page.s3_img_object_name_small,
         5
       );
       page.s3_signed_url = s3_signed_url;

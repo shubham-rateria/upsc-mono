@@ -19,6 +19,32 @@ const route = Router();
 export default (app: Router) => {
   app.use("/documents", route);
 
+  route.get("/signed_page/:pageId", async (req: Request, res: Response) => {
+    try {
+      console.log("getting page id");
+      const { pageId } = req.params;
+      const page = await PageModel.findById(pageId).lean().exec();
+
+      if (!page) {
+        res.status(500).json({ success: false });
+        return;
+      }
+
+      const s3_signed_url = await getSignedUrl(
+        "page-img",
+        // @ts-ignore
+        page.s3_img_object_name_medium,
+        5
+      );
+
+      res
+        .status(201)
+        .json({ success: true, data: { signed_url: s3_signed_url } });
+    } catch (error: any) {
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
   route.get("/:documentId", async (req: Request, res: Response) => {
     try {
       console.log("getting doc id");

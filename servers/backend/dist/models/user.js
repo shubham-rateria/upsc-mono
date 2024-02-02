@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const uuid_1 = require("uuid");
+const generate_referral_id_1 = __importDefault(require("../utils/generate-referral-id"));
 const UserSchema = new mongoose_1.default.Schema({
     userId: {
         type: String,
@@ -44,6 +45,11 @@ const UserSchema = new mongoose_1.default.Schema({
         type: Boolean,
         required: false,
         default: false,
+    },
+    referral_code: {
+        type: String,
+        required: false,
+        default: (0, generate_referral_id_1.default)(),
     },
 });
 exports.UserModel = mongoose_1.default.model("User", UserSchema, "user");

@@ -29,6 +29,7 @@
     "react-pdf": "^7.3.3",
     "react-phone-number-input": "^3.3.4",
     "react-router-dom": "^6.15.0",
+    "react-usestateref": "^1.0.8",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
     "usn-common": "workspace:*",

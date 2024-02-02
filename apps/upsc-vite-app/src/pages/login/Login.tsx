@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { Button } from "semantic-ui-react";
+import { Button, Input } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
 import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
+import { UserContext } from "../../contexts/UserContextProvider";
 
 function isPhoneNumber(value: string) {
   // Define a regular expression pattern for a phone number with Indian country code +91
@@ -17,6 +18,8 @@ function isPhoneNumber(value: string) {
   // Test the value against the pattern
   return phoneNumberPattern.test(value);
 }
+
+const DEFAULT_REFERRAL_CODE = "ME32DA";
 
 export const Login = () => {
   const stytchClient = useStytch();
@@ -30,8 +33,12 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [methodId, setMethodId] = useState("");
+  const [showReferralInput, setShowReferralInput] = useState(false);
+  const [referralCode, setReferralCode] = useState("");
+
   const tourContextController = useContext(TourContext);
   const analyticsClass = useContext(AnalyticsClassContext);
+  const userClass = useContext(UserContext);
 
   const startCountdown = async () => {
     while (resendCodeTimer > 0) {
@@ -59,6 +66,8 @@ export const Login = () => {
       analyticsClass.triggerOtpRequested({
         attempt_number: -1,
         phone_number: phoneNumber,
+        refer_code:
+          referralCode.length > 0 ? referralCode : DEFAULT_REFERRAL_CODE,
       });
     }
   };
@@ -69,15 +78,43 @@ export const Login = () => {
       await stytchClient.otps.authenticate(otp, methodId, {
         session_duration_minutes: 10000,
       });
-      await axiosInstance.post("/api/user/login-or-create", {
-        phone: phoneNumber,
-      });
+      const userResponse = await axiosInstance.post(
+        "/api/user/login-or-create",
+        {
+          phone: phoneNumber,
+        }
+      );
+      userClass.setUserId(userResponse.data.user.userId);
+      userClass.setReferralCode(userResponse.data.user.referral_code);
       // @ts-ignore
       tourContextController.setPhone(phoneNumber);
+      const data = {
+        referralCode:
+          referralCode.length > 0 ? referralCode : DEFAULT_REFERRAL_CODE,
+        userId: userResponse.data.user.userId,
+      };
+      try {
+        await axiosInstance.post("/api/referral/apply", data);
+        analyticsClass.triggerReferralCodeAdded({
+          referral_code: data.referralCode,
+          applied: true,
+        });
+        // console.log("referral applied");
+      } catch (error: any) {
+        setError(true);
+        setErrorMessage(error.response.data.message);
+        setLoading(false);
+        analyticsClass.triggerReferralCodeAdded({
+          referral_code: data.referralCode,
+          applied: false,
+        });
+        return;
+      }
       analyticsClass.triggerLogin({
         attempt_number: -1,
         phone_number: phoneNumber || "",
         result: "pass",
+        refer_code: data.referralCode,
       });
       navigate("/search");
     } catch (error) {
@@ -85,6 +122,7 @@ export const Login = () => {
         attempt_number: -1,
         phone_number: phoneNumber || "",
         result: "fail",
+        refer_code: "",
       });
       setError(true);
       setErrorMessage("Please enter the correct OTP.");
@@ -129,6 +167,28 @@ export const Login = () => {
                 onChange={setPhoneNumber}
                 className={styles.Input}
               />
+              {showReferralInput && (
+                <Input
+                  fluid
+                  placeholder="Enter referral code"
+                  onChange={(e) => {
+                    setReferralCode(e.target.value.toUpperCase());
+                  }}
+                />
+              )}
+              <Button
+                className={styles.ButtonSecondary}
+                onClick={() => {
+                  if (!showReferralInput) {
+                    setShowReferralInput(true);
+                  } else {
+                    setShowReferralInput(false);
+                    setReferralCode("");
+                  }
+                }}
+              >
+                {!showReferralInput ? "Enter" : "Remove"} Referral Code
+              </Button>
               <Button
                 disabled={!isPhoneNumber(phoneNumber || "")}
                 onClick={sendPasscode}

@@ -101,3 +101,15 @@
   background-color: var(--p8) !important;
   color: white !important;
 }
+
+.ReferBtn {
+  border-radius: 8px !important;
+  border: 1px solid var(--p7, #7963ff) !important;
+  background: var(--p1, #f2efff) !important;
+  color: var(--n5, #5a6892) !important;
+  font-family: var(--font-mulish) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  padding: var(--padding-s) var(--padding-m) !important;
+}

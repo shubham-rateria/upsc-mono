@@ -15,22 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const user_1 = require("../../../models/user");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const auth_middleware_1 = __importDefault(require("../../../middlewares/auth.middleware"));
-const axios_1 = __importDefault(require("axios"));
+const free_downloads_1 = require("../../../models/free-downloads");
 const route = (0, express_1.Router)();
-const axiosInstance = axios_1.default.create({
-    baseURL: "https://test.stytch.com/v1/otps",
-    headers: {
-        Authorization: "Basic " +
-            btoa("project-test-1922a505-c16b-4984-b69a-a950470b4ae3" +
-                ":" +
-                "secret-test-F1XvCGiRjs2AhM02sBEo2ZtGMsIQtw9hPWk="),
-    },
-});
 exports.default = (app) => {
     app.use("/user", route);
-    route.get("/me", auth_middleware_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        res.json({ user: req.user });
+    route.post("/me", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { phone } = req.body;
+        let user = null;
+        // check if the user exists
+        user = yield user_1.UserModel.findOne({ phone }).exec();
+        if (!user) {
+            res.status(500).send({ success: false, message: "User not found" }).end();
+            return;
+        }
+        // Create a JWT and set it in a cookie
+        const token = jsonwebtoken_1.default.sign({ userId: user.userId }, "secret", {
+            expiresIn: "24h",
+        });
+        res.cookie("jwt", token, {
+            httpOnly: true,
+        });
+        res.status(200).json({ success: true, user });
     }));
     route.post("/allow-beta-user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { phone } = req.body;
@@ -44,16 +49,28 @@ exports.default = (app) => {
     }));
     route.post("/login-or-create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { phone } = req.body;
+        let user = null;
         // check if the user exists
-        const userInDb = yield user_1.UserModel.findOne({ phone }).exec();
-        if (!userInDb) {
-            const newUser = new user_1.UserModel({
+        user = yield user_1.UserModel.findOne({ phone }).exec();
+        if (!user) {
+            user = new user_1.UserModel({
                 phone,
                 onboarding: { onboarded: false },
             });
-            yield newUser.save();
+            const freePlan = new free_downloads_1.FreeDownloadModel({
+                userId: user.userId,
+            });
+            yield user.save();
+            yield freePlan.save();
         }
-        res.status(200).json({ success: true });
+        // Create a JWT and set it in a cookie
+        const token = jsonwebtoken_1.default.sign({ userId: user.userId }, "secret", {
+            expiresIn: "24h",
+        });
+        res.cookie("jwt", token, {
+            httpOnly: true,
+        });
+        res.status(200).json({ success: true, user });
     }));
     route.post("/check-user-onboarded", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         var _a, _b;
@@ -72,23 +89,6 @@ exports.default = (app) => {
         yield user.save();
         res.json({ success: true });
     }));
-    // Login handler
-    route.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { email } = req.body;
-        // Authenticate user (this is a simplified example)
-        const user = yield user_1.UserModel.findOne({ email, beta_user: true });
-        if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
-        }
-        const params = { email };
-        const sres = yield axiosInstance.post("/email/login_or_create", params);
-        res.json({
-            success: true,
-            data: {
-                email_id: sres.data.email_id,
-            },
-        });
-    }));
     route.post("/create-beta-user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         let { phone } = req.body;
         if (!phone.startsWith("+91")) {
@@ -106,7 +106,6 @@ exports.default = (app) => {
     }));
     route.post("/submit-otp", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { phone } = req.body;
-        // Authenticate user (this is a simplified example)
         const user = yield user_1.UserModel.findOne({ phone, beta_user: true });
         if (!user) {
             return res.status(401).json({ message: "Invalid credentials" });

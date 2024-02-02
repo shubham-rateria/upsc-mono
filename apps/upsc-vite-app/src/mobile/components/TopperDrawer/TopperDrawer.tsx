@@ -48,8 +48,13 @@ const TopperDrawer: FC<Props> = ({ isOpen, onClose }) => {
 
     const init = async () => {
       setLoading(true);
+      const data: any = { tag: null };
       try {
-        const response = await axiosInstance.get("/api/toppers");
+        if ((searchParamsClass.searchParams.subjectTags || []).length > 0) {
+          // @ts-ignore
+          data.tag = searchParamsClass.searchParams.subjectTags[0];
+        }
+        const response = await axiosInstance.post("/api/toppers", data);
         setToppers(response.data.data);
       } catch (error) {
         console.error("Error in getting toppers", error);

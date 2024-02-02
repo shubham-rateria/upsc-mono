@@ -29,6 +29,19 @@ export interface DocResult {
   notes_type?: DocumentType;
 }
 
+export interface Referral {
+  // accessed_from= <buy_plan, download_try>
+  // downloads_left= < count >
+  // free downloads left= <>
+  // paid downloads left= <>
+  // user_type= < free/ premium>
+  accessed_from: number;
+  downloads_left: number;
+  free_downloads_left: number;
+  paid_downloads_left?: number;
+  user_type: number;
+}
+
 export interface EventKeywordSearchUsed extends GeneralSearchQueries {
   text_searched: string;
 }
@@ -235,6 +248,34 @@ export interface EventDocumentViewerExited
   time_spent: number;
 }
 
+export interface EventDocDownloadClicked
+  extends GeneralSearchQueries,
+    DocResult {
+  downloads_left: number;
+  free_downloads_left: number;
+}
+
+export interface EventDocDownloadStarted
+  extends GeneralSearchQueries,
+    DocResult {
+  downloads_left: number;
+  free_downloads_left: number;
+  download_from: number;
+}
+
+export interface EventReferNowClicked extends Referral {
+  used: boolean;
+}
+
+export interface EventReferralCodeCopied extends Referral {
+  referral_code: string;
+}
+
+export interface EventReferralCodeAdded {
+  referral_code: string;
+  applied: boolean;
+}
+
 /**
  * Login based events
  */
@@ -256,12 +297,14 @@ export interface EventDocumentViewerExited
 export interface EventOtpRequested {
   phone_number: string;
   attempt_number: number;
+  refer_code: string;
 }
 
 export interface EventLogin {
   phone_number: string;
   attempt_number: number;
   result: "pass" | "fail";
+  refer_code: string;
 }
 
 export interface EventLogout {

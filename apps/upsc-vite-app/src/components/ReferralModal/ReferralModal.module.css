@@ -1,0 +1,67 @@
+.Container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--margin-m) !important;
+  padding: var(--padding-l) !important;
+  border-radius: 20px !important;
+}
+
+.Logo {
+  width: 200px;
+}
+
+.Logo img {
+  width: 100%;
+}
+
+.Description {
+  color: var(--n6, #485374);
+  font-family: var(--font-mulish);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.Code {
+  color: var(--p8);
+  font-family: var(--font-mulish);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 6px;
+  border: 2px dashed var(--P4, #c9c1ff);
+  background: rgba(217, 217, 217, 0);
+  padding: var(--padding-s) var(--padding-m);
+}
+
+.CodeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--margin-m);
+}
+
+.Icon {
+  max-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Icon:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Icon:active {
+  transform: scale(0.95);
+  transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Copied {
+  color: #72c980;
+  font-size: 0.9rem;
+}

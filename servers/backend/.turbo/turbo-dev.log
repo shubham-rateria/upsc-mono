@@ -1,12 +1,12 @@
-(node:6036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:39076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 12:36:37 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 07:24:47 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:6052) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:39087) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -19,114 +19,902 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 64.914 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 40.306 ms - 4934[0m
+[0mGET /api/toppers [33m404[0m 3.303 ms - 34[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 124.679 ms - 2710[0m
+[0mGET /api/toppers [33m404[0m 1.478 ms - 34[0m
 tagSearchResults 10
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 822.414 ms - 69939[0m
+[0mPOST /api/documents [32m200[0m 587.651 ms - 27919[0m
+[0mGET /api/toppers [33m404[0m 0.731 ms - 34[0m
+tagSearchResults 10
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 1.670 ms - 38[0m
-[0mPOST /api/toppers [32m200[0m 580.694 ms - 13479[0m
+[0mPOST /api/documents [32m200[0m 394.824 ms - 27919[0m
+[0mGET /api/toppers [33m404[0m 0.345 ms - 34[0m
+[0mGET /api/toppers [33m404[0m 0.608 ms - 34[0m
 tagSearchResults 10
-[0mPOST /api/toppers [32m200[0m 1498.211 ms - 4941[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 230.253 ms - 26034[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 2
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 1 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 46
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 286.675 ms - 23152[0m
+getting doc id
+[0mGET /api/documents/64b8f892d2e135d536258862 [32m201[0m 25.279 ms - 5505[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258851 [32m201[0m 227.000 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f890d2e135d53625885a [32m201[0m 499.229 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f890d2e135d53625885b [32m201[0m 1049.349 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f88fd2e135d536258858 [32m201[0m 662.577 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f88fd2e135d536258857 [32m201[0m 809.535 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258852 [32m201[0m 207.374 ms - 394[0m
+[0mGET /api/toppers [33m404[0m 0.438 ms - 34[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 2
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 1 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 46
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 400.369 ms - 14017[0m
+[0mPOST /api/toppers [32m200[0m 30.261 ms - 4941[0m
+[0mPOST /api/toppers [32m200[0m 57.870 ms - 13479[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 235.787 ms - 26034[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 2
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 1 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 46
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 191.181 ms - 23152[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 2
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 1 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 46
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 202.330 ms - 14017[0m
+getting doc id
+[0mGET /api/documents/64b8f892d2e135d536258862 [32m201[0m 26.964 ms - 5505[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258851 [32m201[0m 298.171 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f892d2e135d536258862 [32m201[0m 47.600 ms - 5505[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258851 [32m201[0m 234.163 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f890d2e135d536258860 [32m201[0m 171.154 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f890d2e135d536258861 [32m201[0m 500.076 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258852 [32m201[0m 225.325 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258853 [32m201[0m 229.459 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f892d2e135d536258862 [32m201[0m 27.100 ms - 5505[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258851 [32m201[0m 226.190 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f892d2e135d536258862 [32m201[0m 22.501 ms - 5505[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258851 [32m201[0m 290.729 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f890d2e135d536258860 [32m201[0m 187.475 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f890d2e135d536258861 [32m201[0m 509.242 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258852 [32m201[0m 218.879 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f88ed2e135d536258853 [32m201[0m 211.228 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 35.260 ms - 4941[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 2
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 1 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 46
+done 6
+other results 6
+other results 2 6
+[0mPOST /api/documents [32m200[0m 171.150 ms - 4712[0m
+getting doc id
+[0mGET /api/documents/64b8e2b9e061da0f5748875c [32m201[0m 30.187 ms - 10820[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e2aae061da0f57488701 [32m201[0m 109.150 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e2aae061da0f57488702 [32m201[0m 185.086 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e2aae061da0f57488703 [32m201[0m 150.585 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 30.017 ms - 4941[0m
+getting doc id
+[0mGET /api/documents/64bb61c57fd3cfae0c30cced [32m201[0m 24.757 ms - 9671[0m
+getting page id
+[0mGET /api/documents/signed_page/64bb60497fd3cfae0c30cae5 [32m201[0m 109.964 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 29.657 ms - 4941[0m
+[0mPOST /api/toppers [32m200[0m 69.559 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 51.672 ms - 13479[0m
+[0mPOST /api/user/login-or-create [32m200[0m 37.552 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 61.849 ms - 13479[0m
+[0mPOST /api/referral/apply [31m500[0m 45.895 ms - 52[0m
+[0mPOST /api/toppers [32m200[0m 72.223 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 53.494 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 59.098 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 63.588 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 188.182 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 274.761 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 264.256 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 330.013 ms - 13479[0m
+[0mPOST /api/user/login-or-create [32m200[0m 26.735 ms - 227[0m
+[0mPOST /api/user/me [32m200[0m 24.092 ms - 227[0m
+[0mPOST /api/referral/apply [31m500[0m 41.887 ms - 52[0m
+[0mPOST /api/toppers [32m200[0m 56.853 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 21.368 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 59.978 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 25.583 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 53.664 ms - 13479[0m
+[0mPOST /api/user/login-or-create [32m200[0m 25.756 ms - 227[0m
+[0mPOST /api/user/me [32m200[0m 23.226 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 51.735 ms - 13479[0m
+[0mPOST /api/referral/apply [31m500[0m 43.483 ms - 52[0m
+[0mPOST /api/user/me [32m200[0m 33.497 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 80.783 ms - 13479[0m
+Finding keywords [ 'Sociology as Science' ]
+{
+  additionalQueries: { '$match': { l0_categories: 16 } },
+  documentType: undefined
+}
+keywordResults 15
+tagSearchResults 15
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 177.980 ms - 12410[0m
+Finding keywords [ 'Sociology as Science' ]
+{
+  additionalQueries: { '$match': { l0_categories: 16 } },
+  documentType: undefined
+}
+keywordResults 22
+tagSearchResults 22
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 155.054 ms - 12342[0m
+getting doc id
+[0mGET /api/documents/64b7ed5e012e7a70feead8bd [32m201[0m 29.122 ms - 4674[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8b7 [32m201[0m 162.625 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 27.620 ms - 787[0m
+getting doc id
+[0mGET /api/documents/64b7ed5e012e7a70feead8bd [32m201[0m 47.703 ms - 4674[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8b7 [32m201[0m 142.068 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8bb [32m201[0m 146.607 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8bc [32m201[0m 36.779 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8b8 [32m201[0m 149.917 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8b9 [32m201[0m 110.660 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b7ed5e012e7a70feead8ba [32m201[0m 140.027 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 36.600 ms - 787[0m
+Finding keywords [ 'Sociology as Science' ]
+{
+  additionalQueries: { '$match': { l0_categories: 16 } },
+  documentType: undefined
+}
+keywordResults 13
+tagSearchResults 13
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 185.112 ms - 9298[0m
+Finding keywords [ 'Thinking and Problem Solving' ]
+{
+  additionalQueries: { '$match': { l0_categories: undefined } },
+  documentType: undefined
+}
+keywordResults 0
+tagSearchResults 0
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 137.782 ms - 38[0m
 Finding keywords [
-  'Art and culture',
-  'Indian Art Forms',
-  'Indian Paintings',
-  'Mural Paintings',
-  'Miniature Paintings',
-  'Mughal, Rajput, Pahari Paintings',
-  'Dances in India',
-  'Classical Dance Forms',
-  'Folk Dance Forms',
-  'Modern Dance',
-  'Music',
-  'Classical Music',
-  'Folk Music',
-  'Puppetry',
-  'String Puppets',
-  'Shadow Puppets',
-  'Rod Puppets',
-  'Glove puppets',
-  'Modern Puppetry',
-  'Tribal Puppetry',
-  'Pottery',
-  'Ochre Coloured Pottery(OCP)',
-  'Black and Red Ware (BRW)',
-  'Painted Grey Ware (PGW)',
-  'Northern Black Polished Ware (NBPW)',
-  'Glazed and Unglazed Pottery',
-  'Drama/Theatre',
-  'Classical Sanskrit Theatre',
-  'Regional Theatre',
-  'Modern Theatre',
-  'Martial Arts',
-  'Thang Ta',
-  'Gatka',
-  'Kalaripayattu',
-  'Mallakhamb',
-  'Silambam',
-  'Other Important Martial Arts',
-  'Visual Art',
-  'Sculptures of Harappan Civilization',
-  'Sculptures of the Mauryan Age',
-  'Post-Mauryan Period',
-  'Jain Sculptures',
-  'Buddhist Sculpture',
-  'Gupta Sculpture',
-  'Medieval School of Sculpture',
-  'Modern Indian Sculpture',
-  'Bhakti & Sufi Movements',
-  'Spread of Bhakti and Sufi Movements',
-  'Women Poets of Bhakti',
-  'Literature',
-  'Classical Sanskrit Literature',
-  'Vedas, Upanishads, Puranas',
-  'Books written by Kalidasa, Vishakhadatta etc',
-  'Ancient Buddhist Literature',
-  'Ancient Jainism Literature',
-  'Early Dravidian Literature (eg Sangam Period)',
-  'Medieval Literature',
-  'Trends in Medieval Literature',
-  'Modern Indian Literature',
-  'Architecture',
-  'Harappan Architecture',
-  'Mauryan Architecture',
-  'Post-Mauryan Period Gupta Period',
-  'Temple Architecture',
-  'Nagara Style',
-  'Dravida Style',
-  'Vesara Style',
-  'Cave Architecture',
-  'Buddhist Cave',
-  'Jaina Caves',
-  'Gupta Period Caves',
-  'Medieval and Indo-Islamic Architecture',
-  'Imperial Style Delhi Sultanate',
-  'Provincial Style',
-  'Mughal Style',
-  'Sikh Style of Architecture',
-  'Rajput Architecture',
-  'Salient features',
-  'Colonial Architecture & Modern Architecture',
-  'European Influence',
-  'Indo-Saracenic Architecture',
-  'Post-Independence Period',
-  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
-  'Rock Cut Architecture',
-  'South Indian',
-  'Western Indian',
-  'Eastern Indian',
-  'Art and culture'
+  'Why Does Earth Shake?',
+  'Earthquake Waves',
+  'Shadow Zone',
+  'Types of Earthquake',
+  'Measuring Earthquake',
+  'Effects of Earthquake',
+  'Earthquakes'
 ]
 {
   additionalQueries: { '$match': { l0_categories: 1 } },
   documentType: undefined
 }
-[0mPOST /api/toppers [32m200[0m 2016.929 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 2000.375 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 2600.977 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 1227.172 ms - 4941[0m
-[0mPOST 
+keywordResults 13
+tagSearchResults 13
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 161.499 ms - 9489[0m
+getting doc id
+[0mGET /api/documents/64bb639c7fd3cfae0c30cf0f [32m201[0m 22.795 ms - 7963[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64bb627a7fd3cfae0c30cd8d [32m201[0m 99.572 ms - 394[0m
+[0mGET /api/documents/signed_page/64bb62757fd3cfae0c30cd86 [32m201[0m 202.189 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64bb639c7fd3cfae0c30cf0f [32m201[0m 22.972 ms - 7963[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64bb63557fd3cfae0c30cebd [32m201[0m 139.063 ms - 394[0m
+[0mGET /api/documents/signed_page/64bb63587fd3cfae0c30cec3 [32m201[0m 138.155 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64bb635c7fd3cfae0c30cec9 [32m201[0m 137.891 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 35.629 ms - 4941[0m
+Finding keywords [
+  'Why Does Earth Shake?',
+  'Earthquake Waves',
+  'Shadow Zone',
+  'Types of Earthquake',
+  'Measuring Earthquake',
+  'Effects of Earthquake',
+  'Earthquakes'
+]
+{
+  additionalQueries: { '$match': { l0_categories: 1 } },
+  documentType: undefined
+}
+keywordResults 12
+tagSearchResults 12
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 153.532 ms - 8391[0m
+getting doc id
+[0mGET /api/documents/64ba1f9149d744aaa65fd947 [32m201[0m 39.714 ms - 5431[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd939 [32m201[0m 213.143 ms - 394[0m
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd938 [32m201[0m 228.262 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93a [32m201[0m 144.648 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93b [32m201[0m 87.075 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64ba1f9149d744aaa65fd947 [32m201[0m 21.744 ms - 5431[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93b [32m201[0m 131.576 ms - 394[0m
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93a [32m201[0m 149.727 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd939 [32m201[0m 176.158 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd938 [32m201[0m 194.551 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93c [32m201[0m 156.905 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93d [32m201[0m 225.065 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f8f49d744aaa65fd93e [32m201[0m 157.746 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f9049d744aaa65fd940 [32m201[0m 209.597 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64ba1f9049d744aaa65fd941 [32m201[0m 158.332 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 32.416 ms - 4941[0m
+[0mPOST /api/toppers [32m200[0m 67.460 ms - 4941[0m
+[0mPOST /api/user/me [32m200[0m 106.295 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 206.620 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 27.035 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 62.252 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 166.259 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 222.101 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 25.235 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 58.631 ms - 13479[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 114.442 ms - 2710[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 2 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 44
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 180.179 ms - 13960[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 32.849 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 267.986 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 284.103 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258777 [32m201[0m 222.475 ms - 394[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258776 [32m201[0m 219.807 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80ad2e135d53625876e [32m201[0m 203.421 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80ad2e135d53625876d [32m201[0m 296.190 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 32.807 ms - 4934[0m
+[0mPOST /api/user/me [32m200[0m 54.218 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 73.675 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 73.137 ms - 13479[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 91.631 ms - 25[0m
+[0mPOST /api/user/me [32m200[0m 236.567 ms - 227[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 64.924 ms - 25[0m
+[0mPOST /api/user/me [32m200[0m 23.295 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 50.673 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 30.870 ms - 227[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 68.906 ms - 25[0m
+[0mPOST /api/toppers [32m200[0m 50.157 ms - 13479[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 69.220 ms - 25[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 65.596 ms - 2710[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 2 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 44
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 475.803 ms - 13960[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 27.109 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 242.908 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 258.687 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 24.864 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 204.117 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 242.360 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 35.063 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 485.182 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 503.374 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 29.226 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 552.754 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 574.100 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 23.140 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 1272.889 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 1317.334 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 25.516 ms - 11239[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 27.714 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 499.465 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 521.233 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80ad2e135d536258770 [32m201[0m 300.586 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80ad2e135d53625876f [32m201[0m 369.221 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 142.885 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 278.671 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 309.294 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 50.485 ms - 11239[0m
+[0mPOST /api/usage/file-download [32m200[0m 45.674 ms - 16[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 78.683 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258773 [32m201[0m 228.021 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80ad2e135d536258772 [32m201[0m 256.798 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 41.139 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 863.394 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 882.102 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 27.644 ms - 11239[0m
+[0mPOST /api/user/me [32m200[0m 29.379 ms - 227[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 274.270 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 450.378 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 465.326 ms - 394[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258776 [32m201[0m 278.336 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258775 [32m201[0m 411.291 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 55.968 ms - 13479[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 29.080 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 335.596 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 360.281 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 22.574 ms - 11239[0m
+[0mPOST /api/user/me [32m200[0m 23.297 ms - 227[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 60.178 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 327.767 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 342.773 ms - 394[0m
+getting doc id
+[0mGET /api/documents/64b8f817d2e135d53625879f [32m201[0m 28.568 ms - 11239[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258778 [32m201[0m 245.602 ms - 394[0m
+[0mGET /api/documents/signed_page/64b8f80bd2e135d536258779 [32m201[0m 260.852 ms - 394[0m
+[0mPOST /api/toppers [32m200[0m 75.083 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 80.367 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 120.309 ms - 13479[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 73.362 ms - 25[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 67.037 ms - 2710[0m
+searching for ndrf undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in': [Array] } } } undefined
+found docs 4
+Keyword search documents 4
+searching for others
+searching for ndrf undefined
+{ l0Categories: [ 2 ] }
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$not': [Object] } } } undefined
+found docs 85
+Keyword search documents 44
+done 20
+other results 20
+other results 2 20
+[0mPOST /api/documents [32m200[0m 249.864 ms - 13960[0m
+getting doc id
+[0mGET 
