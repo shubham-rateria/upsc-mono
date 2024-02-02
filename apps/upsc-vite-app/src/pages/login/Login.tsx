@@ -8,8 +8,7 @@ import PhoneInput from "react-phone-number-input";
 import { Button, Input } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
-import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
-import { UserContext } from "../../contexts/UserContextProvider";
+import { Carousel } from "react-responsive-carousel";
 
 function isPhoneNumber(value: string) {
   // Define a regular expression pattern for a phone number with Indian country code +91
@@ -151,98 +150,104 @@ export const Login = () => {
 
   return (
     <div className={styles.Container}>
+      <div className={styles.Showcase}>
+        <Carousel showStatus={false} showThumbs={false} showArrows={true}>
+          <div className={styles.CarouselCard}>
+            <img src="https://placehold.co/600x400" />
+            <h1 className={styles.Title}>
+              Say goodbye to endless searches for notes!
+            </h1>
+            <p className={styles.Description}>
+              Our platform brings together handwritten notes of toppers in one
+              easily searchable place, allowing you to spend more time mastering
+              your content.
+            </p>
+          </div>
+          <div className={styles.CarouselCard}>
+            <img src="https://placehold.co/600x400" />
+          </div>
+        </Carousel>
+      </div>
       <div className={styles.InnerContainer}>
-        <div className={styles.Logo}>
-          <img src={"/img/logo.svg"} alt="Logo" />
-        </div>
-        {!otpSent && (
-          <>
-            <div className={styles.Label}>Login with phone number</div>
+        <div className={styles.LoginContainer}>
+          <div className={styles.Logo}>
+            <img src={"/img/logo.svg"} alt="Logo" />
+          </div>
+          {!otpSent && (
+            <>
+              <div className={styles.Label}>Login with phone number</div>
+              <div>
+                <PhoneInput
+                  defaultCountry="IN"
+                  placeholder="Enter phone number"
+                  value={phoneNumber}
+                  // @ts-ignore
+                  onChange={setPhoneNumber}
+                  className={styles.Input}
+                />
+                <Button
+                  disabled={!isPhoneNumber(phoneNumber || "")}
+                  onClick={sendPasscode}
+                  className={styles.Button}
+                  loading={loading}
+                >
+                  Login with OTP
+                </Button>
+              </div>
+            </>
+          )}
+          {otpSent && (
             <div>
-              <PhoneInput
-                defaultCountry="IN"
-                placeholder="Enter phone number"
-                value={phoneNumber}
-                // @ts-ignore
-                onChange={setPhoneNumber}
-                className={styles.Input}
-              />
-              {showReferralInput && (
-                <Input
-                  fluid
-                  placeholder="Enter referral code"
+              <div className={styles.Label}>
+                Enter OTP sent to{" "}
+                <span className={styles.PhoneNumber}>{phoneNumber}</span>
+              </div>
+              <div className={styles.Input}>
+                <input
+                  id="otp-input"
+                  autoComplete="one-time-code"
+                  type="numeric"
+                  pattern="[0-9]*"
                   onChange={(e) => {
-                    setReferralCode(e.target.value.toUpperCase());
+                    setOtp(e.target.value.toString());
                   }}
                 />
-              )}
-              <Button
-                className={styles.ButtonSecondary}
-                onClick={() => {
-                  if (!showReferralInput) {
-                    setShowReferralInput(true);
-                  } else {
-                    setShowReferralInput(false);
-                    setReferralCode("");
-                  }
-                }}
-              >
-                {!showReferralInput ? "Enter" : "Remove"} Referral Code
-              </Button>
-              <Button
-                disabled={!isPhoneNumber(phoneNumber || "")}
-                onClick={sendPasscode}
-                className={styles.Button}
-                loading={loading}
-              >
-                Login with OTP
-              </Button>
+              </div>
+              <div>
+                <Button
+                  className={styles.Button}
+                  onClick={submitOtp}
+                  loading={loading}
+                >
+                  Submit OTP
+                </Button>
+              </div>
+              <div>
+                <Button
+                  className={styles.ButtonSecondary}
+                  onClick={sendPasscode}
+                  disabled={resendCodeTimer > 0}
+                >
+                  Resend OTP{" "}
+                  {Math.max(0, resendCodeTimer) > 0 ? (
+                    <span>in {resendCodeTimer}s</span>
+                  ) : (
+                    ""
+                  )}
+                </Button>
+              </div>
             </div>
-          </>
-        )}
-        {otpSent && (
-          <div>
-            <div className={styles.Label}>
-              Enter OTP sent to{" "}
-              <span className={styles.PhoneNumber}>{phoneNumber}</span>
-            </div>
-            <div className={styles.Input}>
-              <input
-                id="otp-input"
-                autoComplete="one-time-code"
-                type="numeric"
-                pattern="[0-9]*"
-                onChange={(e) => {
-                  setOtp(e.target.value.toString());
-                }}
-              />
-            </div>
-            <div>
-              <Button
-                className={styles.Button}
-                onClick={submitOtp}
-                loading={loading}
-              >
-                Submit OTP
-              </Button>
-            </div>
-            <div>
-              <Button
-                className={styles.ButtonSecondary}
-                onClick={sendPasscode}
-                disabled={resendCodeTimer > 0}
-              >
-                Resend OTP{" "}
-                {Math.max(0, resendCodeTimer) > 0 ? (
-                  <span>in {resendCodeTimer}s</span>
-                ) : (
-                  ""
-                )}
-              </Button>
-            </div>
+          )}
+          {error && <div className={styles.Error}>{errorMessage}</div>}
+          <div className={styles.TnC}>
+            <div>Terms & Conditions</div>
+            <div>•</div>
+            <div>Privacy Policy</div>
           </div>
-        )}
-        {error && <div className={styles.Error}>{errorMessage}</div>}
+          <div className={styles.Rights}>
+            <div>© All Rights Reserved; UPSC SmartNotes LLP</div>
+          </div>
+        </div>
       </div>
     </div>
   );
