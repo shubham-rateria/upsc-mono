@@ -5,6 +5,7 @@ import SearchPage from "./pages/topbar-layout/search/page.tsx";
 import ViewDocument from "./pages/topbar-layout/view-document/page.tsx";
 import "./globals.css";
 import "semantic-ui-css/semantic.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import SearchParamsContextProvider from "./contexts/SearchParamsContextProvider.tsx";
 import { StytchProvider } from "@stytch/react";
