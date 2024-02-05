@@ -150,6 +150,7 @@
 .CarouselCard .Description {
   width: 80%;
   font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
 
 .CarouselCard video {
