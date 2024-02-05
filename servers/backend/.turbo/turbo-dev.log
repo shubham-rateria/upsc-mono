@@ -1,16 +1,15 @@
-(node:6036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `pnpm --trace-warnings ...` to show where the warning was created)
 
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 12:36:37 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 10:06:35 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:6052) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:30448) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:30448) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
-(Use `node --trace-warnings ...` to show where the warning was created)
 Connected to MongoDB
 db loaded...
 express loaded...
@@ -19,114 +18,84 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 64.914 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 40.306 ms - 4934[0m
-tagSearchResults 10
-other results 0
-other results 2 0
-[0mPOST /api/documents [32m200[0m 822.414 ms - 69939[0m
-other results 0
-other results 2 0
-[0mPOST /api/documents [32m200[0m 1.670 ms - 38[0m
-[0mPOST /api/toppers [32m200[0m 580.694 ms - 13479[0m
-tagSearchResults 10
-[0mPOST /api/toppers [32m200[0m 1498.211 ms - 4941[0m
-Finding keywords [
-  'Art and culture',
-  'Indian Art Forms',
-  'Indian Paintings',
-  'Mural Paintings',
-  'Miniature Paintings',
-  'Mughal, Rajput, Pahari Paintings',
-  'Dances in India',
-  'Classical Dance Forms',
-  'Folk Dance Forms',
-  'Modern Dance',
-  'Music',
-  'Classical Music',
-  'Folk Music',
-  'Puppetry',
-  'String Puppets',
-  'Shadow Puppets',
-  'Rod Puppets',
-  'Glove puppets',
-  'Modern Puppetry',
-  'Tribal Puppetry',
-  'Pottery',
-  'Ochre Coloured Pottery(OCP)',
-  'Black and Red Ware (BRW)',
-  'Painted Grey Ware (PGW)',
-  'Northern Black Polished Ware (NBPW)',
-  'Glazed and Unglazed Pottery',
-  'Drama/Theatre',
-  'Classical Sanskrit Theatre',
-  'Regional Theatre',
-  'Modern Theatre',
-  'Martial Arts',
-  'Thang Ta',
-  'Gatka',
-  'Kalaripayattu',
-  'Mallakhamb',
-  'Silambam',
-  'Other Important Martial Arts',
-  'Visual Art',
-  'Sculptures of Harappan Civilization',
-  'Sculptures of the Mauryan Age',
-  'Post-Mauryan Period',
-  'Jain Sculptures',
-  'Buddhist Sculpture',
-  'Gupta Sculpture',
-  'Medieval School of Sculpture',
-  'Modern Indian Sculpture',
-  'Bhakti & Sufi Movements',
-  'Spread of Bhakti and Sufi Movements',
-  'Women Poets of Bhakti',
-  'Literature',
-  'Classical Sanskrit Literature',
-  'Vedas, Upanishads, Puranas',
-  'Books written by Kalidasa, Vishakhadatta etc',
-  'Ancient Buddhist Literature',
-  'Ancient Jainism Literature',
-  'Early Dravidian Literature (eg Sangam Period)',
-  'Medieval Literature',
-  'Trends in Medieval Literature',
-  'Modern Indian Literature',
-  'Architecture',
-  'Harappan Architecture',
-  'Mauryan Architecture',
-  'Post-Mauryan Period Gupta Period',
-  'Temple Architecture',
-  'Nagara Style',
-  'Dravida Style',
-  'Vesara Style',
-  'Cave Architecture',
-  'Buddhist Cave',
-  'Jaina Caves',
-  'Gupta Period Caves',
-  'Medieval and Indo-Islamic Architecture',
-  'Imperial Style Delhi Sultanate',
-  'Provincial Style',
-  'Mughal Style',
-  'Sikh Style of Architecture',
-  'Rajput Architecture',
-  'Salient features',
-  'Colonial Architecture & Modern Architecture',
-  'European Influence',
-  'Indo-Saracenic Architecture',
-  'Post-Independence Period',
-  'Contribution of Buddhism & Jainism to the Development of Indian Architecture',
-  'Rock Cut Architecture',
-  'South Indian',
-  'Western Indian',
-  'Eastern Indian',
-  'Art and culture'
-]
+[0mPOST /api/user/me [32m200[0m 97.564 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 142.276 ms - 13479[0m
 {
-  additionalQueries: { '$match': { l0_categories: 1 } },
-  documentType: undefined
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
 }
-[0mPOST /api/toppers [32m200[0m 2016.929 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 2000.375 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 2600.977 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 1227.172 ms - 4941[0m
-[0mPOST 
+[0mPOST /api/usage/remaining-downloads [32m200[0m 98.755 ms - 25[0m
+[0mPOST /api/user/me [32m200[0m 32.565 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 74.931 ms - 13479[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 72.825 ms - 25[0m
+tagSearchResults 10
+[0mPOST /api/toppers [32m200[0m 46.157 ms - 4833[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 603.506 ms - 30484[0m
+[0mPOST /api/toppers [32m200[0m 62.524 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 75.464 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 64.984 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 65.191 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 88.358 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 63.959 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 61.484 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 61.195 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 60.810 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 58.340 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 66.189 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 60.438 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 62.268 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 58.453 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 62.831 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 60.418 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 60.280 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 60.939 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 60.346 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 63.421 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 61.700 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 59.293 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 62.030 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 59.245 ms - 13479[0m
+searching for something to search here undefined
+{
+  pipeline: [
+    { '$search': [Object] },
+    { '$skip': 0 },
+    { '$limit': 2000 },
+    { '$project': [Object] },
+    { '$addFields': [Object] },
+    { '$lookup': [Object] },
+    { '$unwind': '$targetDoc' },
+    { '$project': [Object] },
+    { '$match': [Object] }
+  ]
+} { '$match': { l0_categories: { '$in':

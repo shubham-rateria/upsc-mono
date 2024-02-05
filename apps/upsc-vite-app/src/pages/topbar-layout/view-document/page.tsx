@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
-import { Document, Page, pdfjs } from "react-pdf";
 import "./DocumentViewer.css";
-import {
-  Button,
-  Checkbox,
-  Icon,
-  Input,
-  Modal,
-  Progress,
-} from "semantic-ui-react";
+import { Button, Icon, Input, Modal } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
@@ -18,15 +10,17 @@ import { useNavigate } from "react-router-dom";
 import { SearchParamsContext } from "../../../contexts/SearchParamsContext";
 import { GeneralSearchQueries } from "../../../analytics/types";
 import { AnalyticsClassContext } from "../../../analytics/AnalyticsClass";
+import { UserContext } from "../../../contexts/UserContextProvider";
+import { observer } from "mobx-react-lite";
+import ReferralModal from "../../../components/ReferralModal/ReferralModal";
+import Page from "./components/Page/Page";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
-const DocumentViewerPage: React.FC = () => {
+const DocumentViewerPage: React.FC = observer(() => {
   const navigate = useNavigate();
+  const user = useContext(UserContext);
   const [documentId, setDocumentId] = useState<string | null>();
   const [document, setDocument] = useState<Result>();
   const [loading, setLoading] = useState(true);
-  const [documentLoadingPercent, setDocumentLoadingPercent] = useState(0);
   const [currentActivePage, setCurrentActivePage] = useState<number | null>(
     null
   );
@@ -38,21 +32,35 @@ const DocumentViewerPage: React.FC = () => {
   const [documentSearchText, setDocumentSearchText] = useState<string | null>(
     null
   );
-  const [downloadMode, setDownloadMode] = useState(0);
-  const [downloadRangeFrom, setDownloadRangeFrom] = useState<number | null>(
-    null
-  );
-  const [downloadRangeTo, setDownloadRangeTo] = useState<number | null>(null);
-  const [downloadRangeError, setDownloadRangeError] = useState(false);
-  const [downloadRangeErrMsg, setDownloadRangeErrMsg] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [lastPageChangeTime, setLastPageChangeTime] = useState(200000000000000);
-  const [docLoadedTimestamp, setDocLoadedTimestamp] = useState(-1);
+  const [docLoadedTimestamp, _setDocLoadedTimestamp] = useState(-1);
   const [docLoadStartTime, setDocLoadStartTime] = useState(-1);
+  const [fileDownloading, setFileDownloading] = useState(false);
+  const [openReferralModal, setOpenReferralModal] = useState(false);
 
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
+
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const analyticsData: GeneralSearchQueries = {
+    text_searched: searchParamsClass.searchParams.keyword,
+    notes_filter_type:
+      searchParamsClass.searchParams.documentType === -1
+        ? undefined
+        : searchParamsClass.searchParams.documentType,
+    subject_selected:
+      (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+        ? // @ts-ignore
+          searchParamsClass.searchParams.subjectTags[0].optionalsName ??
+          // @ts-ignore
+          searchParamsClass.searchParams.subjectTags[0].type
+        : undefined,
+    topper_filter_selected: searchParamsClass.searchParams.topper,
+    search_type: "keyword",
+  };
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -65,100 +73,100 @@ const DocumentViewerPage: React.FC = () => {
     );
     if (el) {
       el.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
+        // behavior: "smooth",
+        block: "start",
         inline: "nearest",
       });
     }
   };
 
-  const handlePdfLoadSuccess = () => {
-    setDocLoadedTimestamp(Date.now());
-    const urlParams = new URLSearchParams(window.location.search);
+  // const handlePdfLoadSuccess = () => {
+  //   setDocLoadedTimestamp(Date.now());
+  //   const urlParams = new URLSearchParams(window.location.search);
 
-    const data: GeneralSearchQueries = {
-      text_searched: searchParamsClass.searchParams.keyword,
-      notes_filter_type:
-        searchParamsClass.searchParams.documentType === -1
-          ? undefined
-          : searchParamsClass.searchParams.documentType,
-      subject_selected:
-        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
-          ? // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].optionalsName ??
-            // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].type
-          : undefined,
-      topper_filter_selected: searchParamsClass.searchParams.topper,
-      search_type: "keyword",
-    };
+  //   const data: GeneralSearchQueries = {
+  //     text_searched: searchParamsClass.searchParams.keyword,
+  //     notes_filter_type:
+  //       searchParamsClass.searchParams.documentType === -1
+  //         ? undefined
+  //         : searchParamsClass.searchParams.documentType,
+  //     subject_selected:
+  //       (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+  //         ? // @ts-ignore
+  //           searchParamsClass.searchParams.subjectTags[0].optionalsName ??
+  //           // @ts-ignore
+  //           searchParamsClass.searchParams.subjectTags[0].type
+  //         : undefined,
+  //     topper_filter_selected: searchParamsClass.searchParams.topper,
+  //     search_type: "keyword",
+  //   };
 
-    analyticsClass.triggerDocumentOpened({
-      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-      ...data,
-      document_name: document?.s3_object_name || "",
-      column_no: parseInt(urlParams.get("colNo") || "-1"),
-      // @ts-ignore
-      feed_type: urlParams.get("feedType") || "primary",
-      row_no: parseInt(urlParams.get("rowNo") || "-1"),
-      result: "pass",
-      time_taken: Date.now() - docLoadStartTime,
-    });
+  //   analyticsClass.triggerDocumentOpened({
+  //     page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+  //     ...data,
+  //     document_name: document?.s3_object_name || "",
+  //     column_no: parseInt(urlParams.get("colNo") || "-1"),
+  //     // @ts-ignore
+  //     feed_type: urlParams.get("feedType") || "primary",
+  //     row_no: parseInt(urlParams.get("rowNo") || "-1"),
+  //     result: "pass",
+  //     time_taken: Date.now() - docLoadStartTime,
+  //   });
 
-    const pageNumber = urlParams.get("page");
+  //   const pageNumber = urlParams.get("page");
 
-    if (pageNumber) {
-      setTimeout(() => {
-        scrollToPageNumber(pageNumber);
-      }, 100);
-    }
+  //   if (pageNumber) {
+  //     setTimeout(() => {
+  //       scrollToPageNumber(pageNumber);
+  //     }, 100);
+  //   }
 
-    if (
-      searchParamsClass.searchParams.keyword &&
-      searchParamsClass.searchParams.keyword.length > 0
-    ) {
-      setDocumentSearchText(searchParamsClass.searchParams.keyword);
-      handleDocumentSearch(
-        searchParamsClass.searchParams.keyword,
-        pageNumber ? false : true
-      );
-    }
+  //   if (
+  //     searchParamsClass.searchParams.keyword &&
+  //     searchParamsClass.searchParams.keyword.length > 0
+  //   ) {
+  //     setDocumentSearchText(searchParamsClass.searchParams.keyword);
+  //     handleDocumentSearch(
+  //       searchParamsClass.searchParams.keyword,
+  //       pageNumber ? false : true
+  //     );
+  //   }
 
-    setLastPageChangeTime(Date.now());
-  };
+  //   setLastPageChangeTime(Date.now());
+  // };
 
-  const handlePdfLoadError = () => {
-    setDocLoadedTimestamp(Date.now());
-    const urlParams = new URLSearchParams(window.location.search);
+  // const handlePdfLoadError = () => {
+  //   setDocLoadedTimestamp(Date.now());
+  //   const urlParams = new URLSearchParams(window.location.search);
 
-    const data: GeneralSearchQueries = {
-      text_searched: searchParamsClass.searchParams.keyword,
-      notes_filter_type:
-        searchParamsClass.searchParams.documentType === -1
-          ? undefined
-          : searchParamsClass.searchParams.documentType,
-      subject_selected:
-        (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
-          ? // @ts-ignore
-            searchParamsClass.searchParams.subjectTags[0].value.tagText
-          : undefined,
-      topper_filter_selected: searchParamsClass.searchParams.topper,
-      search_type: "keyword",
-    };
+  //   const data: GeneralSearchQueries = {
+  //     text_searched: searchParamsClass.searchParams.keyword,
+  //     notes_filter_type:
+  //       searchParamsClass.searchParams.documentType === -1
+  //         ? undefined
+  //         : searchParamsClass.searchParams.documentType,
+  //     subject_selected:
+  //       (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
+  //         ? // @ts-ignore
+  //           searchParamsClass.searchParams.subjectTags[0].value.tagText
+  //         : undefined,
+  //     topper_filter_selected: searchParamsClass.searchParams.topper,
+  //     search_type: "keyword",
+  //   };
 
-    analyticsClass.triggerDocumentOpened({
-      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-      ...data,
-      document_name: document?.s3_object_name || "",
-      column_no: parseInt(urlParams.get("colNo") || "-1"),
-      // @ts-ignore
-      feed_type: urlParams.get("feedType") || "primary",
-      row_no: parseInt(urlParams.get("rowNo") || "-1"),
-      result: "fail",
-      time_taken: Date.now() - docLoadStartTime,
-    });
-    setLastPageChangeTime(Date.now());
-  };
+  //   analyticsClass.triggerDocumentOpened({
+  //     page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+  //     ...data,
+  //     document_name: document?.s3_object_name || "",
+  //     column_no: parseInt(urlParams.get("colNo") || "-1"),
+  //     // @ts-ignore
+  //     feed_type: urlParams.get("feedType") || "primary",
+  //     row_no: parseInt(urlParams.get("rowNo") || "-1"),
+  //     result: "fail",
+  //     time_taken: Date.now() - docLoadStartTime,
+  //   });
+  //   setLastPageChangeTime(Date.now());
+  // };
 
   const handlePageChange = (pageNumber: number) => {
     const timeNow = Date.now();
@@ -215,7 +223,8 @@ const DocumentViewerPage: React.FC = () => {
 
   const handleDocumentSearch = async (
     text: string | null,
-    scrollToResult: boolean = true
+    scrollToResult: boolean = true,
+    docId: string = ""
   ) => {
     if (!text) {
       return;
@@ -242,7 +251,7 @@ const DocumentViewerPage: React.FC = () => {
 
     try {
       const response = await axiosInstance.post(
-        `/api/documents/${documentId}/search`,
+        `/api/documents/${documentId || docId}/search`,
         {
           searchTerm: text,
         }
@@ -268,6 +277,10 @@ const DocumentViewerPage: React.FC = () => {
         setCurrentDocSearchResultIdx(-1);
         if (scrollToResult) {
           setCurrentDocSearchResultIdx(0);
+          console.log(
+            "[doc:search:scrolling]",
+            response.data.data.pages[0].page_number
+          );
           scrollToPageNumber(response.data.data.pages[0].page_number);
         }
       }
@@ -331,28 +344,6 @@ const DocumentViewerPage: React.FC = () => {
     return elemHeight / getHeightForPage(pageNumber);
   };
 
-  const handleRangeFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setDownloadRangeFrom(val);
-    if (downloadRangeTo !== null && val > downloadRangeTo) {
-      setDownloadRangeError(true);
-      setDownloadRangeErrMsg("From value has to be less than To");
-    } else {
-      setDownloadRangeError(false);
-    }
-  };
-
-  const handleRangeToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setDownloadRangeTo(val);
-    if (downloadRangeFrom !== null && val < downloadRangeFrom) {
-      setDownloadRangeError(true);
-      setDownloadRangeErrMsg("To value has to be less than From");
-    } else {
-      setDownloadRangeError(false);
-    }
-  };
-
   const handleBack = () => {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -394,16 +385,96 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
-  const handleDownload = () => {
-    setNoDownloadModalOpen(true);
+  const handleDownload = async (e: any) => {
+    e.stopPropagation();
+    setFileDownloading(true);
+    const urlParams = new URLSearchParams(window.location.search);
+
+    analyticsClass.triggerDocDownloadClicked({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...analyticsData,
+      document_name: document?.s3_object_name || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "pass",
+      time_taken: Date.now() - docLoadStartTime,
+      downloads_left: user.remainingDownloads.free,
+      free_downloads_left: user.remainingDownloads.free,
+    });
+
+    if (user.remainingDownloads.free <= 0) {
+      setOpenReferralModal(true);
+      analyticsClass.triggerReferNowClicked({
+        accessed_from: 1,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+        user_type: 0,
+        used: true,
+        paid_downloads_left: 0,
+      });
+      setFileDownloading(false);
+      return;
+    }
+
+    // setNoDownloadModalOpen(true);
+    try {
+      const response = await axiosInstance.get(`/api/documents/${documentId}`);
+      const url = response.data.data.s3_signed_url;
+      const element = window.document.createElement("a");
+      element.style.display = "none";
+      window.document.body.appendChild(element);
+      element.setAttribute("href", url);
+      element.setAttribute("target", "_blank");
+      element.className = self.name;
+      element.click();
+
+      analyticsClass.triggerDocDownloadStarted({
+        page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+        ...analyticsData,
+        document_name: document?.s3_object_name || "",
+        column_no: parseInt(urlParams.get("colNo") || "-1"),
+        // @ts-ignore
+        feed_type: urlParams.get("feedType") || "primary",
+        row_no: parseInt(urlParams.get("rowNo") || "-1"),
+        result: "pass",
+        time_taken: Date.now() - docLoadStartTime,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+      });
+
+      window.document.body.removeChild(element);
+      const data = {
+        fileS3ObjectName: response.data.data.s3_object_name,
+        userId: user.userId,
+      };
+      await axiosInstance.post("/api/usage/file-download", data);
+      await user.getRemainingDownloads();
+    } catch (error) {
+      console.log("Could not download part", error);
+    }
+    setFileDownloading(false);
+  };
+
+  const handleModalClose = () => {
+    setOpenReferralModal(false);
   };
 
   useEffect(() => {
     const init = async () => {
       setLoading(true);
-      const urlParams = new URLSearchParams(window.location.search);
       const documentId = urlParams.get("documentId");
       setDocumentId(documentId);
+
+      const pageNumber = parseInt(urlParams.get("page") || "-1");
+
+      if (pageNumber !== -1) {
+        setTimeout(() => {
+          console.log("scrolling to page", pageNumber);
+          scrollToPageNumber(pageNumber);
+        }, 300);
+      }
 
       const data: GeneralSearchQueries = {
         text_searched: searchParamsClass.searchParams.keyword,
@@ -426,6 +497,18 @@ const DocumentViewerPage: React.FC = () => {
         );
         setDocLoadStartTime(Date.now());
         setDocument(response.data.data);
+
+        if (
+          searchParamsClass.searchParams.keyword &&
+          searchParamsClass.searchParams.keyword.length > 0
+        ) {
+          setDocumentSearchText(searchParamsClass.searchParams.keyword);
+          handleDocumentSearch(
+            searchParamsClass.searchParams.keyword,
+            pageNumber !== -1 ? false : true,
+            documentId || ""
+          );
+        }
       } catch (error: any) {
         analyticsClass.triggerDocumentOpened({
           page_number: parseInt(urlParams.get("pageNumber") || "-1"),
@@ -449,6 +532,10 @@ const DocumentViewerPage: React.FC = () => {
     init();
   }, []);
 
+  useEffect(() => {
+    user.getRemainingDownloads();
+  }, [user.userId]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -459,6 +546,11 @@ const DocumentViewerPage: React.FC = () => {
 
   return (
     <div>
+      <ReferralModal
+        open={openReferralModal}
+        onClose={handleModalClose}
+        accessFrom={1}
+      />
       <Modal
         open={noDownloadModalOpen}
         onClose={() => {
@@ -559,76 +651,54 @@ const DocumentViewerPage: React.FC = () => {
               Page {currentActivePage || ""} / {document?.num_pages}
             </div>
           </div>
-          <Document
-            file={document?.s3_signed_url}
-            className={styles.Document}
-            onLoadSuccess={handlePdfLoadSuccess}
-            onLoadError={handlePdfLoadError}
-            onLoadProgress={({ loaded, total }) => {
-              setDocumentLoadingPercent((loaded * 100) / total);
-            }}
-            loading={
-              <div className={styles.DocumentLoadingContainer}>
-                <Progress
-                  className={styles.DocLoadProgress}
-                  active
-                  percent={documentLoadingPercent.toFixed(0)}
-                  // progress
-                  size="tiny"
-                >
-                  Loading <span>{document?.s3_object_name} </span>
-                </Progress>
-              </div>
-            }
-          >
-            {range(document?.num_pages || 0).map((index: number) => (
-              <div className={styles.Page} key={index}>
-                {getMatchingResultsForPage(index + 1)?.matching_blocks?.map(
-                  (block: MatchingBlock, idx: number) => (
-                    <div
-                      className={styles.MatchingResults}
-                      key={idx}
-                      style={{
-                        color: "blue",
-                        background: "purple",
-                        opacity: 0.3,
-                        top: `${
-                          (block.boundingBox.vertices[0].y * 100) /
-                          getHeightForPage(index + 1)
-                        }%`,
-                        left: `${
-                          (block.boundingBox.vertices[0].x * 100) /
-                          getWidthForPage(index + 1)
-                        }%`,
-                        width: `${
-                          skewX(index + 1) *
-                          (block.boundingBox.vertices[1].x -
-                            block.boundingBox.vertices[0].x)
-                        }px`,
-                        height: `${
-                          skewY(index + 1) *
-                          (block.boundingBox.vertices[3].y -
-                            block.boundingBox.vertices[0].y)
-                        }px`,
-                      }}
-                    />
-                  )
-                )}
-                <InView
-                  as="div"
-                  threshold={0.8}
-                  onChange={() => {
-                    handlePageChange(index + 1);
-                  }}
-                >
-                  <Page
-                    pageNumber={index + 1}
-                    width={window.innerWidth * 0.65 * 0.6}
+          {range(document?.num_pages || 0).map((index: number) => (
+            <div className={styles.Page} key={index}>
+              {getMatchingResultsForPage(index + 1)?.matching_blocks?.map(
+                (block: MatchingBlock, idx: number) => (
+                  <div
+                    className={styles.MatchingResults}
+                    key={idx}
+                    style={{
+                      color: "blue",
+                      background: "purple",
+                      opacity: 0.3,
+                      top: `${
+                        (block.boundingBox.vertices[0].y * 100) /
+                        getHeightForPage(index + 1)
+                      }%`,
+                      left: `${
+                        (block.boundingBox.vertices[0].x * 100) /
+                        getWidthForPage(index + 1)
+                      }%`,
+                      width: `${
+                        skewX(index + 1) *
+                        (block.boundingBox.vertices[1].x -
+                          block.boundingBox.vertices[0].x)
+                      }px`,
+                      height: `${
+                        skewY(index + 1) *
+                        (block.boundingBox.vertices[3].y -
+                          block.boundingBox.vertices[0].y)
+                      }px`,
+                    }}
                   />
-                </InView>
-              </div>
-            ))}
-          </Document>
+                )
+              )}
+              <InView
+                as="div"
+                threshold={0.8}
+                onChange={() => {
+                  handlePageChange(index + 1);
+                }}
+              >
+                <Page
+                  page={document?.pages[index]}
+                  pageNumber={index + 1}
+                  scrollToPageNumber={parseInt(urlParams.get("page") || "-1")}
+                />
+              </InView>
+            </div>
+          ))}
         </div>
         <div className={styles.DocumentDetails}>
           <div className={styles.Card}>
@@ -672,75 +742,13 @@ const DocumentViewerPage: React.FC = () => {
           <div className={styles.DownloadSection}>
             <div className={styles.Header}>Download</div>
             <div className={styles.DownloadOptions}>
-              <Checkbox
-                radio
-                label="All Pages"
-                name="checkboxRadioGroup"
-                value="all"
-                className={styles.Option}
-                checked={downloadMode === 0}
-                onMouseDown={() => {
-                  setDownloadMode(0);
-                }}
-              />
-              <Checkbox
-                radio
-                label="Page Range"
-                name="checkboxRadioGroup"
-                value="range"
-                className={styles.Option}
-                checked={downloadMode === 1}
-                onMouseDown={() => {
-                  setDownloadMode(1);
-                }}
-              />
-              <div
-                className={styles.NumberInputs}
-                onClick={() => {
-                  if (downloadMode !== 1) {
-                    setDownloadMode(1);
-                  }
-                }}
-              >
-                <Input
-                  placeholder="Page From"
-                  fluid
-                  type="number"
-                  size="mini"
-                  disabled={downloadMode !== 1}
-                  error={downloadRangeError}
-                  value={downloadRangeFrom}
-                  onChange={handleRangeFromChange}
-                />
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  -
-                </div>
-                <Input
-                  placeholder="Page To"
-                  fluid
-                  type="number"
-                  size="mini"
-                  disabled={downloadMode !== 1}
-                  error={downloadRangeError}
-                  value={downloadRangeTo}
-                  onChange={handleRangeToChange}
-                />
-              </div>
-              {downloadRangeError && (
-                <div className={styles.Error}>{downloadRangeErrMsg}</div>
-              )}
+              <div>{user.remainingDownloads.free} downloads remaining</div>
               <div onClick={handleDownload}>
                 <Button
                   icon
                   className={styles.DownloadButton}
                   labelPosition="left"
-                  disabled
+                  loading={fileDownloading}
                 >
                   <Icon name="download" />
                   Download
@@ -752,6 +760,6 @@ const DocumentViewerPage: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default DocumentViewerPage;

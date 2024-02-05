@@ -71,9 +71,15 @@ importers:
       react-phone-number-input:
         specifier: ^3.3.4
         version: 3.3.4(react-dom@18.2.0)(react@18.2.0)
+      react-responsive-carousel:
+        specifier: ^3.2.23
+        version: 3.2.23
       react-router-dom:
         specifier: ^6.15.0
         version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
+      react-usestateref:
+        specifier: ^1.0.8
+        version: 1.0.8(react@18.2.0)
       semantic-ui-css:
         specifier: ^2.5.0
         version: 2.5.0
@@ -5830,6 +5836,13 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-easy-swipe@0.0.21:
+    resolution: {integrity: sha512-OeR2jAxdoqUMHIn/nS9fgreI5hSpgGoL5ezdal4+oO7YSSgJR8ga+PkYGJrSrJ9MKlPcQjMQXnketrD7WNmNsg==}
+    engines: {node: '>= 6'}
+    dependencies:
+      prop-types: 15.8.1
+    dev: false
+
   /react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: false
@@ -5941,6 +5954,14 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /react-responsive-carousel@3.2.23:
+    resolution: {integrity: sha512-pqJLsBaKHWJhw/ItODgbVoziR2z4lpcJg+YwmRlSk4rKH32VE633mAtZZ9kDXjy4wFO+pgUZmDKPsPe1fPmHCg==}
+    dependencies:
+      classnames: 2.3.2
+      prop-types: 15.8.1
+      react-easy-swipe: 0.0.21
+    dev: false
+
   /react-router-dom@6.15.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-aR42t0fs7brintwBGAv2+mGlCtgtFQeOzK0BM1/OiqEzRejOZtpMZepvgkscpMUnKb8YO84G7s3LsHnnDNonbQ==}
     engines: {node: '>=14.0.0'}
@@ -5961,6 +5982,14 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.8.0
+      react: 18.2.0
+    dev: false
+
+  /react-usestateref@1.0.8(react@18.2.0):
+    resolution: {integrity: sha512-whaE6H0XGarFKwZ3EYbpHBsRRCLZqdochzg/C7e+b6VFMTA3LS3K4ZfpI4NT40iy83jG89rGXrw70P9iDfOdsA==}
+    peerDependencies:
+      react: '>16.0.0'
+    dependencies:
       react: 18.2.0
     dev: false
 

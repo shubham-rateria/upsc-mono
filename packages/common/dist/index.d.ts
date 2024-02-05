@@ -2247,6 +2247,9 @@ type MatchingBlock = {
     boundingBox: any;
 };
 type PageResult = {
+    _ref?: {
+        $id: string;
+    };
     page_number: number;
     s3_img_object_name?: string;
     clean_text?: string;

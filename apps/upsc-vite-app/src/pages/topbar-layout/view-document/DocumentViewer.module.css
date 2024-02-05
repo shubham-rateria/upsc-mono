@@ -46,14 +46,13 @@
 }
 
 .Page {
-  margin: var(--margin-s) 0;
+  /* margin: var(--margin-s) 0; */
   /* padding: var(--padding-m); */
   border-radius: 10px;
   /* background: white; */
   /* width: 100%; */
   display: flex;
   justify-content: center;
-  background: transparent;
   position: relative;
 }
 
