@@ -128,6 +128,15 @@
   height: 100%;
   padding: var(--padding-m) var(--padding-l);
   /* background: yellow; */
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Showcase video {
+  width: 100%;
+  margin-bottom: var(--margin-m);
+  border-radius: var(--border-radius-l);
+  border: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 .CarouselCard {
@@ -140,6 +149,13 @@
 
 .CarouselCard .Description {
   width: 80%;
+  font-size: 1.3rem;
+}
+
+.CarouselCard video {
+  width: 100%;
+  border-radius: var(--border-radius-l);
+  border: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 .TnC {

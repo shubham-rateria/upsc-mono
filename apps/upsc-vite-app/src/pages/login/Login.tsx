@@ -8,6 +8,8 @@ import PhoneInput from "react-phone-number-input";
 import { Button, Input } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
+import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
+import { UserContext } from "../../contexts/UserContextProvider";
 import { Carousel } from "react-responsive-carousel";
 
 function isPhoneNumber(value: string) {
@@ -151,9 +153,14 @@ export const Login = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Showcase}>
-        <Carousel showStatus={false} showThumbs={false} showArrows={true}>
+        <video src="/demo/full-demo.mp4" autoPlay muted />
+        <Carousel
+          showStatus={false}
+          showThumbs={false}
+          showArrows={true}
+          autoPlay={true}
+        >
           <div className={styles.CarouselCard}>
-            <img src="https://placehold.co/600x400" />
             <h1 className={styles.Title}>
               Say goodbye to endless searches for notes!
             </h1>
@@ -164,7 +171,38 @@ export const Login = () => {
             </p>
           </div>
           <div className={styles.CarouselCard}>
-            <img src="https://placehold.co/600x400" />
+            <h1 className={styles.Title}>Comprehensive and reliable sources</h1>
+            <p className={styles.Description}>
+              Don't waste time and energy scouring the internet for scattered
+              notes. We curate and structure the content from verified channels,
+              so you can have access to the best material out there.
+            </p>
+          </div>
+          <div className={styles.CarouselCard}>
+            <h1 className={styles.Title}>
+              Print what you need, when you need it
+            </h1>
+            <p className={styles.Description}>
+              No need to print stacks of notes anymore. Choose only the
+              materials that matter to you, saving money and decluttering your
+              study space.
+            </p>
+          </div>
+          <div className={styles.CarouselCard}>
+            <h1 className={styles.Title}>Learn from the Toppers</h1>
+            <p className={styles.Description}>
+              Discover the note-taking techniques and strategies used by
+              Toppers. Work smarter by incorporating the practices of successful
+              UPSC candidates.
+            </p>
+          </div>
+          <div className={styles.CarouselCard}>
+            <h1 className={styles.Title}>Master answer writing skills</h1>
+            <p className={styles.Description}>
+              Access thousands of previous year questions and answer sheets from
+              toppers, empowering you to hone your answer writing abilities and
+              excel in the exam.
+            </p>
           </div>
         </Carousel>
       </div>
@@ -240,9 +278,13 @@ export const Login = () => {
           )}
           {error && <div className={styles.Error}>{errorMessage}</div>}
           <div className={styles.TnC}>
-            <div>Terms & Conditions</div>
+            <a href="/pdf/Terms and Conditions.pdf" target="_blank">
+              Terms & Conditions
+            </a>
             <div>•</div>
-            <div>Privacy Policy</div>
+            <a href="/pdf/Privacy Policy.pdf" target="_blank">
+              Privacy Policy
+            </a>
           </div>
           <div className={styles.Rights}>
             <div>© All Rights Reserved; UPSC SmartNotes LLP</div>
