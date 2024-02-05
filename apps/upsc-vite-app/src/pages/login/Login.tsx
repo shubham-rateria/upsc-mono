@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { Button, Input } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import axiosInstance from "../../utils/axios-instance";
 import { TourContext } from "../../contexts/TourContext";
 import { AnalyticsClassContext } from "../../analytics/AnalyticsClass";
@@ -34,8 +34,7 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [methodId, setMethodId] = useState("");
-  const [showReferralInput, setShowReferralInput] = useState(false);
-  const [referralCode, setReferralCode] = useState("");
+  const [referralCode, _setReferralCode] = useState("");
 
   const tourContextController = useContext(TourContext);
   const analyticsClass = useContext(AnalyticsClassContext);
