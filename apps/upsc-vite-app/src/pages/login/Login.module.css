@@ -181,3 +181,19 @@
   align-items: center;
   width: 100%;
 }
+
+@media only screen and (max-width: 600px) {
+  .Showcase {
+    display: none;
+  }
+  .InnerContainer {
+    width: 100%;
+    padding: 0;
+  }
+  .LoginContainer {
+    width: 100%;
+  }
+  .Rights {
+    text-align: center;
+  }
+}

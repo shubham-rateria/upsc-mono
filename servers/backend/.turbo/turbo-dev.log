@@ -2,11 +2,11 @@
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 10:06:35 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.6of00.mongodb.net/?retryWrites=true&w=majority
-(node:30448) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[INFO] 11:47:31 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+connecting to mongodb+srv://shubham:Latelia1004_@cluster0.wcyiz.mongodb.net/
+(node:57626) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:30448) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:57626) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -18,8 +18,7 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/user/me [32m200[0m 97.564 ms - 227[0m
-[0mPOST /api/toppers [32m200[0m 142.276 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 43.072 ms - 227[0m
 {
   freePlanDownloads: 1,
   referralPlanDownloads: 2,
@@ -36,56 +35,208 @@ express loaded...
   ],
   userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
 }
-[0mPOST /api/usage/remaining-downloads [32m200[0m 98.755 ms - 25[0m
-[0mPOST /api/user/me [32m200[0m 32.565 ms - 227[0m
-[0mPOST /api/toppers [32m200[0m 74.931 ms - 13479[0m
-{
-  freePlanDownloads: 1,
-  referralPlanDownloads: 2,
-  referralPlan: [
-    {
-      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
-      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
-      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
-      referral_code_used: 'VTCWGI',
-      num_downloads: 2,
-      referral_code_used_on: 1695368073724,
-      __v: 0
-    }
-  ],
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 72.825 ms - 25[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 71.683 ms - 25[0m
+[0mPOST /api/toppers [32m200[0m 228.687 ms - 13479[0m
 tagSearchResults 10
-[0mPOST /api/toppers [32m200[0m 46.157 ms - 4833[0m
+[0mPOST /api/toppers [32m200[0m 41.091 ms - 5570[0m
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 603.506 ms - 30484[0m
-[0mPOST /api/toppers [32m200[0m 62.524 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 75.464 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 64.984 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 65.191 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 88.358 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 63.959 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 61.484 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 61.195 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 60.810 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 58.340 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 66.189 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 60.438 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 62.268 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 58.453 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 62.831 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 60.418 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 60.280 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 60.939 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 60.346 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 63.421 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 61.700 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 59.293 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 62.030 ms - 13479[0m
-[0mPOST /api/toppers [32m200[0m 59.245 ms - 13479[0m
-searching for something to search here undefined
+[0mPOST /api/documents [32m200[0m 857.725 ms - 27691[0m
+getting doc id
+[0mGET /api/documents/64b8e1c3e061da0f574886ea [32m201[0m 88.685 ms - 15815[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 192.175 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8e1bce061da0f57488648 [32m201[0m 365.966 ms - 225[0m
+[0mGET /api/documents/signed_page/64b8e1bce061da0f57488647 [32m201[0m 444.521 ms - 225[0m
+[0mPOST /api/toppers [32m200[0m 94.196 ms - 5570[0m
+getting doc id
+[0mGET /api/documents/64b8e331e061da0f574888ad [32m201[0m 95.910 ms - 11961[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 264.236 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8e323e061da0f57488844 [32m201[0m 408.396 ms - 225[0m
+[0mGET /api/documents/signed_page/64b8e323e061da0f57488843 [32m201[0m 593.857 ms - 223[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8e322e061da0f57488840 [32m201[0m 1543.799 ms - 223[0m
+[0mGET /api/documents/signed_page/64b8e322e061da0f57488841 [32m201[0m 1929.677 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e322e061da0f57488842 [32m201[0m 410.023 ms - 223[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e323e061da0f57488847 [32m201[0m 599.274 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e323e061da0f57488848 [32m201[0m 203.625 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e323e061da0f57488849 [32m201[0m 124.184 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e323e061da0f5748884a [32m201[0m 360.161 ms - 223[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e323e061da0f5748884b [32m201[0m 351.427 ms - 223[0m
+[0mPOST /api/toppers [32m200[0m 277.671 ms - 5570[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1109.268 ms - 30267[0m
+getting doc id
+[0mGET /api/documents/64b8dd32e061da0f57488064 [32m201[0m 181.624 ms - 8737[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 440.822 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8dd23e061da0f57487fbf [32m201[0m 774.873 ms - 225[0m
+[0mGET /api/documents/signed_page/64b8dd23e061da0f57487fc2 [32m201[0m 997.401 ms - 225[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8dd23e061da0f57487fc5 [32m201[0m 350.998 ms - 231[0m
+[0mGET /api/documents/signed_page/64b8dd24e061da0f57487fc8 [32m201[0m 645.231 ms - 223[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8dd24e061da0f57487fca [32m201[0m 810.387 ms - 223[0m
+[0mGET /api/documents/signed_page/64b8dd24e061da0f57487fcc [32m201[0m 903.217 ms - 223[0m
+[0mPOST /api/toppers [32m200[0m 98.855 ms - 5570[0m
+tagSearchResults 10
+getting doc id
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 3264.354 ms - 25423[0m
+[0mGET /api/documents/64c201330c82f9c8472a5ea5 [32m201[0m 1406.400 ms - 8687[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 1576.566 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64c2012d0c82f9c8472a5e66 [31m500[0m 487.172 ms - 64[0m
+[0mGET /api/documents/signed_page/64c2012d0c82f9c8472a5e67 [31m500[0m 668.116 ms - 64[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64c2012d0c82f9c8472a5e68 [31m500[0m 369.871 ms - 64[0m
+[0mGET /api/documents/signed_page/64c2012d0c82f9c8472a5e69 [31m500[0m 575.441 ms - 64[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64c2012e0c82f9c8472a5e6c [31m500[0m 637.328 ms - 64[0m
+[0mGET /api/documents/signed_page/64c2012e0c82f9c8472a5e6b [31m500[0m 695.859 ms - 64[0m
+[0mPOST /api/toppers [32m200[0m 218.969 ms - 5570[0m
+getting doc id
+[0mGET /api/documents/64b8e1c3e061da0f574886ea [32m201[0m 82.299 ms - 15819[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 334.417 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8e1bce061da0f57488648 [32m201[0m 895.897 ms - 223[0m
+[0mGET /api/documents/signed_page/64b8e1bce061da0f57488649 [32m201[0m 820.458 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e1bce061da0f5748864a [32m201[0m 165.400 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e1bce061da0f5748864b [32m201[0m 66.569 ms - 227[0m
+getting page id
+[0mPOST /api/toppers [32m200[0m 85.487 ms - 5570[0m
+[0mGET /api/documents/signed_page/64b8e1bce061da0f57488647 [32m201[0m 371.491 ms - 225[0m
+[0mPOST /api/toppers [32m200[0m 250.388 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 228.418 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 187.390 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 248.691 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 258.039 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 238.870 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 166.074 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 177.752 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 155.029 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 286.248 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 300.806 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 204.039 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 213.213 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 168.558 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 196.831 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 195.546 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 188.386 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 230.530 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 246.294 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 229.700 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 258.389 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 235.701 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 199.416 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 238.974 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 237.933 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 232.350 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 136.021 ms - 13479[0m
+[0mPOST /api/toppers [32m200[0m 214.957 ms - 13479[0m
+searching for harappan civilization length undefined
 {
   pipeline: [
     { '$search': [Object] },
@@ -95,7 +246,168 @@ searching for something to search here undefined
     { '$addFields': [Object] },
     { '$lookup': [Object] },
     { '$unwind': '$targetDoc' },
-    { '$project': [Object] },
-    { '$match': [Object] }
+    { '$project': [Object] }
   ]
-} { '$match': { l0_categories: { '$in':
+} { '$match': {} } undefined
+found docs 1994
+Keyword search documents 618
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 6999.581 ms - 107670[0m
+getting doc id
+[0mGET /api/documents/64b81ec899a912f8fecfe3a8 [32m201[0m 195.845 ms - 7982[0m
+doc search
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 392.485 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b81ec799a912f8fecfe39e [32m201[0m 387.419 ms - 227[0m
+[0mGET /api/documents/signed_page/64b81ec799a912f8fecfe39f [32m201[0m 391.047 ms - 227[0m
+[0mPOST /api/documents/64b81ec899a912f8fecfe3a8/search [32m201[0m 4786.205 ms - 6617[0m
+getting page id
+[0mGET /api/documents/signed_page/64b81ec799a912f8fecfe39d [32m201[0m 315.173 ms - 227[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b81ec699a912f8fecfe39c [32m201[0m 306.591 ms - 223[0m
+[0mGET /api/documents/signed_page/64b81ec699a912f8fecfe39b [32m201[0m 319.815 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b81ec699a912f8fecfe39a [32m201[0m 285.675 ms - 223[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b81ec699a912f8fecfe393 [32m201[0m 402.482 ms - 225[0m
+[0mGET /api/documents/signed_page/64b81ec699a912f8fecfe392 [32m201[0m 409.871 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b81ec699a912f8fecfe391 [32m201[0m 128.164 ms - 223[0m
+[0mPOST /api/toppers [32m200[0m 182.105 ms - 13479[0m
+[0mPOST /api/user/me [32m200[0m 842.945 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 1035.819 ms - 13479[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 346.758 ms - 25[0m
+tagSearchResults 10
+[0mPOST /api/toppers [32m200[0m 187.045 ms - 4709[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1857.629 ms - 28723[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 0.296 ms - 38[0m
+[0mPOST /api/toppers [32m200[0m 335.441 ms - 13479[0m
+tagSearchResults 10
+[0mPOST /api/toppers [32m200[0m 56.955 ms - 4941[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1711.503 ms - 21899[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 692.922 ms - 25918[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1163.930 ms - 24109[0m
+[0mPOST /api/toppers [32m200[0m 171.510 ms - 4941[0m
+tagSearchResults 10
+[0mPOST /api/toppers [32m200[0m 171.304 ms - 5570[0m
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 1373.363 ms - 27687[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 738.786 ms - 30111[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 941.349 ms - 32252[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 716.648 ms - 29626[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 609.922 ms - 33387[0m
+getting doc id
+[0mGET /api/documents/64b8ea06b626d057efda11b6 [32m201[0m 245.663 ms - 8500[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 692.553 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64b8e9fcb626d057efda115d [32m201[0m 770.721 ms - 223[0m
+[0mGET /api/documents/signed_page/64b8e9fcb626d057efda115b [32m201[0m 1160.217 ms - 223[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e9feb626d057efda1164 [32m201[0m 265.410 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e9feb626d057efda1165 [32m201[0m 682.736 ms - 223[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e9feb626d057efda1166 [32m201[0m 728.339 ms - 223[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e9feb626d057efda1168 [32m201[0m 1019.072 ms - 223[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e9feb626d057efda116a [32m201[0m 462.628 ms - 225[0m
+getting page id
+[0mGET /api/documents/signed_page/64b8e9feb626d057efda116b [32m201[0m 700.392 ms - 225[0m
+[0mPOST /api/user/me [32m200[0m 24.750 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 52.176 ms - 13479[0m
+{
+  freePlanDownloads: 1,
+  referralPlanDownloads: 2,
+  referralPlan: [
+    {
+      _id: new ObjectId("650d6ab4a6e14cab5620f51a"),
+      userId: 'b45fc4e0-8d3b-41c8-9708-b9078e7fb0df',
+      referred_by_user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
+      referral_code_used: 'VTCWGI',
+      num_downloads: 2,
+      referral_code_used_on: 1695368073724,
+      __v: 0
+    }
+  ],
+  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+}
+[0mPOST /api/usage/remaining-downloads [32m200[0m 53.
