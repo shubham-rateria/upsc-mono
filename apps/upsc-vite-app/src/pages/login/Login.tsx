@@ -223,6 +223,28 @@ export const Login = () => {
                   onChange={setPhoneNumber}
                   className={styles.Input}
                 />
+                {showReferralInput && (
+                  <Input
+                    fluid
+                    placeholder="Enter referral code"
+                    onChange={(e) => {
+                      setReferralCode(e.target.value.toUpperCase());
+                    }}
+                  />
+                )}
+                <Button
+                  className={styles.ButtonSecondary}
+                  onClick={() => {
+                    if (!showReferralInput) {
+                      setShowReferralInput(true);
+                    } else {
+                      setShowReferralInput(false);
+                      setReferralCode("");
+                    }
+                  }}
+                >
+                  {!showReferralInput ? "Enter" : "Remove"} Referral Code
+                </Button>
                 <Button
                   disabled={!isPhoneNumber(phoneNumber || "")}
                   onClick={sendPasscode}

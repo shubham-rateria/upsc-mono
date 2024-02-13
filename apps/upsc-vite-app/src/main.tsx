@@ -17,6 +17,7 @@ import MSearch from "./mobile/pages/Search/Search.tsx";
 import DocumentViewerPage from "./mobile/pages/DocumentViewer/DocumentViewer.tsx";
 import AnalyticsContextProvider from "./analytics/AnalyticsContextProvider.tsx";
 import UserContextProvider from "./contexts/UserContextProvider.tsx";
+import { Analytics } from "@vercel/analytics/react";
 
 const stytch = new StytchUIClient(
   "public-token-live-a3d62995-b815-4c9f-a173-37b55b05b087"
@@ -25,6 +26,7 @@ const stytch = new StytchUIClient(
 ReactDOM.createRoot(document.getElementById("root")!).render(
   window.innerWidth < 600 ? (
     <StytchProvider stytch={stytch}>
+      <Analytics />
       <BrowserRouter>
         <UserContextProvider>
           <SearchParamsContextProvider>
@@ -55,6 +57,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </StytchProvider>
   ) : (
     <StytchProvider stytch={stytch}>
+      <Analytics />
       <BrowserRouter>
         <UserContextProvider>
           <SearchParamsContextProvider>
