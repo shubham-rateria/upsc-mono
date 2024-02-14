@@ -3,4 +3,5 @@ export default {
     process.env.NODE_ENV === "production"
       ? "3820ada0dc3a1522789870b3fc471f57"
       : "d55e0363a01ca94640164c3326c2466e",
+  RAZORPAY_KEY: "rzp_live_Z5MO9EtHPANXFj",
 };

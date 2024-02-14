@@ -2,13 +2,28 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./DocumentViewer.module.css";
 import { ApiError, MatchingBlock, PageResult, Result } from "usn-common";
 import "./DocumentViewer.css";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Icon, Modal } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
 import { range, truncate } from "lodash";
 import axiosInstance from "../../../utils/axios-instance";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
 import { UserContext } from "../../../contexts/UserContextProvider";
+import config from "../../../config";
+
+function loadScript(src: string) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+}
 
 const DocumentViewerPage: React.FC = () => {
   const navigate = useNavigate();
@@ -32,6 +47,8 @@ const DocumentViewerPage: React.FC = () => {
   const [_searchLoading, _setSearchLoading] = useState(false);
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
+  const [openPaidDownloadModal, setOpenPaidDownloadModal] = useState(false);
+  const [paidDownloadDone, setPaidDownloadDone] = useState(false);
 
   const [error, setError] = useState<ApiError>({
     error: false,
@@ -287,6 +304,119 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
+  const payToDownload = async () => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const result = await axiosInstance.post("/api/payments/orders");
+
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    const { amount, id: order_id, currency } = result.data;
+
+    const options = {
+      key: config.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      amount: amount.toString(),
+      currency: currency,
+      name: "SmartNotes Solutions LLP",
+      description: "File Download",
+      image: "https://www.upscsmartnotes.com/img/logo.svg",
+      order_id: order_id,
+      handler: async function (response: any) {
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+          userId: user.userId,
+          documentObjectName: document?.s3_object_name || "",
+        };
+
+        const result = await axiosInstance.post("/api/payments/success", data);
+
+        if (result.data.valid) {
+          setOpenPaidDownloadModal(true);
+        }
+      },
+      notes: {
+        address: "Soumya Dey Corporate Office",
+      },
+      theme: {
+        color: "#7963FF",
+      },
+    };
+
+    // @ts-ignore
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+    setNoDownloadModalOpen(false);
+  };
+
+  const handlePaidDownload = async () => {
+    setFileDownloading(true);
+    // const urlParams = new URLSearchParams(window.location.search);
+
+    // analyticsClass.triggerDocDownloadClicked({
+    //   page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+    //   ...analyticsData,
+    //   document_name: document?.s3_object_name || "",
+    //   column_no: parseInt(urlParams.get("colNo") || "-1"),
+    //   // @ts-ignore
+    //   feed_type: urlParams.get("feedType") || "primary",
+    //   row_no: parseInt(urlParams.get("rowNo") || "-1"),
+    //   result: "pass",
+    //   time_taken: Date.now() - docLoadStartTime,
+    //   downloads_left: user.remainingDownloads.free,
+    //   free_downloads_left: user.remainingDownloads.free,
+    // });
+
+    try {
+      const response = await axiosInstance.get(`/api/documents/${documentId}`);
+      const url = response.data.data.s3_signed_url;
+      const element = window.document.createElement("a");
+      element.style.display = "none";
+      window.document.body.appendChild(element);
+      element.setAttribute("href", url);
+      element.setAttribute("target", "_blank");
+      element.className = self.name;
+      element.click();
+
+      // analyticsClass.triggerDocDownloadStarted({
+      //   page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      //   ...analyticsData,
+      //   document_name: document?.s3_object_name || "",
+      //   column_no: parseInt(urlParams.get("colNo") || "-1"),
+      //   // @ts-ignore
+      //   feed_type: urlParams.get("feedType") || "primary",
+      //   row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      //   result: "pass",
+      //   time_taken: Date.now() - docLoadStartTime,
+      //   downloads_left: user.remainingDownloads.free,
+      //   free_downloads_left: user.remainingDownloads.free,
+      // });
+
+      window.document.body.removeChild(element);
+      setPaidDownloadDone(true);
+    } catch (error) {
+      console.log("Could not download part", error);
+    }
+    setFileDownloading(false);
+  };
+
+  const handlePaidDownloadDone = () => {
+    setOpenPaidDownloadModal(false);
+    setPaidDownloadDone(false);
+  };
+
   useEffect(() => {
     const init = async () => {
       setLoading(true);
@@ -329,6 +459,34 @@ const DocumentViewerPage: React.FC = () => {
 
   return (
     <div>
+      <Modal size="tiny" open={openPaidDownloadModal} onClose={() => {}}>
+        <Modal.Content className={styles.PaidDownloadModal}>
+          <div className={styles.Heading}>
+            <img src="/icons/do-checkbox.svg" />
+            <div>Payment Successful</div>
+          </div>
+          <div className={styles.Description}>
+            Thank you for your purchase. Please click the button below to
+            download the document.
+          </div>
+          <div>
+            <Button
+              icon
+              className={styles.DownloadButton}
+              labelPosition="left"
+              onClick={handlePaidDownload}
+            >
+              <Icon name="download" />
+              Download
+            </Button>
+            {paidDownloadDone && (
+              <Button basic onClick={handlePaidDownloadDone}>
+                Close
+              </Button>
+            )}
+          </div>
+        </Modal.Content>
+      </Modal>
       <Modal
         open={noDownloadModalOpen}
         onClose={() => {
@@ -338,31 +496,65 @@ const DocumentViewerPage: React.FC = () => {
         closeOnEscape
         closeIcon
       >
-        <Modal.Content>
-          <p>Your free downloads are over.</p>
-          <p>
-            Please refer other users using your referral code below to get
-            additional downloads.
-          </p>
-          <div className={styles.CodeContainer}>
-            <div className={styles.Code}>{user.referralCode}</div>
-            <div className={styles.Icon} onClick={handleReferralClick}>
-              <img src="/icons/do-copy.svg" />
+        <Modal.Content className={styles.PaymentModal}>
+          <div className={styles.LogoContainer}>
+            <img src="/img/logo.svg" alt="Logo" />
+            <div className={styles.Tagline}>
+              Get the most out of UPSC SmartNotes
             </div>
-            {showCopied && (
-              <div className={styles.Copied}>Copied to clipboard!</div>
-            )}
+          </div>
+          <div className={styles.ReferCard}>
+            <div className={styles.InnerContainer}>
+              <div className={styles.LogoCircle}>
+                <img src="/icons/sr-snowflake.svg" />
+              </div>
+              <div className={styles.Text}>
+                <div className={styles.Heading}>Refer to download</div>
+                <div className={styles.Description}>
+                  You can refer UPSC SmartNotes to your friends and on every
+                  successful registration you get <b>2 downloads free</b>.
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.ReferContainer}>
+              <div>Referral Code</div>
+              <div className={styles.CodeContainer}>
+                <div className={styles.Code}>{user.referralCode}</div>
+                <div className={styles.Icon} onClick={handleReferralClick}>
+                  <img src="/icons/do-copy.svg" />
+                </div>
+                {showCopied && (
+                  <div className={styles.Copied}>Copied to clipboard!</div>
+                )}
+              </div>
+            </div>
+            {/* <div className={styles.Button}>
+              <Button className={styles.ActionBtn}>Refer Now!</Button>
+            </div> */}
+          </div>
+          <div>OR</div>
+          <div className={styles.DownloadCard}>
+            <div className={styles.LogoContainer}>
+              <img src="/icons/download-cloud.svg" />
+              <div>
+                <b>Download Only</b>
+              </div>
+            </div>
+            <div className={styles.Prices}>
+              <div className={styles.Heading}>Rs. 20</div>
+              <div className={styles.Slashed}>Rs. 50</div>
+            </div>
+            <div className={styles.Tagline}>
+              Pay as little as 20 INR to download any document
+            </div>
+            <div>
+              <Button className={styles.ActionBtn} onClick={payToDownload}>
+                Pay for one download
+              </Button>
+            </div>
           </div>
         </Modal.Content>
-        <Modal.Actions>
-          <Button
-            onClick={() => {
-              setNoDownloadModalOpen(false);
-            }}
-          >
-            Close
-          </Button>
-        </Modal.Actions>
       </Modal>
       <div className={styles.PageContainer}>
         <div className={styles.DocumentViewerContainer}>

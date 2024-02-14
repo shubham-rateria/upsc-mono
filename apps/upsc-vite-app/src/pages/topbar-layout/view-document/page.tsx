@@ -14,6 +14,21 @@ import { UserContext } from "../../../contexts/UserContextProvider";
 import { observer } from "mobx-react-lite";
 import ReferralModal from "../../../components/ReferralModal/ReferralModal";
 import Page from "./components/Page/Page";
+import config from "../../../config";
+
+function loadScript(src: string) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+}
 
 const DocumentViewerPage: React.FC = observer(() => {
   const navigate = useNavigate();
@@ -39,6 +54,10 @@ const DocumentViewerPage: React.FC = observer(() => {
   const [docLoadStartTime, setDocLoadStartTime] = useState(-1);
   const [fileDownloading, setFileDownloading] = useState(false);
   const [openReferralModal, setOpenReferralModal] = useState(false);
+  const [openPaymentModal, setOpenPaymentModal] = useState(false);
+  const [openPaidDownloadModal, setOpenPaidDownloadModal] = useState(false);
+  const [paidDownloadDone, setPaidDownloadDone] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
 
   const searchParamsClass = useContext(SearchParamsContext);
   const analyticsClass = useContext(AnalyticsClassContext);
@@ -79,94 +98,6 @@ const DocumentViewerPage: React.FC = observer(() => {
       });
     }
   };
-
-  // const handlePdfLoadSuccess = () => {
-  //   setDocLoadedTimestamp(Date.now());
-  //   const urlParams = new URLSearchParams(window.location.search);
-
-  //   const data: GeneralSearchQueries = {
-  //     text_searched: searchParamsClass.searchParams.keyword,
-  //     notes_filter_type:
-  //       searchParamsClass.searchParams.documentType === -1
-  //         ? undefined
-  //         : searchParamsClass.searchParams.documentType,
-  //     subject_selected:
-  //       (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
-  //         ? // @ts-ignore
-  //           searchParamsClass.searchParams.subjectTags[0].optionalsName ??
-  //           // @ts-ignore
-  //           searchParamsClass.searchParams.subjectTags[0].type
-  //         : undefined,
-  //     topper_filter_selected: searchParamsClass.searchParams.topper,
-  //     search_type: "keyword",
-  //   };
-
-  //   analyticsClass.triggerDocumentOpened({
-  //     page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-  //     ...data,
-  //     document_name: document?.s3_object_name || "",
-  //     column_no: parseInt(urlParams.get("colNo") || "-1"),
-  //     // @ts-ignore
-  //     feed_type: urlParams.get("feedType") || "primary",
-  //     row_no: parseInt(urlParams.get("rowNo") || "-1"),
-  //     result: "pass",
-  //     time_taken: Date.now() - docLoadStartTime,
-  //   });
-
-  //   const pageNumber = urlParams.get("page");
-
-  //   if (pageNumber) {
-  //     setTimeout(() => {
-  //       scrollToPageNumber(pageNumber);
-  //     }, 100);
-  //   }
-
-  //   if (
-  //     searchParamsClass.searchParams.keyword &&
-  //     searchParamsClass.searchParams.keyword.length > 0
-  //   ) {
-  //     setDocumentSearchText(searchParamsClass.searchParams.keyword);
-  //     handleDocumentSearch(
-  //       searchParamsClass.searchParams.keyword,
-  //       pageNumber ? false : true
-  //     );
-  //   }
-
-  //   setLastPageChangeTime(Date.now());
-  // };
-
-  // const handlePdfLoadError = () => {
-  //   setDocLoadedTimestamp(Date.now());
-  //   const urlParams = new URLSearchParams(window.location.search);
-
-  //   const data: GeneralSearchQueries = {
-  //     text_searched: searchParamsClass.searchParams.keyword,
-  //     notes_filter_type:
-  //       searchParamsClass.searchParams.documentType === -1
-  //         ? undefined
-  //         : searchParamsClass.searchParams.documentType,
-  //     subject_selected:
-  //       (searchParamsClass.searchParams.subjectTags?.length || 0) > 0
-  //         ? // @ts-ignore
-  //           searchParamsClass.searchParams.subjectTags[0].value.tagText
-  //         : undefined,
-  //     topper_filter_selected: searchParamsClass.searchParams.topper,
-  //     search_type: "keyword",
-  //   };
-
-  //   analyticsClass.triggerDocumentOpened({
-  //     page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-  //     ...data,
-  //     document_name: document?.s3_object_name || "",
-  //     column_no: parseInt(urlParams.get("colNo") || "-1"),
-  //     // @ts-ignore
-  //     feed_type: urlParams.get("feedType") || "primary",
-  //     row_no: parseInt(urlParams.get("rowNo") || "-1"),
-  //     result: "fail",
-  //     time_taken: Date.now() - docLoadStartTime,
-  //   });
-  //   setLastPageChangeTime(Date.now());
-  // };
 
   const handlePageChange = (pageNumber: number) => {
     const timeNow = Date.now();
@@ -405,7 +336,7 @@ const DocumentViewerPage: React.FC = observer(() => {
     });
 
     if (user.remainingDownloads.free <= 0) {
-      setOpenReferralModal(true);
+      setOpenPaymentModal(true);
       analyticsClass.triggerReferNowClicked({
         accessed_from: 1,
         downloads_left: user.remainingDownloads.free,
@@ -455,6 +386,62 @@ const DocumentViewerPage: React.FC = observer(() => {
       console.log("Could not download part", error);
     }
     setFileDownloading(false);
+  };
+
+  const handlePaidDownload = async () => {
+    setFileDownloading(true);
+    const urlParams = new URLSearchParams(window.location.search);
+
+    analyticsClass.triggerDocDownloadClicked({
+      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+      ...analyticsData,
+      document_name: document?.s3_object_name || "",
+      column_no: parseInt(urlParams.get("colNo") || "-1"),
+      // @ts-ignore
+      feed_type: urlParams.get("feedType") || "primary",
+      row_no: parseInt(urlParams.get("rowNo") || "-1"),
+      result: "pass",
+      time_taken: Date.now() - docLoadStartTime,
+      downloads_left: user.remainingDownloads.free,
+      free_downloads_left: user.remainingDownloads.free,
+    });
+
+    try {
+      const response = await axiosInstance.get(`/api/documents/${documentId}`);
+      const url = response.data.data.s3_signed_url;
+      const element = window.document.createElement("a");
+      element.style.display = "none";
+      window.document.body.appendChild(element);
+      element.setAttribute("href", url);
+      element.setAttribute("target", "_blank");
+      element.className = self.name;
+      element.click();
+
+      analyticsClass.triggerDocDownloadStarted({
+        page_number: parseInt(urlParams.get("pageNumber") || "-1"),
+        ...analyticsData,
+        document_name: document?.s3_object_name || "",
+        column_no: parseInt(urlParams.get("colNo") || "-1"),
+        // @ts-ignore
+        feed_type: urlParams.get("feedType") || "primary",
+        row_no: parseInt(urlParams.get("rowNo") || "-1"),
+        result: "pass",
+        time_taken: Date.now() - docLoadStartTime,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+      });
+
+      window.document.body.removeChild(element);
+      setPaidDownloadDone(true);
+    } catch (error) {
+      console.log("Could not download part", error);
+    }
+    setFileDownloading(false);
+  };
+
+  const handlePaidDownloadDone = () => {
+    setOpenPaidDownloadModal(false);
+    setPaidDownloadDone(false);
   };
 
   const handleModalClose = () => {
@@ -532,6 +519,80 @@ const DocumentViewerPage: React.FC = observer(() => {
     init();
   }, []);
 
+  const payToDownload = async () => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const result = await axiosInstance.post("/api/payments/orders");
+
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    const { amount, id: order_id, currency } = result.data;
+
+    const options = {
+      key: config.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      amount: amount.toString(),
+      currency: currency,
+      name: "SmartNotes Solutions LLP",
+      description: "File Download",
+      image: "https://www.upscsmartnotes.com/img/logo.svg",
+      order_id: order_id,
+      handler: async function (response: any) {
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+          userId: user.userId,
+          documentObjectName: document?.s3_object_name || "",
+        };
+
+        const result = await axiosInstance.post("/api/payments/success", data);
+
+        if (result.data.valid) {
+          setOpenPaidDownloadModal(true);
+        }
+      },
+      notes: {
+        address: "Soumya Dey Corporate Office",
+      },
+      theme: {
+        color: "#7963FF",
+      },
+    };
+
+    // @ts-ignore
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+    setOpenPaymentModal(false);
+  };
+
+  const handleReferralIconClick = () => {
+    if (user.referralCode && user.referralCode.length > 0) {
+      navigator.clipboard.writeText(user.referralCode || "");
+      analyticsClass.triggerReferNowCopied({
+        accessed_from: 1,
+        downloads_left: user.remainingDownloads.free,
+        free_downloads_left: user.remainingDownloads.free,
+        referral_code: user.referralCode,
+        user_type: 0,
+        paid_downloads_left: 0,
+      });
+      setShowCopied(true);
+    } else {
+      console.error("error copying code");
+    }
+  };
+
   useEffect(() => {
     user.getRemainingDownloads();
   }, [user.userId]);
@@ -551,6 +612,101 @@ const DocumentViewerPage: React.FC = observer(() => {
         onClose={handleModalClose}
         accessFrom={1}
       />
+      <Modal
+        open={openPaymentModal}
+        onClose={() => {
+          setOpenPaymentModal(false);
+        }}
+      >
+        <Modal.Content className={styles.PaymentModal}>
+          <div className={styles.LogoContainer}>
+            <img src="/img/logo.svg" alt="Logo" />
+            <div className={styles.Tagline}>
+              Get the most out of UPSC SmartNotes
+            </div>
+          </div>
+          <div className={styles.ReferCard}>
+            <div className={styles.InnerContainer}>
+              <div className={styles.LogoCircle}>
+                <img src="/icons/sr-snowflake.svg" />
+              </div>
+              <div className={styles.Text}>
+                <div className={styles.Heading}>Refer to download</div>
+                <div className={styles.Description}>
+                  You can refer UPSC SmartNotes to your friends and on every
+                  successful registration you get <b>2 downloads free</b>.
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.ReferContainer}>
+              <div>Referral Code</div>
+              <div className={styles.CodeContainer}>
+                <div className={styles.Code}>{user.referralCode}</div>
+                <div className={styles.Icon} onClick={handleReferralIconClick}>
+                  <img src="/icons/do-copy.svg" />
+                </div>
+                {showCopied && (
+                  <div className={styles.Copied}>Copied to clipboard!</div>
+                )}
+              </div>
+            </div>
+            {/* <div className={styles.Button}>
+              <Button className={styles.ActionBtn}>Refer Now!</Button>
+            </div> */}
+          </div>
+          <div>OR</div>
+          <div className={styles.DownloadCard}>
+            <div className={styles.LogoContainer}>
+              <img src="/icons/download-cloud.svg" />
+              <div>
+                <b>Download Only</b>
+              </div>
+            </div>
+            <div className={styles.Prices}>
+              <div className={styles.Heading}>Rs. 20</div>
+              <div className={styles.Slashed}>Rs. 50</div>
+            </div>
+            <div className={styles.Tagline}>
+              Pay as little as 20 INR to download any document
+            </div>
+            <div>
+              <Button className={styles.ActionBtn} onClick={payToDownload}>
+                Pay for one download
+              </Button>
+            </div>
+          </div>
+        </Modal.Content>
+      </Modal>
+      <Modal size="tiny" open={openPaidDownloadModal} onClose={() => {}}>
+        <Modal.Content className={styles.PaidDownloadModal}>
+          <div className={styles.Heading}>
+            <img src="/icons/do-checkbox.svg" />
+            <div>Payment Successful</div>
+          </div>
+          <div className={styles.Description}>
+            Thank you for your purchase. Please click the button below to
+            download the document.
+          </div>
+          <div>
+            <Button
+              icon
+              className={styles.DownloadButton}
+              labelPosition="left"
+              loading={fileDownloading}
+              onClick={handlePaidDownload}
+            >
+              <Icon name="download" />
+              Download
+            </Button>
+            {paidDownloadDone && (
+              <Button basic onClick={handlePaidDownloadDone}>
+                Close
+              </Button>
+            )}
+          </div>
+        </Modal.Content>
+      </Modal>
       <Modal
         open={noDownloadModalOpen}
         onClose={() => {
@@ -756,6 +912,7 @@ const DocumentViewerPage: React.FC = observer(() => {
               </div>
             </div>
           </div>
+          {/* <Button onClick={payToDownload}>Pay to download</Button> */}
         </div>
       </div>
     </div>
