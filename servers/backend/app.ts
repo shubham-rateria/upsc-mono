@@ -18,12 +18,8 @@ async function startServer() {
   // serve the API with signed certificate on 443 (SSL/HTTPS) port
   const httpsServer = https.createServer(
     {
-      key: fs.readFileSync(
-        "/etc/letsencrypt/live/upscsmartnotes.com/privkey.pem"
-      ),
-      cert: fs.readFileSync(
-        "/etc/letsencrypt/live/upscsmartnotes.com/fullchain.pem"
-      ),
+      key: fs.readFileSync("./privkey.pem"),
+      cert: fs.readFileSync("./fullchain.pem"),
     },
     app
   );
