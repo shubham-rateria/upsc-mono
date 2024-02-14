@@ -1,6 +1,8 @@
 import config from "./config";
 
 import express from "express";
+import https from "https";
+import fs from "fs";
 
 async function startServer() {
   const app = express();
@@ -12,6 +14,23 @@ async function startServer() {
    * So we are using good old require.
    **/
   await require("./loaders").default(app);
+
+  // serve the API with signed certificate on 443 (SSL/HTTPS) port
+  const httpsServer = https.createServer(
+    {
+      key: fs.readFileSync(
+        "/etc/letsencrypt/live/upscsmartnotes.com/privkey.pem"
+      ),
+      cert: fs.readFileSync(
+        "/etc/letsencrypt/live/upscsmartnotes.com/fullchain.pem"
+      ),
+    },
+    app
+  );
+
+  httpsServer.listen(443, () => {
+    console.log("HTTPS Server running on port 443");
+  });
 
   app
     .listen(config.port, () => {
