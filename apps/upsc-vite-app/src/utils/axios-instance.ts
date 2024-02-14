@@ -5,8 +5,8 @@ import axios from "axios";
 const instance = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "http://api.upscsmartnotes.com:3000"
-      : "http://api.upscsmartnotes.com:3000",
+      ? "https://api.upscsmartnotes.com"
+      : "https://api.upscsmartnotes.com",
   // baseURL: "http://localhost:3000",
   timeout: 120000,
 });
