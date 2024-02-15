@@ -48,7 +48,7 @@ const DocumentViewerPage: React.FC = () => {
   const [noDownloadModalOpen, setNoDownloadModalOpen] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
   const [openPaidDownloadModal, setOpenPaidDownloadModal] = useState(false);
-  const [paidDownloadDone, setPaidDownloadDone] = useState(false);
+  // const [paidDownloadDone, setPaidDownloadDone] = useState(false);
 
   const [error, setError] = useState<ApiError>({
     error: false,
