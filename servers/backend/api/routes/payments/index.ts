@@ -31,7 +31,7 @@ export default (app: Router) => {
       const receipt_alpha = generateRandomAlphaNumeric(5);
 
       const options = {
-        amount: 200, // amount in smallest currency unit
+        amount: 20000, // amount in smallest currency unit
         currency: "INR",
         receipt: `receipt_order_${receipt_alpha}`,
       };
