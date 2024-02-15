@@ -26,6 +26,10 @@ export const PaymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  download_plan: {
+    type: String,
+    required: true,
+  },
 });
 
 export const PaymentModel =

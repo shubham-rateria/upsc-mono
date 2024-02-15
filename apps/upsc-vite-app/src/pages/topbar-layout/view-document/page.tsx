@@ -379,6 +379,7 @@ const DocumentViewerPage: React.FC = observer(() => {
       const data = {
         fileS3ObjectName: response.data.data.s3_object_name,
         userId: user.userId,
+        downloaded_through_plan: 0,
       };
       await axiosInstance.post("/api/usage/file-download", data);
       await user.getRemainingDownloads();
@@ -559,11 +560,12 @@ const DocumentViewerPage: React.FC = observer(() => {
         const result = await axiosInstance.post("/api/payments/success", data);
 
         if (result.data.valid) {
+          await user.getRemainingDownloads();
           setOpenPaidDownloadModal(true);
         }
       },
       notes: {
-        address: "Soumya Dey Corporate Office",
+        address: "SRAD SmartNotes Solutions HQ",
       },
       theme: {
         color: "#7963FF",
@@ -678,7 +680,13 @@ const DocumentViewerPage: React.FC = observer(() => {
           </div>
         </Modal.Content>
       </Modal>
-      <Modal size="tiny" open={openPaidDownloadModal} onClose={() => {}}>
+      <Modal
+        size="tiny"
+        open={openPaidDownloadModal}
+        onClose={() => {
+          setOpenPaidDownloadModal(false);
+        }}
+      >
         <Modal.Content className={styles.PaidDownloadModal}>
           <div className={styles.Heading}>
             <img src="/icons/do-checkbox.svg" />
@@ -694,16 +702,11 @@ const DocumentViewerPage: React.FC = observer(() => {
               className={styles.DownloadButton}
               labelPosition="left"
               loading={fileDownloading}
-              onClick={handlePaidDownload}
+              onClick={handleDownload}
             >
               <Icon name="download" />
               Download
             </Button>
-            {paidDownloadDone && (
-              <Button basic onClick={handlePaidDownloadDone}>
-                Close
-              </Button>
-            )}
           </div>
         </Modal.Content>
       </Modal>
