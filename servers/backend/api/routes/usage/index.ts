@@ -2,6 +2,7 @@ import { FileDownloadedModel } from "./../../../models/files-downloaded";
 import { Request, Response, Router } from "express";
 import { FreeDownloadModel } from "../../../models/free-downloads";
 import { ReferralPlanModel } from "../../../models/referral_plan";
+import { PaymentModel } from "../../../models/payment";
 
 const route = Router();
 
@@ -9,11 +10,11 @@ export default (app: Router) => {
   app.use("/usage", route);
 
   route.post("/file-download", async (req: Request, res: Response) => {
-    const { userId, fileS3ObjectName } = req.body;
+    const { userId, fileS3ObjectName, downloaded_through_plan } = req.body;
     try {
       const fileDownload = new FileDownloadedModel({
         downloaded_on: Date.now(),
-        downloaded_through_plan: 0,
+        downloaded_through_plan,
         fileS3ObjectName,
         userId,
       });
@@ -40,6 +41,10 @@ export default (app: Router) => {
       const freeDownloads = filesDownloaded.filter(
         (f) => f.downloaded_through_plan === 0
       );
+      const singleDownloads = await PaymentModel.find({
+        user_id: userId,
+        download_plan: "0",
+      }).exec();
       //   const paidDownloads = filesDownloaded.filter(
       //     (f) => f.downloaded_through_plan === 1
       //   );
@@ -57,14 +62,11 @@ export default (app: Router) => {
             accumulator + currentValue,
           0
         );
-      console.log({
-        freePlanDownloads,
-        referralPlanDownloads,
-        referralPlan,
-        userId,
-      });
-      const totalFreeDownloads = freePlanDownloads + referralPlanDownloads;
+
+      const totalFreeDownloads =
+        freePlanDownloads + referralPlanDownloads + singleDownloads.length;
       const freeDownloadsRemaining = totalFreeDownloads - freeDownloads.length;
+
       res
         .status(200)
         .send({ success: true, free: freeDownloadsRemaining })
