@@ -83,6 +83,7 @@ export default (app: Router) => {
         user_id: userId,
         document_object_name: documentObjectName,
         date: Date.now(),
+        download_plan: "0",
       });
 
       await paymentModel.save();
