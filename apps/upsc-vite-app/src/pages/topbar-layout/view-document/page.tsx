@@ -56,7 +56,7 @@ const DocumentViewerPage: React.FC = observer(() => {
   const [openReferralModal, setOpenReferralModal] = useState(false);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [openPaidDownloadModal, setOpenPaidDownloadModal] = useState(false);
-  const [paidDownloadDone, setPaidDownloadDone] = useState(false);
+  // const [paidDownloadDone, setPaidDownloadDone] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
 
   const searchParamsClass = useContext(SearchParamsContext);
@@ -387,62 +387,6 @@ const DocumentViewerPage: React.FC = observer(() => {
       console.log("Could not download part", error);
     }
     setFileDownloading(false);
-  };
-
-  const handlePaidDownload = async () => {
-    setFileDownloading(true);
-    const urlParams = new URLSearchParams(window.location.search);
-
-    analyticsClass.triggerDocDownloadClicked({
-      page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-      ...analyticsData,
-      document_name: document?.s3_object_name || "",
-      column_no: parseInt(urlParams.get("colNo") || "-1"),
-      // @ts-ignore
-      feed_type: urlParams.get("feedType") || "primary",
-      row_no: parseInt(urlParams.get("rowNo") || "-1"),
-      result: "pass",
-      time_taken: Date.now() - docLoadStartTime,
-      downloads_left: user.remainingDownloads.free,
-      free_downloads_left: user.remainingDownloads.free,
-    });
-
-    try {
-      const response = await axiosInstance.get(`/api/documents/${documentId}`);
-      const url = response.data.data.s3_signed_url;
-      const element = window.document.createElement("a");
-      element.style.display = "none";
-      window.document.body.appendChild(element);
-      element.setAttribute("href", url);
-      element.setAttribute("target", "_blank");
-      element.className = self.name;
-      element.click();
-
-      analyticsClass.triggerDocDownloadStarted({
-        page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-        ...analyticsData,
-        document_name: document?.s3_object_name || "",
-        column_no: parseInt(urlParams.get("colNo") || "-1"),
-        // @ts-ignore
-        feed_type: urlParams.get("feedType") || "primary",
-        row_no: parseInt(urlParams.get("rowNo") || "-1"),
-        result: "pass",
-        time_taken: Date.now() - docLoadStartTime,
-        downloads_left: user.remainingDownloads.free,
-        free_downloads_left: user.remainingDownloads.free,
-      });
-
-      window.document.body.removeChild(element);
-      setPaidDownloadDone(true);
-    } catch (error) {
-      console.log("Could not download part", error);
-    }
-    setFileDownloading(false);
-  };
-
-  const handlePaidDownloadDone = () => {
-    setOpenPaidDownloadModal(false);
-    setPaidDownloadDone(false);
   };
 
   const handleModalClose = () => {
