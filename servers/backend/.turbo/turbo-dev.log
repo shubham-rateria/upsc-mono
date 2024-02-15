@@ -2,11 +2,11 @@
 > @usn/backend@1.0.0 dev /Users/rateria/Code/upsc-web-app/servers/backend
 > tsnd --respawn app.ts
 
-[INFO] 11:03:03 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
+[INFO] 19:05:22 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
 connecting to mongodb+srv://shubham:Latelia1004_@cluster0.wcyiz.mongodb.net/
-(node:25420) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(node:31428) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:25420) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+(node:31428) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
 Please migrate your code to use AWS SDK for JavaScript (v3).
 For more information, check the migration guide at https://a.co/7PzMCcy
@@ -18,449 +18,194 @@ express loaded...
       🛡️  Server listening on port: 3000 🛡️
       ################################################
     
-[0mPOST /api/toppers [32m200[0m 26.767 ms - 679[0m
+[0mPOST /api/user/me [32m200[0m 32.491 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 74.915 ms - 13479[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 100.127 ms - 25[0m
 tagSearchResults 10
 other results 0
 other results 2 0
-[0mPOST /api/documents [32m200[0m 406.089 ms - 42536[0m
+[0mPOST /api/documents [32m200[0m 505.983 ms - 39967[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 47.101 ms - 11887[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 104.721 ms - 25[0m
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 55.142 ms - 25954[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 125.142 ms - 227[0m
+getting page id
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [32m201[0m 162.925 ms - 223[0m
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [32m201[0m 171.108 ms - 223[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 23.955 ms - 11887[0m
-[0mPOST /api/user/me [32m200[0m 35.823 ms - 227[0m
-{
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 86.422 ms - 25[0m
-{
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 79.678 ms - 26[0m
-{
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 94.332 ms - 26[0m
+[0mPOST /api/user/me [32m200[0m 26.995 ms - 227[0m
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 61.855 ms - 25954[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 89.701 ms - 25[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 122.022 ms - 223[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 90.363 ms - 225[0m
-[INFO] 11:04:26 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.wcyiz.mongodb.net/
-(node:25511) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-(node:25511) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [32m201[0m 169.424 ms - 227[0m
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [32m201[0m 180.308 ms - 225[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 43.158 ms - 11887[0m
-[0mPOST /api/user/me [32m200[0m 26.299 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 96.689 ms - 25[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 78.538 ms - 26[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 89.889 ms - 26[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 160.886 ms - 223[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 91.525 ms - 223[0m
-getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 24.670 ms - 11889[0m
-[0mPOST /api/user/me [32m200[0m 28.220 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 74.615 ms - 25[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 92.771 ms - 26[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 93.303 ms - 26[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 141.631 ms - 225[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 101.983 ms - 223[0m
-[0mPOST /api/payments/orders [32m200[0m 600.778 ms - 224[0m
-success {
-  orderCreationId: 'order_Nb2ex3bWcaK0dm',
-  razorpayPaymentId: 'pay_Nb2fFpM9Oq1Gyy',
-  razorpayOrderId: 'order_Nb2ex3bWcaK0dm',
-  razorpaySignature: 'eb2c9286bac6e95a3eddd0d878cf82fc6df28aa25e616d482b7b6b016434b10b',
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
-  documentObjectName: 'Agriculture and related topics.pdf'
-}
-[0mPOST /api/payments/success [32m200[0m 46.188 ms - 96[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 89.821 ms - 26[0m
-getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 29.323 ms - 11887[0m
-[0mPOST /api/user/me [32m200[0m 29.305 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 1,
-  referralPlan: [],
-  freeDownloadsRemaining: 1,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 95.573 ms - 25[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 75.048 ms - 26[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 100.605 ms - 26[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 144.354 ms - 227[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 92.139 ms - 223[0m
-[INFO] 11:08:13 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.wcyiz.mongodb.net/
-(node:25586) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-(node:25586) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
-getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 46.269 ms - 11891[0m
-[0mPOST /api/user/me [32m200[0m 23.619 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: [
-    {
-      _id: new ObjectId("65cda2cb9c3a619f8bbd5ca2"),
-      razorpay_payment_id: 'pay_Nb2fFpM9Oq1Gyy',
-      razorpay_order_id: 'order_Nb2ex3bWcaK0dm',
-      razorpay_signature: 'eb2c9286bac6e95a3eddd0d878cf82fc6df28aa25e616d482b7b6b016434b10b',
-      user_id: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
-      date: 1707975371309,
-      document_object_name: 'Agriculture and related topics.pdf',
-      download_plan: '0',
-      __v: 0
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 53.356 ms - 25958[0m
+Error in setting downloaded Error: FileDownloaded validation failed: downloaded_through_plan: Path `downloaded_through_plan` is required.
+    at ValidationError.inspect (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/error/validation.js:50:26)
+    at formatValue (node:internal/util/inspect:805:19)
+    at inspect (node:internal/util/inspect:364:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2298:40)
+    at formatWithOptions (node:internal/util/inspect:2160:10)
+    at console.value (node:internal/console/constructor:351:14)
+    at console.warn (node:internal/console/constructor:384:61)
+    at /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:25:15
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  errors: {
+    downloaded_through_plan: ValidatorError: Path `downloaded_through_plan` is required.
+        at validate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1365:13)
+        at SchemaNumber.SchemaType.doValidate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1349:7)
+        at /Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/document.js:2942:18
+        at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'downloaded_through_plan',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
     }
-  ],
-  referralPlan: [],
-  freeDownloadsRemaining: 1,
-  userId: null
+  },
+  _message: 'FileDownloaded validation failed'
 }
-[0mPOST /api/usage/remaining-downloads [32m200[0m 95.734 ms - 25[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: [],
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 73.431 ms - 26[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: [],
-  referralPlan: [],
-  freeDownloadsRemaining: -4,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 86.004 ms - 26[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 158.207 ms - 223[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 118.270 ms - 223[0m
-[INFO] 11:09:18 Restarting: /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts has been modified
-connecting to mongodb+srv://shubham:Latelia1004_@cluster0.wcyiz.mongodb.net/
-(node:25614) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-(node:25614) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
-
-Please migrate your code to use AWS SDK for JavaScript (v3).
-For more information, check the migration guide at https://a.co/7PzMCcy
-Connected to MongoDB
-db loaded...
-express loaded...
-
-      ################################################
-      🛡️  Server listening on port: 3000 🛡️
-      ################################################
-    
+[0mPOST /api/usage/file-download [31m500[0m 22.445 ms - 17[0m
+[0mPOST /api/user/me [32m200[0m 181.475 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 196.442 ms - 13479[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 89.962 ms - 25[0m
+[0mPOST /api/user/me [32m200[0m 35.350 ms - 227[0m
+[0mPOST /api/toppers [32m200[0m 63.301 ms - 13479[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 91.091 ms - 25[0m
+tagSearchResults 10
+other results 0
+other results 2 0
+[0mPOST /api/documents [32m200[0m 512.432 ms - 39973[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 39.351 ms - 11887[0m
-[0mPOST /api/user/me [32m200[0m 25.812 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 97.067 ms - 25[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 1,
-  referralPlan: [],
-  freeDownloadsRemaining: -3,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 78.727 ms - 26[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 1,
-  referralPlan: [],
-  freeDownloadsRemaining: -3,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 91.761 ms - 26[0m
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 50.455 ms - 25956[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 152.592 ms - 223[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 89.215 ms - 227[0m
-[0mPOST /api/payments/orders [32m200[0m 195.781 ms - 224[0m
-success {
-  orderCreationId: 'order_Nb2iw3Fh0cKSRZ',
-  razorpayPaymentId: 'pay_Nb2j7siSDHcm9l',
-  razorpayOrderId: 'order_Nb2iw3Fh0cKSRZ',
-  razorpaySignature: '54c97131f2d5a820d3309f1e0f1ed26386e25cffa6d76b261b4d37d82199bc33',
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
-  documentObjectName: 'Agriculture and related topics.pdf'
-}
-[0mPOST /api/payments/success [32m200[0m 43.607 ms - 96[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 2,
-  referralPlan: [],
-  freeDownloadsRemaining: -2,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 90.834 ms - 26[0m
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [32m201[0m 133.408 ms - 223[0m
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [32m201[0m 141.579 ms - 225[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 31.417 ms - 11891[0m
-[0mPOST /api/user/me [32m200[0m 32.150 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 31.662 ms - 25954[0m
+Error in setting downloaded Error: FileDownloaded validation failed: downloaded_through_plan: Path `downloaded_through_plan` is required.
+    at ValidationError.inspect (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/error/validation.js:50:26)
+    at formatValue (node:internal/util/inspect:805:19)
+    at inspect (node:internal/util/inspect:364:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2298:40)
+    at formatWithOptions (node:internal/util/inspect:2160:10)
+    at console.value (node:internal/console/constructor:351:14)
+    at console.warn (node:internal/console/constructor:384:61)
+    at /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:25:15
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  errors: {
+    downloaded_through_plan: ValidatorError: Path `downloaded_through_plan` is required.
+        at validate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1365:13)
+        at SchemaNumber.SchemaType.doValidate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1349:7)
+        at /Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/document.js:2942:18
+        at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'downloaded_through_plan',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'FileDownloaded validation failed'
 }
-[0mPOST /api/usage/remaining-downloads [32m200[0m 92.455 ms - 25[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 2,
-  referralPlan: [],
-  freeDownloadsRemaining: -2,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 90.783 ms - 26[0m
-{
-  freeDownloads: 5,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 2,
-  referralPlan: [],
-  freeDownloadsRemaining: -2,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 91.083 ms - 26[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 153.817 ms - 225[0m
-getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 185.242 ms - 225[0m
+[0mPOST /api/usage/file-download [31m500[0m 9.832 ms - 17[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 27.490 ms - 11887[0m
-[0mPOST /api/user/me [32m200[0m 22.547 ms - 227[0m
-{
-  freeDownloads: 0,
-  freePlanDownloads: 0,
-  referralPlanDownloads: 0,
-  singleDownloads: 0,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: null
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 95.855 ms - 25[0m
-{
-  freeDownloads: 2,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 2,
-  referralPlan: [],
-  freeDownloadsRemaining: 1,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 79.638 ms - 25[0m
-{
-  freeDownloads: 2,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 2,
-  referralPlan: [],
-  freeDownloadsRemaining: 1,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 98.870 ms - 25[0m
+[0mPOST /api/user/me [32m200[0m 22.198 ms - 227[0m
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 59.670 ms - 25954[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 88.513 ms - 25[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625ca43bc4f6a0bad7c3d [32m201[0m 130.029 ms - 225[0m
 getting page id
-[0mGET /api/documents/signed_page/64c625cc43bc4f6a0bad7c3e [32m201[0m 120.261 ms - 223[0m
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [32m201[0m 145.657 ms - 223[0m
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [32m201[0m 153.856 ms - 223[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m201[0m 31.216 ms - 11889[0m
-[0mPOST /api/usage/file-download [32m200[0m 32.206 ms - 16[0m
-{
-  freeDownloads: 3,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 2,
-  referralPlan: [],
-  freeDownloadsRemaining: 0,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 47.261 ms - 25954[0m
+Error in setting downloaded Error: FileDownloaded validation failed: downloaded_through_plan: Path `downloaded_through_plan` is required.
+    at ValidationError.inspect (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/error/validation.js:50:26)
+    at formatValue (node:internal/util/inspect:805:19)
+    at inspect (node:internal/util/inspect:364:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2298:40)
+    at formatWithOptions (node:internal/util/inspect:2160:10)
+    at console.value (node:internal/console/constructor:351:14)
+    at console.warn (node:internal/console/constructor:384:61)
+    at /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:25:15
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  errors: {
+    downloaded_through_plan: ValidatorError: Path `downloaded_through_plan` is required.
+        at validate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1365:13)
+        at SchemaNumber.SchemaType.doValidate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1349:7)
+        at /Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/document.js:2942:18
+        at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'downloaded_through_plan',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+[0mPOST /api/usage/file-download [31m500[0m 8.647 ms - 17[0m
+  },
+  _message: 'FileDownloaded validation failed'
 }
-[0mPOST /api/usage/remaining-downloads [32m200[0m 97.962 ms - 25[0m
-[0mPOST /api/payments/orders [32m200[0m 134.026 ms - 224[0m
-success {
-  orderCreationId: 'order_Nb2kF5kHvoo9id',
-  razorpayPaymentId: 'pay_Nb2kSStz7sMso5',
-  razorpayOrderId: 'order_Nb2kF5kHvoo9id',
-  razorpaySignature: '5f7f462e297f0051f1ffefeecb730475b3f9e319c3c6b98b5cf85e47f4e817d5',
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73',
-  documentObjectName: 'Agriculture and related topics.pdf'
-}
-[0mPOST /api/payments/success [32m200[0m 31.304 ms - 96[0m
-{
-  freeDownloads: 3,
-  freePlanDownloads: 1,
-  referralPlanDownloads: 0,
-  singleDownloads: 3,
-  referralPlan: [],
-  freeDownloadsRemaining: 1,
-  userId: 'a42f70c0-156c-4725-8cbb-c964d4a0fa73'
-}
-[0mPOST /api/usage/remaining-downloads [32m200[0m 87.639 ms - 25[0m
 getting doc id
-[0mGET /api/documents/64c625e943bc4f6a0bad7cbd [32m20
+[0mPOST /api/user/me [32m200[0m 87.668 ms - 227[0m
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 190.983 ms - 25956[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 247.080 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [32m201[0m 131.197 ms - 229[0m
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [32m201[0m 141.761 ms - 227[0m
+getting doc id
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 49.171 ms - 25958[0m
+[0mPOST /api/usage/file-download [31m500[0m 4.681 ms - 17[0m
+Error in setting downloaded Error: FileDownloaded validation failed: downloaded_through_plan: Path `downloaded_through_plan` is required.
+    at ValidationError.inspect (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/error/validation.js:50:26)
+    at formatValue (node:internal/util/inspect:805:19)
+    at inspect (node:internal/util/inspect:364:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2298:40)
+    at formatWithOptions (node:internal/util/inspect:2160:10)
+    at console.value (node:internal/console/constructor:351:14)
+    at console.warn (node:internal/console/constructor:384:61)
+    at /Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:25:15
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/rateria/Code/upsc-web-app/servers/backend/api/routes/usage/index.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  errors: {
+    downloaded_through_plan: ValidatorError: Path `downloaded_through_plan` is required.
+        at validate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1365:13)
+        at SchemaNumber.SchemaType.doValidate (/Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/schematype.js:1349:7)
+        at /Users/rateria/Code/upsc-web-app/node_modules/.pnpm/mongoose@7.4.0/node_modules/mongoose/lib/document.js:2942:18
+        at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'downloaded_through_plan',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'FileDownloaded validation failed'
+}
+getting doc id
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 45.493 ms - 25956[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [0m-[0m - ms - -[0m
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [0m-[0m - ms - -[0m
+getting doc id
+[0mGET /api/documents/64bba00f620cb9f538983d33 [32m201[0m 23.389 ms - 25956[0m
+[0mPOST /api/user/me [32m200[0m 20.554 ms - 227[0m
+[0mPOST /api/usage/remaining-downloads [32m200[0m 87.773 ms - 25[0m
+getting page id
+getting page id
+[0mGET /api/documents/signed_page/64bb9d62620cb9f5389839c6 [32m201[0m 134.526 ms - 225[0m
+[0mGET /api/documents/signed_page/64bb9d6a620cb9f5389839c8 [32m201[0m 14

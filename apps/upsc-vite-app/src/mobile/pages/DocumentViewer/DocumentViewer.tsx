@@ -70,88 +70,9 @@ const DocumentViewerPage: React.FC = () => {
     }
   };
 
-  // const handlePdfLoadSuccess = () => {
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   const pageNumber = urlParams.get("page");
-
-  //   if (pageNumber) {
-  //     setTimeout(() => {
-  //       scrollToPageNumber(pageNumber);
-  //     }, 1000);
-  //   }
-
-  //   if (
-  //     searchParamsClass.searchParams.keyword &&
-  //     searchParamsClass.searchParams.keyword.length > 0
-  //   ) {
-  //     setDocumentSearchText(searchParamsClass.searchParams.keyword);
-  //     handleDocumentSearch(
-  //       searchParamsClass.searchParams.keyword,
-  //       pageNumber ? false : true
-  //     );
-  //   }
-  // };
-
   const handlePageChange = (pageNumber: number) => {
     setCurrentActivePage(pageNumber);
   };
-
-  // const handleNextDocSearchResult = () => {
-  //   if (currentDocSearchResultIdx !== null && documentSearchResult !== null) {
-  //     let updatedIdx = currentDocSearchResultIdx + 1;
-  //     if (updatedIdx >= documentSearchResult.pages.length) {
-  //       updatedIdx = 0;
-  //     }
-  //     setCurrentDocSearchResultIdx(updatedIdx);
-  //     scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
-  //   }
-  // };
-
-  // const handlePrevDocSearchResult = () => {
-  //   if (currentDocSearchResultIdx !== null && documentSearchResult !== null) {
-  //     let updatedIdx = currentDocSearchResultIdx - 1;
-  //     if (updatedIdx < 0) {
-  //       updatedIdx = documentSearchResult.pages.length - 1;
-  //     }
-  //     setCurrentDocSearchResultIdx(updatedIdx);
-  //     scrollToPageNumber(documentSearchResult.pages[updatedIdx].page_number);
-  //   }
-  // };
-
-  // const handleDocSearchTextChange = (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   setDocumentSearchText(e.target.value);
-  // };
-
-  // const handleDocumentSearch = async (
-  //   text: string | null,
-  //   scrollToResult: boolean = true
-  // ) => {
-  //   if (!text) {
-  //     return;
-  //   }
-  //   setSearchLoading(true);
-  //   try {
-  //     const response = await axiosInstance.post(
-  //       `/api/documents/${documentId}/search`,
-  //       {
-  //         searchTerm: text,
-  //       }
-  //     );
-  //     setDocumentSearchResult(response.data.data);
-  //     if (response.data.data.pages.length > 0) {
-  //       setCurrentDocSearchResultIdx(-1);
-  //       if (scrollToResult) {
-  //         setCurrentDocSearchResultIdx(0);
-  //         scrollToPageNumber(response.data.data.pages[0].page_number);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("error", error);
-  //   }
-  //   setSearchLoading(false);
-  // };
 
   const getMatchingResultsForPage = (
     pageNumber: number
@@ -211,16 +132,6 @@ const DocumentViewerPage: React.FC = () => {
     // router.back();
     navigate(-1);
   };
-
-  // const handleKeyPress = (e: React.KeyboardEvent) => {
-  //   if (e.code === "Enter") {
-  //     handleDocumentSearch(documentSearchText);
-  //   }
-  // };
-
-  // const handleDownload = () => {
-  //   setNoDownloadModalOpen(true);
-  // };
 
   const handleDownload = async (e: any) => {
     e.stopPropagation();
@@ -286,6 +197,7 @@ const DocumentViewerPage: React.FC = () => {
       const data = {
         fileS3ObjectName: response.data.data.s3_object_name,
         userId: user.userId,
+        downloaded_through_plan: 0,
       };
       await axiosInstance.post("/api/usage/file-download", data);
       await user.getRemainingDownloads();
@@ -361,62 +273,6 @@ const DocumentViewerPage: React.FC = () => {
     setNoDownloadModalOpen(false);
   };
 
-  const handlePaidDownload = async () => {
-    setFileDownloading(true);
-    // const urlParams = new URLSearchParams(window.location.search);
-
-    // analyticsClass.triggerDocDownloadClicked({
-    //   page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-    //   ...analyticsData,
-    //   document_name: document?.s3_object_name || "",
-    //   column_no: parseInt(urlParams.get("colNo") || "-1"),
-    //   // @ts-ignore
-    //   feed_type: urlParams.get("feedType") || "primary",
-    //   row_no: parseInt(urlParams.get("rowNo") || "-1"),
-    //   result: "pass",
-    //   time_taken: Date.now() - docLoadStartTime,
-    //   downloads_left: user.remainingDownloads.free,
-    //   free_downloads_left: user.remainingDownloads.free,
-    // });
-
-    try {
-      const response = await axiosInstance.get(`/api/documents/${documentId}`);
-      const url = response.data.data.s3_signed_url;
-      const element = window.document.createElement("a");
-      element.style.display = "none";
-      window.document.body.appendChild(element);
-      element.setAttribute("href", url);
-      element.setAttribute("target", "_blank");
-      element.className = self.name;
-      element.click();
-
-      // analyticsClass.triggerDocDownloadStarted({
-      //   page_number: parseInt(urlParams.get("pageNumber") || "-1"),
-      //   ...analyticsData,
-      //   document_name: document?.s3_object_name || "",
-      //   column_no: parseInt(urlParams.get("colNo") || "-1"),
-      //   // @ts-ignore
-      //   feed_type: urlParams.get("feedType") || "primary",
-      //   row_no: parseInt(urlParams.get("rowNo") || "-1"),
-      //   result: "pass",
-      //   time_taken: Date.now() - docLoadStartTime,
-      //   downloads_left: user.remainingDownloads.free,
-      //   free_downloads_left: user.remainingDownloads.free,
-      // });
-
-      window.document.body.removeChild(element);
-      setPaidDownloadDone(true);
-    } catch (error) {
-      console.log("Could not download part", error);
-    }
-    setFileDownloading(false);
-  };
-
-  const handlePaidDownloadDone = () => {
-    setOpenPaidDownloadModal(false);
-    setPaidDownloadDone(false);
-  };
-
   useEffect(() => {
     const init = async () => {
       setLoading(true);
@@ -459,7 +315,14 @@ const DocumentViewerPage: React.FC = () => {
 
   return (
     <div>
-      <Modal size="tiny" open={openPaidDownloadModal} onClose={() => {}}>
+      <Modal
+        size="tiny"
+        open={openPaidDownloadModal}
+        onClose={() => {
+          setOpenPaidDownloadModal(false);
+        }}
+        closeIcon
+      >
         <Modal.Content className={styles.PaidDownloadModal}>
           <div className={styles.Heading}>
             <img src="/icons/do-checkbox.svg" />
@@ -474,16 +337,11 @@ const DocumentViewerPage: React.FC = () => {
               icon
               className={styles.DownloadButton}
               labelPosition="left"
-              onClick={handlePaidDownload}
+              onClick={handleDownload}
             >
               <Icon name="download" />
               Download
             </Button>
-            {paidDownloadDone && (
-              <Button basic onClick={handlePaidDownloadDone}>
-                Close
-              </Button>
-            )}
           </div>
         </Modal.Content>
       </Modal>
@@ -580,63 +438,7 @@ const DocumentViewerPage: React.FC = () => {
               <div className={styles.DownloadsRemaining}>
                 {user.remainingDownloads.free} download(s) remaining
               </div>
-              <div className={styles.DocumentSearchInput}>
-                {/* <Input
-                  onChange={handleDocSearchTextChange}
-                  value={documentSearchText}
-                  onKeyPress={handleKeyPress}
-                  label={
-                    <Button
-                      onClick={() => {
-                        handleDocumentSearch(documentSearchText);
-                      }}
-                      className={styles.SearchButton}
-                      loading={searchLoading}
-                    >
-                      Search
-                    </Button>
-                  }
-                  labelPosition="right"
-                  placeholder="Search Document..."
-                  className={styles.Input}
-                /> */}
-                {/* {documentSearchResult && (
-                  <div className={styles.DocumentSearchResult}>
-                    {documentSearchResult.pages.length > 0 ? (
-                      <>
-                        <div>
-                          <div
-                            className={styles.UpDownButton}
-                            onClick={handlePrevDocSearchResult}
-                          >
-                            <img
-                              src="/icons/do-chevron-up.svg"
-                              alt="up results"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          {(currentDocSearchResultIdx || 0) + 1} /{" "}
-                          {documentSearchResult.pages.length}
-                        </div>
-                        <div>
-                          <div
-                            className={styles.UpDownButton}
-                            onClick={handleNextDocSearchResult}
-                          >
-                            <img
-                              src="/icons/do-chevron-down.svg"
-                              alt="down results"
-                            />
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <div className={styles.NoResults}>No Results</div>
-                    )}
-                  </div>
-                )} */}
-              </div>
+              <div className={styles.DocumentSearchInput}></div>
               {(!documentSearchResult ||
                 documentSearchResult?.pages.length === 0) && (
                 <div className={styles.PageNumber}>
