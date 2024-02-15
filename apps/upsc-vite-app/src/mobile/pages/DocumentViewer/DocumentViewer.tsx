@@ -256,6 +256,7 @@ const DocumentViewerPage: React.FC = () => {
         const result = await axiosInstance.post("/api/payments/success", data);
 
         if (result.data.valid) {
+          await user.getRemainingDownloads();
           setOpenPaidDownloadModal(true);
         }
       },
